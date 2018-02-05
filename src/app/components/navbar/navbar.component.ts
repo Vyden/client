@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsernameComponent } from '../username/username.component';
 
 @Component({
   selector: 'app-navbar',
