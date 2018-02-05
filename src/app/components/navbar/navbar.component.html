@@ -1,4 +1,8 @@
-<mat-toolbar>
+<!-- From stackoverflow post
+https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-using-angular-material-2
+ -->
+
+<mat-toolbar style="height: 50px">
 
   <button mat-button routerLink="/">
     <mat-icon>home</mat-icon>
@@ -6,16 +10,16 @@
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
-  <app-username [username]="'Big Shaq'" class="mr-2"></app-username>
-  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+  <div fxLayout="row">
+    <app-username [username]="'Big Shaq'" class="mr-2"></app-username>
     <button mat-button [mat-menu-trigger-for]="menu">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <button mat-button fxHide="false" fxHide.gt-sm>
+  <!-- <button mat-button (click)="sidenav.open()" fxHide="false" fxHide.gt-sm>
     <span>Mobile View</span>
     <mat-icon>menu</mat-icon>
-  </button>
+  </button> -->
 
 </mat-toolbar>
 <div class="gradient-border"></div>

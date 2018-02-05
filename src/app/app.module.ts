@@ -4,7 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgModule } from '@angular/core';
 
 /* Angular Material Modules */
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -26,7 +26,7 @@ import { UsernameComponent } from './components/username/username.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule
+    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
