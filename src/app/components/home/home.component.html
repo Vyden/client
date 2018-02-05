@@ -1,5 +1,15 @@
 <app-navbar></app-navbar>
 
-<p>
-  home works!
-</p>
+<mat-sidenav-container class="full-height">
+  <mat-sidenav #sidenav class="sidenav" [mode]="sidenavMode">
+    <p>
+      <button mat-button (click)="sidenav.toggle()">Toggle</button>
+    </p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p>
+      <button mat-button (click)="sidenav.toggle()">Toggle</button>
+    </p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
