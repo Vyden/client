@@ -1,0 +1,10 @@
+<div class="row m-0 p-0">
+  <div class="name-chip-container" [style.background-color]="nameColors[username.charCodeAt(0)%nameColors.length]">
+    <span class="name-chip">{{username[0]}}</span>
+  </div>
+
+  <div class="name-container ml-2" fxHide="false" fxHide.lt-sm>
+    <span class="name">{{username}}</span>
+  </div>
+
+</div>

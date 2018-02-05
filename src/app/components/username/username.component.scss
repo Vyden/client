@@ -1,0 +1,26 @@
+.name-chip-container {
+    border-radius: 99em;
+    background-color: #E91E63;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    display: inline-table;
+}
+
+.name-chip {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 1em;
+    color: white;
+}
+
+.name-container {
+    height: 35px;
+    display: inline-table;
+}
+
+.name {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 0.8em;
+}
