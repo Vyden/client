@@ -8,11 +8,12 @@
   <span class="fill-remaining-space"></span>
   <app-username [username]="'Big Shaq'" class="mr-2"></app-username>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-    <button mat-button>
+    <button mat-button [mat-menu-trigger-for]="menu">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+  <button mat-button fxHide="false" fxHide.gt-sm>
+    <span>Mobile View</span>
     <mat-icon>menu</mat-icon>
   </button>
 
@@ -20,6 +21,12 @@
 <div class="gradient-border"></div>
 
 <mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item>Products</button>
-  <!--<button mat-menu-item>Help</button>-->
+  <button mat-menu-item>
+    <mat-icon>add_circle</mat-icon>
+    <span>Create Lecture</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>settings</mat-icon>
+    <span>Settings</span>
+  </button>
 </mat-menu>
