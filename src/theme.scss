@@ -14,6 +14,10 @@
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bcd4', endColorstr='$color', GradientType=1);
     }
+
+    .bg-theme-secondary {
+      background-color: $color;
+    }
 }
 
 // Define the default theme (same as the example above).
