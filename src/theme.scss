@@ -1,33 +1,57 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
-
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // **Be sure that you only ever include this mixin once!**
 @include mat-core();
-
 @mixin apply-theme($color) {
-  
+    .gradient-border {
+        background: -moz-linear-gradient(left, #00bcd4 0%, #00bcd4 70%, $color 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #00bcd4 0%, #00bcd4 70%, $color 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #00bcd4 0%, #00bcd4 70%, $color 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bcd4', endColorstr='$color', GradientType=1);
+    }
 }
 
 // Define the default theme (same as the example above).
 $vyden-app-primary: mat-palette($mat-cyan);
-$vyden-app-accent:  mat-palette($mat-green, 500, 100 , 300);
-$vyden-app-theme:   mat-light-theme($vyden-app-primary, $vyden-app-accent);
-
+$vyden-app-accent: mat-palette($mat-green, 500, 100, 300);
+$vyden-app-theme: mat-light-theme($vyden-app-primary, $vyden-app-accent);
 // Include the default theme styles.
 @include angular-material-theme($vyden-app-theme);
-
-
 // Define an alternate dark theme.
 $dark-primary: mat-palette($mat-blue-grey);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
-$dark-warn:    mat-palette($mat-deep-orange);
-$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 // Include the alternative theme styles inside of a block with a CSS class. You can make this
 // CSS class whatever you want. In this example, any component inside of an element with
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .vyden-dark-theme {
-  @include angular-material-theme($dark-theme);
+    @include angular-material-theme($dark-theme);
+}
+
+// Default theme
+.default-theme {
+    @include angular-material-theme($vyden-app-theme);
+    @include apply-theme(#4CAF50);
+}
+
+// Orange theme
+$orange-accent: mat-palette($mat-orange, 500, 100, 300);
+$orange-theme: mat-light-theme($vyden-app-primary, $orange-accent);
+.orange-theme {
+    @include angular-material-theme($orange-theme);
+    @include apply-theme(#FF9800);
+}
+
+// Purple theme
+$purple-accent: mat-palette($mat-purple, 500, 100, 300);
+$purple-theme: mat-light-theme($vyden-app-primary, $purple-accent);
+.purple-theme {
+    @include angular-material-theme($purple-theme);
+    @include apply-theme(#9C27B0);
 }

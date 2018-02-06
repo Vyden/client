@@ -27,7 +27,9 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
   </button> -->
 
 </mat-toolbar>
-<div class="gradient-border"></div>
+<div [ngClass]="themeClass">
+    <div class="gradient-border"></div>
+</div>
 
 <mat-menu x-position="before" #menu="matMenu">
   <button mat-menu-item>
