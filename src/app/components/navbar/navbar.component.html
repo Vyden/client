@@ -4,12 +4,13 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
 
 <mat-toolbar style="height: 50px">
 
-  <button mat-button (click)="leftSidenav.toggle()">
+  <button mat-icon-button (click)="leftSidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <button mat-button routerLink="/">
+  <button mat-button routerLink="/" class="ml-1">
     <mat-icon>home</mat-icon>
+    <span>VYDEN</span>
   </button>
 
   <!-- This fills the remaining space of the current row -->
