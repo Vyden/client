@@ -5,6 +5,7 @@
 // **Be sure that you only ever include this mixin once!**
 @include mat-core();
 @mixin apply-theme($color) {
+    transition: background 250ms ease-in-out;
     .gradient-border {
         background: -moz-linear-gradient(left, #00bcd4 0%, #00bcd4 70%, $color 100%);
         /* FF3.6-15 */
@@ -14,13 +15,11 @@
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bcd4', endColorstr='$color', GradientType=1);
     }
-
     .bg-theme-secondary {
-      background-color: $color;
+        background-color: $color;
     }
-
     .bg-theme-secondary-darker {
-      background-color: darken($color, 20);
+        background-color: darken($color, 20);
     }
 }
 
@@ -48,18 +47,82 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
     @include apply-theme(#4CAF50);
 }
 
-// Orange theme
-$orange-accent: mat-palette($mat-orange, 500, 100, 300);
-$orange-theme: mat-light-theme($vyden-app-primary, $orange-accent);
-.orange-theme {
-    @include angular-material-theme($orange-theme);
-    @include apply-theme(#FF9800);
+// Red theme
+$red-accent: mat-palette($mat-red, 500, 100, 300);
+$red-theme: mat-light-theme($vyden-app-primary, $red-accent);
+.red-theme {
+	@include angular-material-theme($red-theme);
+	@include apply-theme(#f44336);
+}
+
+// Pink theme
+$pink-accent: mat-palette($mat-pink, 500, 100, 300);
+$pink-theme: mat-light-theme($vyden-app-primary, $pink-accent);
+.pink-theme {
+	@include angular-material-theme($pink-theme);
+	@include apply-theme(#E91E63);
 }
 
 // Purple theme
 $purple-accent: mat-palette($mat-purple, 500, 100, 300);
 $purple-theme: mat-light-theme($vyden-app-primary, $purple-accent);
 .purple-theme {
-    @include angular-material-theme($purple-theme);
-    @include apply-theme(#9C27B0);
+	@include angular-material-theme($purple-theme);
+	@include apply-theme(#9C27B0);
+}
+
+// Deep Purple theme
+$deep-purple-accent: mat-palette($mat-deep-purple, 500, 100, 300);
+$deep-purple-theme: mat-light-theme($vyden-app-primary, $deep-purple-accent);
+.deep-purple-theme {
+	@include angular-material-theme($deep-purple-theme);
+	@include apply-theme(#673AB7);
+}
+
+// Indigo theme
+$indigo-accent: mat-palette($mat-indigo, 500, 100, 300);
+$indigo-theme: mat-light-theme($vyden-app-primary, $indigo-accent);
+.indigo-theme {
+	@include angular-material-theme($indigo-theme);
+	@include apply-theme(#3F51B5);
+}
+
+// Blue theme
+$blue-accent: mat-palette($mat-blue, 500, 100, 300);
+$blue-theme: mat-light-theme($vyden-app-primary, $blue-accent);
+.blue-theme {
+	@include angular-material-theme($blue-theme);
+	@include apply-theme(#2196F3);
+}
+
+// Teal theme
+$teal-accent: mat-palette($mat-teal, 500, 100, 300);
+$teal-theme: mat-light-theme($vyden-app-primary, $teal-accent);
+.teal-theme {
+	@include angular-material-theme($teal-theme);
+	@include apply-theme(#009688);
+}
+
+// Amber theme
+$amber-accent: mat-palette($mat-amber, 500, 100, 300);
+$amber-theme: mat-light-theme($vyden-app-primary, $amber-accent);
+.amber-theme {
+	@include angular-material-theme($amber-theme);
+	@include apply-theme(#FFC107);
+}
+
+// Orange theme
+$orange-accent: mat-palette($mat-orange, 500, 100, 300);
+$orange-theme: mat-light-theme($vyden-app-primary, $orange-accent);
+.orange-theme {
+	@include angular-material-theme($orange-theme);
+	@include apply-theme(#FF9800);
+}
+
+// Deep Orange theme
+$deep-orange-accent: mat-palette($mat-deep-orange, 500, 100, 300);
+$deep-orange-theme: mat-light-theme($vyden-app-primary, $deep-orange-accent);
+.deep-orange-theme {
+	@include angular-material-theme($deep-orange-theme);
+	@include apply-theme(#FF5722);
 }
