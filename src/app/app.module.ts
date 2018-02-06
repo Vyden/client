@@ -9,6 +9,7 @@ import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSid
 
 /* Services */
 import { NavbarService } from './services/navbar/navbar.service';
+import { ThemeService } from './services/theme/theme.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -32,7 +33,7 @@ import { CardBoilerplateComponent } from './components/card-boilerplate/card-boi
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule
   ],
-  providers: [NavbarService],
+  providers: [NavbarService, ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

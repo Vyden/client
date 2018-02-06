@@ -6,6 +6,10 @@
 // **Be sure that you only ever include this mixin once!**
 @include mat-core();
 
+@mixin apply-theme($color) {
+  
+}
+
 // Define the default theme (same as the example above).
 $vyden-app-primary: mat-palette($mat-cyan);
 $vyden-app-accent:  mat-palette($mat-green, 500, 100 , 300);
