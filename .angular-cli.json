@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "theme.scss"
+        "theme.scss",
+        "./assets/css/mdb.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
