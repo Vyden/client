@@ -18,6 +18,10 @@
     .bg-theme-secondary {
       background-color: $color;
     }
+
+    .bg-theme-secondary-darker {
+      background-color: darken($color, 20);
+    }
 }
 
 // Define the default theme (same as the example above).

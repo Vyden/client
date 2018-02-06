@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<mat-drawer-container class="full-height">
+<mat-drawer-container [ngClass]="themeClass" class="full-height">
   <!-- Nav Content -->
   <mat-drawer #sidenav class="sidenav" [mode]="sidenavMode">
     Drawer Content
@@ -9,7 +9,7 @@
   <!-- Main Content -->
   <mat-drawer-content class="bg-light-grey justify-content-center">
     <div class="bg-color-split full-height">
-      <div class="top-color"></div>
+      <div class="top-color bg-theme-secondary-darker"></div>
     </div>
     <div class="container-fluid pt-3 pb-3 content-container card-scroll full-height">
       <div class="row p-0">
