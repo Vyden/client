@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Angular Material Modules */
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule } from '@angular/material';
 
 /* Services */
 import { NavbarService } from './services/navbar/navbar.service';
@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernameComponent } from './components/username/username.component';
+import { CardBoilerplateComponent } from './components/card-boilerplate/card-boilerplate.component';
 
 
 @NgModule({
@@ -21,14 +22,15 @@ import { UsernameComponent } from './components/username/username.component';
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    UsernameComponent
+    UsernameComponent,
+    CardBoilerplateComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule
+    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule
   ],
   providers: [NavbarService],
   bootstrap: [AppComponent]
