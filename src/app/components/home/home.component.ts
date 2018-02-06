@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { breakpointsProvider, BreakpointsService, BreakpointEvent } from 'angular-breakpoints';
 import { NavbarService } from '../../services/navbar/navbar.service';
 import { MatSidenav } from '@angular/material';
+import { CardBoilerplateComponent } from '../card-boilerplate/card-boilerplate.component';
 
 @Component({
   selector: 'app-home',
