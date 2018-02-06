@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { breakpointsProvider, BreakpointsService, BreakpointEvent } from 'angular-breakpoints';
+import { NavbarService } from '../../services/navbar/navbar.service';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +11,11 @@ import { breakpointsProvider, BreakpointsService, BreakpointEvent } from 'angula
   providers: [breakpointsProvider()]
 })
 export class HomeComponent implements OnInit {
-
+  
+  @ViewChild('sidenav') sidenav: MatSidenav
   public sidenavMode: string
 
-  constructor(private _breakpointsService: BreakpointsService) {
+  constructor(private _breakpointsService: BreakpointsService, private _navbarService: NavbarService) {
     this.sidenavMode = "side"
 
     this._breakpointsService.changes.subscribe((bp: BreakpointEvent) => {
@@ -25,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._navbarService.changeLeftSidenav(this.sidenav)
   }
 
 }

@@ -1,15 +1,15 @@
 <app-navbar></app-navbar>
 
-<mat-sidenav-container class="full-height">
-  <mat-sidenav #sidenav class="sidenav" [mode]="sidenavMode">
-    <p>
-      <button mat-button (click)="sidenav.toggle()">Toggle</button>
-    </p>
-  </mat-sidenav>
+<mat-drawer-container class="full-height">
+  <!-- Nav Content -->
+  <mat-drawer #sidenav class="sidenav" [mode]="sidenavMode">
+    Drawer Content
+  </mat-drawer>
 
-  <mat-sidenav-content>
+  <!-- Main Content -->
+  <mat-drawer-content>
     <p>
-      <button mat-button (click)="sidenav.toggle()">Toggle</button>
+      content
     </p>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-drawer-content>
+</mat-drawer-container>

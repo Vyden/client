@@ -4,6 +4,10 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
 
 <mat-toolbar style="height: 50px">
 
+  <button mat-button (click)="leftSidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
   <button mat-button routerLink="/">
     <mat-icon>home</mat-icon>
   </button>
