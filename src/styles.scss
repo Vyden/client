@@ -6,7 +6,11 @@ button, a {
 }
 
 .white-text {
-    color: white;
+    color: white !important;
+}
+
+.bg-light-grey {
+    background-color: #EEEEEE;
 }
 
 .bg-green {
