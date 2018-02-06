@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { UsernameComponent } from '../username/username.component';
 import { NavbarService } from '../../services/navbar/navbar.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,15 +11,23 @@ import { NavbarService } from '../../services/navbar/navbar.service';
 })
 export class NavbarComponent implements OnInit {
 
+  public themeClass: string
+
   private leftSidenav: MatSidenav
 
-  constructor(private _navbarService: NavbarService) { }
+  constructor(private _navbarService: NavbarService, private _themeService: ThemeService) { }
 
   ngOnInit() {
     /* Listen for changes to sidenav */
     this._navbarService.currentLeftSidenav
       .subscribe((sidenav: MatSidenav) => {
         this.leftSidenav = sidenav
+      })
+
+    /* Listen for changes to theme */
+    this._themeService.currentThemeClass
+      .subscribe((themeClass: string) => {
+        this.themeClass = themeClass
       })
   }
 
