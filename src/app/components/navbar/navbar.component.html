@@ -17,6 +17,9 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
   <span class="fill-remaining-space"></span>
   <div fxLayout="row">
     <app-username [username]="'Big Shaq'" class="mr-2"></app-username>
+    <button mat-button [mat-menu-trigger-for]="thememenu">
+      <span>Test Themes</span>
+    </button>
     <button mat-button [mat-menu-trigger-for]="menu">
       <mat-icon>menu</mat-icon>
     </button>
@@ -40,4 +43,8 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
     <mat-icon>settings</mat-icon>
     <span>Settings</span>
   </button>
+</mat-menu>
+
+<mat-menu #thememenu="matMenu">
+  <button mat-menu-item *ngFor="let themeColor of themeColors" (click)="changeTheme(themeColor)">{{themeColor}}</button>
 </mat-menu>

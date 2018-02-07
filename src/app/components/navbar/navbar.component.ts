@@ -12,6 +12,7 @@ import { ThemeService } from '../../services/theme/theme.service';
 export class NavbarComponent implements OnInit {
 
   public themeClass: string
+  public themeColors: string[] = this._themeService.getThemes().map(themeArray => themeArray[0]);
 
   private leftSidenav: MatSidenav
 
@@ -29,6 +30,10 @@ export class NavbarComponent implements OnInit {
       .subscribe((themeClass: string) => {
         this.themeClass = themeClass
       })
+  }
+
+  public changeTheme(theme: string) {
+    this._themeService.changeThemeClass(theme)
   }
 
 }

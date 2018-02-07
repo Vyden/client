@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 @Injectable()
 export class ThemeService {
 
-  private themeClassSource = new BehaviorSubject<string>("red-theme")
+  private themeClassSource = new BehaviorSubject<string>("deep-orange-theme")
   public currentThemeClass = this.themeClassSource.asObservable()
 
   private themes = [
@@ -23,7 +23,7 @@ export class ThemeService {
   constructor() { }
 
   public changeThemeClass(themeClass: string) {
-    this.themeClassSource.next(themeClass);
+    this.themeClassSource.next(themeClass+"-theme");
   }
 
   public getThemes() {
