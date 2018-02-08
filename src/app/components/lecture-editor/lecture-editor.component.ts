@@ -8,9 +8,22 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class LectureEditorComponent implements OnInit {
 
-  constructor() { }
+  public quizOptions: string [] = []
+
+  constructor() {
+    this.quizOptions.push(null)
+  }
 
   ngOnInit() {
+  }
+
+  public addQuizOption() {
+    this.quizOptions.push(null)
+  }
+
+  public removeQuizOption(el: string) {
+    console.log(el);
+    this.quizOptions.splice(this.quizOptions.indexOf(el), 1)
   }
 
 }

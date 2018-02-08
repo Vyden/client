@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule
+  MatInputModule, MatCheckboxModule
 } from '@angular/material';
 
 /* Services */
@@ -35,9 +36,10 @@ import { LectureEditorComponent } from './components/lecture-editor/lecture-edit
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule
+    MatInputModule, MatCheckboxModule
   ],
   providers: [NavbarService, ThemeService],
   bootstrap: [AppComponent]
