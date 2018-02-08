@@ -19,3 +19,42 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ab47bc', endColorstr='#7e57c2', GradientType=0);
     /* IE6-9 */
 }
+
+.video-upload-footer {
+    background: url('../../../assets/img/vyden-waves.png');
+    height: 50px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: center bottom;
+}
+
+.video-upload-content {
+    height: 300px;
+}
+
+.Aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.Aligner-item {
+    max-width: 50%;
+}
+
+.Aligner-item--top {
+    align-self: flex-start;
+}
+
+.Aligner-item--bottom {
+    align-self: flex-end;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .full-height-mobile {
+        height: calc(100vh - 55px);
+    }
+}
