@@ -1,0 +1,21 @@
+.full-height {
+    height: calc(100vh - 55px);
+}
+
+.bg-light-grey {
+    background-color: #EEEEEE;
+}
+
+.upload-card {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ab47bc+0,7e57c2+100 */
+    background: #ab47bc;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #ab47bc 0%, #7e57c2 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ab47bc 0%, #7e57c2 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ab47bc 0%, #7e57c2 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ab47bc', endColorstr='#7e57c2', GradientType=0);
+    /* IE6-9 */
+}
