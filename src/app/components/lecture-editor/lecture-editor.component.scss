@@ -48,4 +48,9 @@
     .full-height-mobile {
         height: calc(100vh - 55px);
     }
+
+    mat-card {
+        border-radius: 0;
+        box-shadow: none !important;
+    }
 }
