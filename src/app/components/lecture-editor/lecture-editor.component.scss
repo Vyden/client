@@ -6,6 +6,10 @@
     background-color: #EEEEEE;
 }
 
+.font-400 {
+    font-weight: 400;
+}
+
 .upload-card {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ab47bc+0,7e57c2+100 */
     background: #ab47bc;
@@ -43,12 +47,23 @@
     flex: 1;
 }
 
+.quiz-input-row {
+    width: 75%;
+}
+
+.row-centered {
+    float: none;
+    margin: 0 auto;
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     .full-height-mobile {
         height: calc(100vh - 55px);
     }
-
+    .quiz-input-row {
+        width: 100%;
+    }
     mat-card {
         border-radius: 0;
         box-shadow: none !important;

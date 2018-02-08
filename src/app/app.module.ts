@@ -5,7 +5,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Angular Material Modules */
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule } from '@angular/material';
+import {
+  MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
+  MatInputModule
+} from '@angular/material';
 
 /* Services */
 import { NavbarService } from './services/navbar/navbar.service';
@@ -33,7 +36,8 @@ import { LectureEditorComponent } from './components/lecture-editor/lecture-edit
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule
+    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
+    MatInputModule
   ],
   providers: [NavbarService, ThemeService],
   bootstrap: [AppComponent]
