@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   public themeClass: string
   public themeColors: string[] = this._themeService.getThemes().map(themeArray => themeArray[0]);
 
-  private leftSidenav: MatSidenav
+  public leftSidenav: MatSidenav
 
   constructor(private _navbarService: NavbarService, private _themeService: ThemeService) { }
 
