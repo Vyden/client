@@ -17,7 +17,7 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
   <span class="fill-remaining-space"></span>
   <div fxLayout="row">
     <app-username [username]="'Big Shaq'" class="mr-2"></app-username>
-    <button mat-button [mat-menu-trigger-for]="thememenu">
+    <button mat-button [mat-menu-trigger-for]="thememenu" fxHide="false" fxHide.lt-sm>
       <span>Test Themes</span>
     </button>
     <button mat-button [mat-menu-trigger-for]="menu">

@@ -2,10 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Angular Material Modules */
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule } from '@angular/material';
+import {
+  MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
+  MatInputModule, MatCheckboxModule, MatStepperModule
+} from '@angular/material';
 
 /* Services */
 import { NavbarService } from './services/navbar/navbar.service';
@@ -16,6 +20,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernameComponent } from './components/username/username.component';
 import { CardBoilerplateComponent } from './components/card-boilerplate/card-boilerplate.component';
+import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
+import { DoneTickComponent } from './components/done-tick/done-tick.component';
 
 
 @NgModule({
@@ -24,14 +30,18 @@ import { CardBoilerplateComponent } from './components/card-boilerplate/card-boi
     HomeComponent,
     NavbarComponent,
     UsernameComponent,
-    CardBoilerplateComponent
+    CardBoilerplateComponent,
+    LectureEditorComponent,
+    DoneTickComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     FlexLayoutModule,
-    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule
+    MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
+    MatInputModule, MatCheckboxModule, MatStepperModule
   ],
   providers: [NavbarService, ThemeService],
   bootstrap: [AppComponent]
