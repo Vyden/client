@@ -17,6 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernameComponent } from './components/username/username.component';
 import { CardBoilerplateComponent } from './components/card-boilerplate/card-boilerplate.component';
 import { SidenavContentComponent } from './components/home/sidenav-content/sidenav-content.component';
+import { ClassesService } from './services/classes/classes.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { SidenavContentComponent } from './components/home/sidenav-content/siden
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule
   ],
-  providers: [NavbarService, ThemeService],
+  providers: [NavbarService, ThemeService, ClassesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
