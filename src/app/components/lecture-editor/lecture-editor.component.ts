@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-lecture-editor',
@@ -12,6 +13,9 @@ export class LectureEditorComponent implements OnInit {
 
   public newQuizMode: boolean
 
+  /* Quiz Stepper Properties */
+  firstGroup: FormGroup
+
   constructor() {
     this.quizOptions.push(null)
   }
@@ -21,7 +25,7 @@ export class LectureEditorComponent implements OnInit {
 
   public initQuiz() {
     this.newQuizMode = true
-    
+
   }
 
   public addQuizOption() {

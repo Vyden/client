@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule, MatCheckboxModule
+  MatInputModule, MatCheckboxModule, MatStepperModule
 } from '@angular/material';
 
 /* Services */
@@ -39,7 +39,7 @@ import { LectureEditorComponent } from './components/lecture-editor/lecture-edit
     FormsModule,
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule, MatCheckboxModule
+    MatInputModule, MatCheckboxModule, MatStepperModule
   ],
   providers: [NavbarService, ThemeService],
   bootstrap: [AppComponent]
