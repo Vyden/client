@@ -10,11 +10,18 @@ export class LectureEditorComponent implements OnInit {
 
   public quizOptions: string [] = []
 
+  public newQuizMode: boolean
+
   constructor() {
     this.quizOptions.push(null)
   }
 
   ngOnInit() {
+  }
+
+  public initQuiz() {
+    this.newQuizMode = true
+    
   }
 
   public addQuizOption() {
