@@ -26,7 +26,7 @@ import { SidenavContentComponent } from './components/home/sidenav-content/siden
     NavbarComponent,
     UsernameComponent,
     CardBoilerplateComponent,
-    SidenavContentComponent
+    SidenavContentComponent,
   ],
   imports: [
     BrowserModule,
