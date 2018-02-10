@@ -21,6 +21,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernameComponent } from './components/username/username.component';
 import { CardBoilerplateComponent } from './components/card-boilerplate/card-boilerplate.component';
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
+import { DoneTickComponent } from './components/done-tick/done-tick.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LectureEditorComponent } from './components/lecture-editor/lecture-edit
     NavbarComponent,
     UsernameComponent,
     CardBoilerplateComponent,
-    LectureEditorComponent
+    LectureEditorComponent,
+    DoneTickComponent
   ],
   imports: [
     BrowserModule,
