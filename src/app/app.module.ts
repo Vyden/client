@@ -21,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernameComponent } from './components/username/username.component';
 import { CardBoilerplateComponent } from './components/card-boilerplate/card-boilerplate.component';
+import { MainPanelComponent } from './components/main-panel/main-panel.component';
 import { SidenavContentComponent } from './components/home/sidenav-content/sidenav-content.component';
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
@@ -33,6 +34,7 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
     NavbarComponent,
     UsernameComponent,
     CardBoilerplateComponent,
+    MainPanelComponent
     SidenavContentComponent,
     LectureEditorComponent,
     DoneTickComponent
