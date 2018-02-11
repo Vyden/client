@@ -12,6 +12,7 @@ export class SidenavContentComponent implements OnInit {
   public themeClass: string = "default-theme";
   public sampleClasses: string[] = [];
   public themeColors: string[] = this._themeService.getThemes().map(themeArray => themeArray[1]);
+  public defaultHeader = true;
 
   constructor(private _themeService: ThemeService, private _classesService: ClassesService) { }
 
@@ -34,7 +35,7 @@ export class SidenavContentComponent implements OnInit {
   }
 
   //Toggle input field for classes
-  public classInputToggle() {
-    console.log('click');
+  public toggleHeaderContent() {
+    this.defaultHeader = !this.defaultHeader;
   }
 }

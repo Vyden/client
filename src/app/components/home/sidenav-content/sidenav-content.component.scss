@@ -4,8 +4,19 @@
   justify-content: space-between;
 }
 
+#sidenav-header-input {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
+
 #sidenav-body {
   text-align: center;
+}
+
+#header-input-form {
+  background: white;
+  width: 100%;
 }
 
 .header-title {
@@ -23,4 +34,8 @@
 
 .hide-element {
   display: none;
+}
+
+.min-width-50 {
+  min-width: 50px !important;
 }
