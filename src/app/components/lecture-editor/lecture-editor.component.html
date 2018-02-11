@@ -125,6 +125,23 @@
               <ng-template matStepLabel>
                 <span fxHide="false" fxHide.lt-sm>Timeline</span>
               </ng-template>
+
+              <div class="row">
+                <div class="col-12 pt-4 pl-4 pr-4">
+                  <mat-slider min="0" max="100" color="accent" class="w-100" thumbLabel></mat-slider>
+                </div>
+
+                <div class="col-12 text-center">
+                  <mat-form-field class="timer-input">
+                    <input matInput placeholder="mm" maxlength="2">
+                  </mat-form-field>
+                  <span>:</span>
+                  <mat-form-field class="timer-input">
+                    <input matInput placeholder="ss" maxlength="2">
+                  </mat-form-field>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col-12 text-center pt-3">
                   <button mat-button matStepperPrevious>
