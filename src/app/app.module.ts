@@ -23,6 +23,7 @@ import { UsernameComponent } from './components/username/username.component';
 import { CardBoilerplateComponent } from './components/card-boilerplate/card-boilerplate.component';
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
     UsernameComponent,
     CardBoilerplateComponent,
     LectureEditorComponent,
-    DoneTickComponent
+    DoneTickComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
