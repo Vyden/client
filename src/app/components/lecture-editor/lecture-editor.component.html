@@ -128,16 +128,16 @@
 
               <div class="row">
                 <div class="col-12 pt-4 pl-4 pr-4">
-                  <mat-slider min="0" max="100" color="accent" class="w-100" thumbLabel></mat-slider>
+                  <mat-slider min="0" [max]="lectureEndTime" [value]="quizStartTime" (input)="calculateQuizTimeSlider($event)" color="accent" class="w-100" thumbLabel></mat-slider>
                 </div>
 
                 <div class="col-12 text-center">
-                  <mat-form-field class="timer-input">
-                    <input matInput placeholder="mm" maxlength="2">
+                  <mat-form-field color="accent" class="timer-input">
+                    <input matInput [(ngModel)]="quizMM" (input)="calculateQuizTime()" placeholder="mm" maxlength="2">
                   </mat-form-field>
                   <span>:</span>
-                  <mat-form-field class="timer-input">
-                    <input matInput placeholder="ss" maxlength="2">
+                  <mat-form-field color="accent" class="timer-input">
+                    <input matInput [(ngModel)]="quizSS" (input)="calculateQuizTime()" placeholder="ss" maxlength="2">
                   </mat-form-field>
                 </div>
               </div>
