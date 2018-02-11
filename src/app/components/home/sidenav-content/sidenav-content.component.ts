@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from '../../../services/theme/theme.service'
+import { ThemeService } from '../../../services/theme/theme.service';
+import { ClassesService } from '../../../services/classes/classes.service';
 
 @Component({
   selector: 'app-sidenav-content',
@@ -9,19 +10,26 @@ import { ThemeService } from '../../../services/theme/theme.service'
 export class SidenavContentComponent implements OnInit {
 
   public themeClass: string = "default-theme";
-  public sampleClasses: string[] = ['CS 307: Software Enginerring', 'STAT 350: Introduction to Statistics of Dark Matter and Stuff', 'CS 252: Systems Programming'];
-
+  public sampleClasses: string[] = [];
   public themeColors: string[] = this._themeService.getThemes().map(themeArray => themeArray[1]);
 
-  constructor(private _themeService: ThemeService) { }
+  constructor(private _themeService: ThemeService, private _classesService: ClassesService) { }
 
   ngOnInit() {
 		this._themeService.currentThemeClass.subscribe((theme: string) => {
 			this.themeClass = theme;
-		});
+    });
+
+    this._classesService.getClasses().subscribe((classes: string[]) => {
+      this.sampleClasses.push(...classes);
+    })
   }
 
+  //Takes index of button as parameter
+  //Returns color for button
   public getButtonColor(index: number): string {
     return this.themeColors[index % this.themeColors.length];
   }
+
+
 }
