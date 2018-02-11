@@ -22,7 +22,9 @@ export class SidenavContentComponent implements OnInit {
 
     this._classesService.getClasses().subscribe((classes: string[]) => {
       this.sampleClasses.push(...classes);
-    })
+    });
+
+    // document.querySelector('#input-header').classList.add('hide-element');
   }
 
   //Takes index of button as parameter
@@ -31,5 +33,8 @@ export class SidenavContentComponent implements OnInit {
     return this.themeColors[index % this.themeColors.length];
   }
 
-
+  //Toggle input field for classes
+  public classInputToggle() {
+    console.log('click');
+  }
 }
