@@ -1,12 +1,34 @@
 <!-- sidebar header -->
-<mat-toolbar color="primary" class="sidenav-header">
+<mat-toolbar color="primary" id="sidenav-header" [ngClass]="themeClass">
 	<span class="example-fill-remaining-space"></span>
 
 	<h2 class="header-title">COURSES</h2>
 
-	<button mat-icon-button>
+	<button mat-icon-button class="bg-theme-secondary ">
 		<mat-icon>add</mat-icon>
 	</button>
 </mat-toolbar>
 
 <!-- sidebar body -->
+<!-- <div >
+  <div class="row">
+    <div class="col">
+      <button mat-raised-button>Hello</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+        <button mat-raised-button>Hello</button>
+    </div>
+  </div>
+</div> -->
+<section id="sidenav-body" [ngClass]="themeClass">
+  <div class="row m-3" *ngFor="let class of sampleClasses; let i = index">
+    <div class="col">
+      <button mat-raised-button [ngStyle]="{'background': getButtonColor(i)}" class="class-button white-text text-left">
+        <mat-icon class="mr-2">class</mat-icon>
+        {{ class }}
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,15 +1,22 @@
-.sidenav-header {
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
+#sidenav-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#sidenav-body {
+  text-align: center;
 }
 
 .header-title {
-    font-family: "Roboto";
-    font-weight: 300;
-    font-size: 2rem;
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 2rem;
 }
 
-[mat-icon-button] {
-    background-color: #4CAF50;
+.class-button {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
 }
