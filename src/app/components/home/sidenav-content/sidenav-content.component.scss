@@ -1,0 +1,15 @@
+.sidenav-header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-family: "Roboto";
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+[mat-icon-button] {
+    background-color: #4CAF50;
+}

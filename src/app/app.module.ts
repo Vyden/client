@@ -14,12 +14,14 @@ import {
 /* Services */
 import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
+import { ClassesService } from './services/classes/classes.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernameComponent } from './components/username/username.component';
 import { CardBoilerplateComponent } from './components/card-boilerplate/card-boilerplate.component';
+import { SidenavContentComponent } from './components/home/sidenav-content/sidenav-content.component';
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
 
@@ -31,6 +33,7 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
     NavbarComponent,
     UsernameComponent,
     CardBoilerplateComponent,
+    SidenavContentComponent,
     LectureEditorComponent,
     DoneTickComponent
   ],
@@ -43,7 +46,7 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule
   ],
-  providers: [NavbarService, ThemeService],
+  providers: [NavbarService, ThemeService, ClassesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
