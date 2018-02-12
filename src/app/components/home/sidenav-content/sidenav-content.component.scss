@@ -1,46 +1,7 @@
-#sidenav-header {
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-}
 
-#sidenav-header-input {
-  height: 60px;
-  display: flex;
-  justify-content: center;
-}
 
-#sidenav-body {
-  text-align: center;
-}
 
-#header-input-form {
-  background: white;
-  width: 100%;
-}
 
-#class-code-input {
-  box-shadow:  none !important;
-  -webkit-box-shadow: none !important;
-}
 
-.header-title {
-  font-family: "Roboto";
-  font-weight: 300;
-  font-size: 2rem;
-}
 
-.class-button {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-}
 
-.hide-element {
-  display: none;
-}
-
-.min-width-50 {
-  min-width: 50px !important;
-}
