@@ -34,7 +34,7 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
     NavbarComponent,
     UsernameComponent,
     CardBoilerplateComponent,
-    MainPanelComponent
+    MainPanelComponent,
     SidenavContentComponent,
     LectureEditorComponent,
     DoneTickComponent
