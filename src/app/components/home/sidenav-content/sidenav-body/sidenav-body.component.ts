@@ -17,7 +17,7 @@ export class SidenavBodyComponent implements OnInit {
   constructor(private _classesService: ClassesService, private _themeService: ThemeService) { }
 
   ngOnInit() {
-    this._classesService.getClasses().subscribe((classes: string[]) => {
+    this._classesService.currentClasses.subscribe((classes: string[]) => {
       this.sampleClasses.push(...classes);
     });
 
@@ -36,5 +36,6 @@ export class SidenavBodyComponent implements OnInit {
   //Changes the theme of the page and changes sidenav to lecture sidenav view
   public navigateToCourse(index: number) {
     this._themeService.changeThemeClass(this.themes[index][0]);
+    this._classesService.selectClass("random class");
   }
 }

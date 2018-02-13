@@ -15,7 +15,7 @@ export class SidenavHeaderComponent implements OnInit {
 
   ngOnInit() {
     this._themeService.currentThemeClass.subscribe((theme: string) => {
-			this.themeClass = theme;
+      this.themeClass = theme;
     });
   }
 

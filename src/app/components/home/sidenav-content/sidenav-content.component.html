@@ -1,3 +1,9 @@
 
-<app-sidenav-header></app-sidenav-header>
-<app-sidenav-body></app-sidenav-body>
+<div *ngIf="showClasses; else showLectures">
+  <app-sidenav-header></app-sidenav-header>
+  <app-sidenav-body></app-sidenav-body>
+</div>
+
+<ng-template #showLectures>
+  <app-sidenav-lecture></app-sidenav-lecture>
+</ng-template>
