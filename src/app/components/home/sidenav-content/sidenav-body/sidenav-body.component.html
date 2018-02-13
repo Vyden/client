@@ -6,9 +6,11 @@
         <div class="col">
           <button
             data-id="{{i}}"
-            mat-raised-button
-            [ngStyle]="{'background': getButtonColor(i)}"
-            class="class-button white-text text-left"
+            mat-button
+            (mouseenter)="hover[i] = true"
+            (mouseleave)="hover[i] = false"
+            [style.backgroundColor]="hover[i] ? getButtonColor(i): 'transparent'"
+            class="class-button white-text text-left no-hover"
             (click)="navigateToCourse(i)">
             <mat-icon class="mr-2">class</mat-icon>
             {{ class }}

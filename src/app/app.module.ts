@@ -27,6 +27,7 @@ import { LectureEditorComponent } from './components/lecture-editor/lecture-edit
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
 import { SidenavHeaderComponent } from './components/home/sidenav-content/sidenav-header/sidenav-header.component';
 import { SidenavBodyComponent } from './components/home/sidenav-content/sidenav-body/sidenav-body.component';
+import { SidenavLectureComponent } from './components/home/sidenav-content/sidenav-lecture/sidenav-lecture.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { SidenavBodyComponent } from './components/home/sidenav-content/sidenav-
     LectureEditorComponent,
     DoneTickComponent,
     SidenavHeaderComponent,
-    SidenavBodyComponent
+    SidenavBodyComponent,
+    SidenavLectureComponent
   ],
   imports: [
     BrowserModule,

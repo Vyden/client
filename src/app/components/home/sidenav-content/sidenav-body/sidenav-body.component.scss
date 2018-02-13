@@ -8,3 +8,15 @@
   white-space: nowrap;
   width: 100%;
 }
+
+button {
+  color: black !important;
+  transition: 0.25 ease-in-out;
+}
+button:hover {
+  color: white !important;
+}
+
+.mat-button.no-hover ::ng-deep .mat-button-focus-overlay {
+  background: none;
+}

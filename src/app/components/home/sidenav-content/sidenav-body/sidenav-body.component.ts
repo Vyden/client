@@ -12,6 +12,7 @@ export class SidenavBodyComponent implements OnInit {
   public themeClass: string = "default-theme";
   public sampleClasses: string[] = [];
   public themes: string[][] = this._themeService.getThemes();
+  public hover: boolean[] = [];
 
   constructor(private _classesService: ClassesService, private _themeService: ThemeService) { }
 
@@ -31,6 +32,8 @@ export class SidenavBodyComponent implements OnInit {
     return this.themes[index % this.themes.length][1];
   }
 
+  //Called when a class button is clicked
+  //Changes the theme of the page and changes sidenav to lecture sidenav view
   public navigateToCourse(index: number) {
     this._themeService.changeThemeClass(this.themes[index][0]);
   }
