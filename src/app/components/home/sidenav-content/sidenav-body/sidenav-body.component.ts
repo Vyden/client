@@ -11,7 +11,7 @@ export class SidenavBodyComponent implements OnInit {
 
   public themeClass: string = "default-theme";
   public sampleClasses: string[] = [];
-  public themeColors: string[] = this._themeService.getThemes().map(themeArray => themeArray[1]);
+  public themes: string[][] = this._themeService.getThemes();
 
   constructor(private _classesService: ClassesService, private _themeService: ThemeService) { }
 
@@ -28,6 +28,10 @@ export class SidenavBodyComponent implements OnInit {
   //Takes index of button as parameter
   //Returns color for button
   public getButtonColor(index: number): string {
-    return this.themeColors[index % this.themeColors.length];
+    return this.themes[index % this.themes.length][1];
+  }
+
+  public navigateToCourse(index: number) {
+    this._themeService.changeThemeClass(this.themes[index][0]);
   }
 }

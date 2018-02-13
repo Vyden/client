@@ -20,8 +20,8 @@ export class SidenavHeaderComponent implements OnInit {
   }
 
     //Toggle input field for classes
-    public toggleHeaderContent() {
-      this.defaultHeader = !this.defaultHeader;
-    }
+  public toggleHeaderContent() {
+    this.defaultHeader = !this.defaultHeader;
+  }
 
 }

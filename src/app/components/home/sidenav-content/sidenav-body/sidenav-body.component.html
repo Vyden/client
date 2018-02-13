@@ -4,7 +4,12 @@
     <div  *ngIf="sampleClasses.length > 0; else noClassesText">
       <div class="row m-3" *ngFor="let class of sampleClasses; let i = index">
         <div class="col">
-          <button mat-raised-button [ngStyle]="{'background': getButtonColor(i)}" class="class-button white-text text-left">
+          <button
+            data-id="{{i}}"
+            mat-raised-button
+            [ngStyle]="{'background': getButtonColor(i)}"
+            class="class-button white-text text-left"
+            (click)="navigateToCourse(i)">
             <mat-icon class="mr-2">class</mat-icon>
             {{ class }}
           </button>
