@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -8,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule, MatCheckboxModule, MatStepperModule
+  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
 } from '@angular/material';
 
 /* Services */
@@ -25,6 +26,7 @@ import { MainPanelComponent } from './components/main-panel/main-panel.component
 import { SidenavContentComponent } from './components/home/sidenav-content/sidenav-content.component';
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
     MainPanelComponent,
     SidenavContentComponent,
     LectureEditorComponent,
-    DoneTickComponent
+    DoneTickComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
     FormsModule,
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule, MatCheckboxModule, MatStepperModule
+    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
   ],
   providers: [NavbarService, ThemeService, ClassesService],
   bootstrap: [AppComponent]
