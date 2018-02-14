@@ -1,0 +1,50 @@
+.quiz-input-row {
+    width: 75%;
+}
+
+.quiz-option-input {
+    width: 600px;
+}
+
+.tick-container {
+    width: 100%;
+    max-width: 200px;
+}
+
+.timer-input {
+    width: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+// https://philipwalton.github.io/solved-by-flexbox/demos/vertical-centering/
+.fill {
+    flex: 1;
+}
+
+.row-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .full-height-mobile {
+        height: calc(100vh - 55px);
+    }
+    .quiz-input-row {
+        width: 100%;
+    }
+    .quiz-option-input {
+        width: 200px;
+    }
+    mat-card {
+        border-radius: 0;
+        box-shadow: none !important;
+    }
+}

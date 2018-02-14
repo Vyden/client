@@ -1,0 +1,164 @@
+<div class="row m-0 p-0">
+  <div class="col m-0 p-0">
+    <mat-card class="">
+      <mat-card-title>
+        <h2 class="text-center" style="font-weight: 400">Step 3: Upload 3-D Models</h2>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="pt-4"></div>
+
+        <div *ngIf="!newModelMode">
+          <h3 class="text-center">Create a new model</h3>
+          <div class="row justify-content-center mt-3 mb-4">
+            <button mat-raised-button color="accent" (click)="initModel()">
+              <mat-icon>playlist_add</mat-icon>
+              <span>NEW MODEL</span>
+            </button>
+          </div>
+        </div>
+
+        <mat-horizontal-stepper *ngIf="newModelMode" [linear]="false" #stepper="matHorizontalStepper" class="w-100">
+          <mat-step>
+            <ng-template matStepLabel>
+              <span fxHide="false" fxHide.lt-sm>Model Content</span>
+            </ng-template>
+            <div class="row">
+              <div class="col">
+                <div class="row row-centered quiz-input-row">
+                  <div class="col-md-2 col-sm-12 align-self-center">
+                    <span class="form-label">Model Name:</span>
+                  </div>
+                  <div class="col-md-10 col-sm-12 align-self-center">
+                    <mat-form-field class="w-100">
+                      <input matInput [(ngModel)]="modelName" placeholder="enter name">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-center mt-2">
+              <div class="col">
+                <div class="row row-centered quiz-input-row">
+                  <div class="col-md-2 col-sm-12">
+                    <span class="form-label">Model Options:</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+
+              </div>
+
+              <div class="col-12 text-center pt-3">
+                <button mat-button matStepperNext>
+                  <span>Next</span>
+                  <mat-icon>arrow_forward</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>
+              <span fxHide="false" fxHide.lt-sm>Timeline</span>
+            </ng-template>
+
+            <div class="row justify-content-center mt-2">
+              <div class="col text-center">
+                <span class="form-label">Model Start Time:</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 pt-4 pl-4 pr-4">
+                <mat-slider min="0" [max]="lectureTime" [value]="modelStartTime" (input)="calculateModelTimeSlider($event)" color="accent"
+                  class="w-100" thumbLabel></mat-slider>
+              </div>
+
+              <div class="col-12 text-center">
+                <mat-form-field color="accent" class="timer-input">
+                  <input matInput [(ngModel)]="modelMM" (input)="calculateModelTime()" placeholder="mm" maxlength="2">
+                </mat-form-field>
+                <span>:</span>
+                <mat-form-field color="accent" class="timer-input">
+                  <input matInput [(ngModel)]="modelSS" (input)="calculateModelTime()" placeholder="ss" maxlength="2">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 text-center pt-3">
+                <button mat-button matStepperPrevious>
+                  <mat-icon>arrow_back</mat-icon>
+                  <span>Back</span>
+                </button>
+                <button mat-button matStepperNext>
+                  <span>Next</span>
+                  <mat-icon>arrow_forward</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-step>
+
+
+          <mat-step>
+            <ng-template matStepLabel>
+              <span fxHide="false" fxHide.lt-sm>Review</span>
+            </ng-template>
+
+            <div class="row">
+              <div class="col text-center">
+                <h3 class="font-weight-bold text-center">Review Model</h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col text-center">
+                <h4 class="text-center">{{modelName}}</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 text-center pt-3">
+                <button mat-button matStepperPrevious>
+                  <mat-icon>arrow_back</mat-icon>
+                  <span>Back</span>
+                </button>
+                <button mat-button matStepperNext>
+                  <span>Next</span>
+                  <mat-icon>arrow_forward</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>
+              <span fxHide="false" fxHide.lt-sm>Done</span>
+            </ng-template>
+            <div class="row justify-content-center">
+              <div class="col-12 tick-container text-center">
+                <app-done-tick></app-done-tick>
+              </div>
+              <div class="col-12 text-center pt-3">
+                <button mat-button matStepperPrevious>
+                  <mat-icon>arrow_back</mat-icon>
+                  <span>Back</span>
+                </button>
+                <button mat-button (click)="finishModel()">
+                  <mat-icon>check</mat-icon>
+                  <span>Done</span>
+                </button>
+              </div>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+
+        <div class="pt-4"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
