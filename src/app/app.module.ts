@@ -28,6 +28,7 @@ import { LectureEditorComponent } from './components/lecture-editor/lecture-edit
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { ModelEditorComponent } from './components/model-editor/model-editor.component';
+import { AnnouncementsCardComponent } from './components/announcements-card/announcements-card.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ModelEditorComponent } from './components/model-editor/model-editor.com
     DoneTickComponent,
     QuizComponent,
     ModelEditorComponent,
+    AnnouncementsCardComponent,
   ],
   imports: [
     BrowserModule,
