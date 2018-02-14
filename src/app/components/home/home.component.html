@@ -14,8 +14,8 @@
     <div class="container-fluid pt-3 pb-3 content-container card-scroll full-height">
       <div class="row p-0">
         <div class="col p-2 m-0">
-          <!--<app-card-boilerplate></app-card-boilerplate>-->
-          <router-outlet></router-outlet>
+          <app-card-boilerplate *ngIf="!courseId"></app-card-boilerplate>
+          <router-outlet *ngIf="courseId"></router-outlet>
         </div>
       </div>
     </div>
