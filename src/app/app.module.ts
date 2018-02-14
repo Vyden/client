@@ -31,6 +31,7 @@ import { SidenavBodyComponent } from './components/home/sidenav-content/sidenav-
 import { SidenavLectureComponent } from './components/home/sidenav-content/sidenav-lecture/sidenav-lecture.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { ModelEditorComponent } from './components/model-editor/model-editor.component';
+import { AnnouncementsCardComponent } from './components/announcements-card/announcements-card.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { ModelEditorComponent } from './components/model-editor/model-editor.com
     SidenavLectureComponent,
     QuizComponent,
     ModelEditorComponent,
+    AnnouncementsCardComponent,
   ],
   imports: [
     BrowserModule,
