@@ -11,6 +11,13 @@ const routes: Routes = [
   {
     path: 'editor',
     component: LectureEditorComponent
+  },
+  {
+    path: 'course/:courseId',
+    component: HomeComponent,
+    children: [
+      
+    ]
   }
 ];
 
