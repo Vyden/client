@@ -27,6 +27,7 @@ import { SidenavContentComponent } from './components/home/sidenav-content/siden
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
 import { QuizComponent } from './components/quiz/quiz.component';
+import { ModelEditorComponent } from './components/model-editor/model-editor.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { QuizComponent } from './components/quiz/quiz.component';
     SidenavContentComponent,
     LectureEditorComponent,
     DoneTickComponent,
-    QuizComponent
+    QuizComponent,
+    ModelEditorComponent,
   ],
   imports: [
     BrowserModule,
