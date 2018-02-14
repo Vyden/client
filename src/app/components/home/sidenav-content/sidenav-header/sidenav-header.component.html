@@ -15,14 +15,19 @@
     <form  action=""
               class="row rounded mat-elevation-z1"
               id="header-input-form"
-              [@enterAnimation]>
-            <button mat-icon-button class="col-2 rounded p-0 min-width-50" (click)="toggleHeaderContent()">
+              [@enterAnimation]
+              (keypress)="isEnter($event)">
+            <button mat-icon-button class="col-1 rounded p-0 min-width-50" (click)="toggleHeaderContent()">
                 <mat-icon class="black-text">arrow_back</mat-icon>
             </button>
             <div class="col black-text p-0">
                 <input id="class-code-input" type="text" class="input-alternate p-0" placeholder="Enter class code..."/>
             </div>
-            <button mat-icon-button class="col-2 rounded p-0 min-width-50">
+            <button mat-icon-button
+                type="submit"
+                form="header-input-form"
+                class="col-1 rounded p-0 min-width-50"
+                (click)="addCourse()">
                 <mat-icon class="black-text">add</mat-icon>
             </button>
     </form>

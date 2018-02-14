@@ -18,6 +18,7 @@ export class SidenavBodyComponent implements OnInit {
 
   ngOnInit() {
     this._classesService.currentClasses.subscribe((classes: string[]) => {
+      this.sampleClasses = [];
       this.sampleClasses.push(...classes);
     });
 
