@@ -47,10 +47,6 @@
     flex: 1;
 }
 
-.quiz-input-row {
-    width: 75%;
-}
-
 .row-centered {
     float: none;
     margin: 0 auto;
@@ -59,16 +55,6 @@
 .form-label {
     font-weight: 500;
     font-size: 16px;
-}
-
-.quiz-option-input {
-    width: 600px;
-}
-
-.tick-container {
-    width: 100%;
-    max-width: 200px;
-
 }
 
 @media only screen and (max-width: 768px) {

@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -8,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule, MatCheckboxModule, MatStepperModule
+  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
 } from '@angular/material';
 
 /* Services */
@@ -28,6 +29,8 @@ import { DoneTickComponent } from './components/done-tick/done-tick.component';
 import { SidenavHeaderComponent } from './components/home/sidenav-content/sidenav-header/sidenav-header.component';
 import { SidenavBodyComponent } from './components/home/sidenav-content/sidenav-body/sidenav-body.component';
 import { SidenavLectureComponent } from './components/home/sidenav-content/sidenav-lecture/sidenav-lecture.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { ModelEditorComponent } from './components/model-editor/model-editor.component';
 
 
 @NgModule({
@@ -43,7 +46,9 @@ import { SidenavLectureComponent } from './components/home/sidenav-content/siden
     DoneTickComponent,
     SidenavHeaderComponent,
     SidenavBodyComponent,
-    SidenavLectureComponent
+    SidenavLectureComponent,
+    QuizComponent,
+    ModelEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,7 @@ import { SidenavLectureComponent } from './components/home/sidenav-content/siden
     FormsModule,
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule, MatCheckboxModule, MatStepperModule
+    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
   ],
   providers: [NavbarService, ThemeService, ClassesService],
   bootstrap: [AppComponent]
