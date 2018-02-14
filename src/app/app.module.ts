@@ -26,6 +26,9 @@ import { MainPanelComponent } from './components/main-panel/main-panel.component
 import { SidenavContentComponent } from './components/home/sidenav-content/sidenav-content.component';
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
 import { DoneTickComponent } from './components/done-tick/done-tick.component';
+import { SidenavHeaderComponent } from './components/home/sidenav-content/sidenav-header/sidenav-header.component';
+import { SidenavBodyComponent } from './components/home/sidenav-content/sidenav-body/sidenav-body.component';
+import { SidenavLectureComponent } from './components/home/sidenav-content/sidenav-lecture/sidenav-lecture.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { ModelEditorComponent } from './components/model-editor/model-editor.component';
 
@@ -41,6 +44,9 @@ import { ModelEditorComponent } from './components/model-editor/model-editor.com
     SidenavContentComponent,
     LectureEditorComponent,
     DoneTickComponent,
+    SidenavHeaderComponent,
+    SidenavBodyComponent,
+    SidenavLectureComponent,
     QuizComponent,
     ModelEditorComponent,
   ],

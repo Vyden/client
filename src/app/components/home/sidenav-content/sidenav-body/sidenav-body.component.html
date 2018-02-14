@@ -1,0 +1,26 @@
+<!-- sidebar body -->
+<section id="sidenav-body" class="mt-3" [ngClass]="themeClass">
+
+    <div  *ngIf="sampleClasses.length > 0; else noClassesText">
+      <div class="row m-3" *ngFor="let class of sampleClasses; let i = index">
+        <div class="col">
+          <button
+            data-id="{{i}}"
+            mat-button
+            (mouseenter)="hover[i] = true"
+            (mouseleave)="hover[i] = false"
+            [style.backgroundColor]="hover[i] ? getButtonColor(i): 'transparent'"
+            class="class-button white-text text-left no-hover"
+            (click)="navigateToCourse(i)">
+            <mat-icon class="mr-2">class</mat-icon>
+            {{ class }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noClassesText>
+      <span class="font-weight-normal font-italic">You are not enrolled in any classes.</span>
+    </ng-template>
+
+  </section>
