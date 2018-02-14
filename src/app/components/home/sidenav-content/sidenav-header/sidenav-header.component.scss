@@ -8,6 +8,10 @@
   min-width: 50px !important;
 }
 
+.transition {
+ transform: rotate(360);
+}
+
 #sidenav-header {
   height: 60px;
   display: flex;
@@ -30,3 +34,4 @@
   box-shadow:  none !important;
   -webkit-box-shadow: none !important;
 }
+

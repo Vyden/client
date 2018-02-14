@@ -2,17 +2,20 @@
 <div *ngIf="defaultHeader; else classInput">
   <mat-toolbar color="primary" id="sidenav-header" [ngClass]="themeClass">
     <span class="example-fill-remaining-space"></span>
-    <h2 class="header-title">COURSES</h2>
-    <button mat-icon-button class="bg-theme-secondary" (click)="toggleHeaderContent()">
+    <h2 class="header-title"  [@enterAnimation] [ngClass]="{'transition':!defaultHeader}">COURSES</h2>
+    <button mat-icon-button class="bg-theme-secondary" (click)="toggleHeaderContent()"  [@enterAnimation]>
       <mat-icon>add</mat-icon>
     </button>
   </mat-toolbar>
 </div>
 
 <!-- Class input -->
-<ng-template #classInput>
+<ng-template #classInput >
   <mat-toolbar class="p-2" color="primary" id="sidenav-header-input" [ngClass]="themeClass">
-    <form  action="" class="row rounded mat-elevation-z1" id="header-input-form">
+    <form  action=""
+              class="row rounded mat-elevation-z1"
+              id="header-input-form"
+              [@enterAnimation]>
             <button mat-icon-button class="col-2 rounded p-0 min-width-50" (click)="toggleHeaderContent()">
                 <mat-icon class="black-text">arrow_back</mat-icon>
             </button>
