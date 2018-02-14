@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._navbarService.changeLeftSidenav(this.sidenav)
+    this._navbarService.changeLeftSidenav(this.sidenav);
+		this._themeService.changeThemeClass("default");
   }
 
 }

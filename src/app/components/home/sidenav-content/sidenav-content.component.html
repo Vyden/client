@@ -1,0 +1,54 @@
+<!-- sidebar header -->
+<div *ngIf="defaultHeader; else classInput">
+  <mat-toolbar color="primary" id="sidenav-header" [ngClass]="themeClass">
+    <span class="example-fill-remaining-space"></span>
+    <h2 class="header-title">COURSES</h2>
+    <button mat-icon-button class="bg-theme-secondary" (click)="toggleHeaderContent()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-toolbar>
+</div>
+<!-- Class input -->
+<ng-template #classInput>
+    <mat-toolbar class="p-2" color="primary" id="sidenav-header-input" [ngClass]="themeClass">
+
+      <form  action="" class="row rounded mat-elevation-z1" id="header-input-form">
+
+              <button mat-button class="col-2 rounded p-0 min-width-50" (click)="toggleHeaderContent()">
+                  <mat-icon class="black-text">arrow_back</mat-icon>
+              </button>
+              <div class="col black-text p-0">
+                  <input id="class-code-input" type="text" class="input-alternate p-0" placeholder="Enter class code..."/>
+              </div>
+              <button mat-button class="col-2 rounded p-0 min-width-50">
+                  <mat-icon class="black-text">add</mat-icon>
+              </button>
+
+      </form>
+
+
+
+    </mat-toolbar>
+
+  </ng-template>
+
+
+<!-- sidebar body -->
+<section id="sidenav-body" class="mt-3" [ngClass]="themeClass">
+
+  <div  *ngIf="sampleClasses.length > 0; else noClassesText">
+    <div class="row m-3" *ngFor="let class of sampleClasses; let i = index">
+      <div class="col">
+        <button mat-raised-button [ngStyle]="{'background': getButtonColor(i)}" class="class-button white-text text-left">
+          <mat-icon class="mr-2">class</mat-icon>
+          {{ class }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noClassesText>
+    <span class="font-weight-normal font-italic">You are not enrolled in any classes.</span>
+  </ng-template>
+
+</section>

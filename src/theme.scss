@@ -6,7 +6,8 @@
 @include mat-core();
 @mixin apply-theme($color) {
     .gradient-border {
-		transition: background 250ms ease-in-out !important;
+        transition: background 250ms ease-in-out !important;
+
         background: -moz-linear-gradient(left, #00bcd4 0%, #00bcd4 70%, $color 100%);
         /* FF3.6-15 */
         background: -webkit-linear-gradient(left, #00bcd4 0%, #00bcd4 70%, $color 100%);

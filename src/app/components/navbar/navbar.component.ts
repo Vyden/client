@@ -10,11 +10,10 @@ import { ThemeService } from '../../services/theme/theme.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  public themeClass: string
+  public themeClass: string;
   public themeColors: string[] = this._themeService.getThemes().map(themeArray => themeArray[0]);
 
-  private leftSidenav: MatSidenav
+  public leftSidenav: MatSidenav;
 
   constructor(private _navbarService: NavbarService, private _themeService: ThemeService) { }
 
@@ -30,10 +29,10 @@ export class NavbarComponent implements OnInit {
       .subscribe((themeClass: string) => {
         this.themeClass = themeClass
       })
-  }
+}
 
-  public changeTheme(theme: string) {
-    this._themeService.changeThemeClass(theme)
-  }
+    public changeTheme(theme: string) {
+      this._themeService.changeThemeClass(theme)
+    }
 
 }
