@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DoneTickComponent } from '../done-tick/done-tick.component';
 
 @Component({
   selector: 'app-quiz',
@@ -13,6 +14,7 @@ export class QuizComponent implements OnInit {
   public quizStartTime: number // Start time in seconds
   public quizMM: number
   public quizSS: number
+  public quizName: string
 
   public newQuizMode: boolean
 
@@ -49,6 +51,10 @@ export class QuizComponent implements OnInit {
     this.quizStartTime = Number($event.value)
     this.quizMM = Math.floor(this.quizStartTime / 60)
     this.quizSS = this.quizStartTime % 60
+  }
+
+  public finishQuiz() {
+    this.newQuizMode = false
   }
 
 }

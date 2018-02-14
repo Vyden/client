@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { DoneTickComponent } from '../done-tick/done-tick.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemeService } from '../../services/theme/theme.service';
 

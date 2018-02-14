@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md-10 col-sm-12 align-self-center">
                       <mat-form-field class="w-100">
-                        <input matInput placeholder="enter name">
+                        <input matInput [(ngModel)]="quizName" placeholder="enter name">
                       </mat-form-field>
                     </div>
                   </div>
@@ -138,7 +138,7 @@
 
               <div class="row">
                 <div class="col text-center">
-                  <h3 class="font-weight-bold text-center">Review Quiz</h3>
+                  <h4 class="text-center">{{quizName}}</h4>
                 </div>
               </div>
 
@@ -169,7 +169,7 @@
                     <mat-icon>arrow_back</mat-icon>
                     <span>Back</span>
                   </button>
-                  <button mat-button>
+                  <button mat-button (click)="finishQuiz()">
                     <mat-icon>check</mat-icon>
                     <span>Done</span>
                   </button>
