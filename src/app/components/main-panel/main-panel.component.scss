@@ -65,8 +65,9 @@ input.exp-input {
     position: absolute;
     width: 0;
     height: 100%;
-    background-color: skyblue;
-    transition: 0.3s linear;
+    // background-color: gray;
+    background: rgba(128, 128, 128, 0.5);
+    transition: 0.3s ease-in;
     right: 0;
     // opacity: 0;
     visibility: hidden;
@@ -75,8 +76,25 @@ input.exp-input {
 
 .hiddenLayer.selected{
     width: 100%;
+    
     visibility: visible;
-    // opacity: 1;
+    // opacity: 0.5;
+    
     // transition: visibility 0s linear 0s, opacity 300ms;
 }
 
+
+
+.buttonContainer button{
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.1s ease-in;
+    vertical-align: middle;
+    color: white;
+}
+
+.hiddenLayer.selected .buttonContainer button{
+    visibility: visible;
+    transition: 1.5s ease-in;
+    opacity: 1;
+}
