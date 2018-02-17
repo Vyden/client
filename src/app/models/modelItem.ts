@@ -12,6 +12,7 @@ enum RotationAxis {
 }
 
 export class ModelItem extends TimelineItem {
+    public name: string;
     public angleX: number;
     public angleY: number;
     public angleZ: number;

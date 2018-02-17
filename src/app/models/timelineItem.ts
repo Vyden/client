@@ -1,4 +1,4 @@
-enum ItemType {
+export enum ItemType {
     MODEL = 'model',
     VIDEO = 'video',
     QUIZ = 'quiz'
