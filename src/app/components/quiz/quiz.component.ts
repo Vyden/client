@@ -4,6 +4,7 @@ import { LectureEditorService } from '../../services/lecture-editor/lecture-edit
 import { Quiz } from '../../models/quiz';
 import { QuizItem } from '../../models/quizItem';
 import { ItemType } from '../../models/timelineItem';
+import { FocusOnCreateDirective } from '../../directives/focus-on-create/focus-on-create.directive';
 
 @Component({
   selector: 'app-quiz',

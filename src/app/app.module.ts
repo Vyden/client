@@ -33,6 +33,7 @@ import { SidenavLectureComponent } from './components/home/sidenav-content/siden
 import { QuizComponent } from './components/quiz/quiz.component';
 import { ModelEditorComponent } from './components/model-editor/model-editor.component';
 import { AnnouncementsCardComponent } from './components/announcements-card/announcements-card.component';
+import { FocusOnCreateDirective } from './directives/focus-on-create/focus-on-create.directive';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { AnnouncementsCardComponent } from './components/announcements-card/anno
     QuizComponent,
     ModelEditorComponent,
     AnnouncementsCardComponent,
+    FocusOnCreateDirective,
   ],
   imports: [
     BrowserModule,

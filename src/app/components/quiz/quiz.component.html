@@ -56,7 +56,7 @@
                     </div>
                     <div class="col">
                       <mat-form-field class="w-100">
-                        <input matInput [(ngModel)]="currentQuiz.answers[i]" (keyup.enter)="addQuizOption()" placeholder="quiz option {{i+1}}">
+                        <input matInput appFocusOnCreate [(ngModel)]="currentQuiz.answers[i]" (keyup.enter)="addQuizOption()" placeholder="quiz option {{i+1}}">
                       </mat-form-field>
                     </div>
                     <div class="col-2 align-self-center text-center" style="width: 50px">
