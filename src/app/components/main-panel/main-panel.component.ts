@@ -29,6 +29,8 @@ export class MainPanelComponent implements OnInit {
     1 , 2 , 3, 4, 5
   ];
 
+  selectedStatus: boolean = false;
+
 
   constructor(private _themeService: ThemeService) { }
 
@@ -37,6 +39,11 @@ export class MainPanelComponent implements OnInit {
       .subscribe((themeClass: string) => {
         this.themeClass = themeClass
       })
+  }
+
+  onClickLecture(i){
+    console.log(i);
+    this.selectedStatus = !this.selectedStatus;
   }
 
 }

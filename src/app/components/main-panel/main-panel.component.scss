@@ -40,12 +40,17 @@ input.exp-input {
 }
 
 .classcontainer{
+    background-color: #EDEDEE;
     min-height: 60vh;
     padding: 30px;
 }
 
 .classcontainer .mat-card{
-    background-color: skyblue;
+    // background-color: skyblue;
     margin-bottom: 2vh;
     min-height: 180px;
+}
+
+.selected{
+    background-color: skyblue;
 }

@@ -38,7 +38,7 @@
     </div>
 
     <div class="row m-0">
-      <div class="col m-0">
+      <div class="col m-0 p-0">
         <!-- <div style="margin-top: 400px"></div>
         <h3 class="text-center">CARD CONTENT</h3>
         <div style="margin-bottom: 400px"></div> -->
@@ -49,9 +49,10 @@
           </div>
         </div> -->
         <div class="classcontainer">
-          <div *ngFor="let class of classList"> 
+          <div (click)="onClickLecture(i)" 
+          *ngFor="let class of classList; let i = index"> 
             <!-- {{ person.name }} -->
-            <mat-card class="text-center">{{class}}</mat-card>
+            <mat-card [ngClass]="{selected: selectedStatus === true}" class="text-center">{{class}}</mat-card>
           </div>
         </div>
         
