@@ -16,6 +16,7 @@ import {
 import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
 import { ClassesService } from './services/classes/classes.service';
+import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -61,7 +62,7 @@ import { AnnouncementsCardComponent } from './components/announcements-card/anno
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
   ],
-  providers: [NavbarService, ThemeService, ClassesService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

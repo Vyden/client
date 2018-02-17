@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DoneTickComponent } from '../done-tick/done-tick.component';
+import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 
 @Component({
   selector: 'app-quiz',
@@ -18,7 +19,7 @@ export class QuizComponent implements OnInit {
 
   public newQuizMode: boolean
 
-  constructor() {
+  constructor(private _lectureEditorService: LectureEditorService) {
     this.quizOptions.push(null)
     this.quizMM = 0
     this.quizSS = 0
