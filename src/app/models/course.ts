@@ -3,7 +3,7 @@ import { Announcement } from './announcement';
 import { QuizResponse } from './quizResponse';
 
 export class Course {
-    public _id?: string;
+    public id?: string;
     public instructor: string;
     public title: string;
     public students: string [];
