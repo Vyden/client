@@ -19,7 +19,7 @@ export class QuizComponent implements OnInit {
 
   public quizMM: number
   public quizSS: number
-
+  public quizStartTime: number
   public newQuizMode: boolean
 
   constructor(private _lectureEditorService: LectureEditorService) { }
@@ -53,14 +53,14 @@ export class QuizComponent implements OnInit {
   }
 
   public calculateQuizTime() {
-    this.currentQuiz.time = Number(this.quizMM) * 60 + Number(this.quizSS)
-    console.log(this.currentQuiz.time);
+    this.quizStartTime = Number(this.quizMM) * 60 + Number(this.quizSS)
+    console.log(this.quizStartTime);
   }
 
   public calculateQuizTimeSlider($event: any) {
-    this.currentQuiz.time = Number($event.value)
-    this.quizMM = Math.floor(this.currentQuiz.time / 60)
-    this.quizSS = this.currentQuiz.time % 60
+    this.quizStartTime = Number($event.value)
+    this.quizMM = Math.floor(this.quizStartTime / 60)
+    this.quizSS = this.quizStartTime % 60
   }
 
   public finishQuiz() {
