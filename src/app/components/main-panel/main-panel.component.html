@@ -39,9 +39,21 @@
 
     <div class="row m-0">
       <div class="col m-0">
-        <div style="margin-top: 400px"></div>
+        <!-- <div style="margin-top: 400px"></div>
         <h3 class="text-center">CARD CONTENT</h3>
-        <div style="margin-bottom: 400px"></div>
+        <div style="margin-bottom: 400px"></div> -->
+        <!-- <div class="container">
+          <div 
+          *ngFor="let class for classList">
+            <div>class</div>
+          </div>
+        </div> -->
+        <li *ngFor="let person of people"> 
+          {{ person.name }}
+        </li>
+        <div>
+
+        </div>
       </div>
     </div>
   </mat-card>

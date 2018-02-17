@@ -10,6 +10,25 @@ export class MainPanelComponent implements OnInit {
 
   public themeClass: string
 
+  people: any[] = [
+    {
+      "name": "Douglas  Pace"
+    },
+    {
+      "name": "Mcleod  Mueller"
+    },
+    {
+      "name": "Day  Meyers"
+    },
+    {
+      "name": "Aguirre  Ellis"
+    },
+    {
+      "name": "Cook  Tyson"
+    }
+  ];
+
+
   constructor(private _themeService: ThemeService) { }
 
   ngOnInit() {
