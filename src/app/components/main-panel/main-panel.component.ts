@@ -32,6 +32,9 @@ export class MainPanelComponent implements OnInit {
   selectedStatus: boolean = false;
 
 
+  selectList: boolean[] = [
+    false,false,false,false,false
+  ];
   constructor(private _themeService: ThemeService) { }
 
   ngOnInit() {
@@ -43,7 +46,7 @@ export class MainPanelComponent implements OnInit {
 
   onClickLecture(i){
     console.log(i);
-    this.selectedStatus = !this.selectedStatus;
+    this.selectList[i] = !this.selectList[i];
   }
 
 }

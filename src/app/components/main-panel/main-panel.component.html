@@ -52,7 +52,7 @@
           <div (click)="onClickLecture(i)" 
           *ngFor="let class of classList; let i = index"> 
             <!-- {{ person.name }} -->
-            <mat-card [ngClass]="{selected: selectedStatus === true}" class="text-center">{{class}}</mat-card>
+            <mat-card [ngClass]="{selected: selectList[i] === true}" class="text-center">{{class}}</mat-card>
           </div>
         </div>
         
