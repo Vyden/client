@@ -40,13 +40,15 @@ export class QuizComponent implements OnInit {
   }
 
   public addQuizOption() {
+    if(this.currentQuiz.answers.length === 5) return
     this.currentQuiz.answers.push(null)
-    console.log(this.currentQuiz);
   }
 
-  public removeQuizOption(el: string) {
-    console.log(el);
-    this.currentQuiz.answers.splice(this.currentQuiz.answers.indexOf(el), 1)
+  public removeQuizOption(index: number) {
+    if(index-1 < 0) this.currentQuiz.correct = 0
+    else if (index == this.currentQuiz.answers.length - 1) --this.currentQuiz.correct
+
+    this.currentQuiz.answers.splice(index, 1)
   }
 
   public calculateQuizTime() {
