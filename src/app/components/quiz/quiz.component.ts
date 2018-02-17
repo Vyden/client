@@ -30,6 +30,7 @@ export class QuizComponent implements OnInit {
     this.currentQuiz = new Quiz()
     this.currentQuiz.course = "Test course"
     this.currentQuiz.name = "New Quiz"
+    this.currentQuiz.correct = 0
 
     this.newQuizMode = true
     this.currentQuiz.answers = [null]
@@ -40,6 +41,7 @@ export class QuizComponent implements OnInit {
 
   public addQuizOption() {
     this.currentQuiz.answers.push(null)
+    console.log(this.currentQuiz);
   }
 
   public removeQuizOption(el: string) {
@@ -60,6 +62,10 @@ export class QuizComponent implements OnInit {
 
   public finishQuiz() {
     this.newQuizMode = false
+  }
+
+  public trackByIndex(index: number, value: number) {
+    return index;
   }
 
 }
