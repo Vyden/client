@@ -59,7 +59,7 @@
                       </mat-form-field>
                     </div>
                     <div class="col-2 align-self-center text-center" style="width: 50px">
-                      <button mat-icon-button (click)="removeQuizOption(quizOption)">
+                      <button mat-icon-button (click)="removeQuizOption(quizOption)" [disabled]="currentQuiz.answers.length<=1">
                         <mat-icon>close</mat-icon>
                       </button>
                     </div>
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="col-12 text-center">
-                  <button mat-button class="mt-3" color="primary" (click)="addQuizOption()">
+                  <button mat-button class="mt-3" color="primary" (click)="addQuizOption()" [disabled]="currentQuiz.answers.length>=5">
                     <mat-icon>add</mat-icon>
                     <span>ADD CHOICE</span>
                   </button>
