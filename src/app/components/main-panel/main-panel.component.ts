@@ -10,22 +10,23 @@ export class MainPanelComponent implements OnInit {
 
   public themeClass: string
 
-  people: any[] = [
-    {
-      "name": "Douglas  Pace"
-    },
-    {
-      "name": "Mcleod  Mueller"
-    },
-    {
-      "name": "Day  Meyers"
-    },
-    {
-      "name": "Aguirre  Ellis"
-    },
-    {
-      "name": "Cook  Tyson"
-    }
+  classList: number[] = [
+    // {
+    //   "name": "Douglas  Pace"
+    // },
+    // {
+    //   "name": "Mcleod  Mueller"
+    // },
+    // {
+    //   "name": "Day  Meyers"
+    // },
+    // {
+    //   "name": "Aguirre  Ellis"
+    // },
+    // {
+    //   "name": "Cook  Tyson"
+    // }
+    1 , 2 , 3, 4, 5
   ];
 
 

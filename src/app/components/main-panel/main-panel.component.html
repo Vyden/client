@@ -48,9 +48,13 @@
             <div>class</div>
           </div>
         </div> -->
-        <li *ngFor="let person of people"> 
-          {{ person.name }}
-        </li>
+        <div class="classcontainer">
+          <div *ngFor="let class of classList"> 
+            <!-- {{ person.name }} -->
+            <div class="card-block text-center">{{class}}</div>
+          </div>
+        </div>
+        
         <div>
 
         </div>
