@@ -1,13 +1,9 @@
-import { Lecture } from './lecture';
-import { Announcement } from './announcement';
-import { QuizResponse } from './quizResponse';
-
 export class Course {
     public id?: string;
     public instructor: string;
     public title: string;
     public students: string [];
-    public lectures: Lecture [];
-    public studentQuizResponses: QuizResponse [];
-    public lectureQuizResponses: QuizResponse [];
+    public lectures: string [];
+    public studentQuizResponses: string [];
+    public lectureQuizResponses: string [];
 }

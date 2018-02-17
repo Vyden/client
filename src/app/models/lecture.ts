@@ -1,11 +1,8 @@
-import { Course } from './course';
-import { TimelineItem } from './timelineItem';
-
 export class Lecture {
     public id?: string;
-    public course: Course;
+    public course: string;
     public title: string;
-    public timeline: TimelineItem [];
+    public timeline: string [];
     public date: Date;
     public sky: string;
 }

@@ -1,5 +1,3 @@
-import { Lecture } from './lecture';
-
 enum ItemType {
     MODEL = 'model',
     VIDEO = 'video',
@@ -8,7 +6,7 @@ enum ItemType {
 
 export class TimelineItem {
     public id?: string;
-    public lecture: Lecture;
+    public lecture: string;
     public type: ItemType;
     public resource: string;
 }
