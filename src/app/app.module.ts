@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
+  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule
 } from '@angular/material';
 
 /* Services */
@@ -60,7 +60,7 @@ import { AnnouncementsCardComponent } from './components/announcements-card/anno
     FormsModule,
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
+    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule
   ],
   providers: [NavbarService, ThemeService, ClassesService, LectureEditorService],
   bootstrap: [AppComponent]
