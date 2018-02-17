@@ -35,6 +35,11 @@ export class MainPanelComponent implements OnInit {
   selectList: boolean[] = [
     false,false,false,false,false
   ];
+
+  clickList: boolean[] = [
+    false,false,false,false,false
+  ];
+
   constructor(private _themeService: ThemeService) { }
 
   ngOnInit() {
@@ -45,8 +50,19 @@ export class MainPanelComponent implements OnInit {
   }
 
   onClickLecture(i){
-    console.log(i);
-    this.selectList[i] = !this.selectList[i];
+    console.log("lecture " + i);
+    if(!this.clickList[i]){
+      this.selectList[i] = true;
+    }
+  }
+
+  onClickCancel(i){
+    console.log("cancel " + i);
+    this.clickList[i] = true;
+    this.selectList[i] = false;
+    setTimeout(() => {
+      this.clickList[i] = false;
+    }, 500);
   }
 
 }
