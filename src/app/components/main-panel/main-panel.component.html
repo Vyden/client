@@ -49,10 +49,11 @@
           </div>
         </div> -->
         <div class="classcontainer">
-          <div (click)="onClickLecture(i)" 
+          <div class="classBound" (click)="onClickLecture(i)" 
           *ngFor="let class of classList; let i = index"> 
             <!-- {{ person.name }} -->
-            <mat-card [ngClass]="{selected: selectList[i] === true}" class="text-center">{{class}}</mat-card>
+            <mat-card class="text-center">{{class}}</mat-card>
+            <div [ngClass]="{selected: selectList[i] === true}" class="hiddenLayer"></div>
           </div>
         </div>
         
