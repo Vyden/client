@@ -19,6 +19,7 @@ export class TimelineComponent implements OnInit {
     this._lectureEditorService.currentTimelineItems
       .subscribe((items: TimelineItem []) => {
         this.timelineItems = items
+        console.log(this.timelineItems);
       })
   }
 

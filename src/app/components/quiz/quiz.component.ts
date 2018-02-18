@@ -3,7 +3,7 @@ import { DoneTickComponent } from '../done-tick/done-tick.component';
 import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 import { Quiz } from '../../models/quiz';
 import { QuizItem } from '../../models/quizItem';
-import { ItemType } from '../../models/timelineItem';
+import { ItemType, TimelineItem } from '../../models/timelineItem';
 import { FocusOnCreateDirective } from '../../directives/focus-on-create/focus-on-create.directive';
 
 @Component({
@@ -20,6 +20,7 @@ export class QuizComponent implements OnInit {
   public quizMM: number
   public quizSS: number
   public quizStartTime: number
+  public quizName: string
   public newQuizMode: boolean
 
   constructor(private _lectureEditorService: LectureEditorService) { }
@@ -30,9 +31,9 @@ export class QuizComponent implements OnInit {
   public initQuiz() {
     this.currentQuiz = new Quiz()
     this.currentQuiz.course = "Test course"
-    this.currentQuiz.name = "New Quiz"
     this.currentQuiz.correct = 0
-
+    
+    this.quizName = "New Quiz"
     this.newQuizMode = true
     this.currentQuiz.answers = [null]
     this.quizMM = 0
@@ -64,6 +65,13 @@ export class QuizComponent implements OnInit {
   }
 
   public finishQuiz() {
+    const quizItem: TimelineItem = new QuizItem()
+    quizItem.lecture = "LECTUREID CHANGE THIS"
+    quizItem.name = this.quizName
+    quizItem.type = ItemType.QUIZ
+    quizItem.resource = "RESOURCE ID CHANGE THIS"
+
+    this._lectureEditorService.addTimelineItem(quizItem)
     this.newQuizMode = false
   }
 
