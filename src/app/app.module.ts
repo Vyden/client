@@ -9,13 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
+  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule
 } from '@angular/material';
 
 /* Services */
 import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
 import { ClassesService } from './services/classes/classes.service';
+import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -31,6 +32,9 @@ import { SidenavBodyComponent } from './components/home/sidenav-content/sidenav-
 import { SidenavLectureComponent } from './components/home/sidenav-content/sidenav-lecture/sidenav-lecture.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { ModelEditorComponent } from './components/model-editor/model-editor.component';
+import { AnnouncementsCardComponent } from './components/announcements-card/announcements-card.component';
+import { FocusOnCreateDirective } from './directives/focus-on-create/focus-on-create.directive';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 
 @NgModule({
@@ -49,6 +53,9 @@ import { ModelEditorComponent } from './components/model-editor/model-editor.com
     SidenavLectureComponent,
     QuizComponent,
     ModelEditorComponent,
+    AnnouncementsCardComponent,
+    FocusOnCreateDirective,
+    TimelineComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,9 +64,9 @@ import { ModelEditorComponent } from './components/model-editor/model-editor.com
     FormsModule,
     FlexLayoutModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule
+    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule
   ],
-  providers: [NavbarService, ThemeService, ClassesService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

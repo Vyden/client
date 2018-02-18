@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { DoneTickComponent } from '../done-tick/done-tick.component';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemeService } from '../../services/theme/theme.service';
+import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 
 @Component({
   selector: 'app-lecture-editor',
@@ -13,7 +14,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public lectureEndTime: number // End time in seconds
 
-  constructor(private _themeService: ThemeService) {
+  constructor(private _themeService: ThemeService, private _lectureEditorService: LectureEditorService) {
     this.lectureEndTime = 3000
   }
 
