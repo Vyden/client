@@ -1,3 +1,62 @@
-<p>
-  sidenav-lecture works!
-</p>
+<!-- sidebar header -->
+<mat-toolbar color="primary" id="sidenav-header" [ngClass]="themeClass">
+  <button mat-icon-button
+              class="bg-theme-secondary"
+              [@enterAnimation]
+              (click)="backToCourses()"
+              (mouseenter)="hover[3] = true"
+              (mouseleave)="hover[3] = false"
+              [ngClass]="hover[3] ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <h2 class="header-title ml-3"  [@enterAnimation]>{{ activeClass }}</h2>
+</mat-toolbar>
+
+<section id="sidenav-body" class="mt-3" [ngClass]="themeClass">
+
+  <div class="row m-3">
+    <div class="col">
+      <button
+        data-section="announcements"
+        mat-button
+        class="white-text text-left no-hover"
+        (mouseenter)="hover[0] = true"
+        (mouseleave)="hover[0] = false"
+        [ngClass]="hover[0] ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        <mat-icon class="mr-2">star</mat-icon>
+        Announcements
+      </button>
+    </div>
+  </div>
+
+  <div class="row m-3">
+    <div class="col">
+      <button
+        data-section="lectures"
+        mat-button
+        class="white-text text-left no-hover"
+        (mouseenter)="hover[1] = true"
+        (mouseleave)="hover[1] = false"
+        [ngClass]="hover[1] ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        <mat-icon class="mr-2">view_list</mat-icon>
+        Lectures
+      </button>
+    </div>
+  </div>
+
+  <div class="row m-3">
+    <div class="col">
+      <button
+        data-section="quizzes"
+        mat-button
+        class="white-text text-left no-hover"
+        (mouseenter)="hover[2] = true"
+        (mouseleave)="hover[2] = false"
+        [ngClass]="hover[2] ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        <mat-icon class="mr-2">lightbulb_outline</mat-icon>
+        Quizzes
+      </button>
+    </div>
+  </div>
+
+</section>

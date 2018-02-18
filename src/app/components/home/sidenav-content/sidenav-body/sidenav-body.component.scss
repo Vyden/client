@@ -1,7 +1,3 @@
-#sidenav-body {
-  text-align: center;
-}
-
 .class-button {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -11,7 +7,7 @@
 
 button {
   color: black !important;
-  transition: 0.25 ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 button:hover {
   color: white !important;
