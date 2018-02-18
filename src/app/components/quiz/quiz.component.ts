@@ -69,6 +69,7 @@ export class QuizComponent implements OnInit {
 
     const quizItem: TimelineItem = new QuizItem()
     quizItem.lecture = "LECTUREID CHANGE THIS"
+    quizItem.eventTime = this.quizStartTime
     quizItem.name = this.quizName
     quizItem.type = ItemType.QUIZ
     quizItem.resource = $key

@@ -6,9 +6,32 @@
       </mat-card-title>
       <mat-card-content>
         <mat-vertical-stepper>
-          <mat-step *ngFor="let timelineItem of timelineItems | async">
-            <ng-template matStepLabel>{{timelineItem.name}}</ng-template>
-            content 1
+          <mat-step *ngFor="let timelineItem of timelineItems; let i = index">
+            <ng-template matStepLabel>{{timelineItem.type | titlecase}}: {{timelineItem.name}}</ng-template>
+            <div *ngIf="(timelineChildren[i] | async) as timelineChild">
+              <mat-list>
+                <mat-list-item>
+                  <mat-icon mat-list-icon>format_list_numbered</mat-icon>
+                  <h4 mat-line>{{timelineChild.answers.length}} choices</h4>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>check</mat-icon>
+                  <h4 mat-line>{{timelineChild.answers[timelineChild.correct]}}</h4>
+                  <p mat-line>Correct Answer</p>
+                </mat-list-item>
+                
+                <mat-list-item>
+                  <mat-icon mat-list-icon>access_time</mat-icon>
+                  <h4 mat-line>Start time: {{Math.floor(timelineItem.eventTime/60)}}m {{(timelineItem.eventTime%60)}}s</h4>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>timer</mat-icon>
+                  <h4 mat-line>Duration: {{timelineChild.time}}s</h4>
+                </mat-list-item>
+              </mat-list>
+            </div>
           </mat-step>
         </mat-vertical-stepper>
       </mat-card-content>
