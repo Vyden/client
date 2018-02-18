@@ -51,9 +51,10 @@ export class MainPanelComponent implements OnInit {
 
   onClickLecture(i){
     console.log("lecture " + i);
-    if(!this.clickList[i]){
-      this.selectList[i] = true;
-    }
+    // if(!this.clickList[i]){
+    //   this.selectList[i] = true;
+    // }
+    this.selectList[i] = !this.selectList[i];
   }
 
   onClickCancel(i){
