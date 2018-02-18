@@ -26,6 +26,7 @@ export class SidenavLectureComponent implements OnInit {
   activeClass: string;
   public themeClass: string;
   public themes: string[][] = this._themeService.getThemes();
+  public hover: boolean[] = [];
 
   constructor(private _classesService: ClassesService, private _themeService: ThemeService) { }
 

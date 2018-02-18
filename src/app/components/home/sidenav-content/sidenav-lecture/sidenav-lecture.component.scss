@@ -12,3 +12,16 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+#sidenav-body {
+  text-align: center;
+}
+
+[data-section] {
+  width: 100%;
+  transition: 0.25s ease-in-out;
+}
+
+.mat-button.no-hover ::ng-deep .mat-button-focus-overlay {
+  background: none;
+}
