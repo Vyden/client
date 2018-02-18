@@ -51,31 +51,42 @@
         <div class="classcontainer">
           <div class="classBound" (click)="onClickLecture(i)" 
           *ngFor="let class of classList; let i = index"> 
-            <!-- {{ person.name }} -->
-            <mat-card class="text-center">{{class}}</mat-card>
+            <mat-card class="text-center">
+              
+              <div class="row m-0">
+                <div class="col-4 m-0 p-0 text-left">
+                  <mat-card-title>LEC 1</mat-card-title>
+                </div>
+                <div class="col-4 m-0 p-0">
+                 <mat-card-title>Gustavo</mat-card-title>                  
+                </div>
+                <div class="col-4 m-0 p-0 text-right">
+                  <mat-card-subtitle>Length: 30m 12s</mat-card-subtitle>
+                </div>
+              </div>
+              <div class="row m-0 text-left">
+                <mat-card-subtitle>Posted on Wednesday, January 31, 2018 9:21:46 PM EST</mat-card-subtitle>
+              </div>
+              <div class="row m-0 text-left">
+                <mat-card-content>Shell scripting in the UNIX environment.</mat-card-content>
+              </div>
+              <!-- {{class}} -->
+            </mat-card>
             <div [ngClass]="{selected: selectList[i] === true}" class="hiddenLayer row m-0">
-              <div class="col-4 m-0"></div>
-              <div class="col-4 m-0">
+              <div class="col-4 m-0 p-0"></div>
+              <div class="col-4 m-0 p-0">
                 <div class="buttonContainer row mt-5 text-center">
-                  <!-- <div class="col-6 m-0"> -->
-                    <div class="col-4 m-0"></div>
-                    <div class="col-4 m-0">
+                    
                         <button mat-fab>
                           <mat-icon>play_arrow</mat-icon>
-                          <!-- View -->
                         </button>
-                    </div>
-                    <div class="col-4 m-0"></div>
-                  <!-- </div> -->
+                    
                   <!-- <div class="col-6 m-0">
                     <button (click)="onClickCancel(i)" mat-fab>Cancel</button>
                   </div> -->
                 </div>
-                
-                
               </div>
-              <div class="col-4 m-0"></div>
-              
+              <div class="col-4 m-0 p-0"></div>
               <!-- <mat-fab>Cancel</mat-fab> -->
             </div>
           </div>

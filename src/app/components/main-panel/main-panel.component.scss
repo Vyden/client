@@ -92,7 +92,6 @@ input.exp-input {
     transition: 0.1s ease-in;
     vertical-align: middle;
     color: white;
-    background-color: #4EAD51;
 }
 
 .hiddenLayer.selected .buttonContainer button{
@@ -104,4 +103,7 @@ input.exp-input {
 .buttonContainer .mat-fab{
     width: 80px;
     height: 80px;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
