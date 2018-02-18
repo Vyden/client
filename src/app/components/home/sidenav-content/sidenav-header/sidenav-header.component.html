@@ -3,7 +3,13 @@
   <mat-toolbar color="primary" id="sidenav-header" [ngClass]="themeClass">
     <span class="example-fill-remaining-space"></span>
     <h2 class="header-title"  [@enterAnimation] [ngClass]="{'transition':!defaultHeader}">COURSES</h2>
-    <button mat-icon-button class="bg-theme-secondary" (click)="toggleHeaderContent()"  [@enterAnimation]>
+    <button mat-icon-button
+                class="bg-theme-secondary"
+                (click)="toggleHeaderContent()"
+                [@enterAnimation]
+                (mouseenter)="hover = true"
+                (mouseleave)="hover = false"
+                [ngClass]="hover ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
       <mat-icon>add</mat-icon>
     </button>
   </mat-toolbar>

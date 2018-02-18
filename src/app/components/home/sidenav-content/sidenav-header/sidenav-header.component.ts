@@ -25,6 +25,7 @@ export class SidenavHeaderComponent implements OnInit {
 
   public themeClass: string = "default-theme";
   public defaultHeader = true;
+  public hover: boolean;
 
   constructor(private _themeService: ThemeService, private _classesService: ClassesService) { }
 
@@ -37,6 +38,7 @@ export class SidenavHeaderComponent implements OnInit {
   //Toggle input field for classes
   public toggleHeaderContent() {
     this.defaultHeader = !this.defaultHeader;
+    this.hover = false;
   }
 
   public addCourse() {
