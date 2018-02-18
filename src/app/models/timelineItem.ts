@@ -1,4 +1,4 @@
-enum ItemType {
+export enum ItemType {
     MODEL = 'model',
     VIDEO = 'video',
     QUIZ = 'quiz'
@@ -6,6 +6,7 @@ enum ItemType {
 
 export class TimelineItem {
     public id?: string;
+    public name: string;
     public lecture: string;
     public type: ItemType;
     public resource: string;
