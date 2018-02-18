@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 import { TimelineItem } from '../../models/timelineItem';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-timeline',
@@ -11,16 +13,12 @@ export class TimelineComponent implements OnInit {
 
   @Input() lectureTime: number
 
-  public timelineItems: TimelineItem []
+  public timelineItems: Observable<TimelineItem []>
 
-  constructor(private _lectureEditorService: LectureEditorService) { }
+  constructor(private _lectureEditorService: LectureEditorService, private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
-    this._lectureEditorService.currentTimelineItems
-      .subscribe((items: TimelineItem []) => {
-        this.timelineItems = items
-        console.log(this.timelineItems);
-      })
+    this.timelineItems = this._lectureEditorService.getFirebaseTimelineItems()
   }
 
 }

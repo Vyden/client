@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyC36bqNl9kBjdmduam_qs-SmKcagNRPebU",
+    authDomain: "vyden-backend.firebaseapp.com",
+    databaseURL: "https://vyden-backend.firebaseio.com",
+    projectId: "vyden-backend",
+    storageBucket: "vyden-backend.appspot.com",
+    messagingSenderId: "714670541409"
+  }
 };

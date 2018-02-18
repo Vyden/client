@@ -65,13 +65,16 @@ export class QuizComponent implements OnInit {
   }
 
   public finishQuiz() {
+    const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz)
+
     const quizItem: TimelineItem = new QuizItem()
     quizItem.lecture = "LECTUREID CHANGE THIS"
     quizItem.name = this.quizName
     quizItem.type = ItemType.QUIZ
-    quizItem.resource = "RESOURCE ID CHANGE THIS"
+    quizItem.resource = $key
 
-    this._lectureEditorService.addTimelineItem(quizItem)
+    // this._lectureEditorService.addTimelineItem(quizItem)
+    this._lectureEditorService.publishTimelineItem(quizItem)
     this.newQuizMode = false
   }
 

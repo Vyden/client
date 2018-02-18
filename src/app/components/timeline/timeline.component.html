@@ -6,7 +6,7 @@
       </mat-card-title>
       <mat-card-content>
         <mat-vertical-stepper>
-          <mat-step *ngFor="let timelineItem of timelineItems">
+          <mat-step *ngFor="let timelineItem of timelineItems | async">
             <ng-template matStepLabel>{{timelineItem.name}}</ng-template>
             content 1
           </mat-step>

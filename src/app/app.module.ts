@@ -5,6 +5,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
 
 /* Angular Material Modules */
 import {
@@ -63,6 +66,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     AppRoutingModule,
     FormsModule,
     FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule
   ],
