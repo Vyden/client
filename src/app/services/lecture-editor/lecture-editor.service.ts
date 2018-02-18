@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { TimelineItem } from '../../models/timelineItem';
+import { Quiz } from '../../models/quiz';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LectureEditorService {
@@ -9,7 +12,7 @@ export class LectureEditorService {
   private timelineItemsSource = new BehaviorSubject<TimelineItem []>([])
   public currentTimelineItems = this.timelineItemsSource.asObservable()
 
-  constructor() {
+  constructor(private _firebase: AngularFireDatabase) {
     this.currentTimelineItems
       .subscribe((timelineItems: TimelineItem []) => {
         this.timelineItems = timelineItems
@@ -27,6 +30,22 @@ export class LectureEditorService {
 
   public clearTimelineItems() {
     this.changeTimelineItems([])
+  }
+
+  public publishQuiz(quiz: Quiz): string {
+    return this._firebase.list('tempquizzes')
+      .push(quiz)
+      .key
+  }
+
+  public publishTimelineItem(timelineItem: TimelineItem): string {
+    return this._firebase.list('temptimelineitems')
+      .push(timelineItem)
+      .key
+  }
+
+  public getFirebaseTimelineItems(): Observable<TimelineItem []> {
+    return this._firebase.list<TimelineItem>('temptimelineitems').valueChanges()
   }
 
 }
