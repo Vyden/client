@@ -34,6 +34,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { ModelEditorComponent } from './components/model-editor/model-editor.component';
 import { AnnouncementsCardComponent } from './components/announcements-card/announcements-card.component';
 import { FocusOnCreateDirective } from './directives/focus-on-create/focus-on-create.directive';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { FocusOnCreateDirective } from './directives/focus-on-create/focus-on-cr
     ModelEditorComponent,
     AnnouncementsCardComponent,
     FocusOnCreateDirective,
+    TimelineComponent,
   ],
   imports: [
     BrowserModule,
