@@ -1,12 +1,9 @@
-<!-- sidebar header -->
-<mat-toolbar color="primary" class="sidenav-header">
-	<span class="example-fill-remaining-space"></span>
 
-	<h2 class="header-title">COURSES</h2>
+<div *ngIf="showClasses; else showLectures">
+  <app-sidenav-header></app-sidenav-header>
+  <app-sidenav-body></app-sidenav-body>
+</div>
 
-	<button mat-icon-button>
-		<mat-icon>add</mat-icon>
-	</button>
-</mat-toolbar>
-
-<!-- sidebar body -->
+<ng-template #showLectures>
+  <app-sidenav-lecture></app-sidenav-lecture>
+</ng-template>

@@ -8,6 +8,7 @@ export class ThemeService {
   public currentThemeClass = this.themeClassSource.asObservable()
 
   private themes = [
+    ['default', '#4CAF50'],
     ['red', '#f44336'],
     ['pink', '#E91E63'],
     ['purple', '#9C27B0'],
