@@ -37,6 +37,10 @@ export class SidenavBodyComponent implements OnInit {
   //Changes the theme of the page and changes sidenav to lecture sidenav view
   public navigateToCourse(index: number) {
     this._themeService.changeThemeClass(this.themes[index][0]);
-    this._classesService.selectClass("random class");
+
+    const button = <HTMLButtonElement>document.querySelector(`[id="${index}"]`);
+    let buttonText = button.innerText;
+    buttonText = buttonText.slice(6, buttonText.length);
+    this._classesService.selectClass(buttonText);
   }
 }

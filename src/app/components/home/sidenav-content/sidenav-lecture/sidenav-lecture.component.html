@@ -1,3 +1,9 @@
-<p>
-  sidenav-lecture works!
-</p>
+<!-- sidebar header -->
+<mat-toolbar color="primary" id="sidenav-header" [ngClass]="themeClass">
+
+  <button mat-icon-button class="bg-theme-secondary" [@enterAnimation] (click)="backToCourses()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <h2 class="header-title ml-3"  [@enterAnimation]>{{ activeClass }}</h2>
+
+</mat-toolbar>

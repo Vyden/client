@@ -1,0 +1,14 @@
+#sidenav-header {
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header-title {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
