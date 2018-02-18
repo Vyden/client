@@ -38,3 +38,62 @@ input.exp-input {
     width: 80%;
     opacity: 1;
 }
+
+.classcontainer{
+    background-color: #EDEDEE;
+    min-height: 60vh;
+    padding: 30px;
+}
+
+.classBound {
+    position: relative;
+    margin-bottom: 2vh;
+    min-height: 180px;
+}
+
+
+.classcontainer .mat-card{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.hiddenLayer{
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background: rgba(128, 128, 128, 0.5);
+    transition: 0.3s ease-in;
+    right: 0;
+    visibility: hidden;
+    z-index: 10;
+}
+
+.hiddenLayer.selected{
+    width: 100%;
+    visibility: visible;
+}
+
+
+
+.buttonContainer button{
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.1s ease-in;
+    vertical-align: middle;
+    color: white;
+}
+
+.hiddenLayer.selected .buttonContainer button{
+    visibility: visible;
+    transition: 1.5s ease-in;
+    opacity: 1;
+}
+
+.buttonContainer .mat-fab{
+    width: 80px;
+    height: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
