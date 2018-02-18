@@ -6,6 +6,7 @@ import { ThemeService } from '../../services/theme/theme.service';
 import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { TimelineItem } from '../../models/timelineItem';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-lecture-editor',
@@ -15,7 +16,7 @@ import { TimelineItem } from '../../models/timelineItem';
 export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public lectureEndTime: number // End time in seconds
-  public timelineItems: AngularFireList<TimelineItem>
+  public timelineItems: Observable<TimelineItem []>
 
   constructor(private _themeService: ThemeService, 
     private _lectureEditorService: LectureEditorService,
