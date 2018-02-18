@@ -97,3 +97,13 @@ input.exp-input {
     transform: translateX(-50%);
 }
 
+.classBound .mat-card-title{
+    font-size: 1em;
+}
+
+//make the description card bigger in small screen
+@media (max-width: 767px) {
+    .classBound{
+        min-height: 220px;
+    }
+}
