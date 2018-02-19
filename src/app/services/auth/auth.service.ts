@@ -17,7 +17,6 @@ export class AuthService {
   constructor(private _afAuth: AngularFireAuth, private _firebase: AngularFireDatabase, private _router: Router) {
     this._afAuth.authState.subscribe((user) => {
       this.authState = user
-      console.log('user: ', user);
 
       if(!user) {
         this.changeUserInfo(null)
@@ -27,7 +26,6 @@ export class AuthService {
       this._firebase.object("UserInfo/" + user.uid)
         .valueChanges()
         .subscribe((userInfo: UserInfo) => {
-          console.log('user info', userInfo);
           this.changeUserInfo(userInfo)
         })
     });
