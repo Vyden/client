@@ -16,7 +16,7 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
   <div fxLayout="row">
-    <app-username [username]="'Big Shaq'" class="mr-2"></app-username>
+    <app-username *ngIf="userInfo" [username]="userInfo.fullName" class="mr-2"></app-username>
     <button mat-button [mat-menu-trigger-for]="thememenu" fxHide="false" fxHide.lt-sm>
       <span>Test Themes</span>
     </button>
@@ -35,13 +35,17 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
 </div>
 
 <mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item routerLink="/editor">
     <mat-icon>add_circle</mat-icon>
     <span>Create Lecture</span>
   </button>
   <button mat-menu-item>
     <mat-icon>settings</mat-icon>
     <span>Settings</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
   </button>
 </mat-menu>
 

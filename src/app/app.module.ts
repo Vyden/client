@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule
+  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
+  MatSlideToggleModule
 } from '@angular/material';
 
 /* Services */
@@ -20,6 +22,7 @@ import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
 import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
+import { AuthService } from './services/auth/auth.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -40,6 +43,7 @@ import { FocusOnCreateDirective } from './directives/focus-on-create/focus-on-cr
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { OnCreateDirective } from './directives/oncreate/on-create.directive';
 import { TimelineItemDirective } from './directives/timeline-item/timeline-item.directive';
+import { TemploginComponent } from './components/templogin/templogin.component';
 
 
 @NgModule({
@@ -63,6 +67,7 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
     AnnouncementsCardComponent,
     FocusOnCreateDirective,
     TimelineComponent,
+    TemploginComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,10 +77,12 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule
+    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
+    MatSlideToggleModule
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
