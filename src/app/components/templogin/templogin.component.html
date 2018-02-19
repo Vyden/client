@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<form class="example-form purple-theme">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="email" name="email" [(ngModel)]="email">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="password" name="password" [(ngModel)]="password">
+  </mat-form-field>
+  
+  <button mat-raised-button color="accent" (click)="createUser()">create</button>
+  <button mat-raised-button color="accent" (click)="loginUser()">login</button>
+</form>
