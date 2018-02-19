@@ -7,6 +7,7 @@ import { LectureEditorService } from '../../services/lecture-editor/lecture-edit
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { TimelineItem } from '../../models/timelineItem';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-lecture-editor',
@@ -16,15 +17,23 @@ import { Observable } from 'rxjs/Observable';
 export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public lectureEndTime: number // End time in seconds
-  public timelineItems: Observable<TimelineItem []>
+  public timelineItems: Observable<TimelineItem[]>
 
-  constructor(private _themeService: ThemeService, 
+  constructor(private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
-    private _firebase: AngularFireDatabase) {
+    private _firebase: AngularFireDatabase,
+    private _authService: AuthService) {
     this.lectureEndTime = 3000
   }
 
   ngOnInit() {
+    /* Subxcribe to changes to the user */
+    this._authService.currentUserObservable
+      .subscribe((user: any) => {
+        // Allows page access only if the user is logged in
+        this._authService.checkLogin()
+      })
+    
     this._themeService.changeThemeClass("deep-purple");
 
     this.timelineItems = this._lectureEditorService.getFirebaseTimelineItems()

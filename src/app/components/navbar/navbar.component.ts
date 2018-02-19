@@ -47,4 +47,8 @@ export class NavbarComponent implements OnInit {
     this._themeService.changeThemeClass(theme)
   }
 
+  public logout() {
+    this._authService.logout()
+  }
+
 }

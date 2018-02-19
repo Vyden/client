@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
@@ -13,12 +14,16 @@ export class AuthService {
   private currentUserInfoSource = new BehaviorSubject<UserInfo>(null)
   public currentUserInfo = this.currentUserInfoSource.asObservable()
 
-  constructor(private _afAuth: AngularFireAuth, private _firebase: AngularFireDatabase) {
+  constructor(private _afAuth: AngularFireAuth, private _firebase: AngularFireDatabase, private _router: Router) {
     this._afAuth.authState.subscribe((user) => {
       this.authState = user
-      console.log('user id: ', user.uid);
+      console.log('user: ', user);
 
-      if(!user) return
+      if(!user) {
+        this.changeUserInfo(null)
+        return
+      }
+
       this._firebase.object("UserInfo/" + user.uid)
         .valueChanges()
         .subscribe((userInfo: UserInfo) => {
@@ -68,6 +73,18 @@ export class AuthService {
 
   public changeUserInfo(newUserInfo: UserInfo) {
     this.currentUserInfoSource.next(newUserInfo)
+  }
+
+  public checkLogin() {
+    if(!this.authState) {
+      // User is not logged in, so go to the login page
+      this.logout()
+    }
+  }
+
+  public logout() {
+    this._afAuth.auth.signOut()
+    this._router.navigate(['templogin'])
   }
 
 }
