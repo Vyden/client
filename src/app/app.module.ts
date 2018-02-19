@@ -20,6 +20,7 @@ import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
 import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
+import { LecturesService } from './services/lectures/lectures.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
