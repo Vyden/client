@@ -13,7 +13,8 @@ import { environment } from '../environments/environment';
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule
+  MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
+  MatSlideToggleModule
 } from '@angular/material';
 
 /* Services */
@@ -78,7 +79,8 @@ import { TemploginComponent } from './components/templogin/templogin.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
-    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule
+    MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
+    MatSlideToggleModule
   ],
   providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, AuthService],
   bootstrap: [AppComponent]

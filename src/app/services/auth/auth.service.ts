@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import { UserInfo } from '../../models/userInfo';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
 
   authState: any = null;
 
-  constructor(private _afAuth: AngularFireAuth) {
-    this._afAuth.authState.subscribe((auth) => {
-      this.authState = auth
+  private currentUserInfoSource = new BehaviorSubject<UserInfo>(null)
+  public currentUserInfo = this.currentUserInfoSource.asObservable()
+
+  constructor(private _afAuth: AngularFireAuth, private _firebase: AngularFireDatabase) {
+    this._afAuth.authState.subscribe((user) => {
+      this.authState = user
+      console.log('user id: ', user.uid);
+
+      if(!user) return
+      this._firebase.object("UserInfo/" + user.uid)
+        .valueChanges()
+        .subscribe((userInfo: UserInfo) => {
+          console.log('user info', userInfo);
+          this.changeUserInfo(userInfo)
+        })
     });
   }
 
@@ -24,13 +39,20 @@ export class AuthService {
   }
 
   // Returns observable
-  get currentUserObservable(): any {
+  get currentUserObservable(): Observable<any> {
     return this._afAuth.authState
   }
 
-  public createUser(email: string, password: string) {
+  public createUser(email: string, password: string, info: UserInfo) {
     return this._afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user: any) => {
+        console.log('Create user success:', user);
+
+        info.UID = user.uid
+
+        this._firebase.list('UserInfo')
+          .set(user.uid, info)
+
         this.authState = user
       })
       .catch(error => console.log(error))
@@ -42,6 +64,10 @@ export class AuthService {
         this.authState = user
       })
       .catch(error => console.log(error))
+  }
+
+  public changeUserInfo(newUserInfo: UserInfo) {
+    this.currentUserInfoSource.next(newUserInfo)
   }
 
 }

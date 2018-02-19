@@ -8,7 +8,11 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="password" name="password" [(ngModel)]="password">
   </mat-form-field>
-  
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="full name" name="fullName" [(ngModel)]="fullName">
+  </mat-form-field>
+  <mat-slide-toggle name="isInstructor" [(ngModel)]="isInstructor">isInstructor</mat-slide-toggle>
+
   <button mat-raised-button color="accent" (click)="createUser()">create</button>
   <button mat-raised-button color="accent" (click)="loginUser()">login</button>
 </form>
