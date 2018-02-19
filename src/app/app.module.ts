@@ -20,6 +20,7 @@ import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
 import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
+import { AuthService } from './services/auth/auth.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -75,7 +76,7 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
