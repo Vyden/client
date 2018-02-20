@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
-import { LecturesService } from '../../services/lectures/lectures.service';
+// import { LecturesService } from '../../services/lectures/lectures.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Lecture } from '../../models/lecture';
 import { Observable } from 'rxjs/Observable';
@@ -46,7 +46,7 @@ export class MainPanelComponent implements OnInit {
   ];
 
   constructor(private _themeService: ThemeService,
-    private _lecturesService: LecturesService,
+    // private _lecturesService: LecturesService,
     private _firebase: AngularFireDatabase
   ) { }
 
@@ -55,7 +55,7 @@ export class MainPanelComponent implements OnInit {
     this._themeService.currentThemeClass
       .subscribe((themeClass: string) => {
         this.themeClass = themeClass;
-        this.lectures = this._lecturesService.getFirebaseLectures()
+        // this.lectures = this._lecturesService.getFirebaseLectures()
       })
   }
 
