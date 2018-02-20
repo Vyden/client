@@ -61,7 +61,8 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
     this._themeService.changeThemeClass("deep-purple");
 
-    this.timelineItems = this._lectureEditorService.getFirebaseTimelineItems()
+    // Create a new lecture object, must be changed later
+    this._lectureEditorService.publishLecture('CS 420')
   }
 
   ngOnDestroy() {
