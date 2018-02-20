@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule
+  MatSlideToggleModule, MatDialogModule
 } from '@angular/material';
 
 /* Services */
@@ -24,6 +24,7 @@ import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
 import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
+import { DialogsService } from './services/dialogs/dialogs.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -45,7 +46,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { OnCreateDirective } from './directives/oncreate/on-create.directive';
 import { TimelineItemDirective } from './directives/timeline-item/timeline-item.directive';
 import { TemploginComponent } from './components/templogin/templogin.component';
-
+// import { ConfirmDialog }   from './components/navbar/navbar.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { TemploginComponent } from './components/templogin/templogin.component';
     FocusOnCreateDirective,
     TimelineComponent,
     TemploginComponent,
+    // ConfirmDialog,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,9 +85,15 @@ import { TemploginComponent } from './components/templogin/templogin.component';
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule, MatDialogModule,
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService],
+  exports: [
+    ConfirmDialogComponent,
+  ],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService],
+  entryComponents: [
+    ConfirmDialogComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
