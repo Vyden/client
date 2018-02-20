@@ -11,9 +11,12 @@ export class ClassesService {
 
   constructor() { }
 
-  public addClass() {
+  public addClass(classID: string) {
     //Will need to make call to firebase to add class
     //Then make a next() call to push data
+    let newCourseList = this.classesSource.getValue();
+    newCourseList.push(classID);
+    this.classesSource.next(newCourseList);
   }
 
   public getClasses(){

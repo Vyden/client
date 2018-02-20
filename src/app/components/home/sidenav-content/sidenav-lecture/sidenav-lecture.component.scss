@@ -1,0 +1,27 @@
+#sidenav-header {
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header-title {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#sidenav-body {
+  text-align: center;
+}
+
+[data-section] {
+  width: 100%;
+  transition: 0.25s ease-in-out;
+}
+
+.mat-button.no-hover ::ng-deep .mat-button-focus-overlay {
+  background: none;
+}
