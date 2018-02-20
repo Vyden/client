@@ -29,6 +29,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   /* Dropzone data */
   public showDropBox: boolean
   public dropzoneActive: boolean
+  public videoActive: boolean
   public showUploadProgress: boolean
   public uploadProgress: number
   public videoName: string
@@ -75,6 +76,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public handleDrop(fileList: FileList) {
     const videoFile: File = fileList[0]
     this.uploadProgress = 0
+    this.videoActive = false
     this.showUploadProgress = true
     this.videoName = videoFile.name
 
@@ -91,6 +93,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
           console.log('File is completely uploaded!');
 
           this.showDropBox = false
+          this.videoActive = true
           let vid = document.createElement('video');
           const fileURL = URL.createObjectURL(videoFile);
           vid.src = fileURL;
