@@ -46,8 +46,6 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { OnCreateDirective } from './directives/oncreate/on-create.directive';
 import { TimelineItemDirective } from './directives/timeline-item/timeline-item.directive';
 import { TemploginComponent } from './components/templogin/templogin.component';
-// import { ConfirmDialog }   from './components/navbar/navbar.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
@@ -72,8 +70,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
     FocusOnCreateDirective,
     TimelineComponent,
     TemploginComponent,
-    // ConfirmDialog,
-    ConfirmDialogComponent,
     DialogComponent
   ],
   imports: [

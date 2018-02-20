@@ -59,7 +59,7 @@ export class NavbarComponent implements OnInit {
   public openDialog() {
     console.log('hi')
     this._dialogsService
-      .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+      .confirm('Create new course', 'Are you sure you want to do this?')
       .subscribe(res => this.result = res);
   }
 

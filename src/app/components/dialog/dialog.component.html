@@ -1,8 +1,47 @@
 <p>{{ title }}</p>
-<p>{{ message }}</p>
-<button type="button" md-raised-button 
-  (click)="dialogRef.close(true)">OK
+<!-- <p>{{ message }}</p> -->
+
+<!-- test -->
+ <form class="example-form">
+ <!-- <mat-form-field class="example-full-width">
+    <input matInput placeholder="Company (disabled)" disabled value="Google">
+  </mat-form-field> -->
+
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="Instructor" disabled value="Gustavo">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="Course ID">
+    </mat-form-field></td>
+  </tr></table>
+
+  <p>
+    <!-- <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+    </mat-form-field> -->
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Course Name"></textarea>
+    </mat-form-field>
+  </p>
+
+  <!-- <table class="example-full-width" cellspacing="0"><tr>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="City">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <input matInput placeholder="State">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <input matInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
+      <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+    </mat-form-field></td>
+  </tr></table> -->
+</form>
+
+<button mat-raised-button type="button" md-raised-button 
+  (click)="dialogRef.close(true)">Create
 </button>
-<button type="button" md-button 
-  (click)="dialogRef.close()">Cancel
+<button mat-raised-button type="button" md-button 
+  (click)="dialogRef.close()">Close
 </button>
