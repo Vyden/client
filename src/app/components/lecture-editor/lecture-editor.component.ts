@@ -9,6 +9,7 @@ import { TimelineItem } from '../../models/timelineItem';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserInfo } from '../../models/userInfo';
+import { UploadService } from '../../services/upload/upload.service';
 
 @Component({
   selector: 'app-lecture-editor',
@@ -30,7 +31,8 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   constructor(private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
     private _firebase: AngularFireDatabase,
-    private _authService: AuthService) {
+    private _authService: AuthService,
+    private _uploadService: UploadService) {
     this.lectureEndTime = 3000
   }
 
@@ -64,6 +66,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public handleDrop(fileList: FileList) {
     console.log(fileList);
+    this._uploadService.uploadVideoFile(fileList[0])
   }
 
 }

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -24,6 +25,7 @@ import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
 import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
+import { UploadService } from './services/upload/upload.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -77,6 +79,7 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
@@ -85,7 +88,7 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
     MatSlideToggleModule
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService],
+  providers: [HttpClientModule, NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
