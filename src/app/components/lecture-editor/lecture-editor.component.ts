@@ -6,11 +6,12 @@ import { ThemeService } from '../../services/theme/theme.service';
 import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { TimelineItem } from '../../models/timelineItem';
+import { TimelineItem, ItemType } from '../../models/timelineItem';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserInfo } from '../../models/userInfo';
 import { UploadService } from '../../services/upload/upload.service';
+import { VideoItem } from '../../models/videoItem';
 
 @Component({
   selector: 'app-lecture-editor',
@@ -23,6 +24,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public userInfo: UserInfo
 
   /* Lecture data */
+  public lectureId: string
   public lectureEndTime: number // End time in seconds
   public timelineItems: Observable<TimelineItem[]>
 
@@ -59,10 +61,17 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
         this.userInfo = userInfo
       })
 
+    /* Subscribe to lecture ID */
+    this._lectureEditorService.currentLectureId
+      .subscribe((lectureId: string) => {
+        this.lectureId = lectureId
+      })
+
     this._themeService.changeThemeClass("deep-purple");
 
     // Create a new lecture object, must be changed later
     this._lectureEditorService.publishLecture('CS 420')
+
   }
 
   ngOnDestroy() {
@@ -101,6 +110,17 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
           // wait for duration to change from NaN to the actual duration
           vid.ondurationchange = () => {
             this.lectureEndTime = vid.duration
+
+            const videoItem: VideoItem = {
+              name: 'Lecture Video',
+              lecture: this.lectureId,
+              eventTime: 1,
+              type: ItemType.VIDEO,
+              resource: "VIDEO URL",
+              videoTime: this.lectureEndTime
+            }
+
+            this._lectureEditorService.publishTimelineItem(videoItem)
           };
         }
       })
