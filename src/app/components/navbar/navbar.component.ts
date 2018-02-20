@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   constructor(private _navbarService: NavbarService, 
     private _themeService: ThemeService,
     private _authService: AuthService,
-    private dialogsService: DialogsService) { }
+    private _dialogsService: DialogsService) { }
 
   ngOnInit() {
     /* Listen for changes to sidenav */
@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit {
 
   public openDialog() {
     console.log('hi')
-    this.dialogsService
+    this._dialogsService
       .confirm('Confirm Dialog', 'Are you sure you want to do this?')
       .subscribe(res => this.result = res);
   }

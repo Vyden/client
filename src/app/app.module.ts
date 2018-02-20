@@ -48,6 +48,7 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
 import { TemploginComponent } from './components/templogin/templogin.component';
 // import { ConfirmDialog }   from './components/navbar/navbar.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     TemploginComponent,
     // ConfirmDialog,
     ConfirmDialogComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -88,11 +90,11 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatSlideToggleModule, MatDialogModule,
   ],
   exports: [
-    ConfirmDialogComponent,
+    DialogComponent,
   ],
   providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService],
   entryComponents: [
-    ConfirmDialogComponent,
+    DialogComponent,
   ],
   bootstrap: [AppComponent]
 })
