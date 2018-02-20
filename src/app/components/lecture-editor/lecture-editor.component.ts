@@ -17,10 +17,15 @@ import { UserInfo } from '../../models/userInfo';
 })
 export class LectureEditorComponent implements OnInit, OnDestroy {
 
+  /* User data */
   public userInfo: UserInfo
 
+  /* Lecture data */
   public lectureEndTime: number // End time in seconds
   public timelineItems: Observable<TimelineItem[]>
+
+  /* Dropzone data */
+  public dropzoneActive: boolean
 
   constructor(private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
@@ -50,6 +55,15 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._themeService.changeThemeClass("default");
+  }
+
+  public dropzoneState($event: boolean) {
+    this.dropzoneActive = $event
+    console.log(this.dropzoneActive)
+  }
+
+  public handleDrop(fileList: FileList) {
+    console.log(fileList);
   }
 
 }
