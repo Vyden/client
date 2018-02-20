@@ -22,7 +22,7 @@ import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
 import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
-// import { LecturesService } from './services/lectures/lectures.service';
+import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
 
 import { AppComponent } from './app.component';
@@ -85,8 +85,7 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
     MatSlideToggleModule
   ],
-  // providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, AuthService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

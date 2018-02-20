@@ -13,9 +13,9 @@
           <div class="row">
             <div class="col"></div>
           </div>
-          <div appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)" class="row fill d-flex file-outline m-4">
-            <div class="col pt-4 pb-4 text-center align-self-center">
-              <h3 class="white-text" style="font-weight: 400">DROP VIDEO FILE</h3>
+          <div appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)" [ngClass]="{'drop-active': dropzoneActive}" class="row fill d-flex file-outline m-4">
+            <div class="col pt-4 pb-4 text-center align-self-center pointer-events-none">
+              <h3 class="white-text t-all-250" style="font-weight: 400">DROP VIDEO FILE</h3>
             </div>
           </div>
           <div class="row">

@@ -10,6 +10,10 @@
     font-weight: 400;
 }
 
+.t-all-250 {
+    transition: all 250ms ease-in-out;
+}
+
 .upload-card {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ab47bc+0,7e57c2+100 */
     background: #ab47bc;
@@ -40,6 +44,16 @@
 .file-outline {
     border: 2px dashed #EEEEEE;
     border-radius: 1em;
+    transition: all 250ms ease-in-out;
+}
+
+.drop-active {
+    background-color: #EEEEEE;
+    border: 2px solid #EEEEEE;
+
+    h3 {
+        color: #7e57c2 !important;
+    }
 }
 
 // https://philipwalton.github.io/solved-by-flexbox/demos/vertical-centering/
@@ -55,6 +69,10 @@
 .form-label {
     font-weight: 500;
     font-size: 16px;
+}
+
+.pointer-events-none {
+    pointer-events: none;
 }
 
 @media only screen and (max-width: 768px) {
