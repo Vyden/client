@@ -48,22 +48,22 @@
               
             <div class="row m-0">
                 <div class="col-4 m-0 p-0 text-left">
-                  <mat-card-title>LEC 1</mat-card-title>
+                  <mat-card-title>LEC {{ lectureArray[i].lectnum }}</mat-card-title>
                 </div>
                 <div class="col-4 m-0 p-0">
-                 <mat-card-title>Rodriguez-Rivera</mat-card-title>                  
+                 <mat-card-title>{{ lectureArray[i].instructor }}</mat-card-title>                  
                 </div>
                 <div class="col-4 m-0 p-0 text-right">
-                  <mat-card-subtitle>Length: 30m 12s</mat-card-subtitle>
+                  <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle>
                 </div>
             </div>
 
             <div class="row m-0 text-left">
-                <mat-card-subtitle>Posted on Wednesday, January 31, 2018 9:21:46 PM EST</mat-card-subtitle>
+                <mat-card-subtitle>Posted on {{ lectureArray[i].postTime }}</mat-card-subtitle>
             </div>
 
             <div class="row m-0 text-left">
-                <mat-card-content>Shell scripting in the UNIX environment.</mat-card-content>
+                <mat-card-content>{{ lectureArray[i].description }}</mat-card-content>
             </div>
 
           </mat-card>
