@@ -44,8 +44,9 @@ export class MainPanelComponent implements OnInit {
 
   ]
 
-  lectureArray: LectureArray[] = [
 
+  lectureArray: LectureArray[] = [
+   
   ]
 
   selectedStatus: boolean = false;
