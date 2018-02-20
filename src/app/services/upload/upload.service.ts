@@ -22,16 +22,7 @@ export class UploadService {
 
     const req = new HttpRequest('POST', 'http://localhost:5000/upload', formData, options);
 
-    this._httpClient.request(req)
-      .subscribe((event: any) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          // This is an upload progress event. Compute and show the % done:
-          const percentDone = Math.round(100 * event.loaded / event.total);
-          console.log(`File is ${percentDone}% uploaded.`);
-        } else if (event instanceof HttpResponse) {
-          console.log('File is completely uploaded!');
-        }
-      })
+    return this._httpClient.request(req)
   }
 
 }

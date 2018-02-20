@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemeService } from '../../services/theme/theme.service';
 import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { TimelineItem } from '../../models/timelineItem';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth/auth.service';
@@ -49,7 +50,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo
       })
-    
+
     this._themeService.changeThemeClass("deep-purple");
 
     this.timelineItems = this._lectureEditorService.getFirebaseTimelineItems()
@@ -65,8 +66,25 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   }
 
   public handleDrop(fileList: FileList) {
-    console.log(fileList);
-    this._uploadService.uploadVideoFile(fileList[0])
+    const videoFile: File = fileList[0]
+    this._uploadService.uploadVideoFile(videoFile)
+      .subscribe((event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          // This is an upload progress event. Compute and show the % done:
+          const percentDone = Math.round(100 * event.loaded / event.total);
+          console.log(`File is ${percentDone}% uploaded.`);
+        } else if (event instanceof HttpResponse) {
+          console.log('File is completely uploaded!');
+          let vid = document.createElement('video');
+          var fileURL = URL.createObjectURL(videoFile);
+          vid.src = fileURL;
+          // wait for duration to change from NaN to the actual duration
+          const thisref = this
+          vid.ondurationchange = function () {
+            thisref.lectureEndTime = vid.duration
+          };
+        }
+      })
   }
 
 }
