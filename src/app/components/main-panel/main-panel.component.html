@@ -44,6 +44,8 @@
           <div class="classBound" (click)="onClickLecture(i)" 
           *ngFor="let class of classList; let i = index"> 
             
+          <div *ngIf="lectureArray.length > 0">
+
           <mat-card class="text-center">
               
             <div class="row m-0">
@@ -67,6 +69,9 @@
             </div>
 
           </mat-card>
+
+
+          </div>
 
             <div [ngClass]="{selected: selectList[i] === true}" class="hiddenLayer row m-0">
               <div class="col-4 m-0 p-0"></div>

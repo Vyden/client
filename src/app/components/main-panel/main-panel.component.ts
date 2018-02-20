@@ -36,8 +36,7 @@ export class MainPanelComponent implements OnInit {
     // {
     //   "name": "Cook  Tyson"
     // }
-    1 , 2 , 3
-    // , 4, 5
+    1 , 2 , 3, 4, 5
   ];
 
   lectureList: any[] = [
