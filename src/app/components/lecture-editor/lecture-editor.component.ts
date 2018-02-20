@@ -27,7 +27,13 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public timelineItems: Observable<TimelineItem[]>
 
   /* Dropzone data */
+  public showDropBox: boolean
   public dropzoneActive: boolean
+  public showUploadProgress: boolean
+  public uploadProgress: number
+  public videoName: string
+
+  public Math = Math
 
   constructor(private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
@@ -35,6 +41,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     private _authService: AuthService,
     private _uploadService: UploadService) {
     this.lectureEndTime = 3000
+    this.showDropBox = true
   }
 
   ngOnInit() {
@@ -67,21 +74,29 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public handleDrop(fileList: FileList) {
     const videoFile: File = fileList[0]
+    this.uploadProgress = 0
+    this.showUploadProgress = true
+    this.videoName = videoFile.name
+
     this._uploadService.uploadVideoFile(videoFile)
       .subscribe((event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
           // This is an upload progress event. Compute and show the % done:
           const percentDone = Math.round(100 * event.loaded / event.total);
+          this.uploadProgress = percentDone
           console.log(`File is ${percentDone}% uploaded.`);
         } else if (event instanceof HttpResponse) {
+          this.showUploadProgress = false
+
           console.log('File is completely uploaded!');
+
+          this.showDropBox = false
           let vid = document.createElement('video');
-          var fileURL = URL.createObjectURL(videoFile);
+          const fileURL = URL.createObjectURL(videoFile);
           vid.src = fileURL;
           // wait for duration to change from NaN to the actual duration
-          const thisref = this
-          vid.ondurationchange = function () {
-            thisref.lectureEndTime = vid.duration
+          vid.ondurationchange = () => {
+            this.lectureEndTime = vid.duration
           };
         }
       })

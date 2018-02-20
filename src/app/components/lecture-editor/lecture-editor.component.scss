@@ -14,6 +14,12 @@
     transition: all 250ms ease-in-out;
 }
 
+mat-icon.icon-xxl {
+    font-size: 100px;
+    height: 100px !important;
+    width: 100px !important;
+}
+
 .upload-card {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ab47bc+0,7e57c2+100 */
     background: #ab47bc;
@@ -50,7 +56,6 @@
 .drop-active {
     background-color: #EEEEEE;
     border: 2px solid #EEEEEE;
-
     h3 {
         color: #7e57c2 !important;
     }

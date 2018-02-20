@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule
+  MatSlideToggleModule, MatProgressSpinnerModule
 } from '@angular/material';
 
 /* Services */
@@ -86,7 +86,7 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule, MatProgressSpinnerModule
   ],
   providers: [HttpClientModule, NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, UploadService],
   bootstrap: [AppComponent]
