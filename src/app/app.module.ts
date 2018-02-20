@@ -22,6 +22,7 @@ import { NavbarService } from './services/navbar/navbar.service';
 import { ThemeService } from './services/theme/theme.service';
 import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
+import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
 
 import { AppComponent } from './app.component';
@@ -82,7 +83,7 @@ import { TemploginComponent } from './components/templogin/templogin.component';
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
     MatSlideToggleModule
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, AuthService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
