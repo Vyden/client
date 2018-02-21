@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule, MatProgressSpinnerModule
+  MatSlideToggleModule, MatProgressSpinnerModule, MatDialogModule
 } from '@angular/material';
 
 /* Services */
@@ -26,6 +26,8 @@ import { LectureEditorService } from './services/lecture-editor/lecture-editor.s
 import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
 import { UploadService } from './services/upload/upload.service';
+import { DialogsService } from './services/dialogs/dialogs.service';
+import { CreateCourseService } from './services/create-course/create-course.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -47,6 +49,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { OnCreateDirective } from './directives/oncreate/on-create.directive';
 import { TimelineItemDirective } from './directives/timeline-item/timeline-item.directive';
 import { TemploginComponent } from './components/templogin/templogin.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
 
 
@@ -73,6 +76,7 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     TimelineComponent,
     TemploginComponent,
     FileDropDirective,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -86,9 +90,16 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule, MatProgressSpinnerModule
+
+    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule
   ],
-  providers: [HttpClientModule, NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, UploadService],
+  exports: [
+    DialogComponent,
+  ],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService],
+  entryComponents: [
+    DialogComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,8 +3,9 @@ import { ThemeService } from '../../services/theme/theme.service';
 import { LecturesService } from '../../services/lectures/lectures.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Lecture } from '../../models/lecture';
+import { Course } from '../../models/course';
 import { UserInfo } from '../../models/userInfo';
+import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -15,27 +16,21 @@ import { Observable } from 'rxjs/Observable';
 export class MainPanelComponent implements OnInit {
 
   public themeClass: string
-  public lectures: Observable<Lecture []>
+  public lectures: Observable<Course []>
   public userInfo: UserInfo
 
   classList: number[] = [
-    // {
-    //   "name": "Douglas  Pace"
-    // },
-    // {
-    //   "name": "Mcleod  Mueller"
-    // },
-    // {
-    //   "name": "Day  Meyers"
-    // },
-    // {
-    //   "name": "Aguirre  Ellis"
-    // },
-    // {
-    //   "name": "Cook  Tyson"
-    // }
     1 , 2 , 3, 4, 5
   ];
+
+  lectureList: any[] = [
+
+  ]
+
+
+  lectureArray: LectureArray[] = [
+   
+  ]
 
   selectedStatus: boolean = false;
 
@@ -57,35 +52,35 @@ export class MainPanelComponent implements OnInit {
   ngOnInit() {
     
 /* Subscribe to changes to the user */
-this._authService.currentUserObservable
-.subscribe((user: any) => {
+    this._authService.currentUserObservable
+    .subscribe((user: any) => {
+
 // Allows page access only if the user is logged in
-this._authService.checkLogin()
-})
+    this._authService.checkLogin()
+    })
 
 /* Subscribe to user info */
-this._authService.currentUserInfo
-.subscribe((userInfo: UserInfo) => {
-this.userInfo = userInfo
-})
+    this._authService.currentUserInfo
+    .subscribe((userInfo: UserInfo) => {
+      this.userInfo = userInfo
+    })
 
     this._themeService.currentThemeClass
       .subscribe((themeClass: string) => {
         this.themeClass = themeClass;
         // this.lectures = this._lecturesService.getFirebaseLectures()
       })
+
+    this.lectures.subscribe(res => {
+      this.lectureList = res[1].lectures;
+      this.lectureArray = Object.values(this.lectureList);
+    });
   }
 
   onClickLecture(i){
-    // console.log("lecture " + i);
-    console.log('lectures are ' + this.lectures);
-    this.lectures.subscribe(res => {
-      console.log(res);
-      // this.data = res;
-   });
-    // if(!this.clickList[i]){
-    //   this.selectList[i] = true;
-    // }
+    console.log(this.lectureList);
+    console.log(this.lectureArray[i]);
+    
     this.selectList[i] = !this.selectList[i];
   }
 

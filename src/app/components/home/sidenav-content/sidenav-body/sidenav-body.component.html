@@ -1,8 +1,8 @@
 <!-- sidebar body -->
-<section id="sidenav-body" class="mt-3" [ngClass]="themeClass">
+<section id="sidenav-body" class="mt-3" [ngClass]="themeClass" class="text-center">
 
-    <div  *ngIf="sampleClasses.length > 0; else noClassesText">
-      <div class="row m-3" *ngFor="let class of sampleClasses; let i = index">
+    <div  *ngIf="courses.length > 0; else noClassesText">
+      <div class="row m-3" *ngFor="let course of courses; let i = index">
         <div class="col">
           <button
             data-id="{{i}}"
@@ -13,7 +13,7 @@
             class="class-button white-text text-left no-hover"
             (click)="navigateToCourse(i)">
             <mat-icon class="mr-2">class</mat-icon>
-            {{ class }}
+            {{ course['title'] }}
           </button>
         </div>
       </div>
