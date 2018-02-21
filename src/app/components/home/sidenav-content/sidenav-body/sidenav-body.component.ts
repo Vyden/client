@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassesService } from '../../../../services/classes/classes.service';
 import { ThemeService } from '../../../../services/theme/theme.service';
+import { AuthService } from '../../../../services/auth/auth.service';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { UserInfo } from '../../../../models/userInfo';
+import { Course } from '../../../../models/course';
 
 @Component({
   selector: 'app-sidenav-body',
@@ -10,21 +14,39 @@ import { ThemeService } from '../../../../services/theme/theme.service';
 export class SidenavBodyComponent implements OnInit {
 
   public themeClass: string = "default-theme";
-  public sampleClasses: string[] = [];
   public themes: string[][] = this._themeService.getThemes();
   public hover: boolean[] = [];
 
-  constructor(private _classesService: ClassesService, private _themeService: ThemeService) { }
+  public userInfo: UserInfo;
+  public courseIDList: string[][] = [];
+
+  constructor(private _classesService: ClassesService,
+    private _themeService: ThemeService,
+    private _authService: AuthService,
+    private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
-    this._classesService.currentClasses.subscribe((classes: string[]) => {
-      this.sampleClasses = [];
-      this.sampleClasses.push(...classes);
-    });
-
+    /* Subscribe for theme changes */
     this._themeService.currentThemeClass.subscribe((theme: string) => {
 			this.themeClass = theme;
     });
+
+    /* Subscribe to user info */
+    this._authService.currentUserInfo
+      .subscribe((userInfo: UserInfo) => {
+        this.userInfo = userInfo;
+
+        //Get all the courses the user is enrolled in
+        let courses = this._classesService.getEnrolledCourses();
+        //Add courses to courseIDList so that the names can be displayed
+        for (let i = 0; i < courses.length; i++) {
+          this.courseIDList[i] = [];
+          this.courseIDList[i].push(courses[i]);
+          this._firebase.object('Courses/' + courses[i]).valueChanges().subscribe((course: Course) => {
+            this.courseIDList[i].push(course.title);
+          })
+        }
+      });
   }
 
   //Takes index of button as parameter
@@ -37,10 +59,6 @@ export class SidenavBodyComponent implements OnInit {
   //Changes the theme of the page and changes sidenav to lecture sidenav view
   public navigateToCourse(index: number) {
     this._themeService.changeThemeClass(this.themes[index][0]);
-
-    const button = <HTMLButtonElement>document.querySelector(`[id="${index}"]`);
-    let buttonText = button.innerText;
-    buttonText = buttonText.slice(6, buttonText.length);
-    this._classesService.selectClass(buttonText);
+    this._classesService.selectCourse(this.courseIDList[index]);
   }
 }

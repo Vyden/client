@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../../../services/theme/theme.service';
 import { ClassesService } from '../../../../services/classes/classes.service';
-import { trigger, style, animate, transition, state} from '@angular/animations';
+import { trigger, style, animate, transition, state } from '@angular/animations';
+import { AuthService } from '../../../../services/auth/auth.service';
+import { UserInfo } from '../../../../models/userInfo';
 
 @Component({
   selector: 'app-sidenav-header',
@@ -27,12 +29,20 @@ export class SidenavHeaderComponent implements OnInit {
   public defaultHeader = true;
   public hover: boolean;
 
-  constructor(private _themeService: ThemeService, private _classesService: ClassesService) { }
+  public userInfo: UserInfo;
+
+  constructor(private _themeService: ThemeService, private _classesService: ClassesService, private _authService: AuthService) { }
 
   ngOnInit() {
     this._themeService.currentThemeClass.subscribe((theme: string) => {
       this.themeClass = theme;
     });
+
+    /* Subscribe to user info */
+    this._authService.currentUserInfo
+      .subscribe((userInfo: UserInfo) => {
+        this.userInfo = userInfo;
+    })
   }
 
   //Toggle input field for classes
@@ -45,7 +55,7 @@ export class SidenavHeaderComponent implements OnInit {
     const classInput = <HTMLInputElement>(document.querySelector('#class-code-input'));
     const classID = classInput.value;
     if (classID.length !== 0) {
-      this._classesService.addClass(classID);
+      this._classesService.addCourse(classID);
       this.toggleHeaderContent();
      }
   }
