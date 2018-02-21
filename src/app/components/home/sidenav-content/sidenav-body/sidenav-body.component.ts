@@ -59,6 +59,6 @@ export class SidenavBodyComponent implements OnInit {
   //Changes the theme of the page and changes sidenav to lecture sidenav view
   public navigateToCourse(index: number) {
     this._themeService.changeThemeClass(this.themes[index][0]);
-    this._classesService.selectClass(this.courseIDList[index]);
+    this._classesService.selectCourse(this.courseIDList[index]);
   }
 }

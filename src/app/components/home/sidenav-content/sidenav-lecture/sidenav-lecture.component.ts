@@ -35,8 +35,10 @@ export class SidenavLectureComponent implements OnInit {
   constructor(private _classesService: ClassesService, private _themeService: ThemeService, private _authService: AuthService) { }
 
   ngOnInit() {
-    this._classesService.activeClass.subscribe((activeClass: string) => {
-      this.activeClass = activeClass;
+    this._classesService.activeClass.subscribe((activeClass: string[]) => {
+      if (activeClass) {
+        this.activeClass = activeClass[1];
+      }
     });
 
     /* Subscribe for theme changes */
@@ -52,7 +54,7 @@ export class SidenavLectureComponent implements OnInit {
   }
 
   backToCourses() {
-    this._classesService.selectClass(null);
+    this._classesService.selectCourse(null);
     this._themeService.changeThemeClass('default');
   }
 

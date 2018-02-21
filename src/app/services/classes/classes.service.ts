@@ -49,13 +49,7 @@ export class ClassesService {
   }
 
   //Called when the user selects a course
-  public selectClass(activeClass: string[]) {
+  public selectCourse(activeClass: string[]) {
     this.activeClassSource.next(activeClass);
   }
-
-  public getSelectedClass(){
-    return this.activeClass;
-  }
-
-
 }
