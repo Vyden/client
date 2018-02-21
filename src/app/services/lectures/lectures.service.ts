@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Lecture } from '../../models/lecture';
+import { Course } from '../../models/course';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LecturesService {
 
-  private lectures: Lecture []
-  private lecturesSource = new BehaviorSubject<Lecture []>([])
+  private lectures: Course []
+  private lecturesSource = new BehaviorSubject<Course []>([])
   private currentLectures = this.lecturesSource.asObservable()
 
 
 
   constructor(private _firebase: AngularFireDatabase) {
     this.currentLectures
-      .subscribe((lectures: Lecture[]) =>{
+      .subscribe((lectures: Course[]) =>{
         this.lectures = lectures
       })
    }
 
-   public getFirebaseLectures(): Observable<Lecture []>{
-     return this._firebase.list<Lecture>('tempquizzes').valueChanges()
+   public getFirebaseLectures(): Observable<Course []>{
+     return this._firebase.list<Course>('courses').valueChanges()
    }
 
 }
