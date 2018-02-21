@@ -5,6 +5,8 @@ import { TimelineItem } from '../../models/timelineItem';
 import { Quiz } from '../../models/quiz';
 import { Observable } from 'rxjs/Observable';
 import { Lecture } from '../../models/lecture';
+import { ClassesService } from '../classes/classes.service';
+import { Course } from '../../models/course';
 
 @Injectable()
 export class LectureEditorService {
@@ -18,19 +20,28 @@ export class LectureEditorService {
   public currentLectureId = this.lectureIdSource.asObservable()
 
   // TimelineItem data
-  private timelineItems: TimelineItem []
-  private timelineItemsSource = new BehaviorSubject<TimelineItem []>([])
+  private timelineItems: TimelineItem[]
+  private timelineItemsSource = new BehaviorSubject<TimelineItem[]>([])
   public currentTimelineItems = this.timelineItemsSource.asObservable()
 
-  constructor(private _firebase: AngularFireDatabase) {
+  constructor(private _firebase: AngularFireDatabase, private _classesService: ClassesService) {
+    // Subscribe to changes in timelineitem array
     this.currentTimelineItems
-      .subscribe((timelineItems: TimelineItem []) => {
+      .subscribe((timelineItems: TimelineItem[]) => {
         this.timelineItems = timelineItems
       })
 
+    // Subscribe to changes in lectureId
     this.currentLectureId
       .subscribe((lectureId: string) => {
         this.lectureId = lectureId
+      })
+
+    // Subscribe to changes in course
+    this._classesService.activeCourse
+      .subscribe((course: Course) => {
+        if (course)
+          this.currentCourseId = course.id
       })
   }
 
@@ -43,12 +54,12 @@ export class LectureEditorService {
       sky: "#E0F7FA"
     }
 
-    const key: string =  this._firebase.list(`Courses/${this.currentCourseId}/lectures`)
+    const key: string = this._firebase.list(`Courses/${this.currentCourseId}/lectures`)
       .push(newLecture)
       .key
 
     this._firebase.object(`Courses/${this.currentCourseId}/lectures/${key}`)
-      .update({id: key})
+      .update({ id: key })
 
     this.changeLectureId(key)
 
@@ -59,7 +70,7 @@ export class LectureEditorService {
     this.lectureIdSource.next(lectureId)
   }
 
-  public changeTimelineItems(timelineItems: TimelineItem []) {
+  public changeTimelineItems(timelineItems: TimelineItem[]) {
     this.timelineItemsSource.next(timelineItems)
   }
 
@@ -85,7 +96,7 @@ export class LectureEditorService {
       .key
   }
 
-  public getFirebaseTimelineItems(): Observable<TimelineItem []> {
+  public getFirebaseTimelineItems(): Observable<TimelineItem[]> {
     return this._firebase.list<TimelineItem>(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline`).valueChanges()
   }
 
