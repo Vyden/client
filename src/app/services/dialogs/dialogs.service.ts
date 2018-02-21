@@ -11,16 +11,25 @@ export class DialogsService {
     // console.log('got here');
    }
 
-    public confirm(title: string, message: string): Observable<boolean> {
+   public result: Observable<string>;
+
+    public confirm(title: string, message: string): Observable<string> {
 
         let dialogRef: MatDialogRef<DialogComponent>;
 
         dialogRef = this.dialog.open(DialogComponent, {
             width: '450px',
-            // height: '500px'
         });
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.message = message;
+
+        // dialogRef.afterClosed().subscribe(result => {
+        //     // console.log(`Dialog result: ${result}`); // Pizza!
+        //     // console.log('result is ' + result)
+        //     // this.result = result;
+        //     // console.log(this.result);
+        //   });
+        
 
         return dialogRef.afterClosed();
     }

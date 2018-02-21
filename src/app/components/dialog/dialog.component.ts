@@ -9,7 +9,7 @@ import { MatDialogRef } from '@angular/material';
 export class DialogComponent implements OnInit {
 
   public title: string;
-    public message: string;
+  public message: string;
   
     constructor(public dialogRef: MatDialogRef<DialogComponent>) {
   
@@ -18,5 +18,8 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  clickCreate(){
+    this.dialogRef.close(this.message);
+  }
    
 }

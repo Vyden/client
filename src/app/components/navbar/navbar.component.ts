@@ -54,13 +54,22 @@ export class NavbarComponent implements OnInit {
   }
 
   public result: any;
+  public courseName: string = "CS 252";
 
 
   public openDialog() {
-    console.log('hi')
+    // console.log('hi')
     this._dialogsService
-      .confirm('Create new course', 'Are you sure you want to do this?')
-      .subscribe(res => this.result = res);
+      .confirm('Create new course', this.courseName)
+      .subscribe(res => {
+        this.result = res
+        console.log("in navbar " +  res);
+      });
+
+      // this.result = this._dialogsService.confirm('Create new course', this.courseName)
+      
+      // console.log(this.result);
+      // console.log(this.courseName);
   }
 
 }
