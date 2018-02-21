@@ -20,7 +20,7 @@ export class UploadService {
       // withCredentials: true,
     }
 
-    const req = new HttpRequest('POST', 'http://localhost:5000/upload', formData, options);
+    const req = new HttpRequest('POST', 'http://indy.science/uploadVideo', formData, options);
 
     return this._httpClient.request(req)
   }
