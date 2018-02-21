@@ -8,6 +8,7 @@ import { Course } from '../../models/course'
 @Injectable()
 export class ClassesService {
 
+  //Active class is a string array
   //First element in activeClassSource is courseID
   //Second element in activeClassSource is course name
   private activeClassSource = new BehaviorSubject<string[]>(null);

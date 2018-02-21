@@ -15,7 +15,7 @@ export class SidenavContentComponent implements OnInit {
   constructor(private _classesService: ClassesService, private _authService: AuthService) { }
 
   ngOnInit() {
-    this._classesService.activeClass.subscribe((selectedClass: string) => {
+    this._classesService.activeClass.subscribe((selectedClass: string[]) => {
       if (selectedClass === null) {
         this.showClasses = true;
       } else {
