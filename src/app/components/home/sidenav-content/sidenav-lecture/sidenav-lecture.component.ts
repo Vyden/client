@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassesService } from '../../../../services/classes/classes.service';
 import { ThemeService } from '../../../../services/theme/theme.service';
-import { trigger, style, animate, transition, state} from '@angular/animations';
+import { trigger, style, animate, transition, state } from '@angular/animations';
+import { AuthService } from '../../../../services/auth/auth.service';
+import { UserInfo } from '../../../../models/userInfo';
 
 @Component({
   selector: 'app-sidenav-lecture',
@@ -28,16 +30,25 @@ export class SidenavLectureComponent implements OnInit {
   public themes: string[][] = this._themeService.getThemes();
   public hover: boolean[] = [];
 
-  constructor(private _classesService: ClassesService, private _themeService: ThemeService) { }
+  public userInfo: UserInfo;
+
+  constructor(private _classesService: ClassesService, private _themeService: ThemeService, private _authService: AuthService) { }
 
   ngOnInit() {
     this._classesService.activeClass.subscribe((activeClass: string) => {
       this.activeClass = activeClass;
     });
 
+    /* Subscribe for theme changes */
     this._themeService.currentThemeClass.subscribe((theme: string) => {
 			this.themeClass = theme;
     });
+
+    /* Subscribe to user info */
+    this._authService.currentUserInfo
+      .subscribe((userInfo: UserInfo) => {
+        this.userInfo = userInfo;
+    })
   }
 
   backToCourses() {
