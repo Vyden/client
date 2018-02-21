@@ -84,6 +84,10 @@ input.exp-input {
     color: white;
 }
 
+.buttonContainer a{
+    margin: auto;
+}
+
 .hiddenLayer.selected .buttonContainer button{
     visibility: visible;
     transition: 1.5s ease-in;
