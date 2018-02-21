@@ -3,6 +3,7 @@ import { ClassesService } from '../../../../services/classes/classes.service';
 import { ThemeService } from '../../../../services/theme/theme.service';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { AuthService } from '../../../../services/auth/auth.service';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '../../../../models/userInfo';
 import { Course } from '../../../../models/course';
 
@@ -33,7 +34,10 @@ export class SidenavLectureComponent implements OnInit {
 
   public userInfo: UserInfo;
 
-  constructor(private _classesService: ClassesService, private _themeService: ThemeService, private _authService: AuthService) { }
+  constructor(private _classesService: ClassesService,
+    private _themeService: ThemeService,
+    private _authService: AuthService,
+    private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
     this._classesService.activeCourse.subscribe((activeCourse: Course) => {
@@ -57,4 +61,9 @@ export class SidenavLectureComponent implements OnInit {
     this._themeService.changeThemeClass('default');
   }
 
+  removeCourse() {
+    //Remove course from student
+    // this._firebase.list('UserInfo/' + this.userInfo.UID + )
+    //Remove student from course
+  }
 }

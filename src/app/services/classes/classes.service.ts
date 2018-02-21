@@ -23,7 +23,7 @@ export class ClassesService {
         this.userInfo = userInfo;
         if (this.userInfo && this.userInfo.courses) {
           this.courseIDArray = [];
-          this.courseIDArray.push(...this.userInfo.courses);
+          this.courseIDArray.push(...Object.keys(this.userInfo.courses));
         }
     })
   }
@@ -37,7 +37,8 @@ export class ClassesService {
         if (!this.courseIDArray.includes(courseID)) {
           //Push course to courseIDArray and update firebase
           this.courseIDArray.push(courseID);
-          this._firebase.list('UserInfo/' + this.userInfo.UID).update('courses', this.courseIDArray);
+          // console.log(this.courseIDArray);
+          this._firebase.list('UserInfo/' + this.userInfo.UID + '/courses/' + courseID).push('cancer');
           this._firebase.list('Courses/' + courseID + '/students/' + this.userInfo.UID).push('Firebase is cancer');
         }
       }
