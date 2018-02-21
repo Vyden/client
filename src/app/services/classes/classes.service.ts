@@ -11,8 +11,8 @@ export class ClassesService {
   //Active class is a string array
   //First element in activeClassSource is courseID
   //Second element in activeClassSource is course name
-  private activeClassSource = new BehaviorSubject<string[]>(null);
-  public activeClass = this.activeClassSource.asObservable();
+  private activeCourseSource = new BehaviorSubject<Course>(null);
+  public activeCourse = this.activeCourseSource.asObservable();
 
   private userInfo: UserInfo;
   private courseIDArray: string[] = [];
@@ -44,13 +44,13 @@ export class ClassesService {
     })
   }
 
-  //Get the courses the user in currently enrolled in
+  //Returns an array of the course IDs of the courses that the user is enrolled in
   public getEnrolledCourses(): string[] {
     return this.courseIDArray;
   }
 
   //Called when the user selects a course
-  public selectCourse(activeClass: string[]) {
-    this.activeClassSource.next(activeClass);
+  public selectCourse(activeCourse: Course) {
+    this.activeCourseSource.next(activeCourse);
   }
 }

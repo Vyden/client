@@ -18,7 +18,7 @@ export class SidenavBodyComponent implements OnInit {
   public hover: boolean[] = [];
 
   public userInfo: UserInfo;
-  public courseIDList: string[][] = [];
+  public courses: Course[] = [];
 
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
@@ -37,15 +37,14 @@ export class SidenavBodyComponent implements OnInit {
         this.userInfo = userInfo;
 
         //Get all the courses the user is enrolled in
-        let courses = this._classesService.getEnrolledCourses();
-        //Add courses to courseIDList so that the names can be displayed
-        for (let i = 0; i < courses.length; i++) {
-          this.courseIDList[i] = [];
-          this.courseIDList[i].push(courses[i]);
-          this._firebase.object('Courses/' + courses[i]).valueChanges().subscribe((course: Course) => {
-            this.courseIDList[i].push(course.title);
+        let courseIDList = this._classesService.getEnrolledCourses();
+        //Add courses to courses array
+        this.courses = [];
+        courseIDList.forEach((courseID: string) => {
+          this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
+            this.courses.push(course);
           })
-        }
+        })
       });
   }
 
@@ -59,6 +58,6 @@ export class SidenavBodyComponent implements OnInit {
   //Changes the theme of the page and changes sidenav to lecture sidenav view
   public navigateToCourse(index: number) {
     this._themeService.changeThemeClass(this.themes[index][0]);
-    this._classesService.selectCourse(this.courseIDList[index]);
+    this._classesService.selectCourse(this.courses[index]);
   }
 }
