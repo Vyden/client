@@ -25,6 +25,7 @@ import { LectureEditorService } from './services/lecture-editor/lecture-editor.s
 import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
 import { DialogsService } from './services/dialogs/dialogs.service';
+import { CreateCourseService } from './services/create-course/create-course.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -88,7 +89,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
   exports: [
     DialogComponent,
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, CreateCourseService],
   entryComponents: [
     DialogComponent,
   ],

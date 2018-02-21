@@ -5,7 +5,9 @@ import { NavbarService } from '../../services/navbar/navbar.service';
 import { ThemeService } from '../../services/theme/theme.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { DialogsService } from '../../services/dialogs/dialogs.service';
+import { CreateCourseService } from '../../services/create-course/create-course.service';
 import { UserInfo } from '../../models/userInfo';
+
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +25,8 @@ export class NavbarComponent implements OnInit {
   constructor(private _navbarService: NavbarService, 
     private _themeService: ThemeService,
     private _authService: AuthService,
-    private _dialogsService: DialogsService) { }
+    private _dialogsService: DialogsService,
+    private _createCourseService: CreateCourseService) { }
 
   ngOnInit() {
     /* Listen for changes to sidenav */
@@ -58,18 +61,12 @@ export class NavbarComponent implements OnInit {
 
 
   public openDialog() {
-    // console.log('hi')
     this._dialogsService
       .confirm('Create new course', this.courseName)
       .subscribe(res => {
         this.result = res
-        console.log("in navbar " +  res);
+        this._createCourseService.createCourse(res);
       });
-
-      // this.result = this._dialogsService.confirm('Create new course', this.courseName)
-      
-      // console.log(this.result);
-      // console.log(this.courseName);
   }
 
 }

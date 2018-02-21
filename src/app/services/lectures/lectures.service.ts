@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-// import { Lecture } from '../../models/lecture';
 import { Course } from '../../models/course';
 import { Observable } from 'rxjs/Observable';
 

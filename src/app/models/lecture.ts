@@ -7,10 +7,3 @@ export class Lecture {
     public sky: string;
 }
 
-// export class Lecture {
-//     public id?: string;
-//     public answers: string [];
-//     public correct: number;
-//     public course: string;
-//     public time: string;
-// }

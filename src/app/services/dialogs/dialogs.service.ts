@@ -8,7 +8,6 @@ import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';
 export class DialogsService {
 
   constructor(private dialog: MatDialog) {
-    // console.log('got here');
    }
 
    public result: Observable<string>;
@@ -20,16 +19,9 @@ export class DialogsService {
         dialogRef = this.dialog.open(DialogComponent, {
             width: '450px',
         });
+        
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.message = message;
-
-        // dialogRef.afterClosed().subscribe(result => {
-        //     // console.log(`Dialog result: ${result}`); // Pizza!
-        //     // console.log('result is ' + result)
-        //     // this.result = result;
-        //     // console.log(this.result);
-        //   });
-        
 
         return dialogRef.afterClosed();
     }

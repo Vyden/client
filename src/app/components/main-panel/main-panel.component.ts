@@ -3,7 +3,6 @@ import { ThemeService } from '../../services/theme/theme.service';
 import { LecturesService } from '../../services/lectures/lectures.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-// import { Lecture } from '../../models/lecture';
 import { Course } from '../../models/course';
 import { UserInfo } from '../../models/userInfo';
 import { LectureArray } from '../../models/lectureArray';
@@ -21,21 +20,6 @@ export class MainPanelComponent implements OnInit {
   public userInfo: UserInfo
 
   classList: number[] = [
-    // {
-    //   "name": "Douglas  Pace"
-    // },
-    // {
-    //   "name": "Mcleod  Mueller"
-    // },
-    // {
-    //   "name": "Day  Meyers"
-    // },
-    // {
-    //   "name": "Aguirre  Ellis"
-    // },
-    // {
-    //   "name": "Cook  Tyson"
-    // }
     1 , 2 , 3, 4, 5
   ];
 
@@ -88,19 +72,15 @@ export class MainPanelComponent implements OnInit {
       })
 
     this.lectures.subscribe(res => {
-      // console.log(res);
       this.lectureList = res[1].lectures;
       this.lectureArray = Object.values(this.lectureList);
     });
   }
 
   onClickLecture(i){
-    // console.log("lecture " + i);
-    // console.log('lectures are ' + this.lectures);
     console.log(this.lectureList);
     console.log(this.lectureArray[i]);
-    // console.log(this.lectureList[0])
- 
+    
     this.selectList[i] = !this.selectList[i];
   }
 
