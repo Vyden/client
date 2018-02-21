@@ -12,6 +12,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { UserInfo } from '../../models/userInfo';
 import { UploadService } from '../../services/upload/upload.service';
 import { VideoItem } from '../../models/videoItem';
+import { v4 as uuid } from 'uuid';
+
 
 @Component({
   selector: 'app-lecture-editor',
@@ -84,11 +86,16 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   }
 
   public handleDrop(fileList: FileList) {
-    const videoFile: File = fileList[0]
     this.uploadProgress = 0
     this.videoActive = false
     this.showUploadProgress = true
-    this.videoName = videoFile.name
+    this.videoName = fileList[0].name
+
+    // Rename file
+    let blob = fileList[0].slice(0, -1, '.')
+    const videoFile: File = new File([blob], uuid(), { type: fileList[0].type })
+
+    console.log(videoFile)
 
     this._uploadService.uploadVideoFile(videoFile)
       .subscribe((event: any) => {
