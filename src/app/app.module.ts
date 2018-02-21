@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -14,7 +15,7 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule, MatDialogModule
+  MatSlideToggleModule, MatProgressSpinnerModule, MatDialogModule
 } from '@angular/material';
 
 /* Services */
@@ -24,6 +25,7 @@ import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
 import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
+import { UploadService } from './services/upload/upload.service';
 import { DialogsService } from './services/dialogs/dialogs.service';
 import { CreateCourseService } from './services/create-course/create-course.service';
 
@@ -48,6 +50,8 @@ import { OnCreateDirective } from './directives/oncreate/on-create.directive';
 import { TimelineItemDirective } from './directives/timeline-item/timeline-item.directive';
 import { TemploginComponent } from './components/templogin/templogin.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { FileDropDirective } from './directives/file-drop/file-drop.directive';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +75,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     FocusOnCreateDirective,
     TimelineComponent,
     TemploginComponent,
+    FileDropDirective,
     DialogComponent
   ],
   imports: [
@@ -78,18 +83,20 @@ import { DialogComponent } from './components/dialog/dialog.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule, MatDialogModule,
+
+    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule
   ],
   exports: [
     DialogComponent,
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, CreateCourseService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService],
   entryComponents: [
     DialogComponent,
   ],

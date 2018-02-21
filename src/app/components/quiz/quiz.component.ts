@@ -66,6 +66,7 @@ export class QuizComponent implements OnInit {
 
   public finishQuiz() {
     const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz)
+    console.log('key: ', $key);
 
     const quizItem: TimelineItem = new QuizItem()
     quizItem.lecture = "LECTUREID CHANGE THIS"
