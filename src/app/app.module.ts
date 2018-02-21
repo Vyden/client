@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule
+  MatSlideToggleModule, MatDialogModule
 } from '@angular/material';
 
 /* Services */
@@ -24,6 +24,8 @@ import { ClassesService } from './services/classes/classes.service';
 import { LectureEditorService } from './services/lecture-editor/lecture-editor.service';
 import { LecturesService } from './services/lectures/lectures.service';
 import { AuthService } from './services/auth/auth.service';
+import { DialogsService } from './services/dialogs/dialogs.service';
+import { CreateCourseService } from './services/create-course/create-course.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -45,7 +47,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { OnCreateDirective } from './directives/oncreate/on-create.directive';
 import { TimelineItemDirective } from './directives/timeline-item/timeline-item.directive';
 import { TemploginComponent } from './components/templogin/templogin.component';
-
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import { TemploginComponent } from './components/templogin/templogin.component';
     FocusOnCreateDirective,
     TimelineComponent,
     TemploginComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -81,9 +84,15 @@ import { TemploginComponent } from './components/templogin/templogin.component';
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule, MatDialogModule,
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService],
+  exports: [
+    DialogComponent,
+  ],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, CreateCourseService],
+  entryComponents: [
+    DialogComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

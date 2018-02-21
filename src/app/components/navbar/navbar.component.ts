@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav, MatDialogRef} from '@angular/material';
 import { UsernameComponent } from '../username/username.component';
 import { NavbarService } from '../../services/navbar/navbar.service';
 import { ThemeService } from '../../services/theme/theme.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { DialogsService } from '../../services/dialogs/dialogs.service';
+import { CreateCourseService } from '../../services/create-course/create-course.service';
 import { UserInfo } from '../../models/userInfo';
+
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +24,9 @@ export class NavbarComponent implements OnInit {
 
   constructor(private _navbarService: NavbarService, 
     private _themeService: ThemeService,
-    private _authService: AuthService) { }
+    private _authService: AuthService,
+    private _dialogsService: DialogsService,
+    private _createCourseService: CreateCourseService) { }
 
   ngOnInit() {
     /* Listen for changes to sidenav */
@@ -51,4 +56,19 @@ export class NavbarComponent implements OnInit {
     this._authService.logout()
   }
 
+  public result: any;
+  public courseName: string = "CS 252";
+
+
+  public openDialog() {
+    this._dialogsService
+      .confirm('Create new course', this.courseName)
+      .subscribe(res => {
+        this.result = res
+        this._createCourseService.createCourse(res);
+      });
+  }
+
 }
+
+
