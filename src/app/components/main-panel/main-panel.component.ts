@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
 import { LecturesService } from '../../services/lectures/lectures.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { ClassesService } from '../../services/classes/classes.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Course } from '../../models/course';
 import { UserInfo } from '../../models/userInfo';
@@ -18,6 +19,8 @@ export class MainPanelComponent implements OnInit {
   public themeClass: string
   public lectures: Observable<Course []>
   public userInfo: UserInfo
+  public currentCourse: Course
+
 
   classList: number[] = [
     1 , 2 , 3, 4, 5
@@ -46,8 +49,11 @@ export class MainPanelComponent implements OnInit {
   constructor(private _themeService: ThemeService,
     private _lecturesService: LecturesService,
     private _authService: AuthService,
-    private _firebase: AngularFireDatabase
-  ) { }
+    private _firebase: AngularFireDatabase,
+    private _classesService: ClassesService
+  ) { 
+   
+  }
 
   ngOnInit() {
     
@@ -75,12 +81,19 @@ export class MainPanelComponent implements OnInit {
       this.lectureList = res[1].lectures;
       this.lectureArray = Object.values(this.lectureList);
     });
+
+    this._classesService.activeCourse
+    .subscribe((currentCourse: Course) => {
+      this.currentCourse = currentCourse
+      console.log(this.currentCourse)
+    })
+
   }
 
   onClickLecture(i){
-    console.log(this.lectureList);
-    console.log(this.lectureArray[i]);
-    
+    // console.log(this.lectureList);
+    // console.log(this.lectureArray[i]);
+    console.log(this.currentCourse.id);
     this.selectList[i] = !this.selectList[i];
   }
 
@@ -94,4 +107,8 @@ export class MainPanelComponent implements OnInit {
     }, 500);
   }
 
+
+  openLecture(){
+    window.location.href = "../../../../assets/VR/index.html?id=" + this.currentCourse.id;
+  }
 }
