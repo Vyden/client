@@ -43,7 +43,7 @@
 
           <div class="classBound" (click)="onClickLecture(i)" *ngFor="let class of classList; let i = index">
 
-            <div *ngIf="lectureArray.length > 0">
+            <div *ngIf="currentCourse">
 
               <mat-card class="text-center">
 

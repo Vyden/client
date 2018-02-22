@@ -1,11 +1,20 @@
-<p>{{ title }}</p>
-<!-- <p>{{ message }}</p> -->
+<div class="row">
+  <div class="col text-center">
+    <p class="title">{{ title }}</p>
+  </div>
+</div>
 
 <!-- test -->
+
  <form class="example-form">
- <mat-form-field class="example-full-width">
-    <input matInput placeholder="Instructor" disabled value={{fullName}}>
-  </mat-form-field>
+    <div class="row">
+        <div class="col text-center">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Instructor" disabled value={{userInfo.fullName}}>
+              </mat-form-field>
+        </div>
+      </div>
+ 
 
   <!-- <table class="example-full-width" cellspacing="0"><tr>
     <td><mat-form-field class="example-full-width">
@@ -16,15 +25,20 @@
     </mat-form-field></td>
   </tr></table> -->
 
+  <div class="row">
+    <div class="col text-center">
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Course Name"
+            name="coursename"
+            [(ngModel)]="message"></textarea>
+          </mat-form-field>
+    </div>
+  </div>
   <p>
     <!-- <mat-form-field class="example-full-width">
       <textarea matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
     </mat-form-field> -->
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Course Name"
-      name="coursename"
-      [(ngModel)]="message"></textarea>
-    </mat-form-field>
+    
   </p>
 
   <!-- <table class="example-full-width" cellspacing="0"><tr>
@@ -41,9 +55,13 @@
   </tr></table> -->
 </form>
 
-<button mat-raised-button type="button" md-raised-button 
-  (click)="clickCreate()">Create
-</button>
-<button mat-raised-button type="button" md-button 
-  (click)="dialogRef.close()">Close
-</button>
+<div class="row">
+    <div class="col text-center">
+        <button mat-raised-button type="button" md-raised-button 
+        (click)="clickCreate()">Create
+      </button>
+      <button mat-raised-button type="button" md-button 
+        (click)="dialogRef.close()">Close
+      </button>
+    </div>
+</div>

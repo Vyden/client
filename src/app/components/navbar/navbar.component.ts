@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit {
 
   public userInfo: UserInfo
 
+  public isInstructor: boolean;
+
   constructor(private _navbarService: NavbarService, 
     private _themeService: ThemeService,
     private _authService: AuthService,
@@ -47,6 +49,10 @@ export class NavbarComponent implements OnInit {
     this._authService.currentUserInfo
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo
+        // this.isInstructor = userInfo.isInstructor;
+        if(userInfo){
+          console.log(userInfo.fullName);
+        }
       })
 
     
@@ -62,13 +68,15 @@ export class NavbarComponent implements OnInit {
   }
 
   public result: any;
-  public courseName: string = "CS 252";
+  public courseName: string = "";
 
 
   public openDialog() {
     // console.log(this.currentCourse.id);
+    console.log(this.isInstructor);
+    console.log(this.userInfo.isInstructor);
     this._dialogsService
-      .confirm('Create new course', this.courseName, this.userInfo.fullName)
+      .confirm('Create new course', this.courseName, this.userInfo)
       .subscribe(res => {
         this.result = res
         this._createCourseService.createCourse(res);
