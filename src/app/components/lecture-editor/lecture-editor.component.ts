@@ -104,6 +104,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     // Rename file
     let blob = fileList[0].slice(0, -1, '.')
     const videoFile: File = new File([blob], uuid(), { type: fileList[0].type })
+    console.log(videoFile.type);
 
     console.log(videoFile)
 
@@ -133,7 +134,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
               lecture: this.lectureId,
               eventTime: 1,
               type: ItemType.VIDEO,
-              resource: "VIDEO URL",
+              resource: "https://vyden.nyc3.digitaloceanspaces.com/videos/" + videoFile.name,
               videoTime: this.lectureEndTime
             }
 

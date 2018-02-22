@@ -5,6 +5,9 @@ import { Quiz } from '../../models/quiz';
 import { QuizItem } from '../../models/quizItem';
 import { ItemType, TimelineItem } from '../../models/timelineItem';
 import { FocusOnCreateDirective } from '../../directives/focus-on-create/focus-on-create.directive';
+import { ClassesService } from '../../services/classes/classes.service';
+import { Course } from '../../models/course';
+import { Lecture } from '../../models/lecture';
 
 @Component({
   selector: 'app-quiz',
@@ -14,7 +17,9 @@ import { FocusOnCreateDirective } from '../../directives/focus-on-create/focus-o
 export class QuizComponent implements OnInit {
 
   @Input() lectureTime: number
-
+  
+  public currentCourse: Course
+  public currentLectureId: string
   public currentQuiz: Quiz
 
   public quizMM: number
@@ -24,18 +29,29 @@ export class QuizComponent implements OnInit {
   public newQuizMode: boolean
   public unsavedWork: boolean
 
-  constructor(private _lectureEditorService: LectureEditorService) { }
+  constructor(private _lectureEditorService: LectureEditorService,
+    private _classesService: ClassesService) { }
 
   ngOnInit() {
+    // subscribe to course changes
+    this._classesService.activeCourse
+      .subscribe((course: Course) => {
+        this.currentCourse = course
+      })
+
+    // Subscribe to lecture changes
+    this._lectureEditorService.currentLectureId
+      .subscribe((lectureId: string) => {
+        this.currentLectureId = lectureId
+      })
   }
 
   public initQuiz() {
     this.unsavedWork = true
-    
+
     this.currentQuiz = new Quiz()
-    this.currentQuiz.course = "Test course"
     this.currentQuiz.correct = 0
-    
+
     this.quizName = "New Quiz"
     this.newQuizMode = true
     this.currentQuiz.answers = [null]
@@ -45,13 +61,13 @@ export class QuizComponent implements OnInit {
   }
 
   public addQuizOption() {
-    if(this.currentQuiz.answers.length === 5) return
+    if (this.currentQuiz.answers.length === 5) return
     this.currentQuiz.answers.push(null)
   }
 
   public removeQuizOption(index: number) {
-    if(index-1 < 0) this.currentQuiz.correct = 0
-    else if (index == this.currentQuiz.answers.length - 1) --this.currentQuiz.correct
+    if (index - 1 < 0) this.currentQuiz.correct = 0
+    else if (index == this.currentQuiz.answers.length - 1)--this.currentQuiz.correct
 
     this.currentQuiz.answers.splice(index, 1)
   }
@@ -68,11 +84,13 @@ export class QuizComponent implements OnInit {
   }
 
   public finishQuiz() {
+    this.currentQuiz.course = this.currentCourse.id
+    this.currentQuiz.question = this.quizName
     const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz)
     console.log('key: ', $key);
 
     const quizItem: TimelineItem = new QuizItem()
-    quizItem.lecture = "LECTUREID CHANGE THIS"
+    quizItem.lecture = this.currentLectureId
     quizItem.eventTime = this.quizStartTime
     quizItem.name = this.quizName
     quizItem.type = ItemType.QUIZ
