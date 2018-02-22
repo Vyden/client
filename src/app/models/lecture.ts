@@ -6,4 +6,3 @@ export class Lecture {
     public date: Date;
     public sky: string;
 }
-

@@ -13,12 +13,32 @@
           <div class="row">
             <div class="col"></div>
           </div>
-          <div class="row fill d-flex file-outline m-4">
-            <div class="col pt-4 pb-4 text-center align-self-center">
-              <h3 class="white-text" style="font-weight: 400">DROP VIDEO FILE</h3>
+          <div *ngIf="!showProgress&&showDropBox" appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)" [ngClass]="{'drop-active': dropzoneActive}"
+            class="row fill d-flex file-outline m-4">
+            <div class="col pt-4 pb-4 text-center align-self-center pointer-events-none">
+              <h3 class="white-text t-all-250" style="font-weight: 400">DROP VIDEO FILE</h3>
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-center" *ngIf="showUploadProgress">
+            <mat-progress-spinner class="example-margin white-text1" mode="determinate" [value]="uploadProgress">
+            </mat-progress-spinner>
+          </div>
+          <div class="row" *ngIf="videoActive">
+            <div class="col white-text text-center">
+              <mat-icon class="icon-xxl">check</mat-icon>
+            </div>
+          </div>
+          <div class="row" *ngIf="videoActive">
+            <div class="col white-text">
+              <h2 class="text-center">{{videoName}}</h2>
+            </div>
+          </div>
+          <div class="row mt-3" *ngIf="videoActive">
+            <div class="col white-text text-center">
+              <h4>{{Math.floor(lectureEndTime/60)}}m {{Math.floor(lectureEndTime%60)}}s</h4>
+            </div>
+          </div>
+          <div class="row" *ngIf="!showProgress&&showDropBox">
             <div class="col text-center mt-2">
               <button mat-raised-button>
                 <mat-icon>file_upload</mat-icon>
@@ -35,19 +55,19 @@
   </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
-  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
-  <app-quiz [lectureTime]="lectureEndTime"></app-quiz>
-
-  <!-- Spacer on desktop, invisible on mobile -->
-  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
-
-  <app-model-editor [lectureTime]="lectureEndTime"></app-model-editor>
+  <app-quiz *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-quiz>
 
   <!-- Spacer on desktop, invisible on mobile -->
-  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
-  <app-timeline [lectureTime]="lectureEndTime"></app-timeline>
+  <app-model-editor *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-model-editor>
+
+  <!-- Spacer on desktop, invisible on mobile -->
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+
+  <app-timeline *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-timeline>
 
   <!-- Spacer on desktop, invisible on mobile -->
   <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>

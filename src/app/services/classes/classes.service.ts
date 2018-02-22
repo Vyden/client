@@ -11,8 +11,8 @@ export class ClassesService {
   //Active class is a string array
   //First element in activeClassSource is courseID
   //Second element in activeClassSource is course name
-  private activeClassSource = new BehaviorSubject<string[]>(null);
-  public activeClass = this.activeClassSource.asObservable();
+  private activeCourseSource = new BehaviorSubject<Course>(null);
+  public activeCourse = this.activeCourseSource.asObservable();
 
   private userInfo: UserInfo;
   private courseIDArray: string[] = [];
@@ -23,7 +23,7 @@ export class ClassesService {
         this.userInfo = userInfo;
         if (this.userInfo && this.userInfo.courses) {
           this.courseIDArray = [];
-          this.courseIDArray.push(...this.userInfo.courses);
+          this.courseIDArray.push(...Object.keys(this.userInfo.courses));
         }
     })
   }
@@ -37,20 +37,21 @@ export class ClassesService {
         if (!this.courseIDArray.includes(courseID)) {
           //Push course to courseIDArray and update firebase
           this.courseIDArray.push(courseID);
-          this._firebase.list('UserInfo/' + this.userInfo.UID).update('courses', this.courseIDArray);
+          // console.log(this.courseIDArray);
+          this._firebase.list('UserInfo/' + this.userInfo.UID + '/courses/' + courseID).push('cancer');
           this._firebase.list('Courses/' + courseID + '/students/' + this.userInfo.UID).push('Firebase is cancer');
         }
       }
     })
   }
 
-  //Get the courses the user in currently enrolled in
+  //Returns an array of the course IDs of the courses that the user is enrolled in
   public getEnrolledCourses(): string[] {
     return this.courseIDArray;
   }
 
   //Called when the user selects a course
-  public selectCourse(activeClass: string[]) {
-    this.activeClassSource.next(activeClass);
+  public selectCourse(activeCourse: Course) {
+    this.activeCourseSource.next(activeCourse);
   }
 }
