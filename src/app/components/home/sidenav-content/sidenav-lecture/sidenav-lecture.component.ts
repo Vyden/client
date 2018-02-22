@@ -62,8 +62,7 @@ export class SidenavLectureComponent implements OnInit {
   }
 
   removeCourse() {
-    //Remove course from student
-    // this._firebase.list('UserInfo/' + this.userInfo.UID + )
-    //Remove student from course
+    this._classesService.removeCourse(this.activeCourse.id);
+    this._classesService.selectCourse(null);
   }
 }

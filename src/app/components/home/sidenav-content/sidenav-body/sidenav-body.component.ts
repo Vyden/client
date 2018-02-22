@@ -35,7 +35,6 @@ export class SidenavBodyComponent implements OnInit {
     this._authService.currentUserInfo
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
-
         //Get all the courses the user is enrolled in
         let courseIDList = this._classesService.getEnrolledCourses();
         //Add courses to courses array
