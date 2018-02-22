@@ -28,6 +28,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   /* Lecture data */
   public lectureId: string
   public lectureEndTime: number // End time in seconds
+  public lectureName: string
   public timelineItems: Observable<TimelineItem[]>
 
   /* Dropzone data */
@@ -47,6 +48,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     private _uploadService: UploadService) {
     this.lectureEndTime = 3000
     this.showDropBox = true
+    this.lectureName = "New Lecture"
   }
 
   ngOnInit() {

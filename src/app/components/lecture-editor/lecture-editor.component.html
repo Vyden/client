@@ -1,7 +1,28 @@
 <app-navbar></app-navbar>
 
 <div class="container purple-theme p-0">
-  <div class="row mt-4 m-0 p-0" fxHide="false" fxHide.lt-sm></div>
+
+  <!-- Spacer on desktop, invisible on mobile -->
+  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+
+  <div class="row m-0">
+    <div class="col m-0 p-0">
+      <mat-card class="title-card diffused-shadow">
+        <mat-card-title>
+          <h2 class="white-text text-center" style="font-weight: 400">Lecture Name</h2>
+        </mat-card-title>
+
+        <mat-card-content class="text-center">
+          <mat-form-field class="lecture-title-input white-theme w-100" color="accent">
+            <input matInput name="lectureName" [(ngModel)]="lectureName">
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Spacer on desktop, invisible on mobile -->
+  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
   <div class="row m-0">
     <div class="col m-0 p-0">
@@ -13,8 +34,8 @@
           <div class="row">
             <div class="col"></div>
           </div>
-          <div *ngIf="!showProgress&&showDropBox" appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)" [ngClass]="{'drop-active': dropzoneActive}"
-            class="row fill d-flex file-outline m-4">
+          <div *ngIf="!showProgress&&showDropBox" appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)"
+            [ngClass]="{'drop-active': dropzoneActive}" class="row fill d-flex file-outline m-4">
             <div class="col pt-4 pb-4 text-center align-self-center pointer-events-none">
               <h3 class="white-text t-all-250" style="font-weight: 400">DROP VIDEO FILE</h3>
             </div>
