@@ -22,6 +22,8 @@ export class SidenavBodyComponent implements OnInit {
   public courses: Course[] = [];
   private authSub: Subscription;
 
+  private counter: number = 0;
+
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
     private _authService: AuthService,
@@ -38,6 +40,7 @@ export class SidenavBodyComponent implements OnInit {
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
 
+        console.log(this.counter++);
         // if (userInfo) {
         //   // console.log(userInfo.courses)
         //   this.courses = [];
@@ -48,18 +51,21 @@ export class SidenavBodyComponent implements OnInit {
 
         // console.log(this.courses);
 
-        
-        // //Get all the courses the user is enrolled in
-        // let courseIDList = this._classesService.getEnrolledCourses();
-        // //Add courses to courses array
-        // this.courses = [];
-        // courseIDList.forEach((courseID: string) => {
-        //   this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
-        //     this.courses.push(course);
-        //   })
-        // })
-
-
+        let courseIDList = this._classesService.getEnrolledCourses();
+        this.courses = [];
+        console.log('courseID list: ' + courseIDList);
+        courseIDList.forEach((courseID: string) => {
+          this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
+            let found = false;
+            this.courses.forEach((existingCourse: Course) => {
+              if (existingCourse.id === course.id) found = true;
+            })
+            if (!found) {
+              this.courses.push(course);
+            }
+            console.log(this.courses);
+          });
+        })
       });
   }
 

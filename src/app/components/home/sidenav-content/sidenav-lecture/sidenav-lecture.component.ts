@@ -47,7 +47,7 @@ export class SidenavLectureComponent implements OnInit {
     /* Subscribe for theme changes */
     this._themeService.currentThemeClass.subscribe((theme: string) => {
       this.themeClass = theme;
-    });
+    }).unsubscribe();
 
     /* Subscribe to user info */
     this._authService.currentUserInfo
@@ -63,6 +63,6 @@ export class SidenavLectureComponent implements OnInit {
 
   removeCourse() {
     this._classesService.removeCourse(this.activeCourse.id);
-    this._classesService.selectCourse(null);  
+    this.backToCourses();
   }
 }
