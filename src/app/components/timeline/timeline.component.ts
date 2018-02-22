@@ -15,20 +15,38 @@ export class TimelineComponent implements OnInit {
   @Input() lectureTime: number
 
   public Math = Math
+
+  // Timeline Data
   public timelineItems: TimelineItem[] = []
   public timelineChildren: any[] = []
+
+  // Course Data
+  public currentCourseId: string = "hesgotapumpee"
+  public currentLectureId: string
 
   constructor(private _lectureEditorService: LectureEditorService, private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
-    this._lectureEditorService.getFirebaseTimelineItems()
-      .subscribe((items: TimelineItem[]) => {
-        this.timelineItems = items
-        this.timelineChildren = []
-        this.timelineItems.forEach((item: TimelineItem) => {
-          this.timelineChildren.push(this._firebase.object('tempquizzes/' + item.resource).valueChanges())
-        })
+
+    this._lectureEditorService.currentLectureId
+      .subscribe((lectureId: string) => {
+        if (lectureId) {
+          this.currentLectureId = lectureId
+
+          if (this.currentLectureId) {
+            this._lectureEditorService.getFirebaseTimelineItems()
+              .subscribe((items: TimelineItem[]) => {
+                this.timelineItems = items
+                this.timelineChildren = []
+                this.timelineItems.forEach((item: TimelineItem) => {
+                  let childObs = this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${item.resource}`).valueChanges()
+                  this.timelineChildren.push(childObs)
+                })
+              })
+          }
+        }
       })
+
   }
 
   public getTimelineItem(item: TimelineItem) {

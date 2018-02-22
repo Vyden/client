@@ -10,6 +10,7 @@ export class DialogComponent implements OnInit {
 
   public title: string;
   public message: string;
+  public fullName: string;
   
     constructor(public dialogRef: MatDialogRef<DialogComponent>) {
   

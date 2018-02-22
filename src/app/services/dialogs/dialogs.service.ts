@@ -12,7 +12,7 @@ export class DialogsService {
 
    public result: Observable<string>;
 
-    public confirm(title: string, message: string): Observable<string> {
+    public confirm(title: string, message: string, fullName: string): Observable<string> {
 
         let dialogRef: MatDialogRef<DialogComponent>;
 
@@ -22,6 +22,7 @@ export class DialogsService {
         
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.message = message;
+        dialogRef.componentInstance.fullName = fullName;
 
         return dialogRef.afterClosed();
     }
