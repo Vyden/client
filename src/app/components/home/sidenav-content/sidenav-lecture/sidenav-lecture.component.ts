@@ -63,6 +63,6 @@ export class SidenavLectureComponent implements OnInit {
 
   removeCourse() {
     this._classesService.removeCourse(this.activeCourse.id);
-    this._classesService.selectCourse(null);
+    this._classesService.selectCourse(null);  
   }
 }

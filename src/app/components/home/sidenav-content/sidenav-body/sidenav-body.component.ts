@@ -5,6 +5,7 @@ import { AuthService } from '../../../../services/auth/auth.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '../../../../models/userInfo';
 import { Course } from '../../../../models/course';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-sidenav-body',
@@ -19,6 +20,7 @@ export class SidenavBodyComponent implements OnInit {
 
   public userInfo: UserInfo;
   public courses: Course[] = [];
+  private authSub: Subscription;
 
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
@@ -32,18 +34,32 @@ export class SidenavBodyComponent implements OnInit {
     });
 
     /* Subscribe to user info */
-    this._authService.currentUserInfo
+    this.authSub = this._authService.currentUserInfo
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
-        //Get all the courses the user is enrolled in
-        let courseIDList = this._classesService.getEnrolledCourses();
-        //Add courses to courses array
-        this.courses = [];
-        courseIDList.forEach((courseID: string) => {
-          this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
-            this.courses.push(course);
-          })
-        })
+
+        // if (userInfo) {
+        //   // console.log(userInfo.courses)
+        //   this.courses = [];
+        //   Object.keys(userInfo.courses).forEach((key: string) => {
+        //     this.courses.push(userInfo.courses[key]);
+        //   })
+        // }
+
+        // console.log(this.courses);
+
+        
+        // //Get all the courses the user is enrolled in
+        // let courseIDList = this._classesService.getEnrolledCourses();
+        // //Add courses to courses array
+        // this.courses = [];
+        // courseIDList.forEach((courseID: string) => {
+        //   this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
+        //     this.courses.push(course);
+        //   })
+        // })
+
+
       });
   }
 
@@ -56,6 +72,7 @@ export class SidenavBodyComponent implements OnInit {
   //Called when a class button is clicked
   //Changes the theme of the page and changes sidenav to lecture sidenav view
   public navigateToCourse(index: number) {
+    this.authSub.unsubscribe();
     this._themeService.changeThemeClass(this.themes[index][0]);
     this._classesService.selectCourse(this.courses[index]);
   }
