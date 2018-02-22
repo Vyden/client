@@ -5,8 +5,10 @@ import { NavbarService } from '../../services/navbar/navbar.service';
 import { ThemeService } from '../../services/theme/theme.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { DialogsService } from '../../services/dialogs/dialogs.service';
+import { ClassesService } from '../../services/classes/classes.service';
 import { CreateCourseService } from '../../services/create-course/create-course.service';
 import { UserInfo } from '../../models/userInfo';
+import { Course } from '../../models/course';
 
 
 @Component({
@@ -46,6 +48,9 @@ export class NavbarComponent implements OnInit {
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo
       })
+
+    
+
   }
 
   public changeTheme(theme: string) {
@@ -61,7 +66,7 @@ export class NavbarComponent implements OnInit {
 
 
   public openDialog() {
-    console.log(this.userInfo.fullName);
+    // console.log(this.currentCourse.id);
     this._dialogsService
       .confirm('Create new course', this.courseName, this.userInfo.fullName)
       .subscribe(res => {
