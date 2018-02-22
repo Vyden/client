@@ -73,9 +73,6 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
     this._themeService.changeThemeClass("deep-purple");
 
-    // Create a new lecture object, must be changed later
-    this._lectureEditorService.publishLecture('CS 420')
-
   }
 
   ngOnDestroy() {
@@ -87,7 +84,16 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     console.log(this.dropzoneActive)
   }
 
+  public onUpload($event: any) {
+    if($event.srcElement.files.length) {
+      this.handleDrop($event.srcElement.files)
+    }
+  }
+
   public handleDrop(fileList: FileList) {
+    // Create lecture object
+    this._lectureEditorService.publishLecture(this.lectureName)
+
     this.uploadProgress = 0
     this.videoActive = false
     this.showUploadProgress = true

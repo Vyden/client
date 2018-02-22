@@ -61,10 +61,12 @@
           </div>
           <div class="row" *ngIf="!showProgress&&showDropBox">
             <div class="col text-center mt-2">
-              <button mat-raised-button>
+              <button mat-raised-button (click)="inputFile.click()">
                 <mat-icon>file_upload</mat-icon>
                 <span>UPLOAD</span>
               </button>
+
+              <input #inputFile type="file" accept=".mp4,.webm" [style.display]="'none'" (change)="onUpload($event)">
             </div>
           </div>
         </mat-card-content>
