@@ -47,7 +47,7 @@ export class SidenavLectureComponent implements OnInit {
     /* Subscribe for theme changes */
     this._themeService.currentThemeClass.subscribe((theme: string) => {
       this.themeClass = theme;
-    });
+    }).unsubscribe();
 
     /* Subscribe to user info */
     this._authService.currentUserInfo
@@ -62,8 +62,7 @@ export class SidenavLectureComponent implements OnInit {
   }
 
   removeCourse() {
-    //Remove course from student
-    // this._firebase.list('UserInfo/' + this.userInfo.UID + )
-    //Remove student from course
+    this._classesService.removeCourse(this.activeCourse.id);
+    this.backToCourses();
   }
 }

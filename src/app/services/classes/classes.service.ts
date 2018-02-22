@@ -30,19 +30,19 @@ export class ClassesService {
 
   //Enroll student in a course
   public addCourse(courseID: string) {
-    this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
+    const courseSub = this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
       //Make sure course is valid
       if (course) {
         //Check if user is already enrolled in course
         if (!this.courseIDArray.includes(courseID)) {
           //Push course to courseIDArray and update firebase
           this.courseIDArray.push(courseID);
-          // console.log(this.courseIDArray);
-          this._firebase.list('UserInfo/' + this.userInfo.UID + '/courses/' + courseID).push('cancer');
+          this._firebase.list('UserInfo/' + this.userInfo.UID + '/courses/' + courseID + '/' + course.title).push('React > Angular');
           this._firebase.list('Courses/' + courseID + '/students/' + this.userInfo.UID).push('Firebase is cancer');
         }
       }
-    })
+      courseSub.unsubscribe();
+    });
   }
 
   //Returns an array of the course IDs of the courses that the user is enrolled in
@@ -53,5 +53,13 @@ export class ClassesService {
   //Called when the user selects a course
   public selectCourse(activeCourse: Course) {
     this.activeCourseSource.next(activeCourse);
+  }
+
+  public removeCourse(courseID: string) {
+    this.courseIDArray.splice(this.courseIDArray.indexOf(courseID), 1);
+    //Remove course from student
+    this._firebase.list('UserInfo/' + this.userInfo.UID + '/courses/').set(courseID, {});
+    //Remove student from course
+    this._firebase.list('Courses/' + courseID + '/students/').set(this.userInfo.UID, {});
   }
 }
