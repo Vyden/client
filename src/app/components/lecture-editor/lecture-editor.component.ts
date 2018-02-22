@@ -89,6 +89,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     this.uploadProgress = 0
     this.videoActive = false
     this.showUploadProgress = true
+    this.showDropBox = false
     this.videoName = fileList[0].name
 
     // Rename file

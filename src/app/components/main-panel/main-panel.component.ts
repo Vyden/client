@@ -68,7 +68,7 @@ export class MainPanelComponent implements OnInit {
     this._themeService.currentThemeClass
       .subscribe((themeClass: string) => {
         this.themeClass = themeClass;
-        // this.lectures = this._lecturesService.getFirebaseLectures()
+        this.lectures = this._lecturesService.getFirebaseLectures()
       })
 
     this.lectures.subscribe(res => {
