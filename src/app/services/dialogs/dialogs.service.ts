@@ -17,7 +17,7 @@ export class DialogsService {
         let dialogRef: MatDialogRef<DialogComponent>;
 
         dialogRef = this.dialog.open(DialogComponent, {
-            width: '450px',
+            width: '380px',
         });
         
         dialogRef.componentInstance.title = title;

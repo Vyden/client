@@ -62,7 +62,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public result: any;
-  public courseName: string = "CS 252";
+  public courseName: string = "";
 
 
   public openDialog() {
