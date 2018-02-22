@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { UserInfo } from '../../models/userInfo';
+
 
 @Component({
   selector: 'app-dialog',
@@ -10,7 +12,7 @@ export class DialogComponent implements OnInit {
 
   public title: string;
   public message: string;
-  public fullName: string;
+  public userInfo: UserInfo;
   
     constructor(public dialogRef: MatDialogRef<DialogComponent>) {
   
