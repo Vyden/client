@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="row justify-content-center white-theme" *ngIf="showUploadProgress">
-            <mat-progress-spinner color="accent" mode="determinate" [value]="uploadProgress">
+            <mat-progress-spinner color="accent" [mode]="uploadProgress==100?'indeterminate':'determinate'" [value]="uploadProgress">
             </mat-progress-spinner>
 
             <h3 class="text-center mt-4 white-text font-weight-bold w-100">{{uploadProgress}}%</h3>
@@ -93,6 +93,30 @@
   <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
   <app-timeline *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-timeline>
+
+  <!-- Spacer on desktop, invisible on mobile -->
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+
+  <div *ngIf="videoActive" class="row m-0 p-0">
+    <div class="col m-0 p-0">
+      <mat-card class="diffused-shadow">
+        <mat-card-title>
+          <h2 class="text-center" style="font-weight: 400">Step 5: Publish Lecture</h2>
+        </mat-card-title>
+
+        <mat-card-content class="text-center pt-4 pb-4">
+          <button *ngIf="!showPublishProgress" mat-raised-button color="primary" (click)="publishLecture()">
+            <mat-icon>done_all</mat-icon>
+            <span>Publish</span>
+          </button>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <mat-progress-bar *ngIf="showPublishProgress" color="accent" class="w-100" mode='indeterminate'></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
   <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>

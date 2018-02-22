@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule, MatProgressSpinnerModule, MatDialogModule
+  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule
 } from '@angular/material';
 
 /* Services */
@@ -90,8 +90,7 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-
-    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule
+    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule
   ],
   exports: [
     DialogComponent,

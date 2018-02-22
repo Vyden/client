@@ -35,6 +35,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public showDropBox: boolean
   public dropzoneActive: boolean
   public videoActive: boolean
+  public showPublishProgress: boolean
   public showUploadProgress: boolean
   public uploadProgress: number
   public videoName: string
@@ -140,6 +141,10 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
           };
         }
       })
+  }
+
+  public publishLecture() {
+    this.showPublishProgress = true
   }
 
 }
