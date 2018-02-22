@@ -61,8 +61,9 @@ export class NavbarComponent implements OnInit {
 
 
   public openDialog() {
+    console.log(this.userInfo.fullName);
     this._dialogsService
-      .confirm('Create new course', this.courseName)
+      .confirm('Create new course', this.courseName, this.userInfo.fullName)
       .subscribe(res => {
         this.result = res
         this._createCourseService.createCourse(res);
