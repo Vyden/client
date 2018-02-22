@@ -22,6 +22,7 @@ export class QuizComponent implements OnInit {
   public quizStartTime: number
   public quizName: string
   public newQuizMode: boolean
+  public unsavedWork: boolean
 
   constructor(private _lectureEditorService: LectureEditorService) { }
 
@@ -29,6 +30,8 @@ export class QuizComponent implements OnInit {
   }
 
   public initQuiz() {
+    this.unsavedWork = true
+    
     this.currentQuiz = new Quiz()
     this.currentQuiz.course = "Test course"
     this.currentQuiz.correct = 0
@@ -75,9 +78,9 @@ export class QuizComponent implements OnInit {
     quizItem.type = ItemType.QUIZ
     quizItem.resource = $key
 
-    // this._lectureEditorService.addTimelineItem(quizItem)
     this._lectureEditorService.publishTimelineItem(quizItem)
     this.newQuizMode = false
+    this.unsavedWork = false
   }
 
   public trackByIndex(index: number, value: number) {

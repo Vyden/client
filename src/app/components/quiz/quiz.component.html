@@ -7,6 +7,13 @@
       <mat-card-content>
         <div class="pt-4"></div>
 
+        <div *ngIf="unsavedWork" class="row m-0 p-0 mb-4 text-warning">
+          <div class="col m-0 p-0 justify-content-center d-flex">
+            <mat-icon class="flex-vertical-align">warning</mat-icon>
+            <h5 class="m-0 ml-2 d-inline-block flex-vertical-align">You have unsaved work</h5>
+          </div>
+        </div>
+
         <div *ngIf="!newQuizMode">
           <h3 class="text-center">Create a new quiz</h3>
           <div class="row justify-content-center mt-3 mb-4">
@@ -47,7 +54,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row mt-2">
               <div class="col-12">
                 <mat-radio-group [(ngModel)]="currentQuiz.correct">
                   <div *ngFor="let quizOption of currentQuiz.answers; let i = index; trackBy:trackByIndex" class="row row-centered quiz-input-row">
