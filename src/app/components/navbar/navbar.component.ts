@@ -79,8 +79,12 @@ export class NavbarComponent implements OnInit {
       .confirm('Create new course', this.courseName, this.userInfo)
       .subscribe(res => {
         this.result = res
-        let key = this._createCourseService.createCourse(res);
-        alert("Success! The course ID is " + key);
+       
+        if(res){
+          let key = this._createCourseService.createCourse(res);
+          alert("Success! The course ID is " + key);
+        }
+        
       });
   }
 
