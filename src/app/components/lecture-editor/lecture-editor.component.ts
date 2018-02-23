@@ -87,7 +87,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
       .subscribe((course: Course) => {
         if (course)
           this.currentCourseId = course.id
-          else
+        else
           this._router.navigate(['/'])
       })
 
@@ -174,7 +174,10 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public publishLecture() {
     this.showPublishProgress = true
 
-    setTimeout(() => this._router.navigate(['/']), 1000)
+    setTimeout(() => {
+      this.uploadProgress = 0
+      this._router.navigate(['/'])
+    }, 1000)
   }
 
 }

@@ -81,25 +81,45 @@ export class LectureEditorService {
     this.changeTimelineItems([])
   }
 
-  public publishQuiz(quiz: Quiz): string {
-    const $key = this._firebase.list(`Courses/${this.currentCourseId}/quizzes`)
-      .push(quiz)
-      .key
+  public publishQuiz(quiz: Quiz, editMode?: boolean): string {
+    let $key
 
-    this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${$key}`)
-      .update({ id: $key })
+    if (editMode) {
+      console.log('edit mode: ', quiz);
+      this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${quiz.id}`)
+        .set(quiz)
+
+      $key = quiz.id
+    } else {
+      $key = this._firebase.list(`Courses/${this.currentCourseId}/quizzes`)
+        .push(quiz)
+        .key
+
+      this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${$key}`)
+        .update({ id: $key })
+    }
+
 
     return $key
   }
 
-  public publishTimelineItem(timelineItem: TimelineItem): string {
-    console.log('PUSHING QUIZ to ' + `Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/`);
-    const $key = this._firebase.list(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/`)
-      .push(timelineItem)
-      .key
+  public publishTimelineItem(timelineItem: TimelineItem, editMode?: boolean): string {
+    let $key
 
-    this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/${$key}`)
-      .update({ id: $key })
+    if (editMode) {
+      console.log('edit mode: ', timelineItem);
+      this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/${timelineItem.id}`)
+        .set(timelineItem)
+
+      $key = timelineItem.id
+    } else {
+      $key = this._firebase.list(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/`)
+        .push(timelineItem)
+        .key
+
+      this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/${$key}`)
+        .update({ id: $key })
+    }
 
     return $key
   }
@@ -109,6 +129,9 @@ export class LectureEditorService {
   }
 
   public changeEditQuiz(editQuizElements: [QuizItem, Quiz]) {
+    if(!editQuizElements[0]) return
+
+    console.log(editQuizElements);
     this.editQuizSource.next(editQuizElements)
   }
 

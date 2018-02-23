@@ -33,7 +33,7 @@
 
                 <mat-list-item>
                   <mat-icon mat-list-icon>border_color</mat-icon>
-                  <button mat-button color="accent">
+                  <button mat-button color="accent" (click)="editQuiz(timelineItem, timelineChild)">
                     <mat-icon>edit</mat-icon>
                     <span>Edit Quiz</span>
                   </button>
@@ -41,7 +41,7 @@
 
                 <mat-list-item>
                   <mat-icon mat-list-icon>close</mat-icon>
-                  <button mat-button color="accent" (click)="deleteQuiz(timelineItem, timelineChild)">
+                  <button mat-button color="danger" (click)="deleteQuiz(timelineItem, timelineChild)">
                     <mat-icon>delete</mat-icon>
                     <span>Delete Quiz</span>
                   </button>

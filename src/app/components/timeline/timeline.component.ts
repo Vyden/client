@@ -75,8 +75,8 @@ export class TimelineComponent implements OnInit {
     this._lectureEditorService.deleteQuiz(item, quiz)
   }
 
-  public getTimelineItem(item: TimelineItem) {
-
+  public editQuiz(item: QuizItem, quiz: Quiz) {
+    this._lectureEditorService.changeEditQuiz([item, quiz])
   }
 
 }

@@ -21,6 +21,7 @@ export class QuizComponent implements OnInit {
   public currentCourse: Course
   public currentLectureId: string
   public currentQuiz: Quiz
+  public quizItem: QuizItem
 
   public quizMM: number
   public quizSS: number
@@ -28,6 +29,7 @@ export class QuizComponent implements OnInit {
   public quizName: string
   public newQuizMode: boolean
   public unsavedWork: boolean
+  public editMode: boolean
 
   constructor(private _lectureEditorService: LectureEditorService,
     private _classesService: ClassesService) { }
@@ -44,10 +46,19 @@ export class QuizComponent implements OnInit {
       .subscribe((lectureId: string) => {
         this.currentLectureId = lectureId
       })
+
+    // Subscribe to edit quiz messages
+    this._lectureEditorService.currentEditQuiz
+      .subscribe((quizEditElements: [QuizItem, Quiz]) => {
+        if(!quizEditElements[0]) return
+
+        this.setEditQuiz(quizEditElements[0], quizEditElements[1])
+      })
   }
 
   public initQuiz() {
     this.unsavedWork = true
+    this.editMode = false
 
     this.currentQuiz = new Quiz()
     this.currentQuiz.correct = 0
@@ -86,23 +97,37 @@ export class QuizComponent implements OnInit {
   public finishQuiz() {
     this.currentQuiz.course = this.currentCourse.id
     this.currentQuiz.question = this.quizName
-    const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz)
+    const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz, this.editMode)
     console.log('key: ', $key);
 
-    const quizItem: TimelineItem = new QuizItem()
-    quizItem.lecture = this.currentLectureId
-    quizItem.eventTime = this.quizStartTime
-    quizItem.name = this.quizName
-    quizItem.type = ItemType.QUIZ
-    quizItem.resource = $key
+    if(!this.editMode) {
+      this.quizItem = new QuizItem()
+      this.quizItem.lecture = this.currentLectureId
+      this.quizItem.eventTime = this.quizStartTime
+      this.quizItem.name = this.quizName
+      this.quizItem.type = ItemType.QUIZ
+      this.quizItem.resource = $key
+    }
 
-    this._lectureEditorService.publishTimelineItem(quizItem)
+    this._lectureEditorService.publishTimelineItem(this.quizItem, this.editMode)
     this.newQuizMode = false
     this.unsavedWork = false
   }
 
   public trackByIndex(index: number, value: number) {
     return index;
+  }
+
+  public setEditQuiz(quizItem: TimelineItem, quiz: Quiz) {
+    this.quizItem = quizItem
+    
+    this.editMode = true
+    this.newQuizMode = true
+    
+    this.unsavedWork = true
+    this.currentQuiz = quiz
+    this.quizName = quiz.question
+    this.calculateQuizTimeSlider({value: quizItem.eventTime})
   }
 
 }
