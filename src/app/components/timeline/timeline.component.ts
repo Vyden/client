@@ -40,7 +40,7 @@ export class TimelineComponent implements OnInit {
                 this.timelineChildren = []
                 this.timelineItems.forEach((item: TimelineItem) => {
                   let childObs
-                  if(item.type == ItemType.QUIZ) {
+                  if (item.type == ItemType.QUIZ) {
                     childObs = this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${item.resource}`).valueChanges()
                   } else {
                     childObs = null
@@ -52,6 +52,10 @@ export class TimelineComponent implements OnInit {
         }
       })
 
+  }
+
+  public redirect(url: string) {
+    window.location.href = url
   }
 
   public getTimelineItem(item: TimelineItem) {
