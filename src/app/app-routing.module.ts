@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LectureEditorComponent } from './components/lecture-editor/lecture-editor.component';
 import { AnnouncementsCardComponent } from './components/announcements-card/announcements-card.component';
 import { TemploginComponent } from './components/templogin/templogin.component';
+import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,10 @@ const routes: Routes = [
   },
   {
     path: 'editor',
-    component: LectureEditorComponent
+    component: LectureEditorComponent,
+    canDeactivate: [
+      ConfirmDeactivateGuard
+    ]
   },
   {
     path: 'course/:courseId',

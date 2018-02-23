@@ -30,6 +30,22 @@
                   <mat-icon mat-list-icon>timer</mat-icon>
                   <h4 mat-line>Duration: {{timelineChild.time}}s</h4>
                 </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>border_color</mat-icon>
+                  <button mat-button color="accent" (click)="editQuiz(timelineItem, timelineChild)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit Quiz</span>
+                  </button>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>close</mat-icon>
+                  <button mat-button color="danger" (click)="deleteQuiz(timelineItem, timelineChild)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete Quiz</span>
+                  </button>
+                </mat-list-item>
               </mat-list>
             </div>
 
@@ -38,6 +54,16 @@
                 <mat-list-item>
                   <mat-icon mat-list-icon>timer</mat-icon>
                   <h4 mat-line>Duration: {{Math.floor(timelineItem.videoTime/60)}}m {{Math.floor(timelineItem.videoTime%60)}}s</h4>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>videocam</mat-icon>
+                  <h4 mat-line>
+                    <a class="blue-text" (click)="redirect(timelineItem.resource)">{{timelineItem.resource}}
+                      <mat-icon class="icon-sm">launch</mat-icon>
+                    </a>
+                  </h4>
+                  <p mat-line>Video URL</p>
                 </mat-list-item>
               </mat-list>
             </div>
