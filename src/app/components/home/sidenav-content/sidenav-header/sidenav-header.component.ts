@@ -33,6 +33,9 @@ export class SidenavHeaderComponent implements OnInit {
 
   public userInfo: UserInfo;
 
+  // Filter data
+  public filterOptions: FilterOptions
+
   constructor(private _themeService: ThemeService, 
     private _classesService: ClassesService, 
     private _authService: AuthService,
@@ -48,6 +51,12 @@ export class SidenavHeaderComponent implements OnInit {
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
     })
+
+    /* Subscribe to filter options */
+    this._classesService.currentFilter
+      .subscribe((filter: FilterOptions) => {
+        this.filterOptions = filter
+      })
   }
 
   //Toggle input field for classes
@@ -73,9 +82,14 @@ export class SidenavHeaderComponent implements OnInit {
   }
 
   public openFilterDialog() {
-    this._dialogsService.openCourseFilterDialog(new FilterOptions())
+    if(!this.filterOptions) this.filterOptions = new FilterOptions()
+
+    this._dialogsService.openCourseFilterDialog(this.filterOptions)
       .subscribe((res: any) => {
-        console.log(res)
+        if(res) {
+          this._classesService.changeFilter(this.filterOptions)
+          console.log(this.filterOptions)
+        }
       })
   }
 }

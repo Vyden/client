@@ -82,7 +82,12 @@ export class AuthService {
 
   public logout() {
     this._afAuth.auth.signOut()
+    this.clearLocalStorage()
     this._router.navigate(['templogin'])
+  }
+
+  private clearLocalStorage() {
+    localStorage.removeItem('filter')
   }
 
 }
