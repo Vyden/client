@@ -20,4 +20,8 @@ export class CourseFilterDialogComponent implements OnInit {
     this.filterOptions = this.defaultArgs || new FilterOptions()
   }
 
+  public closeDialog() {
+    this._dialogRef.close(true)
+  }
+
 }

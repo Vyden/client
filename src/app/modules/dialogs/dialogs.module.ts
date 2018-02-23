@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 /* Angular Material Modules */
 import {
@@ -13,6 +14,7 @@ import { CourseFilterDialogComponent } from '../../components/course-filter-dial
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
     MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule
