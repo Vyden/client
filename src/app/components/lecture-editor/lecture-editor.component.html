@@ -9,13 +9,32 @@
     <div class="col m-0 p-0">
       <mat-card class="title-card diffused-shadow">
         <mat-card-title>
-          <h2 class="white-text text-center" style="font-weight: 400">Lecture Name</h2>
+          <h2 class="text-center" style="font-weight: 400">Lecture Name</h2>
         </mat-card-title>
 
         <mat-card-content class="text-center">
-          <mat-form-field class="lecture-title-input white-theme w-100" color="accent">
-            <input matInput name="lectureName" [(ngModel)]="lectureName">
-          </mat-form-field>
+          <div class="row m-0 p-0">
+            <div class="col m-0 p-0">
+              <mat-form-field class="lecture-title-input w-100" color="accent">
+                <input matInput name="lectureName" [(ngModel)]="lectureName">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col text-center">
+              <span class="form-label">Lecture Description:</span>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col m-0 p-0">
+              <mat-form-field class="w-100 description-textarea" color="accent">
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="description" [(ngModel)]="lectureDescription"
+                  name="lectureDescription"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>

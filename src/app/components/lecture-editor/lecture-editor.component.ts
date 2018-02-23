@@ -13,6 +13,9 @@ import { UserInfo } from '../../models/userInfo';
 import { UploadService } from '../../services/upload/upload.service';
 import { VideoItem } from '../../models/videoItem';
 import { v4 as uuid } from 'uuid';
+import { ClassesService } from '../../services/classes/classes.service';
+import { Course } from '../../models/course';
+import { Lecture } from '../../models/lecture';
 
 
 @Component({
@@ -29,6 +32,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public lectureId: string
   public lectureEndTime: number // End time in seconds
   public lectureName: string
+  public lectureDescription: string
   public timelineItems: Observable<TimelineItem[]>
 
   /* Dropzone data */
@@ -40,13 +44,17 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public uploadProgress: number
   public videoName: string
 
+  /* Course data */
+  private currentCourseId: string
+
   public Math = Math
 
   constructor(private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
     private _firebase: AngularFireDatabase,
     private _authService: AuthService,
-    private _uploadService: UploadService) {
+    private _uploadService: UploadService,
+    private _classesService: ClassesService) {
     this.lectureEndTime = 3000
     this.showDropBox = true
     this.lectureName = "New Lecture"
@@ -72,6 +80,13 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
         this.lectureId = lectureId
       })
 
+    /* Subscribe to changes in course */
+    this._classesService.activeCourse
+      .subscribe((course: Course) => {
+        if (course)
+          this.currentCourseId = course.id
+      })
+
     this._themeService.changeThemeClass("deep-purple");
 
   }
@@ -86,14 +101,22 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   }
 
   public onUpload($event: any) {
-    if($event.srcElement.files.length) {
+    if ($event.srcElement.files.length) {
       this.handleDrop($event.srcElement.files)
     }
   }
 
   public handleDrop(fileList: FileList) {
     // Create lecture object
-    this._lectureEditorService.publishLecture(this.lectureName)
+    const newLecture: Lecture = {
+      course: this.currentCourseId,
+      title: this.lectureName,
+      description: this.lectureDescription,
+      timeline: [],
+      date: Date.now(),
+      sky: "#E0F7FA"
+    }
+    this._lectureEditorService.publishLecture(newLecture)
 
     this.uploadProgress = 0
     this.videoActive = false
