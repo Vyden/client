@@ -41,30 +41,31 @@
 
         <div class="classcontainer">
 
-          <div class="classBound" (click)="onClickLecture(i)" *ngFor="let class of classList; let i = index">
+          <div class="classBound" (click)="onClickLecture(i)" *ngFor="let lecture of lectureList; let i = index">
 
             <div *ngIf="currentCourse">
-
+               
               <mat-card class="text-center">
 
                 <div class="row m-0">
                   <div class="col-4 m-0 p-0 text-left">
-                    <mat-card-title>LEC {{ lectureArray[i].lectnum }}</mat-card-title>
+                    <!-- <mat-card-title>LEC {{ lectureArray[i].lectnum }}</mat-card-title> -->
+                    <mat-card-title>LEC {{i+1}}</mat-card-title>
                   </div>
                   <div class="col-4 m-0 p-0">
-                    <mat-card-title>{{ lectureArray[i].instructor }}</mat-card-title>
+                    <mat-card-title> {{ getInstructorName(lectureList[i].id) }} </mat-card-title>
                   </div>
                   <div class="col-4 m-0 p-0 text-right">
-                    <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle>
+                    <!-- <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle> -->
                   </div>
                 </div>
 
-                <div class="row m-0 text-left">
-                  <mat-card-subtitle>Posted on {{ lectureArray[i].postTime }}</mat-card-subtitle>
+                <div *ngIf="lectureList.length > 0" class="row m-0 text-left">
+                  <mat-card-subtitle>Posted on {{ convertString(lectureList[i].date) }}</mat-card-subtitle>
                 </div>
 
-                <div class="row m-0 text-left">
-                  <mat-card-content>{{ lectureArray[i].description }}</mat-card-content>
+                <div *ngIf="lectureList.length > 0" class="row m-0 text-left">
+                  <mat-card-content> {{ lectureList[i].description }}</mat-card-content>
                 </div>
 
               </mat-card>
@@ -76,7 +77,7 @@
               <div class="col-4 m-0 p-0"></div>
               <div class="col-4 m-0 p-0">
                 <div class="buttonContainer row mt-5 text-center">
-                  <a (click)="openLecture()">
+                  <a (click)="openLecture(i)">
                     <button mat-fab>
                       <mat-icon>play_arrow</mat-icon>
                     </button>

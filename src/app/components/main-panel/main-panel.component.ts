@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ClassesService } from '../../services/classes/classes.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Course } from '../../models/course';
+import { Lecture } from '../../models/lecture';
 import { UserInfo } from '../../models/userInfo';
 import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
@@ -17,16 +18,16 @@ import { Observable } from 'rxjs/Observable';
 export class MainPanelComponent implements OnInit {
 
   public themeClass: string
-  public lectures: Observable<Course []>
+  public lectures: Observable<Lecture []>
   public userInfo: UserInfo
   public currentCourse: Course
 
 
   classList: number[] = [
-    1 , 2 , 3, 4, 5
+    1 , 2
   ];
 
-  lectureList: any[] = [
+  lectureList: Lecture[] = [
 
   ]
 
@@ -50,7 +51,7 @@ export class MainPanelComponent implements OnInit {
     private _lecturesService: LecturesService,
     private _authService: AuthService,
     private _firebase: AngularFireDatabase,
-    private _classesService: ClassesService
+    private _classesService: ClassesService,
   ) { 
    
   }
@@ -74,18 +75,26 @@ export class MainPanelComponent implements OnInit {
     this._themeService.currentThemeClass
       .subscribe((themeClass: string) => {
         this.themeClass = themeClass;
-        this.lectures = this._lecturesService.getFirebaseLectures()
+        // this.lectures = this._lecturesService.getFirebaseLectures()
       })
 
-    this.lectures.subscribe(res => {
-      this.lectureList = res[1].lectures;
-      this.lectureArray = Object.values(this.lectureList);
-    });
+    // this.lectures.subscribe(res => {
+    //   // this.lectureList = res[1].lectures;
+    //   this.lectureArray = Object.values(this.lectureList);
+    // });
 
     this._classesService.activeCourse
     .subscribe((currentCourse: Course) => {
       this.currentCourse = currentCourse
-      console.log(this.currentCourse)
+      if(currentCourse){
+        this.lectures = this._lecturesService.getFirebaseLectures()
+    
+        this.lectures.subscribe(res => {
+            this.lectureList = res;
+            
+          });
+      }
+      // console.log(this.currentCourse)
     })
 
   }
@@ -93,13 +102,13 @@ export class MainPanelComponent implements OnInit {
   onClickLecture(i){
     // console.log(this.lectureList);
     // console.log(this.lectureArray[i]);
-    console.log(this.currentCourse.id);
+    // console.log(this.currentCourse.id);
+    
+        
     this.selectList[i] = !this.selectList[i];
   }
 
   onClickCancel(i){
-    console.log("cancel " + i);
-    // 
     this.clickList[i] = true;
     this.selectList[i] = false;
     setTimeout(() => {
@@ -108,7 +117,22 @@ export class MainPanelComponent implements OnInit {
   }
 
 
-  openLecture(){
-    window.location.href = "../../../../assets/VR/index.html?id=" + this.currentCourse.id;
+  openLecture(i){
+    window.location.href = "../../../../assets/VR/index.html?course=" + this.currentCourse.id + "&lecture=" + this.lectureList[i].id;
+  }
+
+  convertString(date: number): string{
+     let stringDate = String(new Date(date));
+
+    return stringDate;
+  }
+
+  getInstructorName(id : string): string{
+      let instructorID = String(this._firebase.object(`Courses/${this.currentCourse.id}/instructor`));
+      // let instructorName = String(this._firebase.object(`UserInfo/${instructorID}/fullName`));      
+      //  console.log(instructorName);
+
+      // this._firebase.object(`Courses/${this.currentCourseId}/lectures/${key}`)
+    return "1";
   }
 }
