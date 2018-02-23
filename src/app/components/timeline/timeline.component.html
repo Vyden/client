@@ -1,6 +1,6 @@
 <div class="row m-0 p-0" *ngIf="timelineItems.length!==0">
   <div class="col m-0 p-0">
-    <mat-card class="">
+    <mat-card class="diffused-shadow">
       <mat-card-title>
         <h2 class="text-center" style="font-weight: 400">Step 4: Review Timeline</h2>
       </mat-card-title>
@@ -37,7 +37,7 @@
               <mat-list>
                 <mat-list-item>
                   <mat-icon mat-list-icon>timer</mat-icon>
-                  <h4 mat-line>Duration: {{timelineItem.videoTime}}s</h4>
+                  <h4 mat-line>Duration: {{Math.floor(timelineItem.videoTime/60)}}m {{Math.floor(timelineItem.videoTime%60)}}s</h4>
                 </mat-list-item>
               </mat-list>
             </div>

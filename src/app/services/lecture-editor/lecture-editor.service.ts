@@ -45,14 +45,7 @@ export class LectureEditorService {
       })
   }
 
-  public publishLecture(title: string): string {
-    const newLecture: Lecture = {
-      course: this.currentCourseId,
-      title: title,
-      timeline: [],
-      date: new Date(),
-      sky: "#E0F7FA"
-    }
+  public publishLecture(newLecture: Lecture): string {
 
     const key: string = this._firebase.list(`Courses/${this.currentCourseId}/lectures`)
       .push(newLecture)

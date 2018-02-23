@@ -39,7 +39,12 @@ export class TimelineComponent implements OnInit {
                 this.timelineItems = items
                 this.timelineChildren = []
                 this.timelineItems.forEach((item: TimelineItem) => {
-                  let childObs = this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${item.resource}`).valueChanges()
+                  let childObs
+                  if(item.type == ItemType.QUIZ) {
+                    childObs = this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${item.resource}`).valueChanges()
+                  } else {
+                    childObs = null
+                  }
                   this.timelineChildren.push(childObs)
                 })
               })

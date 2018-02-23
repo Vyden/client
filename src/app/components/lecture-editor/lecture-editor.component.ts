@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { DoneTickComponent } from '../done-tick/done-tick.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,6 +14,9 @@ import { UserInfo } from '../../models/userInfo';
 import { UploadService } from '../../services/upload/upload.service';
 import { VideoItem } from '../../models/videoItem';
 import { v4 as uuid } from 'uuid';
+import { ClassesService } from '../../services/classes/classes.service';
+import { Course } from '../../models/course';
+import { Lecture } from '../../models/lecture';
 
 
 @Component({
@@ -28,25 +32,34 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   /* Lecture data */
   public lectureId: string
   public lectureEndTime: number // End time in seconds
+  public lectureName: string
+  public lectureDescription: string
   public timelineItems: Observable<TimelineItem[]>
 
   /* Dropzone data */
   public showDropBox: boolean
   public dropzoneActive: boolean
   public videoActive: boolean
+  public showPublishProgress: boolean
   public showUploadProgress: boolean
   public uploadProgress: number
   public videoName: string
 
+  /* Course data */
+  private currentCourseId: string
+
   public Math = Math
 
-  constructor(private _themeService: ThemeService,
+  constructor(private _router: Router,
+    private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
     private _firebase: AngularFireDatabase,
     private _authService: AuthService,
-    private _uploadService: UploadService) {
+    private _uploadService: UploadService,
+    private _classesService: ClassesService) {
     this.lectureEndTime = 3000
     this.showDropBox = true
+    this.lectureName = "New Lecture"
   }
 
   ngOnInit() {
@@ -69,10 +82,16 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
         this.lectureId = lectureId
       })
 
-    this._themeService.changeThemeClass("deep-purple");
+    /* Subscribe to changes in course */
+    this._classesService.activeCourse
+      .subscribe((course: Course) => {
+        if (course)
+          this.currentCourseId = course.id
+          else
+          this._router.navigate(['/'])
+      })
 
-    // Create a new lecture object, must be changed later
-    this._lectureEditorService.publishLecture('CS 420')
+    this._themeService.changeThemeClass("deep-purple");
 
   }
 
@@ -85,7 +104,24 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     console.log(this.dropzoneActive)
   }
 
+  public onUpload($event: any) {
+    if ($event.srcElement.files.length) {
+      this.handleDrop($event.srcElement.files)
+    }
+  }
+
   public handleDrop(fileList: FileList) {
+    // Create lecture object
+    const newLecture: Lecture = {
+      course: this.currentCourseId,
+      title: this.lectureName,
+      description: this.lectureDescription,
+      timeline: [],
+      date: Date.now(),
+      sky: "#E0F7FA"
+    }
+    this._lectureEditorService.publishLecture(newLecture)
+
     this.uploadProgress = 0
     this.videoActive = false
     this.showUploadProgress = true
@@ -95,6 +131,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     // Rename file
     let blob = fileList[0].slice(0, -1, '.')
     const videoFile: File = new File([blob], uuid(), { type: fileList[0].type })
+    console.log(videoFile.type);
 
     console.log(videoFile)
 
@@ -124,7 +161,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
               lecture: this.lectureId,
               eventTime: 1,
               type: ItemType.VIDEO,
-              resource: "VIDEO URL",
+              resource: "https://vyden.nyc3.digitaloceanspaces.com/videos/" + videoFile.name,
               videoTime: this.lectureEndTime
             }
 
@@ -132,6 +169,12 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
           };
         }
       })
+  }
+
+  public publishLecture() {
+    this.showPublishProgress = true
+
+    setTimeout(() => this._router.navigate(['/']), 1000)
   }
 
 }
