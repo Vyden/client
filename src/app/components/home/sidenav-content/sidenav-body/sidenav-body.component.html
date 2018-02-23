@@ -13,8 +13,11 @@
             [ngClass]="{'mat-elevation-z8': hover[i]}"
             class="class-button white-text text-left no-hover"
             (click)="navigateToCourse(i)">
-            <!-- <mat-icon *ngIf="userInfo.id == currentCourse.instructor">star_rate</mat-icon> -->
-            <mat-icon class="mr-2">class</mat-icon>
+            <mat-icon *ngIf="course.instructor === userInfo.UID; else bookIcon" class="mr-2">star_rate</mat-icon>
+            <ng-template #bookIcon>
+              <mat-icon  class="mr-2">class</mat-icon>
+            </ng-template>
+            
             {{ course['title'] }}
           </button>
         </div>

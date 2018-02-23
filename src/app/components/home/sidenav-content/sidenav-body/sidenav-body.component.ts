@@ -56,14 +56,10 @@ export class SidenavBodyComponent implements OnInit {
           });
         })
 
-        if(this.courses.length > 0){
-          for(let i = 0 ; i < this.courses.length ; i++){
-              console.log(this.courses[i]);
-          }
-        }
-
-
+        console.log(this.courses);
       });
+
+      
 
       this._classesService.activeCourse
     .subscribe((currentCourse: Course) => {
