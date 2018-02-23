@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { DoneTickComponent } from '../done-tick/done-tick.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -49,7 +50,8 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public Math = Math
 
-  constructor(private _themeService: ThemeService,
+  constructor(private _router: Router,
+    private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
     private _firebase: AngularFireDatabase,
     private _authService: AuthService,
@@ -85,6 +87,8 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
       .subscribe((course: Course) => {
         if (course)
           this.currentCourseId = course.id
+          else
+          this._router.navigate(['/'])
       })
 
     this._themeService.changeThemeClass("deep-purple");
