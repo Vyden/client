@@ -52,6 +52,7 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
 import { TemploginComponent } from './components/templogin/templogin.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
+import { FilterCoursesPipe } from './directives/filter-courses.pipe';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
     TimelineComponent,
     TemploginComponent,
     FileDropDirective,
-    DialogComponent
+    DialogComponent,
+    FilterCoursesPipe
   ],
   imports: [
     BrowserModule,
