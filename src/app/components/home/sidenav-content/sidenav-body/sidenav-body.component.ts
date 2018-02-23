@@ -8,6 +8,7 @@ import { Course } from '../../../../models/course';
 import { Subscription } from 'rxjs/Subscription';
 import { FilterCoursesPipe } from '../../../../directives/filter-courses.pipe';
 
+
 @Component({
   selector: 'app-sidenav-body',
   templateUrl: './sidenav-body.component.html',
@@ -22,6 +23,8 @@ export class SidenavBodyComponent implements OnInit {
   public userInfo: UserInfo;
   public courses: Course[] = [];
   private authSub: Subscription;
+  public currentCourse: Course;
+  public courseCheck: boolean[] = [];
 
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
@@ -52,7 +55,25 @@ export class SidenavBodyComponent implements OnInit {
             }
           });
         })
+
+        if(this.courses.length > 0){
+          for(let i = 0 ; i < this.courses.length ; i++){
+              console.log(this.courses[i]);
+          }
+        }
+
+
       });
+
+      this._classesService.activeCourse
+    .subscribe((currentCourse: Course) => {
+      this.currentCourse = currentCourse
+      if(currentCourse){
+        console.log("currentCourse is " + this.currentCourse.instructor);
+        console.log("userinfo is " + this.userInfo.UID);
+      }
+      
+    })
   }
 
   //Takes index of button as parameter
