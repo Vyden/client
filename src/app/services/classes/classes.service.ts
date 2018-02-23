@@ -39,7 +39,11 @@ export class ClassesService {
           this.courseIDArray.push(courseID);
           this._firebase.list('UserInfo/' + this.userInfo.UID + '/courses/' + courseID + '/' + course.title).push('React > Angular');
           this._firebase.list('Courses/' + courseID + '/students/' + this.userInfo.UID).push('Firebase is cancer');
+        } else {
+          alert('Already enrolled in course');
         }
+      } else {
+        alert('Invalid course ID');
       }
       courseSub.unsubscribe();
     });
