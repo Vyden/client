@@ -6,6 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '../../../../models/userInfo';
 import { Course } from '../../../../models/course';
 import { Subscription } from 'rxjs/Subscription';
+import { FilterCoursesPipe } from '../../../../directives/filter-courses.pipe';
 
 @Component({
   selector: 'app-sidenav-body',
