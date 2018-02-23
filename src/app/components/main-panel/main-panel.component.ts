@@ -21,7 +21,7 @@ export class MainPanelComponent implements OnInit {
   public lectures: Observable<Lecture []>
   public userInfo: UserInfo
   public currentCourse: Course
-
+  public instructName: string
 
   classList: number[] = [
     1 , 2
@@ -93,18 +93,16 @@ export class MainPanelComponent implements OnInit {
             this.lectureList = res;
             
           });
+      this.getInstructorName();
+          
       }
       // console.log(this.currentCourse)
     })
 
-  }
-
-  onClickLecture(i){
-    // console.log(this.lectureList);
-    // console.log(this.lectureArray[i]);
-    // console.log(this.currentCourse.id);
     
-        
+  }
+  id : string
+  onClickLecture(i){        
     this.selectList[i] = !this.selectList[i];
   }
 
@@ -127,12 +125,41 @@ export class MainPanelComponent implements OnInit {
     return stringDate;
   }
 
-  getInstructorName(id : string): string{
-      let instructorID = String(this._firebase.object(`Courses/${this.currentCourse.id}/instructor`));
-      // let instructorName = String(this._firebase.object(`UserInfo/${instructorID}/fullName`));      
-      //  console.log(instructorName);
-
-      // this._firebase.object(`Courses/${this.currentCourseId}/lectures/${key}`)
-    return "1";
+  getName(): string{
+    console.log("instruct name is " +this.instructName);
+    return this.instructName;
   }
+
+  getInstructorName(): string{
+      
+    let returnName;
+
+    let instructorID = this._firebase.object(`Courses/${this.currentCourse.id}/instructor`).valueChanges();
+    
+    instructorID.subscribe(res => {
+      let instructorName = this._firebase.object(`UserInfo/${res}/fullName`).valueChanges();
+
+       instructorName.subscribe(res => {
+          // console.log("res is " + res);
+          returnName = res;
+          // console.log("returnName is " + returnName)
+          this.instructName = String(res);
+          // console.log("this instructName is " + this.instructName);
+          // this.instructName = res;
+        } )
+
+        return returnName;
+    })
+
+  
+
+
+    // console.log(instructorID);
+    // let instructorName = String(this._firebase.object(`UserInfo/${instructorID}/fullName`));      
+    //  console.log(instructorName);
+
+    // this._firebase.object(`Courses/${this.currentCourseId}/lectures/${key}`)
+  return returnName;
+}
+  
 }
