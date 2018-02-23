@@ -24,5 +24,9 @@ export class DialogComponent implements OnInit {
   clickCreate(){
     this.dialogRef.close(this.message);
   }
+
+  // clickClose(){
+  //   this.dialogRef.close(false);
+  // }
    
 }

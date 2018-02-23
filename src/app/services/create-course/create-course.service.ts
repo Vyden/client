@@ -25,7 +25,7 @@ export class CreateCourseService {
   public createCourse(title: string): string{
 
     const newCourse: Course = {
-      instructor: this.userInfo.fullName,
+      instructor: this.userInfo.UID,
       title: title,
       students: [],
       lectures: [],
