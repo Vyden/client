@@ -4,6 +4,8 @@ import { ClassesService } from '../../../../services/classes/classes.service';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { UserInfo } from '../../../../models/userInfo';
+import { DialogsService } from '../../../../services/dialogs/dialogs.service';
+import { FilterOptions } from '../../../../models/filter-options';
 
 @Component({
   selector: 'app-sidenav-header',
@@ -31,7 +33,10 @@ export class SidenavHeaderComponent implements OnInit {
 
   public userInfo: UserInfo;
 
-  constructor(private _themeService: ThemeService, private _classesService: ClassesService, private _authService: AuthService) { }
+  constructor(private _themeService: ThemeService, 
+    private _classesService: ClassesService, 
+    private _authService: AuthService,
+    private _dialogsService: DialogsService) { }
 
   ngOnInit() {
     this._themeService.currentThemeClass.subscribe((theme: string) => {
@@ -65,5 +70,12 @@ export class SidenavHeaderComponent implements OnInit {
       event.preventDefault();
       this.addCourse();
     }
+  }
+
+  public openFilterDialog() {
+    this._dialogsService.openCourseFilterDialog(new FilterOptions())
+      .subscribe((res: any) => {
+        console.log(res)
+      })
   }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
+import { FilterOptions } from '../../models/filter-options';
 
 @Component({
   selector: 'app-course-filter-dialog',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseFilterDialogComponent implements OnInit {
 
-  constructor() { }
+  public filterOptions: FilterOptions
+
+  /* Default values */
+  public defaultArgs: FilterOptions
+
+  constructor(private _dialogRef: MatDialogRef<CourseFilterDialogComponent>) { }
 
   ngOnInit() {
+    this.filterOptions = this.defaultArgs || new FilterOptions()
   }
 
 }
