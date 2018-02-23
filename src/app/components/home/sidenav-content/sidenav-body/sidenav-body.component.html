@@ -10,6 +10,7 @@
             (mouseenter)="hover[i] = true"
             (mouseleave)="hover[i] = false"
             [style.backgroundColor]="hover[i] ? getButtonColor(i): 'transparent'"
+            [ngClass]="{'mat-elevation-z8': hover[i]}"
             class="class-button white-text text-left no-hover"
             (click)="navigateToCourse(i)">
             <mat-icon class="mr-2">class</mat-icon>
