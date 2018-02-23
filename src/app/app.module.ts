@@ -53,6 +53,7 @@ import { TemploginComponent } from './components/templogin/templogin.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
 import { FilterCoursesPipe } from './directives/filter-courses.pipe';
+import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,10 @@ import { FilterCoursesPipe } from './directives/filter-courses.pipe';
   exports: [
     DialogComponent,
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService],
+  providers: [
+    ConfirmDeactivateGuard, NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, 
+    AuthService, DialogsService, UploadService, CreateCourseService
+  ],
   entryComponents: [
     DialogComponent,
   ],
