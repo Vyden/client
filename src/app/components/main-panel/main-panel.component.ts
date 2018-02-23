@@ -126,7 +126,7 @@ export class MainPanelComponent implements OnInit {
   }
 
   getName(): string{
-    console.log("instruct name is " +this.instructName);
+    // console.log("instruct name is " +this.instructName);
     return this.instructName;
   }
 
