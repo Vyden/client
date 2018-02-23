@@ -66,7 +66,7 @@ export class AuthService {
       .then(user => {
         this.authState = user
       })
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
   }
 
   public changeUserInfo(newUserInfo: UserInfo) {
