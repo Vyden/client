@@ -52,8 +52,8 @@
                     <!-- <mat-card-title>LEC {{ lectureArray[i].lectnum }}</mat-card-title> -->
                     <mat-card-title>LEC {{i+1}}</mat-card-title>
                   </div>
-                  <div class="col-4 m-0 p-0">
-                    <mat-card-title> {{ getInstructorName(lectureList[i].id) }} </mat-card-title>
+                  <div *ngIf="lectureList.length > 0" class="col-4 m-0 p-0">
+                    <mat-card-title> {{ getName() }} </mat-card-title>
                   </div>
                   <div class="col-4 m-0 p-0 text-right">
                     <!-- <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle> -->
