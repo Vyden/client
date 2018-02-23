@@ -4,6 +4,8 @@ import { ClassesService } from '../../../../services/classes/classes.service';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { UserInfo } from '../../../../models/userInfo';
+import { DialogsService } from '../../../../services/dialogs/dialogs.service';
+import { FilterOptions } from '../../../../models/filter-options';
 
 @Component({
   selector: 'app-sidenav-header',
@@ -31,7 +33,13 @@ export class SidenavHeaderComponent implements OnInit {
 
   public userInfo: UserInfo;
 
-  constructor(private _themeService: ThemeService, private _classesService: ClassesService, private _authService: AuthService) { }
+  // Filter data
+  public filterOptions: FilterOptions
+
+  constructor(private _themeService: ThemeService, 
+    private _classesService: ClassesService, 
+    private _authService: AuthService,
+    private _dialogsService: DialogsService) { }
 
   ngOnInit() {
     this._themeService.currentThemeClass.subscribe((theme: string) => {
@@ -43,6 +51,12 @@ export class SidenavHeaderComponent implements OnInit {
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
     })
+
+    /* Subscribe to filter options */
+    this._classesService.currentFilter
+      .subscribe((filter: FilterOptions) => {
+        this.filterOptions = filter
+      })
   }
 
   //Toggle input field for classes
@@ -65,5 +79,17 @@ export class SidenavHeaderComponent implements OnInit {
       event.preventDefault();
       this.addCourse();
     }
+  }
+
+  public openFilterDialog() {
+    if(!this.filterOptions) this.filterOptions = new FilterOptions()
+
+    this._dialogsService.openCourseFilterDialog(this.filterOptions)
+      .subscribe((res: any) => {
+        if(res) {
+          this._classesService.changeFilter(this.filterOptions)
+          console.log(this.filterOptions)
+        }
+      })
   }
 }

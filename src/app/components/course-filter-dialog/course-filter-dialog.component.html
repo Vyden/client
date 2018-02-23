@@ -1,0 +1,25 @@
+
+<div class="container-fluid dialog purple-theme">
+    <div class="row justify-content-center p-3">
+      <div class="col-2"></div>
+      <div class="col"><h2 class="deep-purple-text text-center mt-1 mb-1" style="font-weight: 400">FILTER</h2></div>
+      <div class="col-2 align-self-center">
+        <button mat-icon-button matDialogClose color="warn"><mat-icon>close</mat-icon></button>
+      </div>
+    </div>
+  
+    <div class="row p-2">
+      <div class="col">
+        <mat-checkbox class="d-block mt-2 ml-2" color="primary" [(ngModel)]="filterOptions.myCourses">My Courses</mat-checkbox>
+      </div>
+    </div>
+  
+    <div class="row justify-content-center mb-4">
+      <div class="col text-center">
+        <button (click)="closeDialog()" mat-button class="m-2" color="primary">
+          <mat-icon>check</mat-icon>
+          <span>APPLY</span>
+        </button>
+      </div>
+    </div>
+  </div>

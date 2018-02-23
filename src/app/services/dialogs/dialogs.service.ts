@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';
 import { UserInfo } from '../../models/userInfo';
-
+import { FilterOptions } from '../../models/filter-options';
+import { CourseFilterDialogComponent } from '../../components/course-filter-dialog/course-filter-dialog.component';
 
 @Injectable()
 export class DialogsService {
 
-  constructor(private dialog: MatDialog) {
-   }
+    constructor(private dialog: MatDialog) {
+    }
 
-   public result: Observable<string>;
+    public result: Observable<string>;
 
     public confirm(title: string, message: string, userInfo: UserInfo): Observable<string> {
 
@@ -20,12 +21,20 @@ export class DialogsService {
         dialogRef = this.dialog.open(DialogComponent, {
             width: '380px',
         });
-        
+
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.message = message;
         dialogRef.componentInstance.userInfo = userInfo;
 
         return dialogRef.afterClosed();
+    }
+
+    public openCourseFilterDialog(defaultArgs: FilterOptions, options?: any) {
+        let dialogRef: MatDialogRef<CourseFilterDialogComponent>
+        dialogRef = this.dialog.open(CourseFilterDialogComponent, options)
+        dialogRef.componentInstance.defaultArgs = defaultArgs
+
+        return dialogRef.afterClosed()
     }
 
 }
