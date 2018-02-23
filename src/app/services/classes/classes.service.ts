@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserInfo } from '../../models/userInfo';
 import { Course } from '../../models/course'
+import { FilterOptions } from '../../models/filter-options';
 
 @Injectable()
 export class ClassesService {
@@ -13,6 +14,10 @@ export class ClassesService {
   //Second element in activeClassSource is course name
   private activeCourseSource = new BehaviorSubject<Course>(null);
   public activeCourse = this.activeCourseSource.asObservable();
+
+  // Filter
+  private currentFilterSource = new BehaviorSubject<FilterOptions>(null)
+  public currentFilter = this.currentFilterSource.asObservable()
 
   private userInfo: UserInfo;
   private courseIDArray: string[] = [];
@@ -65,5 +70,11 @@ export class ClassesService {
     this._firebase.list('UserInfo/' + this.userInfo.UID + '/courses/').set(courseID, {});
     //Remove student from course
     this._firebase.list('Courses/' + courseID + '/students/').set(this.userInfo.UID, {});
+  }
+
+  public changeFilter(newFilter: FilterOptions) {
+    if(newFilter) localStorage.setItem('filter', JSON.stringify(newFilter))
+
+    this.currentFilterSource.next(newFilter)
   }
 }
