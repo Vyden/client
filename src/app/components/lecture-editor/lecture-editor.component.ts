@@ -173,6 +173,8 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public publishLecture() {
     this.showPublishProgress = true
+
+    setTimeout(() => this._router.navigate(['/']), 1000)
   }
 
 }
