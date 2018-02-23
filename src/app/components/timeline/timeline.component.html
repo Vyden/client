@@ -30,6 +30,22 @@
                   <mat-icon mat-list-icon>timer</mat-icon>
                   <h4 mat-line>Duration: {{timelineChild.time}}s</h4>
                 </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>border_color</mat-icon>
+                  <button mat-button color="accent">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit Quiz</span>
+                  </button>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>close</mat-icon>
+                  <button mat-button color="accent" (click)="deleteQuiz(timelineItem, timelineChild)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete Quiz</span>
+                  </button>
+                </mat-list-item>
               </mat-list>
             </div>
 
