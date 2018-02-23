@@ -4,8 +4,8 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpParams, HttpErrorResponse, Ht
 @Injectable()
 export class UploadService {
 
-  // private uploadUrl: string = 'http://indy.science/uploadVideo'
-  private uploadUrl: string = 'http://localhost:5000/upload'
+  private uploadUrl: string = 'http://indy.science/uploadVideo'
+  // private uploadUrl: string = 'http://localhost:5000/upload'
 
   constructor(private _httpClient: HttpClient) { }
 

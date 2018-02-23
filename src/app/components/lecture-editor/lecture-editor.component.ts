@@ -161,7 +161,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
               lecture: this.lectureId,
               eventTime: 1,
               type: ItemType.VIDEO,
-              resource: "https://vyden.nyc3.digitaloceanspaces.com/videos/" + videoFile.name,
+              resource: "https://s3.us-east-2.amazonaws.com/vyden/videos/" + videoFile.name,
               videoTime: this.lectureEndTime
             }
 
