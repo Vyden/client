@@ -31,7 +31,7 @@ export class TemploginComponent implements OnInit {
 
     this._authService.createUser(this.email, this.password, userInfo)
       .then(data => console.log(data))
-      .catch(err => console.log(err))
+      .catch(err => alert(err))
   }
 
   public loginUser() {

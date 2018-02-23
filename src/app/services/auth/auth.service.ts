@@ -58,7 +58,7 @@ export class AuthService {
 
         this.authState = user
       })
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
   }
 
   public loginUserEmail(email: string, password: string) {
