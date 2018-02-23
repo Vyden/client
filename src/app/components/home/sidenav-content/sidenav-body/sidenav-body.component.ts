@@ -22,8 +22,6 @@ export class SidenavBodyComponent implements OnInit {
   public courses: Course[] = [];
   private authSub: Subscription;
 
-  private counter: number = 0;
-
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
     private _authService: AuthService,
@@ -39,17 +37,6 @@ export class SidenavBodyComponent implements OnInit {
     this.authSub = this._authService.currentUserInfo
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
-
-        console.log(this.counter++);
-        // if (userInfo) {
-        //   // console.log(userInfo.courses)
-        //   this.courses = [];
-        //   Object.keys(userInfo.courses).forEach((key: string) => {
-        //     this.courses.push(userInfo.courses[key]);
-        //   })
-        // }
-
-        // console.log(this.courses);
 
         let courseIDList = this._classesService.getEnrolledCourses();
         this.courses = [];
