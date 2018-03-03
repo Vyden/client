@@ -1,2 +1,65 @@
 <app-navbar></app-navbar>
 
+<div class="container-fluid p-0 split-color-container indigo-theme">
+  <div class="split-top-color bg-theme-secondary-darker"></div>
+</div>
+
+<div class="container content-container p-0" *ngIf="userInfo">
+
+  <!-- Spacer div -->
+  <div class="row" style="margin-top: 3rem"></div>
+
+  <div class="row m-0 p-0">
+    <div class="col text-center">
+      <h2 class="white-text font-weight-bold">Settings</h2>
+    </div>
+  </div>
+
+  <!-- Spacer div -->
+  <div class="row" style="margin-top: 3rem"></div>
+
+  <div class="row m-0 mt-4">
+    <div class="col m-0 p-0">
+      <mat-card class="diffused-shadow">
+        <mat-card-header>
+          <h3 class="blue-text font-400">Personal Information</h3>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="row m-0 p-0">
+            <div class="col-sm-12 col-md-6 align-self-center">
+              <span class="field-label">Name</span>
+            </div>
+            <div class="col-sm-12 col-md-6 align-self-center">
+              <mat-form-field class="w-100">
+                <input type="text" matInput class="input-style-cancel" [(ngModel)]="userInfo.fullName" name="userInfo">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col">
+              <hr>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col-sm-12 col-md-6 align-self-center">
+              <span class="field-label">Email</span>
+            </div>
+            <div class="col-sm-12 col-md-6 align-self-center">
+              <mat-form-field class="w-100">
+                <input type="text" matInput class="input-style-cancel" disabled="true" [(ngModel)]="authState.email" name="authState">
+                <button mat-icon-button matSuffix>
+                  <mat-icon>settings</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

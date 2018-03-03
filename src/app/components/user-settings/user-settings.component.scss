@@ -1,0 +1,25 @@
+.split-color-container {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: calc(100% - 55px);
+}
+
+.split-top-color {
+    height: 286px;
+    width: 100%;
+}
+
+.content-container {
+    z-index: 5;
+}
+
+.font-400 {
+    font-weight: 400;
+}
+
+.field-label {
+    font-weight: 400;
+    font-size: 16px;
+    color: #424242;
+}
