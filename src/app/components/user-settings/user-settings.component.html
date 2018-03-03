@@ -4,7 +4,7 @@
   <div class="split-top-color bg-theme-secondary-darker"></div>
 </div>
 
-<div class="container content-container p-0" *ngIf="userInfo">
+<div class="container content-container p-0 indigo-theme" *ngIf="userInfo">
 
   <!-- Spacer div -->
   <div class="row" style="margin-top: 3rem"></div>
@@ -58,6 +58,67 @@
           </div>
 
 
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Spacer on desktop, invisible on mobile -->
+  <div class="row p-0 m-0 mt-4 mb-4 hidden-sm-down"></div>
+
+  <div class="row m-0">
+    <div class="col m-0 p-0">
+      <mat-card class="diffused-shadow">
+        <mat-card-header>
+          <h3 class="blue-text font-400">Account Settings</h3>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="row m-0 p-0">
+            <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
+              <span class="field-label">Password</span>
+            </div>
+            <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
+              <button mat-button color="primary">
+                <mat-icon>lock</mat-icon>
+                <span>CHANGE PASSWORD</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col">
+              <hr>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
+              <span class="field-label">Instructor Mode</span>
+            </div>
+            <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
+              <mat-checkbox [(ngModel)]="userInfo.isInstructor" color="accent" class="ml-3">
+              </mat-checkbox>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col">
+              <hr>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
+              <span class="field-label">Delete Account</span>
+            </div>
+            <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
+              <button mat-button color="warn">
+                <mat-icon>delete_forever</mat-icon>
+                <span>DELTE ACCOUNT</span>
+              </button>
+            </div>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
