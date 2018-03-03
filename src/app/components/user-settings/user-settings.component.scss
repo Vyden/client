@@ -24,6 +24,18 @@
     color: #424242;
 }
 
+.dark-grey-text {
+    color: #424242;
+}
+
+.course-item {
+    border-radius: 0.1em;
+    transition: background-color 250ms ease-in-out;
+    &:hover {
+        background-color: #F5F5F5;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     mat-card {
