@@ -141,7 +141,7 @@
               <mat-icon mat-list-icon *ngIf="course.instructor != userInfo.UID" class="dark-grey-text">assignment</mat-icon>
               <h3 mat-line>{{course.title}}</h3>
               <p mat-line class="grey-text"> {{course.id}}</p>
-              <button mat-icon-button color="warn">
+              <button mat-icon-button color="warn" (click)="removeCourse(course)">
                 <mat-icon>delete</mat-icon>
               </button>
             </mat-list-item>

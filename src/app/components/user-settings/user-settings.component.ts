@@ -64,4 +64,11 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this._themeService.changeThemeClass("default");
   }
 
+  public removeCourse(course: Course) {
+    delete this.userInfo.courses[course.id];
+
+    this._af.object(`UserInfo/${this.userInfo.UID}`)
+      .update(this.userInfo)
+  }
+
 }
