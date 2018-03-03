@@ -5,6 +5,7 @@ import { LectureEditorComponent } from './components/lecture-editor/lecture-edit
 import { AnnouncementsCardComponent } from './components/announcements-card/announcements-card.component';
 import { TemploginComponent } from './components/templogin/templogin.component';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'templogin',
     component: TemploginComponent
+  },
+  {
+    path: 'settings',
+    component: UserSettingsComponent
   }
 ];
 
