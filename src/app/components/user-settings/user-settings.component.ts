@@ -49,6 +49,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
         if (this.userInfo && this.userInfo.courses) {
           this._af.list("Courses/").valueChanges()
             .subscribe((allCourses: Course[]) => {
+              console.log('pulled courses');
               this.myCourses = []
               allCourses.forEach((course: Course) => {
                 // Push to list if the user has this course
@@ -69,13 +70,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   }
 
   public removeCourse(course: Course) {
-    delete this.userInfo.courses[course.id];
-
-    this._af.object(`UserInfo/${this.userInfo.UID}`)
-      .update(this.userInfo)
-  }
-
-  public testDialog() {
     const closeButton: DialogButton = {
       text: "CLOSE",
       icon: 'close',
@@ -91,14 +85,18 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
 
     const dialogOptions: DialogOptions = {
       title: 'Delete Account',
-      message: 'Are you sure you want to do this? This action cannot be undone.',
+      message: 'Are you sure you want to drop ' + course.title + '? This action cannot be undone.',
       type: 'danger',
-      buttons: [ confirmButton, closeButton ]
+      buttons: [confirmButton, closeButton]
     }
 
-    this._dialogsService.openMessageDialog(dialogOptions)
+    let dialog = this._dialogsService.openMessageDialog(dialogOptions)
       .subscribe((res: any) => {
-        console.log(res);
+        if (res === true) {
+          delete this.userInfo.courses[course.id];
+          this._af.object(`UserInfo/${this.userInfo.UID}`)
+            .update(this.userInfo)
+        }
       })
   }
 
