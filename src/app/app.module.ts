@@ -51,6 +51,7 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
 import { TemploginComponent } from './components/templogin/templogin.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
+import { QuizzesService } from './quizzes.service';
 
 
 @NgModule({
@@ -96,7 +97,7 @@ import { FileDropDirective } from './directives/file-drop/file-drop.directive';
   exports: [
     DialogComponent,
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService],
+  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService],
   entryComponents: [
     DialogComponent,
   ],
