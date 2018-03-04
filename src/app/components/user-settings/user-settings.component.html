@@ -116,7 +116,7 @@
             <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
               <button mat-button color="warn" (click)="testDialog()">
                 <mat-icon>delete_forever</mat-icon>
-                <span>DELTE ACCOUNT</span>
+                <span>DELETE ACCOUNT</span>
               </button>
             </div>
           </div>
@@ -141,7 +141,7 @@
               <mat-icon mat-list-icon *ngIf="course.instructor == userInfo.UID" class="dark-grey-text">star</mat-icon>
               <mat-icon mat-list-icon *ngIf="course.instructor != userInfo.UID" class="dark-grey-text">assignment</mat-icon>
               <h3 mat-line>{{course.title}}</h3>
-              <p mat-line class="grey-text"> {{course.id}}</p>
+              <p mat-line class="grey-text">ID: {{course.id}}</p>
               <button mat-icon-button color="warn" (click)="removeCourse(course)">
                 <mat-icon>delete</mat-icon>
               </button>

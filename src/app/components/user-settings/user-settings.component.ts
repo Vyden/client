@@ -46,8 +46,10 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this._authService.currentUserObservable
       .subscribe((user: any) => {
         // Allows page access only if the user is logged in
-        this._authService.checkLogin()
-        this.authState = user
+        if (!user)
+          this._authService.checkLogin()
+        else
+          this.authState = user
       })
 
     /* Subscribe to user info */
@@ -68,6 +70,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
                 }
               })
             })
+
         }
       })
 
@@ -76,7 +79,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe((text: string) => {
-        if(!text) return
+        if (!text) return
         this.userInfo.fullName = text
         this.showNameProgress = false
         // Update info in firebase
