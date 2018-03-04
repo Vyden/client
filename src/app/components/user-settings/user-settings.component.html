@@ -4,7 +4,7 @@
   <div class="split-top-color bg-theme-secondary-darker"></div>
 </div>
 
-<div class="container content-container p-0 indigo-theme" *ngIf="userInfo">
+<div class="container content-container p-0 indigo-theme" *ngIf="userInfo && authState">
 
   <!-- Spacer div -->
   <div class="row" style="margin-top: 3rem"></div>
@@ -113,7 +113,7 @@
               <span class="field-label">Delete Account</span>
             </div>
             <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
-              <button mat-button color="warn">
+              <button mat-button color="warn" (click)="testDialog()">
                 <mat-icon>delete_forever</mat-icon>
                 <span>DELTE ACCOUNT</span>
               </button>

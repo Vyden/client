@@ -1,3 +1,32 @@
-<p>
-  message-dialog works!
-</p>
+<mat-card class="no-shadow p-0">
+  <mat-card-title *ngIf="dialogOptions.title" class="text-center pt-2 pb-2" [ngClass]="{'text-danger': dialogOptions.type=='danger', 'text-info': dialogOptions.type=='info'}">
+    {{dialogOptions.title}}
+  </mat-card-title>
+
+  <mat-card-content>
+    <div *ngIf="dialogOptions.type=='danger'" class="row danger-message">
+      <div class="col-1 p-0 pt-2 pb-2 text-center align-self-center" style="width: 50px">
+        <mat-icon class="text-danger mt-1">warning</mat-icon>
+      </div>
+      <div class="col align-self-center text-danger font-weight-bold">{{dialogOptions.message}}</div>
+    </div>
+
+    <div *ngIf="dialogOptions.type=='info'" class="row info-message">
+      <div class="col-1 p-0 pt-2 pb-2 text-center align-self-center" style="width: 50px">
+        <mat-icon class="text-info mt-1">info</mat-icon>
+      </div>
+      <div class="col align-self-center text-info font-weight-bold">{{dialogOptions.message}}</div>
+    </div>
+
+    <div *ngIf="dialogOptions.type=='default'" class="row">
+      <div class="col align-self-center">{{dialogOptions.message}}</div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions *ngIf="dialogOptions.buttons" class="text-center pt-2 pb-2">
+    <button *ngFor="let dialogButton of dialogOptions.buttons" mat-button [color]="dialogButton.color" (click)="close(dialogButton.returnValue)">
+      <mat-icon *ngIf="dialogButton.icon">{{dialogButton.icon}}</mat-icon>
+      <span>{{dialogButton.text}}</span>
+    </button>
+  </mat-card-actions>
+</mat-card>
