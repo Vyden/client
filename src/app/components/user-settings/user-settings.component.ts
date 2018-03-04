@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
+/* rxjs */
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/debounceTime';
+
 /* Models */
 import { UserInfo } from '../../models/userInfo';
 import { Course } from '../../models/course';
@@ -24,6 +28,12 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   public userInfo: UserInfo
   public authState: any
   public myCourses: Course[]
+
+  /* Models */
+  public fullnameModel: Subject<string> = new Subject<string>()
+
+  /* Progress data */
+  public showNameProgress: boolean
 
   constructor(private _authService: AuthService,
     private _classesService: ClassesService,
@@ -60,6 +70,19 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
             })
         }
       })
+
+    /* Listen to changes in fullname model */
+    this.fullnameModel
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe((text: string) => {
+        if(!text) return
+        this.userInfo.fullName = text
+        this.showNameProgress = false
+        // Update info in firebase
+        this._af.object("UserInfo/" + this.userInfo.UID)
+          .update(this.userInfo)
+      });
 
     /* Change to indigo theme for this page */
     this._themeService.changeThemeClass("indigo");
@@ -98,6 +121,11 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
             .update(this.userInfo)
         }
       })
+  }
+
+  /* Model change callbacks */
+  public fullnameChanged(text: string) {
+    this.fullnameModel.next(text)
   }
 
 }
