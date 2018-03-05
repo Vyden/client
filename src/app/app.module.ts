@@ -52,9 +52,11 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
 import { TemploginComponent } from './components/templogin/templogin.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
+import { QuizzesService } from './services/quizzes/quizzes.service';
+
 import { FilterCoursesPipe } from './directives/filter-courses.pipe';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
-import { AnnouncementPanelComponent } from './app/announcement-panel/announcement-panel.component';
+import { AnnouncementPanelComponent } from '../app/components/announcement-panel/announcement-panel.component';
 
 @NgModule({
   declarations: [
@@ -101,10 +103,7 @@ import { AnnouncementPanelComponent } from './app/announcement-panel/announcemen
   exports: [
     DialogComponent,
   ],
-  providers: [
-    ConfirmDeactivateGuard, NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, 
-    AuthService, DialogsService, UploadService, CreateCourseService
-  ],
+  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService],
   entryComponents: [
     DialogComponent,
   ],

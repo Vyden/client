@@ -9,9 +9,7 @@ import { FilterOptions } from '../../models/filter-options';
 @Injectable()
 export class ClassesService {
 
-  //Active class is a string array
-  //First element in activeClassSource is courseID
-  //Second element in activeClassSource is course name
+  //Active course is a course object with the active course
   private activeCourseSource = new BehaviorSubject<Course>(null);
   public activeCourse = this.activeCourseSource.asObservable();
 
@@ -46,9 +44,11 @@ export class ClassesService {
           this._firebase.list('Courses/' + courseID + '/students/' + this.userInfo.UID).push('Firebase is cancer');
         } else {
           alert('Already enrolled in course');
+          console.log('fix message');
         }
       } else {
         alert('Invalid course ID');
+        console.log('fix message');
       }
       courseSub.unsubscribe();
     });
