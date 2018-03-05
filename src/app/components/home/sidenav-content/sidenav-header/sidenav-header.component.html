@@ -1,41 +1,36 @@
 <!-- sidebar header -->
 <div *ngIf="defaultHeader; else classInput">
-  <mat-toolbar color="primary" id="sidenav-header" [ngClass]="themeClass">
-    <span class="example-fill-remaining-space"></span>
-    <h2 class="header-title"  [@enterAnimation] [ngClass]="{'transition':!defaultHeader}">COURSES</h2>
-    <button mat-icon-button
-                class="bg-theme-secondary"
-                (click)="toggleHeaderContent()"
-                [@enterAnimation]
-                (mouseenter)="hover = true"
-                (mouseleave)="hover = false"
-                [ngClass]="hover ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
-      <mat-icon>add</mat-icon>
-    </button>
-  </mat-toolbar>
+  <div class="row m-0 p-0 bg-cyan white-text" style="height: 60px" [ngClass]="themeClass">
+    <div class="col-3 text-left align-self-center">
+      <button mat-icon-button (click)="openFilterDialog()">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
+    <div class="col-6 text-center align-self-center">
+      <h2 class="header-title m-0" [@enterAnimation] [ngClass]="{'transition':!defaultHeader}">COURSES</h2>
+    </div>
+    <div class="col-3 text-right align-self-center">
+      <button mat-icon-button class="bg-theme-secondary" (click)="toggleHeaderContent()" [@enterAnimation] (mouseenter)="hover = true"
+        (mouseleave)="hover = false" [ngClass]="hover ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- Class input -->
-<ng-template #classInput >
+<ng-template #classInput>
   <mat-toolbar class="p-2" color="primary" id="sidenav-header-input" [ngClass]="themeClass">
-    <form  action=""
-              class="row rounded mat-elevation-z1"
-              id="header-input-form"
-              [@enterAnimation]
-              (keypress)="isEnter($event)">
-            <button mat-icon-button class="col-1 rounded p-0 min-width-50" (click)="toggleHeaderContent()">
-                <mat-icon class="black-text">arrow_back</mat-icon>
-            </button>
-            <div class="col black-text p-0">
-                <input id="class-code-input" type="text" class="input-alternate p-0" placeholder="Enter class code..."/>
-            </div>
-            <button mat-icon-button
-                type="submit"
-                form="header-input-form"
-                class="col-1 rounded p-0 min-width-50"
-                (click)="addCourse()">
-                <mat-icon class="black-text">add</mat-icon>
-            </button>
+    <form action="" class="row rounded mat-elevation-z1" id="header-input-form" [@enterAnimation] (keypress)="isEnter($event)">
+      <button mat-icon-button class="col-1 rounded p-0 min-width-50" (click)="toggleHeaderContent()">
+        <mat-icon class="black-text">arrow_back</mat-icon>
+      </button>
+      <div class="col black-text p-0">
+        <input id="class-code-input" type="text" class="input-alternate p-0" placeholder="Enter class code..." />
+      </div>
+      <button mat-icon-button type="submit" form="header-input-form" class="col-1 rounded p-0 min-width-50" (click)="addCourse()">
+        <mat-icon class="black-text">add</mat-icon>
+      </button>
     </form>
   </mat-toolbar>
 </ng-template>

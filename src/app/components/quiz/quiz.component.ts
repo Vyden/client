@@ -5,6 +5,9 @@ import { Quiz } from '../../models/quiz';
 import { QuizItem } from '../../models/quizItem';
 import { ItemType, TimelineItem } from '../../models/timelineItem';
 import { FocusOnCreateDirective } from '../../directives/focus-on-create/focus-on-create.directive';
+import { ClassesService } from '../../services/classes/classes.service';
+import { Course } from '../../models/course';
+import { Lecture } from '../../models/lecture';
 
 @Component({
   selector: 'app-quiz',
@@ -14,25 +17,52 @@ import { FocusOnCreateDirective } from '../../directives/focus-on-create/focus-o
 export class QuizComponent implements OnInit {
 
   @Input() lectureTime: number
-
+  
+  public currentCourse: Course
+  public currentLectureId: string
   public currentQuiz: Quiz
+  public quizItem: QuizItem
 
   public quizMM: number
   public quizSS: number
   public quizStartTime: number
   public quizName: string
   public newQuizMode: boolean
+  public unsavedWork: boolean
+  public editMode: boolean
 
-  constructor(private _lectureEditorService: LectureEditorService) { }
+  constructor(private _lectureEditorService: LectureEditorService,
+    private _classesService: ClassesService) { }
 
   ngOnInit() {
+    // subscribe to course changes
+    this._classesService.activeCourse
+      .subscribe((course: Course) => {
+        this.currentCourse = course
+      })
+
+    // Subscribe to lecture changes
+    this._lectureEditorService.currentLectureId
+      .subscribe((lectureId: string) => {
+        this.currentLectureId = lectureId
+      })
+
+    // Subscribe to edit quiz messages
+    this._lectureEditorService.currentEditQuiz
+      .subscribe((quizEditElements: [QuizItem, Quiz]) => {
+        if(!quizEditElements[0]) return
+
+        this.setEditQuiz(quizEditElements[0], quizEditElements[1])
+      })
   }
 
   public initQuiz() {
+    this.unsavedWork = true
+    this.editMode = false
+
     this.currentQuiz = new Quiz()
-    this.currentQuiz.course = "Test course"
     this.currentQuiz.correct = 0
-    
+
     this.quizName = "New Quiz"
     this.newQuizMode = true
     this.currentQuiz.answers = [null]
@@ -42,13 +72,13 @@ export class QuizComponent implements OnInit {
   }
 
   public addQuizOption() {
-    if(this.currentQuiz.answers.length === 5) return
+    if (this.currentQuiz.answers.length === 5) return
     this.currentQuiz.answers.push(null)
   }
 
   public removeQuizOption(index: number) {
-    if(index-1 < 0) this.currentQuiz.correct = 0
-    else if (index == this.currentQuiz.answers.length - 1) --this.currentQuiz.correct
+    if (index - 1 < 0) this.currentQuiz.correct = 0
+    else if (index == this.currentQuiz.answers.length - 1)--this.currentQuiz.correct
 
     this.currentQuiz.answers.splice(index, 1)
   }
@@ -65,23 +95,39 @@ export class QuizComponent implements OnInit {
   }
 
   public finishQuiz() {
-    const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz)
+    this.currentQuiz.course = this.currentCourse.id
+    this.currentQuiz.question = this.quizName
+    const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz, this.editMode)
     console.log('key: ', $key);
 
-    const quizItem: TimelineItem = new QuizItem()
-    quizItem.lecture = "LECTUREID CHANGE THIS"
-    quizItem.eventTime = this.quizStartTime
-    quizItem.name = this.quizName
-    quizItem.type = ItemType.QUIZ
-    quizItem.resource = $key
+    if(!this.editMode) {
+      this.quizItem = new QuizItem()
+      this.quizItem.lecture = this.currentLectureId
+      this.quizItem.eventTime = this.quizStartTime
+      this.quizItem.name = this.quizName
+      this.quizItem.type = ItemType.QUIZ
+      this.quizItem.resource = $key
+    }
 
-    // this._lectureEditorService.addTimelineItem(quizItem)
-    this._lectureEditorService.publishTimelineItem(quizItem)
+    this._lectureEditorService.publishTimelineItem(this.quizItem, this.editMode)
     this.newQuizMode = false
+    this.unsavedWork = false
   }
 
   public trackByIndex(index: number, value: number) {
     return index;
+  }
+
+  public setEditQuiz(quizItem: TimelineItem, quiz: Quiz) {
+    this.quizItem = quizItem
+    
+    this.editMode = true
+    this.newQuizMode = true
+    
+    this.unsavedWork = true
+    this.currentQuiz = quiz
+    this.quizName = quiz.question
+    this.calculateQuizTimeSlider({value: quizItem.eventTime})
   }
 
 }

@@ -9,13 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { DialogsModule } from './modules/dialogs/dialogs.module';
 import { environment } from '../environments/environment';
 
 /* Angular Material Modules */
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule, MatProgressSpinnerModule, MatDialogModule
+  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule
 } from '@angular/material';
 
 /* Services */
@@ -51,8 +52,11 @@ import { TimelineItemDirective } from './directives/timeline-item/timeline-item.
 import { TemploginComponent } from './components/templogin/templogin.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
-import { QuizzesService } from './quizzes.service';
+import { QuizzesService } from './services/quizzes/quizzes.service';
 
+import { FilterCoursesPipe } from './directives/filter-courses.pipe';
+import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
+import { AnnouncementPanelComponent } from '../app/components/announcement-panel/announcement-panel.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +81,9 @@ import { QuizzesService } from './quizzes.service';
     TimelineComponent,
     TemploginComponent,
     FileDropDirective,
-    DialogComponent
+    DialogComponent,
+    FilterCoursesPipe,
+    AnnouncementPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -85,19 +91,19 @@ import { QuizzesService } from './quizzes.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    DialogsModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-
-    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule
+    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule
   ],
   exports: [
     DialogComponent,
   ],
-  providers: [NavbarService, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService],
+  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService],
   entryComponents: [
     DialogComponent,
   ],

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Lecture } from '../../models/lecture';
 import { ClassesService } from '../classes/classes.service';
 import { Course } from '../../models/course';
+import { QuizItem } from '../../models/quizItem';
 
 @Injectable()
 export class LectureEditorService {
@@ -23,6 +24,10 @@ export class LectureEditorService {
   private timelineItems: TimelineItem[]
   private timelineItemsSource = new BehaviorSubject<TimelineItem[]>([])
   public currentTimelineItems = this.timelineItemsSource.asObservable()
+
+  // Edit quiz
+  private editQuizSource = new BehaviorSubject<[QuizItem, Quiz]>([null, null])
+  public currentEditQuiz = this.editQuizSource.asObservable()
 
   constructor(private _firebase: AngularFireDatabase, private _classesService: ClassesService) {
     // Subscribe to changes in timelineitem array
@@ -45,14 +50,7 @@ export class LectureEditorService {
       })
   }
 
-  public publishLecture(title: string): string {
-    const newLecture: Lecture = {
-      course: this.currentCourseId,
-      title: title,
-      timeline: [],
-      date: new Date(),
-      sky: "#E0F7FA"
-    }
+  public publishLecture(newLecture: Lecture): string {
 
     const key: string = this._firebase.list(`Courses/${this.currentCourseId}/lectures`)
       .push(newLecture)
@@ -83,21 +81,66 @@ export class LectureEditorService {
     this.changeTimelineItems([])
   }
 
-  public publishQuiz(quiz: Quiz): string {
-    return this._firebase.list(`Courses/${this.currentCourseId}/quizzes`)
-      .push(quiz)
-      .key
+  public publishQuiz(quiz: Quiz, editMode?: boolean): string {
+    let $key
+
+    if (editMode) {
+      console.log('edit mode: ', quiz);
+      this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${quiz.id}`)
+        .set(quiz)
+
+      $key = quiz.id
+    } else {
+      $key = this._firebase.list(`Courses/${this.currentCourseId}/quizzes`)
+        .push(quiz)
+        .key
+
+      this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${$key}`)
+        .update({ id: $key })
+    }
+
+
+    return $key
   }
 
-  public publishTimelineItem(timelineItem: TimelineItem): string {
-    console.log('PUSHING QUIZ to ' + `Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/`);
-    return this._firebase.list(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/`)
-      .push(timelineItem)
-      .key
+  public publishTimelineItem(timelineItem: TimelineItem, editMode?: boolean): string {
+    let $key
+
+    if (editMode) {
+      console.log('edit mode: ', timelineItem);
+      this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/${timelineItem.id}`)
+        .set(timelineItem)
+
+      $key = timelineItem.id
+    } else {
+      $key = this._firebase.list(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/`)
+        .push(timelineItem)
+        .key
+
+      this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/${$key}`)
+        .update({ id: $key })
+    }
+
+    return $key
   }
 
   public getFirebaseTimelineItems(): Observable<TimelineItem[]> {
     return this._firebase.list<TimelineItem>(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline`).valueChanges()
+  }
+
+  public changeEditQuiz(editQuizElements: [QuizItem, Quiz]) {
+    if(!editQuizElements[0]) return
+
+    console.log(editQuizElements);
+    this.editQuizSource.next(editQuizElements)
+  }
+
+  public deleteQuiz(item: QuizItem, quiz: Quiz) {
+    this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}/timeline/${item.id}`)
+      .set(null)
+
+    this._firebase.object(`Courses/${this.currentCourseId}/quizzes/${quiz.id}`)
+      .set(null)
   }
 
 }

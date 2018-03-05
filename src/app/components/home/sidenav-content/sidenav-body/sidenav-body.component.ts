@@ -6,6 +6,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '../../../../models/userInfo';
 import { Course } from '../../../../models/course';
 import { Subscription } from 'rxjs/Subscription';
+import { FilterCoursesPipe } from '../../../../directives/filter-courses.pipe';
+
 
 @Component({
   selector: 'app-sidenav-body',
@@ -21,6 +23,8 @@ export class SidenavBodyComponent implements OnInit {
   public userInfo: UserInfo;
   public courses: Course[] = [];
   private authSub: Subscription;
+  public currentCourse: Course;
+  public courseCheck: boolean[] = [];
 
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
@@ -51,7 +55,21 @@ export class SidenavBodyComponent implements OnInit {
             }
           });
         })
+
+        console.log(this.courses);
       });
+
+      
+
+      this._classesService.activeCourse
+    .subscribe((currentCourse: Course) => {
+      this.currentCourse = currentCourse
+      if(currentCourse){
+        console.log("currentCourse is " + this.currentCourse.instructor);
+        console.log("userinfo is " + this.userInfo.UID);
+      }
+      
+    })
   }
 
   //Takes index of button as parameter

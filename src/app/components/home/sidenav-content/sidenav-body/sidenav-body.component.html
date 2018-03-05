@@ -2,7 +2,7 @@
 <section id="sidenav-body" class="mt-3" [ngClass]="themeClass" class="text-center">
 
     <div  *ngIf="courses.length > 0; else noClassesText">
-      <div class="row m-3" *ngFor="let course of courses; let i = index">
+      <div class="row m-3" *ngFor="let course of courses | filterCourses; let i = index">
         <div class="col">
           <button
             data-id="{{i}}"
@@ -10,9 +10,14 @@
             (mouseenter)="hover[i] = true"
             (mouseleave)="hover[i] = false"
             [style.backgroundColor]="hover[i] ? getButtonColor(i): 'transparent'"
+            [ngClass]="{'mat-elevation-z8': hover[i]}"
             class="class-button white-text text-left no-hover"
             (click)="navigateToCourse(i)">
-            <mat-icon class="mr-2">class</mat-icon>
+            <mat-icon *ngIf="course.instructor === userInfo.UID; else bookIcon" class="mr-2">star_rate</mat-icon>
+            <ng-template #bookIcon>
+              <mat-icon  class="mr-2">class</mat-icon>
+            </ng-template>
+            
             {{ course['title'] }}
           </button>
         </div>

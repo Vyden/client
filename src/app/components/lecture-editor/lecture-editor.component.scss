@@ -34,6 +34,24 @@ mat-icon.icon-xxl {
     /* IE6-9 */
 }
 
+.description-textarea {
+    max-width: 600px;
+}
+
+.title-card {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+54,ab47bc+100 */
+    background: #ffffff;
+}
+
+.lecture-title-input {
+    max-width: 600px;
+    text-align: center;
+    input {
+        font-size: 2em;
+        font-weight: 400;
+    }
+}
+
 .video-upload-footer {
     background: url('../../../assets/img/vyden-waves.png');
     height: 50px;

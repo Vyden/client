@@ -22,7 +22,7 @@
         class="white-text text-left no-hover"
         (mouseenter)="hover[1] = true"
         (mouseleave)="hover[1] = false"
-        [ngClass]="hover[1] ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        [ngClass]="hover[1] ? 'mat-elevation-z8 bg-theme-secondary-darker': 'bg-theme-secondary'">
         <mat-icon class="mr-2">star</mat-icon>
         Announcements
       </button>
@@ -37,7 +37,7 @@
         class="white-text text-left no-hover"
         (mouseenter)="hover[2] = true"
         (mouseleave)="hover[2] = false"
-        [ngClass]="hover[2] ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        [ngClass]="hover[2] ? 'mat-elevation-z8 bg-theme-secondary-darker': 'bg-theme-secondary'">
         <mat-icon class="mr-2">view_list</mat-icon>
         Lectures
       </button>
@@ -52,7 +52,7 @@
         class="white-text text-left no-hover"
         (mouseenter)="hover[3] = true"
         (mouseleave)="hover[3] = false"
-        [ngClass]="hover[3] ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        [ngClass]="hover[3] ? 'mat-elevation-z8 bg-theme-secondary-darker': 'bg-theme-secondary'">
         <mat-icon class="mr-2">lightbulb_outline</mat-icon>
         Quizzes
       </button>
@@ -67,7 +67,7 @@
         class="white-text text-left no-hover"
         (mouseenter)="hover[4] = true"
         (mouseleave)="hover[4] = false"
-        [ngClass]="hover[4] ? 'material-red-darker': 'material-red'"
+        [ngClass]="hover[4] ? 'mat-elevation-z8 material-red-darker': 'material-red'"
         (click)="removeCourse()">
         <mat-icon class="mr-2">delete</mat-icon>
         Remove Course

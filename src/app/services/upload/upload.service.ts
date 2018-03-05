@@ -4,6 +4,9 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpParams, HttpErrorResponse, Ht
 @Injectable()
 export class UploadService {
 
+  private uploadUrl: string = 'http://indy.science/uploadVideo'
+  // private uploadUrl: string = 'http://localhost:5000/upload'
+
   constructor(private _httpClient: HttpClient) { }
 
   public uploadVideoFile(videoFile: File) {
@@ -20,7 +23,7 @@ export class UploadService {
       // withCredentials: true,
     }
 
-    const req = new HttpRequest('POST', 'http://indy.science/uploadVideo', formData, options);
+    const req = new HttpRequest('POST', this.uploadUrl, formData, options);
 
     return this._httpClient.request(req)
   }

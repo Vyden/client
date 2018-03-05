@@ -58,7 +58,7 @@ export class AuthService {
 
         this.authState = user
       })
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
   }
 
   public loginUserEmail(email: string, password: string) {
@@ -66,7 +66,7 @@ export class AuthService {
       .then(user => {
         this.authState = user
       })
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
   }
 
   public changeUserInfo(newUserInfo: UserInfo) {
@@ -82,7 +82,12 @@ export class AuthService {
 
   public logout() {
     this._afAuth.auth.signOut()
+    this.clearLocalStorage()
     this._router.navigate(['templogin'])
+  }
+
+  private clearLocalStorage() {
+    localStorage.removeItem('filter')
   }
 
 }

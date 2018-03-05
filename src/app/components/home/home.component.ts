@@ -6,6 +6,8 @@ import { MatSidenav } from '@angular/material';
 import { CardBoilerplateComponent } from '../card-boilerplate/card-boilerplate.component';
 import { ThemeService } from '../../services/theme/theme.service';
 import { ActivatedRoute } from '@angular/router';
+import { ClassesService } from '../../services/classes/classes.service';
+import { FilterOptions } from '../../models/filter-options';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(private _breakpointsService: BreakpointsService,
     private _navbarService: NavbarService,
     private _themeService: ThemeService,
-    private _activatedRoute: ActivatedRoute) {
+    private _activatedRoute: ActivatedRoute,
+    private _classesService: ClassesService) {
     this.sidenavMode = "side"
 
     /* Listen for breakpoint changes */
@@ -51,7 +54,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this._navbarService.changeLeftSidenav(this.sidenav);
-		this._themeService.changeThemeClass("default");
+    this._themeService.changeThemeClass("default");
+    
+    // If the filter does not exist in localstorage, put a new one there
+    if(!localStorage.getItem('filter')) {
+      this._classesService.changeFilter(new FilterOptions())
+    } else {
+      const filter: FilterOptions = JSON.parse(localStorage.getItem('filter'))
+      this._classesService.changeFilter(filter)
+    }
   }
 
 }
