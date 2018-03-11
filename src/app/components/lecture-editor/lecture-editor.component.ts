@@ -35,6 +35,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public lectureName: string
   public lectureDescription: string
   public timelineItems: Observable<TimelineItem[]>
+  public skyboxType: "image" | "color"
 
   /* Dropzone data */
   public showDropBox: boolean
@@ -60,6 +61,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     this.lectureEndTime = 3000
     this.showDropBox = true
     this.lectureName = "New Lecture"
+    this.skyboxType = "color"
   }
 
   ngOnInit() {

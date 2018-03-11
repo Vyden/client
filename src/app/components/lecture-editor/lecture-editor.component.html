@@ -99,6 +99,41 @@
               </mat-form-field>
             </div>
           </div>
+
+          <div class="row mt-4">
+            <div class="col text-center">
+              <span class="form-label">Skysphere:</span>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col m-0 p-0">
+              <mat-radio-group class="skybox-radio-group w-100" [(ngModel)]="skyboxType">
+                <div class="row m-0 p-0">
+                  <div class="col-1 m-0 p-0 align-self-center" style="width: 50px">
+                    <mat-radio-button value="image"></mat-radio-button>
+                  </div>
+                  <div class="col p-0 m-0 align-self-center">
+                    <mat-form-field class="w-100">
+                      <input matInput placeholder="Skybox URL">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row m-0 p-0">
+                  <div class="col-1 m-0 p-0 align-self-center" style="width: 50px">
+                    <mat-radio-button value="color"></mat-radio-button>
+                  </div>
+                  <div class="col p-0 m-0 align-self-center">
+                    <mat-form-field class="w-100">
+                      <input matInput placeholder="Hex code">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-radio-group>
+            </div>
+          </div>
+
         </mat-card-content>
       </mat-card>
     </div>
@@ -126,7 +161,7 @@
     <div class="col m-0 p-0">
       <mat-card class="diffused-shadow">
         <mat-card-title>
-          <h2 class="text-center" style="font-weight: 400">Step 5: Publish Lecture</h2>
+          <h2 class="text-center" style="font-weight: 400">Step 6: Publish Lecture</h2>
         </mat-card-title>
 
         <mat-card-content class="text-center pt-4 pb-4">
