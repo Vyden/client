@@ -10,6 +10,7 @@ import {
 } from '@angular/material';
 
 import { CourseFilterDialogComponent } from '../../components/course-filter-dialog/course-filter-dialog.component';
+import { MessageDialogComponent } from '../../components/message-dialog/message-dialog.component';
 
 @NgModule({
   imports: [
@@ -20,10 +21,10 @@ import { CourseFilterDialogComponent } from '../../components/course-filter-dial
     MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule
   ],
   declarations: [
-    CourseFilterDialogComponent
+    CourseFilterDialogComponent, MessageDialogComponent
   ],
   entryComponents: [
-    CourseFilterDialogComponent
+    CourseFilterDialogComponent, MessageDialogComponent
   ]
 })
 export class DialogsModule { }
