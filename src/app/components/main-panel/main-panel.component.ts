@@ -126,7 +126,6 @@ export class MainPanelComponent implements OnInit {
   }
 
   getName(): string{
-    // console.log("instruct name is " +this.instructName);
     return this.instructName;
   }
 
@@ -140,12 +139,9 @@ export class MainPanelComponent implements OnInit {
       let instructorName = this._firebase.object(`UserInfo/${res}/fullName`).valueChanges();
 
        instructorName.subscribe(res => {
-          // console.log("res is " + res);
           returnName = res;
-          // console.log("returnName is " + returnName)
           this.instructName = String(res);
-          // console.log("this instructName is " + this.instructName);
-          // this.instructName = res;
+         
         } )
 
         return returnName;
