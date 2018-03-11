@@ -115,7 +115,7 @@
                   </div>
                   <div class="col p-0 m-0 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput placeholder="Skybox URL">
+                      <input matInput placeholder="Skybox URL" [disabled]="skyboxType!='image'">
                     </mat-form-field>
                   </div>
                 </div>
@@ -126,7 +126,7 @@
                   </div>
                   <div class="col p-0 m-0 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput placeholder="Hex code">
+                      <input matInput placeholder="Hex code" [disabled]="skyboxType!='color'">
                     </mat-form-field>
                   </div>
                 </div>
