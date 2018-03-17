@@ -23,10 +23,9 @@ export class ModelEditorComponent implements OnInit {
   /* Dropzone data */
   public showDropBox: boolean
   public dropzoneActive: boolean
-  public videoActive: boolean
+  public modelActive: boolean
   public showUploadProgress: boolean
   public uploadProgress: number
-  public videoName: string
 
   constructor(private _uploadService: UploadService) {
     this.modelMM = 0
@@ -66,19 +65,19 @@ export class ModelEditorComponent implements OnInit {
     // Create lecture object
 
     this.uploadProgress = 0
-    this.videoActive = false
+    this.modelActive = false
     this.showUploadProgress = true
     this.showDropBox = false
-    this.videoName = fileList[0].name
+    this.modelName = fileList[0].name
 
     // Rename file
     let blob = fileList[0].slice(0, -1, '.')
-    const videoFile: File = new File([blob], uuid(), { type: fileList[0].type })
-    console.log(videoFile.type);
+    const modelFile: File = new File([blob], uuid(), { type: fileList[0].type })
+    console.log(modelFile.type);
 
-    console.log(videoFile)
+    console.log(modelFile)
 
-    this._uploadService.uploadModelFile(videoFile)
+    this._uploadService.uploadModelFile(modelFile)
       .subscribe((event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
           // This is an upload progress event. Compute and show the % done:
@@ -87,14 +86,10 @@ export class ModelEditorComponent implements OnInit {
           console.log(`File is ${percentDone}% uploaded.`);
         } else if (event instanceof HttpResponse) {
           this.showUploadProgress = false
-
           console.log('File is completely uploaded!');
 
           this.showDropBox = false
-          this.videoActive = true
-          let vid = document.createElement('video');
-          const fileURL = URL.createObjectURL(videoFile);
-          vid.src = fileURL;
+          this.modelActive = true
           // this._lectureEditorService.publishTimelineItem(videoItem)
         }
       })
