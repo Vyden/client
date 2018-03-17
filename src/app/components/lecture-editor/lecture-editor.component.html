@@ -7,44 +7,6 @@
 
   <div class="row m-0">
     <div class="col m-0 p-0">
-      <mat-card class="title-card diffused-shadow">
-        <mat-card-title>
-          <h2 class="text-center" style="font-weight: 400">Lecture Name</h2>
-        </mat-card-title>
-
-        <mat-card-content class="text-center">
-          <div class="row m-0 p-0">
-            <div class="col m-0 p-0">
-              <mat-form-field class="lecture-title-input w-100" color="accent">
-                <input matInput name="lectureName" [(ngModel)]="lectureName">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row mt-4">
-            <div class="col text-center">
-              <span class="form-label">Lecture Description:</span>
-            </div>
-          </div>
-
-          <div class="row m-0 p-0">
-            <div class="col m-0 p-0">
-              <mat-form-field class="w-100 description-textarea" color="accent">
-                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="description" [(ngModel)]="lectureDescription"
-                  name="lectureDescription"></textarea>
-              </mat-form-field>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-  <!-- Spacer on desktop, invisible on mobile -->
-  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
-
-  <div class="row m-0">
-    <div class="col m-0 p-0">
       <mat-card class="upload-card diffused-shadow">
         <mat-card-title>
           <h2 class="white-text text-center" style="font-weight: 400">Step 1: Upload a video</h2>
@@ -99,6 +61,85 @@
   </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
+  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+
+  <div class="row m-0">
+    <div class="col m-0 p-0">
+      <mat-card class="title-card diffused-shadow">
+        <mat-card-title>
+          <h2 class="text-center" style="font-weight: 400">Step 2: Lecture Information</h2>
+        </mat-card-title>
+
+        <mat-card-content class="text-center">
+          <div class="row mt-4">
+            <div class="col text-center">
+              <span class="form-label">Lecture Name:</span>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col m-0 p-0">
+              <mat-form-field class="lecture-title-input w-100" color="accent">
+                <input matInput name="lectureName" [(ngModel)]="lectureName">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col text-center">
+              <span class="form-label">Lecture Description:</span>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col m-0 p-0">
+              <mat-form-field class="w-100 description-textarea" color="accent">
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="description" [(ngModel)]="lectureDescription"
+                  name="lectureDescription"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col text-center">
+              <span class="form-label">Skysphere:</span>
+            </div>
+          </div>
+
+          <div class="row m-0 p-0">
+            <div class="col m-0 p-0">
+              <mat-radio-group class="skybox-radio-group w-100" [(ngModel)]="skyboxType">
+                <div class="row m-0 p-0">
+                  <div class="col-1 m-0 p-0 align-self-center" style="width: 50px">
+                    <mat-radio-button value="image"></mat-radio-button>
+                  </div>
+                  <div class="col p-0 m-0 align-self-center">
+                    <mat-form-field class="w-100">
+                      <input matInput placeholder="Skybox URL" [disabled]="skyboxType!='image'">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row m-0 p-0">
+                  <div class="col-1 m-0 p-0 align-self-center" style="width: 50px">
+                    <mat-radio-button value="color"></mat-radio-button>
+                  </div>
+                  <div class="col p-0 m-0 align-self-center">
+                    <mat-form-field class="w-100">
+                      <input matInput placeholder="Hex code" [disabled]="skyboxType!='color'">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-radio-group>
+            </div>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Spacer on desktop, invisible on mobile -->
   <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
   <app-quiz *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-quiz>
@@ -120,7 +161,7 @@
     <div class="col m-0 p-0">
       <mat-card class="diffused-shadow">
         <mat-card-title>
-          <h2 class="text-center" style="font-weight: 400">Step 5: Publish Lecture</h2>
+          <h2 class="text-center" style="font-weight: 400">Step 6: Publish Lecture</h2>
         </mat-card-title>
 
         <mat-card-content class="text-center pt-4 pb-4">
