@@ -14,6 +14,7 @@ export class ModelEditorComponent implements OnInit {
   @Input() lectureTime: number
 
   public modelStartTime: number // Start time in seconds
+  public modelDuration: number
   public modelMM: number
   public modelSS: number
   public modelName: string
