@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ClassesService } from '../../services/classes/classes.service';
 import { DialogsService } from '../../services/dialogs/dialogs.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { PanelContentService } from '../../services/panel-content/panel-content.service';
 import { Course } from '../../models/course';
 import { Lecture } from '../../models/lecture';
 import { UserInfo } from '../../models/userInfo';
@@ -21,15 +22,17 @@ export class MainPanelComponent implements OnInit {
   public themeClass: string
   public userInfo: UserInfo
   public currentCourse: Course
+  public currentPanel: string
   
 
- 
+  dialogs
 
   constructor(private _themeService: ThemeService,
     private _authService: AuthService,
     private _firebase: AngularFireDatabase,
     private _classesService: ClassesService,
-    private _dialogsService: DialogsService
+    private _dialogsService: DialogsService,
+    private _panelContentService: PanelContentService
   ) { 
    
   }
@@ -59,13 +62,16 @@ export class MainPanelComponent implements OnInit {
     .subscribe((currentCourse: Course) => {
       this.currentCourse = currentCourse
       if(currentCourse){
-    
-        
-          
+ 
       }
+
     })
   
     
+    this._panelContentService.panelContent.subscribe((currentPanel: string) => {
+      this.currentPanel = currentPanel;
+      console.log(currentPanel);
+    })
     
   }
 

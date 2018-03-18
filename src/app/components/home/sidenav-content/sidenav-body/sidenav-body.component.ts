@@ -7,7 +7,7 @@ import { UserInfo } from '../../../../models/userInfo';
 import { Course } from '../../../../models/course';
 import { Subscription } from 'rxjs/Subscription';
 import { FilterCoursesPipe } from '../../../../directives/filter-courses.pipe';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav-body',
@@ -29,7 +29,8 @@ export class SidenavBodyComponent implements OnInit {
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
     private _authService: AuthService,
-    private _firebase: AngularFireDatabase) { }
+    private _firebase: AngularFireDatabase,
+    private _router: Router) { }
 
   ngOnInit() {
     /* Subscribe for theme changes */
@@ -55,21 +56,14 @@ export class SidenavBodyComponent implements OnInit {
             }
           });
         })
-
-        console.log(this.courses);
       });
 
-      
 
-      this._classesService.activeCourse
-    .subscribe((currentCourse: Course) => {
-      this.currentCourse = currentCourse
-      if(currentCourse){
-        console.log("currentCourse is " + this.currentCourse.instructor);
-        console.log("userinfo is " + this.userInfo.UID);
-      }
-      
-    })
+
+    this._classesService.activeCourse
+      .subscribe((currentCourse: Course) => {
+        this.currentCourse = currentCourse;
+      })
   }
 
   //Takes index of button as parameter
