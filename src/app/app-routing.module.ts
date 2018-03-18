@@ -6,6 +6,8 @@ import { AnnouncementsCardComponent } from './components/announcements-card/anno
 import { TemploginComponent } from './components/templogin/templogin.component';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { QuizPanelComponent } from './components/quiz-panel/quiz-panel.component';
+import { MainPanelComponent } from './components/main-panel/main-panel.component';
 
 const routes: Routes = [
   {
@@ -30,7 +32,11 @@ const routes: Routes = [
       },
       {
         path: 'announcements',
-        component: AnnouncementsCardComponent
+        component: MainPanelComponent
+      },
+      {
+        path: 'quizzes',
+        component: QuizPanelComponent
       }
     ]
   },

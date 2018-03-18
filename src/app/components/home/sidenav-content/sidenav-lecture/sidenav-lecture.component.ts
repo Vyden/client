@@ -6,6 +6,7 @@ import { AuthService } from '../../../../services/auth/auth.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '../../../../models/userInfo';
 import { Course } from '../../../../models/course';
+import { PanelContentService } from '../../../../services/panel-content/panel-content.service';
 
 @Component({
   selector: 'app-sidenav-lecture',
@@ -37,7 +38,8 @@ export class SidenavLectureComponent implements OnInit {
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
     private _authService: AuthService,
-    private _firebase: AngularFireDatabase) { }
+    private _firebase: AngularFireDatabase,
+    private _panelContent: PanelContentService) { }
 
   ngOnInit() {
     this._classesService.activeCourse.subscribe((activeCourse: Course) => {
@@ -53,7 +55,7 @@ export class SidenavLectureComponent implements OnInit {
     this._authService.currentUserInfo
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
-    })
+      })
   }
 
   backToCourses() {
@@ -64,5 +66,11 @@ export class SidenavLectureComponent implements OnInit {
   removeCourse() {
     this._classesService.removeCourse(this.activeCourse.id);
     this.backToCourses();
+  }
+
+  switchPanel(event: Event) {
+    const button = <HTMLButtonElement>event.target;
+    const panel = button.dataset.section;
+    this._panelContent.updatePanelContent(panel);
   }
 }
