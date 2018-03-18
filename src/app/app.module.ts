@@ -54,7 +54,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
 import { FilterCoursesPipe } from './directives/filter-courses.pipe';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
-import { AnnouncementPanelComponent } from './app/announcement-panel/announcement-panel.component';
+import { AnnouncementPanelComponent } from './components/announcement-panel/announcement-panel.component';
 
 @NgModule({
   declarations: [
