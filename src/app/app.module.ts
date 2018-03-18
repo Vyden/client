@@ -57,7 +57,8 @@ import { QuizzesService } from './services/quizzes/quizzes.service';
 import { FilterCoursesPipe } from './directives/filter-courses.pipe';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
-import { AnnouncementPanelComponent } from '../app/components/announcement-panel/announcement-panel.component';
+import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
+
 
 @NgModule({
   declarations: [
@@ -85,7 +86,7 @@ import { AnnouncementPanelComponent } from '../app/components/announcement-panel
     DialogComponent,
     FilterCoursesPipe,
     UserSettingsComponent,
-    AnnouncementPanelComponent
+    LectureCardComponent
   ],
   imports: [
     BrowserModule,
