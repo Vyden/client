@@ -101,11 +101,13 @@ export class LectureCardComponent implements OnInit {
   id : string
   onClickLecture(i){        
     this.selectList[i] = !this.selectList[i];
+    console.log('click index is ' + i);
   }
 
   onClickCancel(i){
     this.clickList[i] = true;
     this.selectList[i] = false;
+    
     setTimeout(() => {
       this.clickList[i] = false;
     }, 500);
