@@ -3,6 +3,7 @@ import { ThemeService } from '../../services/theme/theme.service';
 import { LecturesService } from '../../services/lectures/lectures.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ClassesService } from '../../services/classes/classes.service';
+import { DialogsService } from '../../services/dialogs/dialogs.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Course } from '../../models/course';
 import { Lecture } from '../../models/lecture';
@@ -28,6 +29,7 @@ export class MainPanelComponent implements OnInit {
     private _authService: AuthService,
     private _firebase: AngularFireDatabase,
     private _classesService: ClassesService,
+    private _dialogsService: DialogsService
   ) { 
    
   }
@@ -66,6 +68,17 @@ export class MainPanelComponent implements OnInit {
     
     
   }
+
+  openAnnouncement(){
+    this._dialogsService
+      .createAnnouncement()
+      .subscribe(res => {
+      
+        
+      });
+  
+  }
+
  
 
  

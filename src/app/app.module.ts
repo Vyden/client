@@ -58,6 +58,7 @@ import { FilterCoursesPipe } from './directives/filter-courses.pipe';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
+import { AnnouncementDialogComponent } from './components/announcement-dialog/announcement-dialog.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
     DialogComponent,
     FilterCoursesPipe,
     UserSettingsComponent,
-    LectureCardComponent
+    LectureCardComponent,
+    AnnouncementDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -105,10 +107,12 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
   ],
   exports: [
     DialogComponent,
+    AnnouncementDialogComponent
   ],
   providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService],
   entryComponents: [
     DialogComponent,
+    AnnouncementDialogComponent
   ],
   bootstrap: [AppComponent]
 })

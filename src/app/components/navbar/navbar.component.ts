@@ -73,7 +73,7 @@ export class NavbarComponent implements OnInit {
 
   public openDialog() {
     this._dialogsService
-      .confirm('Create new course', this.courseName, this.userInfo)
+      .createCourse('Create new course', this.courseName, this.userInfo)
       .subscribe(res => {
         this.result = res
        
