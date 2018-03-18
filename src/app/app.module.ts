@@ -61,6 +61,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 import { QuizPanelComponent } from './components/quiz-panel/quiz-panel.component';
 import { PanelContentService } from './services/panel-content/panel-content.service';
 import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
+import { AnnouncementDialogComponent } from './components/announcement-dialog/announcement-dialog.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,8 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
     DialogComponent,
     FilterCoursesPipe,
     UserSettingsComponent,
+    LectureCardComponent,
+    AnnouncementDialogComponent,
     // AnnouncementPanelComponent,
     QuizPanelComponent,
     LectureCardComponent
@@ -109,10 +112,12 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
   ],
   exports: [
     DialogComponent,
+    AnnouncementDialogComponent
   ],
   providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService],
   entryComponents: [
     DialogComponent,
+    AnnouncementDialogComponent
   ],
   bootstrap: [AppComponent]
 })

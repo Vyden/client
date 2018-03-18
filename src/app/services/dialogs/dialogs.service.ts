@@ -7,6 +7,7 @@ import { FilterOptions } from '../../models/filter-options';
 import { DialogOptions } from '../../models/dialogOptions';
 import { CourseFilterDialogComponent } from '../../components/course-filter-dialog/course-filter-dialog.component';
 import { MessageDialogComponent } from '../../components/message-dialog/message-dialog.component';
+import { AnnouncementDialogComponent } from '../../components/announcement-dialog/announcement-dialog.component';
 
 @Injectable()
 export class DialogsService {
@@ -16,7 +17,7 @@ export class DialogsService {
 
     public result: Observable<string>;
 
-    public confirm(title: string, message: string, userInfo: UserInfo): Observable<string> {
+    public createCourse(title: string, message: string, userInfo: UserInfo): Observable<string> {
 
         let dialogRef: MatDialogRef<DialogComponent>;
 
@@ -28,6 +29,16 @@ export class DialogsService {
         dialogRef.componentInstance.message = message;
         dialogRef.componentInstance.userInfo = userInfo;
 
+        return dialogRef.afterClosed();
+    }
+
+    public createAnnouncement(){
+        let dialogRef: MatDialogRef<AnnouncementDialogComponent>;
+
+        dialogRef = this.dialog.open(AnnouncementDialogComponent, {
+          
+        });
+            
         return dialogRef.afterClosed();
     }
 

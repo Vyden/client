@@ -12,7 +12,7 @@
             <h2 class="white-text text-center mt-4 mb-1">TITLE</h2>
           </div>
           <div class="col-md-4 col-xs-12 text-center">
-            <button mat-raised-button class="create-button text-center mt-4 mb-1">Create announcement</button>
+            <button mat-raised-button class="create-button text-center mt-4 mb-1" (click)="openAnnouncement()">Create announcement</button>
           </div>
         </div>
         <!-- div for search box -->
@@ -25,7 +25,13 @@
     <div class="row m-0">
       <div class="col m-0 p-0">
       <div class="classcontainer">
-        <app-announcements-card></app-announcements-card>
+        <app-announcements-card *ngIf="currentPanel === 'announcements' ; else lectureTemplate"></app-announcements-card>
+        <ng-template #lectureTemplate>
+          <app-lecture-card *ngIf="currentPanel === 'lectures'; else quizTemplate"></app-lecture-card>
+        </ng-template>
+        <ng-template #quizTemplate>
+          <app-quiz-panel></app-quiz-panel>
+        </ng-template>
       <!-- <app-lecture-card *ngIf="currentCourse"></app-lecture-card> -->
       </div>
       </div>
