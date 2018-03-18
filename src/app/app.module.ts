@@ -88,12 +88,9 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
     DialogComponent,
     FilterCoursesPipe,
     UserSettingsComponent,
-<<<<<<< HEAD
-    AnnouncementPanelComponent,
-    QuizPanelComponent
-=======
+    // AnnouncementPanelComponent,
+    QuizPanelComponent,
     LectureCardComponent
->>>>>>> c04fc864409717b813e40ccce4f6cf6d6a481c61
   ],
   imports: [
     BrowserModule,
