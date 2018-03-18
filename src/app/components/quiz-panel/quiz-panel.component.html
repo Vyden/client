@@ -1,3 +1,7 @@
-<p>
-  quiz-panel works!
-</p>
+<div *ngIf="isClassInstructor(); else studentPanel">
+  <app-quiz-instructor></app-quiz-instructor>
+</div>
+
+<ng-template #studentPanel>
+  <app-quiz-student></app-quiz-student>
+</ng-template>
