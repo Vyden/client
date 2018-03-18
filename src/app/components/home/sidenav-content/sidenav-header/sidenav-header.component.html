@@ -11,7 +11,8 @@
     </div>
     <div class="col-3 text-right align-self-center">
       <button mat-icon-button class="bg-theme-secondary" (click)="toggleHeaderContent()" [@enterAnimation] (mouseenter)="hover = true"
-        (mouseleave)="hover = false" [ngClass]="hover ? 'bg-theme-secondary-darker': 'bg-theme-secondary'">
+        (mouseleave)="hover = false" [ngClass]="hover ? 'bg-theme-secondary-darker': 'bg-theme-secondary'"
+        class="mat-elevation-z2">
         <mat-icon>add</mat-icon>
       </button>
     </div>

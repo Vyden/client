@@ -58,6 +58,8 @@ import { FilterCoursesPipe } from './directives/filter-courses.pipe';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { AnnouncementPanelComponent } from '../app/components/announcement-panel/announcement-panel.component';
+import { QuizPanelComponent } from './components/quiz-panel/quiz-panel.component';
+import { PanelContentService } from './services/panel-content/panel-content.service';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,8 @@ import { AnnouncementPanelComponent } from '../app/components/announcement-panel
     DialogComponent,
     FilterCoursesPipe,
     UserSettingsComponent,
-    AnnouncementPanelComponent
+    AnnouncementPanelComponent,
+    QuizPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +108,7 @@ import { AnnouncementPanelComponent } from '../app/components/announcement-panel
   exports: [
     DialogComponent,
   ],
-  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService],
+  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService],
   entryComponents: [
     DialogComponent,
   ],
