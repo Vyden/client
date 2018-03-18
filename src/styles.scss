@@ -24,3 +24,17 @@ button, a {
 .diffused-shadow {
     box-shadow: 0 1rem 8rem rgba( #000, .33 ) !important;
 }
+
+.input-style-cancel {
+    border-bottom: none;
+}
+
+input[type=text].input-style-cancel {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+input[type=password].input-style-cancel {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}

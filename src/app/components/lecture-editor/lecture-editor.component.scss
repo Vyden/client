@@ -79,6 +79,18 @@ mat-icon.icon-xxl {
     }
 }
 
+.skybox-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+.skybox-radio-button {
+    label {
+        width: 100%;
+    }
+}
+
 // https://philipwalton.github.io/solved-by-flexbox/demos/vertical-centering/
 .fill {
     flex: 1;

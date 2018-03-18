@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DoneTickComponent } from '../done-tick/done-tick.component';
+import { v4 as uuid } from 'uuid';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { UploadService } from '../../services/upload/upload.service';
 
 @Component({
   selector: 'app-model-editor',
@@ -11,13 +14,21 @@ export class ModelEditorComponent implements OnInit {
   @Input() lectureTime: number
 
   public modelStartTime: number // Start time in seconds
+  public modelDuration: number
   public modelMM: number
   public modelSS: number
   public modelName: string
 
   public newModelMode: boolean
 
-  constructor() {
+  /* Dropzone data */
+  public showDropBox: boolean
+  public dropzoneActive: boolean
+  public modelActive: boolean
+  public showUploadProgress: boolean
+  public uploadProgress: number
+
+  constructor(private _uploadService: UploadService) {
     this.modelMM = 0
     this.modelSS = 0
     this.modelStartTime = 0
@@ -43,6 +54,46 @@ export class ModelEditorComponent implements OnInit {
 
   public finishModel() {
     this.newModelMode = false
+  }
+
+  public onUpload($event: any) {
+    if ($event.srcElement.files.length) {
+      this.handleDrop($event.srcElement.files)
+    }
+  }
+
+  public handleDrop(fileList: FileList) {
+    // Create lecture object
+
+    this.uploadProgress = 0
+    this.modelActive = false
+    this.showUploadProgress = true
+    this.showDropBox = false
+    this.modelName = fileList[0].name
+
+    // Rename file
+    let blob = fileList[0].slice(0, -1, '.')
+    const modelFile: File = new File([blob], uuid(), { type: fileList[0].type })
+    console.log(modelFile.type);
+
+    console.log(modelFile)
+
+    this._uploadService.uploadModelFile(modelFile)
+      .subscribe((event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          // This is an upload progress event. Compute and show the % done:
+          const percentDone = Math.round(100 * event.loaded / event.total);
+          this.uploadProgress = percentDone
+          console.log(`File is ${percentDone}% uploaded.`);
+        } else if (event instanceof HttpResponse) {
+          this.showUploadProgress = false
+          console.log('File is completely uploaded!');
+
+          this.showDropBox = false
+          this.modelActive = true
+          // this._lectureEditorService.publishTimelineItem(videoItem)
+        }
+      })
   }
 
 }
