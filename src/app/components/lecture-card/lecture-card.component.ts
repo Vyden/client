@@ -106,6 +106,7 @@ export class LectureCardComponent implements OnInit {
   onClickCancel(i){
     this.clickList[i] = true;
     this.selectList[i] = false;
+    
     setTimeout(() => {
       this.clickList[i] = false;
     }, 500);
