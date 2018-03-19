@@ -13,5 +13,4 @@ export class QuizzesService {
   //Use Course Service to get the active course
   //The array will consist of objects
   //The keys will be the lecture IDs with the value being an array of quiz responses
-
 }
