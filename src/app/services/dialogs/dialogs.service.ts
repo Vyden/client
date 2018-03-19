@@ -36,7 +36,7 @@ export class DialogsService {
         let dialogRef: MatDialogRef<AnnouncementDialogComponent>;
 
         dialogRef = this.dialog.open(AnnouncementDialogComponent, {
-          
+            width: '380px'
         });
             
         return dialogRef.afterClosed();
