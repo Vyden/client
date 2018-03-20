@@ -16,7 +16,7 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule
+  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule, MatExpansionModule
 } from '@angular/material';
 
 /* Services */
@@ -62,6 +62,8 @@ import { QuizPanelComponent } from './components/quiz-panel/quiz-panel.component
 import { PanelContentService } from './services/panel-content/panel-content.service';
 import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
 import { AnnouncementDialogComponent } from './components/announcement-dialog/announcement-dialog.component';
+import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-student.component';
+import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,9 @@ import { AnnouncementDialogComponent } from './components/announcement-dialog/an
     AnnouncementDialogComponent,
     // AnnouncementPanelComponent,
     QuizPanelComponent,
-    LectureCardComponent
+    LectureCardComponent,
+    QuizStudentComponent,
+    QuizInstructorComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +112,7 @@ import { AnnouncementDialogComponent } from './components/announcement-dialog/an
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule
+    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule, MatExpansionModule
   ],
   exports: [
     DialogComponent,
