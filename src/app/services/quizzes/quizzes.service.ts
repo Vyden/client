@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { UserInfo } from '../../models/userInfo';
+import { Course } from '../../models/course';
 
 @Injectable()
 export class QuizzesService {

@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserInfo } from '../../models/userInfo';
-import { Course } from '../../models/course'
+import { Course } from '../../models/course';
 import { FilterOptions } from '../../models/filter-options';
 
 @Injectable()
