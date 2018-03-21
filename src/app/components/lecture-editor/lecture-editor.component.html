@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col"></div>
           </div>
-          <div *ngIf="!showProgress&&showDropBox" appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)"
+          <div *ngIf="showDropBox" appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)"
             [ngClass]="{'drop-active': dropzoneActive}" class="row fill d-flex file-outline m-4">
             <div class="col pt-4 pb-4 text-center align-self-center pointer-events-none">
               <h3 class="white-text t-all-250" style="font-weight: 400">DROP VIDEO FILE</h3>
@@ -42,7 +42,7 @@
               <h4>{{Math.floor(lectureEndTime/60)}}m {{Math.floor(lectureEndTime%60)}}s</h4>
             </div>
           </div>
-          <div class="row" *ngIf="!showProgress&&showDropBox">
+          <div class="row" *ngIf="showDropBox">
             <div class="col text-center mt-2">
               <button mat-raised-button (click)="inputFile.click()">
                 <mat-icon>file_upload</mat-icon>
