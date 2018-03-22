@@ -1,4 +1,5 @@
 export class QuizResponse {
+  public correct: boolean;
   public course: string;
   public date: Date;
   public lecture: string;

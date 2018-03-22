@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Rx';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ClassesService } from '../../services/classes/classes.service';
 import { UserInfo } from '../../models/userInfo';
 import { Course } from '../../models/course';
+import { QuizResponse } from '../../models/quizResponse';
 
 @Injectable()
 export class QuizzesService {
 
-  constructor() { }
+  //Active course is a course object with the active course
+  private quizResponsesSource = new BehaviorSubject<QuizResponse[]>(null);
+  public quizResponses = this.quizResponsesSource.asObservable();
 
-  //Get list of courses the user is enrolled in
-  //Get all the quizzes for each course
-    //Create an object with the course IDs as the key and array of quiz responses as the value
+  constructor(private _firebase: AngularFireDatabase) {}
 
-  //Create function to return an array of the user's responses
-  //Use Course Service to get the active course
-  //The array will consist of objects
-  //The keys will be the lecture IDs with the value being an array of quiz responses
+  public getQuizResponseObservable(UID: string, courseID: string): Observable<QuizResponse[]> {
+    this._firebase.object('Courses/' + courseID + '/userQuizResponses/' + UID).valueChanges().subscribe((quizResponses: Object) => {
+      // Object.keys(quizResponses).forEach((QuizResponse: ))
+    });
+    return this.quizResponses;
+  }
 }
