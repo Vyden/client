@@ -1,13 +1,23 @@
-<p>
-  quiz-data-dialog works!
-</p>
+<div class="container-fluid p-0 m-0 h-100" style="overflow-x: hidden">
+  <div class="row justify-content-center p-3 m-0">
+    <div class="col-2"></div>
+    <div class="col">
+      <h2 class="text-center mt-1 mb-1" style="font-weight: 400">QUIZ CSV</h2>
+    </div>
+    <div class="col-2 align-self-center text-right">
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon color="warn">close</mat-icon>
+      </button>
+    </div>
+  </div>
 
-<p>
-  {{courseId}}
-</p>
+  <div class="row justify-content-center m-0 mt-2 mb-4 hot-row">
+    <div class="col p-0">
+      <!-- <hotTable [data]="hotData" *ngIf="hotData" [colHeaders]="colHeaders" [options]="options" style="width: 100px"></hotTable> -->
+      <div class="hot-container">
+        <hot-table *ngIf="hotData" [data]="hotData"></hot-table>
+      </div>
+    </div>
+  </div>
 
-<p>
-  {{lectureId}}
-</p>
-
-<hot-table *ngIf="hotData" [data]="hotData">
+</div>

@@ -63,7 +63,7 @@ export class DialogsService {
 
     public openQuizCSVDialog(courseId: string, lectureId: string, options?: any) {
         let dialogRef: MatDialogRef<QuizDataDialogComponent>
-        dialogRef = this.dialog.open(QuizDataDialogComponent)
+        dialogRef = this.dialog.open(QuizDataDialogComponent, options)
         dialogRef.componentInstance.courseId = courseId
         dialogRef.componentInstance.lectureId = lectureId
 

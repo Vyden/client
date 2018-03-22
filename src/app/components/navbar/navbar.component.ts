@@ -88,7 +88,14 @@ export class NavbarComponent implements OnInit {
   public openCSVTest() {
     const courseId = '-L62Ur6nLSp470r1Iyk6'
     const lectureId = '-L62V9b_SmlELZIZ8k71'
-    this._dialogsService.openQuizCSVDialog(courseId, lectureId)
+
+    const options = {
+      disableClose: true,
+      height: '82vh',
+      width: '82vw'
+    }
+
+    this._dialogsService.openQuizCSVDialog(courseId, lectureId, options)
   }
 
 }
