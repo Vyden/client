@@ -64,7 +64,6 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
 import { AnnouncementDialogComponent } from './components/announcement-dialog/announcement-dialog.component';
 import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-student.component';
 import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
-import { QuizDataDialogComponent } from './components/quiz-data-dialog/quiz-data-dialog.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +98,6 @@ import { QuizDataDialogComponent } from './components/quiz-data-dialog/quiz-data
     LectureCardComponent,
     QuizStudentComponent,
     QuizInstructorComponent,
-    QuizDataDialogComponent
   ],
   imports: [
     BrowserModule,

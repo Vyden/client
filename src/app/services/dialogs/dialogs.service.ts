@@ -8,6 +8,7 @@ import { DialogOptions } from '../../models/dialogOptions';
 import { CourseFilterDialogComponent } from '../../components/course-filter-dialog/course-filter-dialog.component';
 import { MessageDialogComponent } from '../../components/message-dialog/message-dialog.component';
 import { AnnouncementDialogComponent } from '../../components/announcement-dialog/announcement-dialog.component';
+import { QuizDataDialogComponent } from '../../components/quiz-data-dialog/quiz-data-dialog.component';
 
 @Injectable()
 export class DialogsService {
@@ -56,6 +57,15 @@ export class DialogsService {
         let dialogRef: MatDialogRef<MessageDialogComponent>
         dialogRef = this.dialog.open(MessageDialogComponent)
         dialogRef.componentInstance.dialogOptions = dialogOptions
+
+        return dialogRef.afterClosed()
+    }
+
+    public openQuizCSVDialog(courseId: string, lectureId: string, options?: any) {
+        let dialogRef: MatDialogRef<QuizDataDialogComponent>
+        dialogRef = this.dialog.open(QuizDataDialogComponent)
+        dialogRef.componentInstance.courseId = courseId
+        dialogRef.componentInstance.lectureId = lectureId
 
         return dialogRef.afterClosed()
     }

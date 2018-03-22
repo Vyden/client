@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-quiz-data-dialog',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizDataDialogComponent implements OnInit {
 
-  constructor() { }
+  public courseId: string
+  public lectureId: string
+
+  constructor(private _dialogRef: MatDialogRef<QuizDataDialogComponent>) { }
 
   ngOnInit() {
   }

@@ -11,6 +11,7 @@ import {
 
 import { CourseFilterDialogComponent } from '../../components/course-filter-dialog/course-filter-dialog.component';
 import { MessageDialogComponent } from '../../components/message-dialog/message-dialog.component';
+import { QuizDataDialogComponent } from '../../components/quiz-data-dialog/quiz-data-dialog.component';
 
 @NgModule({
   imports: [
@@ -21,10 +22,10 @@ import { MessageDialogComponent } from '../../components/message-dialog/message-
     MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule
   ],
   declarations: [
-    CourseFilterDialogComponent, MessageDialogComponent
+    CourseFilterDialogComponent, MessageDialogComponent, QuizDataDialogComponent
   ],
   entryComponents: [
-    CourseFilterDialogComponent, MessageDialogComponent
+    CourseFilterDialogComponent, MessageDialogComponent, QuizDataDialogComponent
   ]
 })
 export class DialogsModule { }
