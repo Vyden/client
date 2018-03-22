@@ -12,11 +12,22 @@ import { QuizResponse } from '../../models/quizResponse';
 })
 export class QuizDataDialogComponent implements OnInit {
 
+  /* Lecture Data */
   public courseId: string
   public lectureId: string
-  public hotData: any
 
-  constructor(private _dialogRef: MatDialogRef<QuizDataDialogComponent>, private _af: AngularFireDatabase) { }
+  /* Table Data */
+  public hotData: any
+  public colHeaders: string[]
+  public options: any
+
+  constructor(private _dialogRef: MatDialogRef<QuizDataDialogComponent>, private _af: AngularFireDatabase) {
+    this.colHeaders = []
+
+    this.options = {
+      outsideClickDeselects: false
+    }
+  }
 
   ngOnInit() {
     this.getLectureQuizResponses()
@@ -25,9 +36,17 @@ export class QuizDataDialogComponent implements OnInit {
   private getLectureQuizResponses() {
     this._af.list(`Courses/${this.courseId}/lectureQuizResponses/${this.lectureId}`)
       .valueChanges()
-      .subscribe((quizResponses: QuizResponse []) => {
+      .subscribe((quizResponses: QuizResponse[]) => {
         console.log(quizResponses);
         this.hotData = quizResponses
+
+        let colKeys = new Set()
+        this.hotData.forEach(data => {
+          Object.keys(data).forEach(key => colKeys.add(key))
+        })
+
+        colKeys.forEach(key => this.colHeaders.push(key))
+        console.log(this.colHeaders);
       })
   }
 
