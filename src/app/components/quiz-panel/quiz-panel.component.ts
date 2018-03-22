@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { ClassesService } from '../../services/classes/classes.service';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '../../models/userInfo';
 import { Course } from '../../models/course';
 import { QuizResponse } from '../../models/quizResponse';
@@ -20,21 +21,17 @@ export class QuizPanelComponent implements OnInit, OnDestroy {
 
   private authSubscription: Subscription;
   private classSubscription: Subscription;
-  public quizResponseObservable: Observable<QuizResponse[]>;
 
   constructor(private _authService: AuthService,
     private _classService: ClassesService,
-    private _quizzesService: QuizzesService) { }
+    private _quizzesService: QuizzesService,
+    private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
     /* Subscribe to classes */
     this.classSubscription = this._classService.activeCourse
     .subscribe((course) => {
       this.activeCourse = course;
-
-      if (this.userInfo && this.activeCourse) {
-        this.quizResponseObservable = this._quizzesService.getQuizResponseObservable(this.userInfo.UID, this.activeCourse.id);
-      }
     });
 
     /* Subscribe to user info */

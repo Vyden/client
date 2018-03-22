@@ -16,10 +16,16 @@ export class QuizzesService {
 
   constructor(private _firebase: AngularFireDatabase) {}
 
-  public getQuizResponseObservable(UID: string, courseID: string): Observable<QuizResponse[]> {
+  public getQuizResponseObservable(UID: string, courseID: string, lectureID: string): Observable<QuizResponse[]> {
     this._firebase.object('Courses/' + courseID + '/userQuizResponses/' + UID).valueChanges().subscribe((quizResponses: Object) => {
-      // Object.keys(quizResponses).forEach((QuizResponse: ))
+      let quizzes = [];
+      Object.keys(quizResponses).forEach((quizResponseID: string) => {
+        if (quizResponses[quizResponseID].lecture === lectureID) {
+          quizzes.push(quizResponses[quizResponseID]);
+        }
+      })
+      this.quizResponsesSource.next(quizzes);
     });
-    return this.quizResponses;
+    return this.quizResponsesSource;
   }
 }
