@@ -4,6 +4,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 /* Models */
 import { QuizResponse } from '../../models/quizResponse';
+import { Quiz } from '../../models/quiz';
+import { COLUMNS } from './columns'
 
 @Component({
   selector: 'app-quiz-data-dialog',
@@ -19,14 +21,11 @@ export class QuizDataDialogComponent implements OnInit {
   /* Table Data */
   public hotData: any
   public colHeaders: string[]
+  public columns: any[]
   public options: any
 
   constructor(private _dialogRef: MatDialogRef<QuizDataDialogComponent>, private _af: AngularFireDatabase) {
-    this.colHeaders = []
-
-    this.options = {
-      outsideClickDeselects: false
-    }
+    this.columns = COLUMNS
   }
 
   ngOnInit() {
@@ -37,16 +36,18 @@ export class QuizDataDialogComponent implements OnInit {
     this._af.list(`Courses/${this.courseId}/lectureQuizResponses/${this.lectureId}`)
       .valueChanges()
       .subscribe((quizResponses: QuizResponse[]) => {
-        console.log(quizResponses);
         this.hotData = quizResponses
 
-        let colKeys = new Set()
-        this.hotData.forEach(data => {
-          Object.keys(data).forEach(key => colKeys.add(key))
-        })
+        this.hotData.forEach((responseData: any) => {
+          const quizObj: Quiz = responseData.quizObj
+          console.log(quizObj);
+          delete responseData['quizObj']
 
-        colKeys.forEach(key => this.colHeaders.push(key))
-        console.log(this.colHeaders);
+          const date = new Date(responseData.date)
+          responseData.date = date.toDateString()
+          responseData.question = quizObj.question
+          responseData.response = quizObj.answers[responseData.selection]
+        })
       })
   }
 
