@@ -20,8 +20,8 @@ export class AnnouncementDialogComponent implements OnInit {
 
   ngOnInit() {
     if(!this.announcementOptions.checkPost){
-        // this.announcementOptions.title = "";
-        // this.announcementOptions.desciption = "";
+        this.announcementOptions.title = "";
+        this.announcementOptions.description = "";
         this.announcementOptions.checkPost = false;
 
     }

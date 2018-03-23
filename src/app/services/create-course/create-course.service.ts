@@ -53,7 +53,7 @@ export class CreateCourseService {
     newAnnouncement.text =  announcementOptions.description;
     newAnnouncement.course = currentCourse.id;
     newAnnouncement.pinned = announcementOptions.checkPost;
-    newAnnouncement.date = new Date();
+    newAnnouncement.date = Date.now();
     const key: string =  this._firebase.list(`Courses/${currentCourse.id}/announcements`)
     .push(newAnnouncement)
     .key

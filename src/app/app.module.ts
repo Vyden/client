@@ -53,6 +53,7 @@ import { TemploginComponent } from './components/templogin/templogin.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FileDropDirective } from './directives/file-drop/file-drop.directive';
 import { QuizzesService } from './services/quizzes/quizzes.service';
+import { AnnouncementsService } from './services/announcements/announcements.service';
 
 import { FilterCoursesPipe } from './directives/filter-courses.pipe';
 import { ConfirmDeactivateGuard } from './injectables/confirm-deactivate-guard';
@@ -118,7 +119,7 @@ import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor
     DialogComponent,
     AnnouncementDialogComponent
   ],
-  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService],
+  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService],
   entryComponents: [
     DialogComponent,
     AnnouncementDialogComponent
