@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { QuizzesService } from '../../../services/quizzes/quizzes.service';
 import { Observable } from 'rxjs/Rx';
 import { Lecture } from '../../../models/lecture';
+import { Quiz } from '../../../models/quiz';
 
 @Component({
   selector: 'app-quiz-student',
@@ -25,6 +26,7 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
   private classSubscription: Subscription;
   private lectureSubscription: Subscription;
   public quizResponses: Observable<QuizResponse[]>[];
+  public quizInformation: Quiz[][] = [];
 
   constructor(private _authService: AuthService,
     private _classService: ClassesService,
@@ -49,6 +51,7 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
         this.lectureSubscription = this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/').valueChanges()
         .subscribe((lectures: Object) => {
           this.lectures = [];
+          //Create an array of observables with quizzes for each lecture
           Object.keys(lectures).forEach((lectureID: string, index: number) => {
             this.lectures.push(lectures[lectureID]);
             this.quizResponses[index] = this._quizzesService.getQuizResponseObservable(this.userInfo.UID, this.activeCourse.id, lectureID);

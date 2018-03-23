@@ -6,4 +6,5 @@ export class QuizResponse {
   public quiz: string;
   public selection: number;
   public user: string;
+  public quizObj: Object;
 }

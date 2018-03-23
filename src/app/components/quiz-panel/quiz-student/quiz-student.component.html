@@ -15,11 +15,20 @@
       <div *ngFor="let quiz of quizResponse['_value']">
         <mat-expansion-panel class="background-bluegrey">
           <mat-expansion-panel-header>
+            <!-- Display question -->
             <mat-panel-title>
-              {{ quiz['quiz'] }}
+              {{ quiz['quizObj']['question'] }}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>These are the answer choices with the correct answer highlighted</p>
+          <!-- Display answers -->
+          <div class="px-4 pb-4">
+            <div *ngFor="let answer of quiz['quizObj']['answers']; let i = index">
+              <p [ngClass]="{'correct-answer': i === quiz['quizObj']['correct'],
+              'incorrect-answer': i === quiz['selection'] && quiz['selection'] != quiz['quizObj']['correct']}" >
+                {{ answer }}
+              </p>
+            </div>
+          </div>
         </mat-expansion-panel>
       </div>
     </div>
