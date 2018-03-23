@@ -12,13 +12,17 @@
           </div>
           <div class="col-4 m-0 p-0 text-right">
             <!-- <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle> -->
+            <button mat-button (click)="openQuizDataDialog(lectureList[i].id)">
+              <mat-icon>message</mat-icon>
+              <span>Quiz Data</span>
+            </button>
           </div>
         </div>
         <div *ngIf="lectureList.length > 0" class="row m-0 text-left">
           <mat-card-subtitle>Posted on {{ convertString(lectureList[i].date) }}</mat-card-subtitle>
         </div>
         <div *ngIf="lectureList.length > 0" class="row m-0 text-left">
-          <mat-card-content> {{ lectureList[i].description }}</mat-card-content>
+          <mat-card-content> {{ lectureList[i].description }} </mat-card-content>
         </div>
       </mat-card>
     </div>

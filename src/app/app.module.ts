@@ -97,7 +97,7 @@ import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor
     QuizPanelComponent,
     LectureCardComponent,
     QuizStudentComponent,
-    QuizInstructorComponent
+    QuizInstructorComponent,
   ],
   imports: [
     BrowserModule,
