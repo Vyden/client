@@ -16,8 +16,21 @@
       <!-- <hotTable [data]="hotData" *ngIf="hotData" [colHeaders]="colHeaders" [options]="options" style="width: 100px"></hotTable> -->
       <div class="hot-container">
         <hot-table *ngIf="hotData" [columns]="columns" [settings]="options" [data]="hotData" (afterSelectionEnd)="syncSelection($event)"
-          (afterChange)="changeValue($event, hot)" hotId="hotInstance"></hot-table>
+          (afterChange)="changeValue($event)" hotId="hotInstance"></hot-table>
       </div>
+    </div>
+  </div>
+
+  <div class="row m-0 mb-4 p-0" *ngIf="changelog.length">
+    <div class="col-12 text-center m-0 p-0">
+      <button mat-raised-button color="primary" class="white-text" (click)="saveChanges()">
+        <mat-icon>update</mat-icon>
+        <span>APPLY CHANGES</span>
+      </button>
+    </div>
+
+    <div class="col-12 text-center m-0 mt-3 p-0" *ngIf="showSaveProgress">
+      <mat-progress-bar [color]="primary" mode="indeterminate"></mat-progress-bar>
     </div>
   </div>
 

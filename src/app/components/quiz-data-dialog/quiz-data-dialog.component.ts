@@ -28,17 +28,25 @@ export class QuizDataDialogComponent implements OnInit {
   private instance: string = "hotInstance"
   public selectedValue: any
   public selectedCol: any
-  private coordX: number;
-  private coordY: number;
+  private coordX: number
+  private coordY: number
+  private changelog: any[]
+
+  public showSaveProgress: boolean
 
   constructor(private _dialogRef: MatDialogRef<QuizDataDialogComponent>,
     private _af: AngularFireDatabase,
     private _hotRegisterer: HotTableRegisterer) {
     this.columns = COLUMNS
+    this.changelog = []
   }
 
   ngOnInit() {
     this.getLectureQuizResponses()
+  }
+
+  public saveChanges() {
+    this.showSaveProgress = true
   }
 
   private getLectureQuizResponses() {
@@ -73,7 +81,7 @@ export class QuizDataDialogComponent implements OnInit {
       const newValue: any = $event.params[0][0][3]
 
       if (oldValue != newValue) {
-        console.log(this.hotData[row], row, colName, oldValue, newValue)
+        this.changelog.push([this.hotData[row], row, colName, oldValue, newValue])
       }
     }
   }
@@ -86,7 +94,6 @@ export class QuizDataDialogComponent implements OnInit {
 
     this.selectedValue = hot.getDataAtCell(x, y)
     this.selectedCol = hot.getColHeader(y)
-    console.log(this.selectedValue);
   }
 
 }
