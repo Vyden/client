@@ -47,6 +47,26 @@ export class QuizDataDialogComponent implements OnInit {
 
   public saveChanges() {
     this.showSaveProgress = true
+
+    this.changelog.forEach((change: any) => {
+      let newValue = change.newValue
+      let updateObj = {}
+
+      if (change.colName == 'date') {
+        newValue = (new Date(newValue)).getTime()
+      } else if (change.colName == 'selection') {
+        newValue = parseInt(newValue)
+        updateObj['correct'] = -1
+      }
+
+      updateObj[change.colName] = newValue
+
+      this._af.object(`Courses/${this.courseId}/lectureQuizResponses/${this.lectureId}/${change.rowData.id}`)
+        .update(updateObj)
+    })
+
+    this.changelog = []
+    this.showSaveProgress = false
   }
 
   private getLectureQuizResponses() {
@@ -60,7 +80,6 @@ export class QuizDataDialogComponent implements OnInit {
         }
 
         this.hotData = parsedData
-        console.log(this.hotData);
         this.hotData.forEach((responseData: any) => {
           const quizObj: Quiz = responseData.quizObj
           delete responseData['quizObj']
@@ -81,7 +100,13 @@ export class QuizDataDialogComponent implements OnInit {
       const newValue: any = $event.params[0][0][3]
 
       if (oldValue != newValue) {
-        this.changelog.push([this.hotData[row], row, colName, oldValue, newValue])
+        this.changelog.push({
+          rowData: this.hotData[row],
+          row: row,
+          colName: colName,
+          oldValue: oldValue,
+          newValue: newValue
+        })
       }
     }
   }

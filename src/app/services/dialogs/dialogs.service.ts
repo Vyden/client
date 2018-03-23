@@ -33,13 +33,13 @@ export class DialogsService {
         return dialogRef.afterClosed();
     }
 
-    public createAnnouncement(){
+    public createAnnouncement() {
         let dialogRef: MatDialogRef<AnnouncementDialogComponent>;
 
         dialogRef = this.dialog.open(AnnouncementDialogComponent, {
             width: '380px'
         });
-            
+
         return dialogRef.afterClosed();
     }
 
@@ -61,7 +61,13 @@ export class DialogsService {
         return dialogRef.afterClosed()
     }
 
-    public openQuizCSVDialog(courseId: string, lectureId: string, options?: any) {
+    public openQuizCSVDialog(courseId: string, lectureId: string) {
+        const options = {
+            disableClose: true,
+            height: '82vh',
+            width: '82vw'
+        }
+
         let dialogRef: MatDialogRef<QuizDataDialogComponent>
         dialogRef = this.dialog.open(QuizDataDialogComponent, options)
         dialogRef.componentInstance.courseId = courseId

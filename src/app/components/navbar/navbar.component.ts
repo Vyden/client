@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav, MatDialogRef} from '@angular/material';
+import { MatSidenav, MatDialogRef } from '@angular/material';
 import { UsernameComponent } from '../username/username.component';
 import { NavbarService } from '../../services/navbar/navbar.service';
 import { ThemeService } from '../../services/theme/theme.service';
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
   public isInstructor: boolean;
 
-  constructor(private _navbarService: NavbarService, 
+  constructor(private _navbarService: NavbarService,
     private _themeService: ThemeService,
     private _authService: AuthService,
     private _dialogsService: DialogsService,
@@ -50,12 +50,12 @@ export class NavbarComponent implements OnInit {
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo
         // this.isInstructor = userInfo.isInstructor;
-        if(userInfo){
+        if (userInfo) {
           console.log(userInfo.fullName);
         }
       })
 
-    
+
 
   }
 
@@ -76,12 +76,12 @@ export class NavbarComponent implements OnInit {
       .createCourse('Create new course', this.courseName, this.userInfo)
       .subscribe(res => {
         this.result = res
-       
-        if(res){
+
+        if (res) {
           let key = this._createCourseService.createCourse(res);
           alert("Success! The course ID is " + key);
         }
-        
+
       });
   }
 
@@ -89,13 +89,7 @@ export class NavbarComponent implements OnInit {
     const courseId = '-L62Ur6nLSp470r1Iyk6'
     const lectureId = '-L62V9b_SmlELZIZ8k71'
 
-    const options = {
-      disableClose: true,
-      height: '82vh',
-      width: '82vw'
-    }
-
-    this._dialogsService.openQuizCSVDialog(courseId, lectureId, options)
+    this._dialogsService.openQuizCSVDialog(courseId, lectureId)
   }
 
 }
