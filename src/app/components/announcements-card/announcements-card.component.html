@@ -1,22 +1,22 @@
-<div class="classBound" *ngFor="let announcement of announcementList; let i = index">
+<div class="classBound" *ngFor="let announcement of arrangedAnnouncements; let i = index">
   <div *ngIf="currentCourse">
       <mat-card class="mat-elevation-z-0 text-center">
         <div class="row m-0">
           <div class="col-4 m-0 p-0 text-left">
             <!-- <mat-card-title>LEC</mat-card-title> -->
           </div>
-          <div *ngIf="announcementList.length > 0" class="col-4 m-0 p-0">
-            <mat-card-title> {{ announcementList[i].title }} </mat-card-title>
+          <div *ngIf="arrangedAnnouncements.length > 0" class="col-4 m-0 p-0">
+            <mat-card-title> {{ arrangedAnnouncements[i].title }} </mat-card-title>
           </div>
           <div class="col-4 m-0 p-0 text-right">
             <!-- <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle> -->
           </div>
         </div>
-        <div *ngIf="announcementList.length > 0" class="row m-0 text-left">
-          <mat-card-subtitle>Posted on {{ convertString(announcementList[i].date) }}</mat-card-subtitle>
+        <div *ngIf="arrangedAnnouncements.length > 0" class="row m-0 text-left">
+          <mat-card-subtitle>Posted on {{ convertString(arrangedAnnouncements[i].date) }}</mat-card-subtitle>
         </div>
-        <div *ngIf="announcementList.length > 0" class="row m-0 text-left">
-          <mat-card-content> {{ announcementList[i].text }}</mat-card-content>
+        <div *ngIf="arrangedAnnouncements.length > 0" class="row m-0 text-left">
+          <mat-card-content> {{ arrangedAnnouncements[i].text }}</mat-card-content>
         </div>
       </mat-card>
     </div>
