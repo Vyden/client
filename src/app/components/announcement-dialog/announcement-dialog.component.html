@@ -10,7 +10,7 @@
         <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Title"
             name="title"
-            [(ngModel)]="title"></textarea>
+            [(ngModel)]="announcementOptions.title"></textarea>
         </mat-form-field>
        
     </div>
@@ -21,11 +21,11 @@
       <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Description"
         name="description"
-        [(ngModel)]="description"></textarea>
+        [(ngModel)]="announcementOptions.description"></textarea>
     </mat-form-field>
     <div class="row">
       <div class="col text-center">
-        <mat-slide-toggle  [(ngModel)]="checkPost" name="togglePost">Pin Post</mat-slide-toggle>  
+        <mat-slide-toggle  [(ngModel)]="announcementOptions.checkPost" name="togglePost">Pin Post</mat-slide-toggle>  
       </div>
     </div>
     </div>

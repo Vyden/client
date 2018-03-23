@@ -9,6 +9,7 @@ import { PanelContentService } from '../../services/panel-content/panel-content.
 import { Course } from '../../models/course';
 import { Lecture } from '../../models/lecture';
 import { UserInfo } from '../../models/userInfo';
+import { AnnouncementOptions } from '../../models/announcementOptions';
 import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
 
@@ -23,6 +24,7 @@ export class MainPanelComponent implements OnInit {
   public userInfo: UserInfo
   public currentCourse: Course
   public currentPanel: string
+  public announcementOptions: AnnouncementOptions;
   
 
   dialogs
@@ -38,6 +40,10 @@ export class MainPanelComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if(!this.announcementOptions){
+      this.announcementOptions = new AnnouncementOptions();
+    }
     
 /* Subscribe to changes to the user */
     this._authService.currentUserObservable
@@ -77,9 +83,9 @@ export class MainPanelComponent implements OnInit {
 
   openAnnouncement(){
     this._dialogsService
-      .createAnnouncement()
+      .createAnnouncement(this.announcementOptions)
       .subscribe(res => {
-      
+        console.log(res);
         
       });
   
