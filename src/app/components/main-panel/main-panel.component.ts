@@ -6,6 +6,7 @@ import { ClassesService } from '../../services/classes/classes.service';
 import { DialogsService } from '../../services/dialogs/dialogs.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { PanelContentService } from '../../services/panel-content/panel-content.service';
+import { CreateCourseService } from '../../services/create-course/create-course.service';
 import { Course } from '../../models/course';
 import { Lecture } from '../../models/lecture';
 import { UserInfo } from '../../models/userInfo';
@@ -34,7 +35,8 @@ export class MainPanelComponent implements OnInit {
     private _firebase: AngularFireDatabase,
     private _classesService: ClassesService,
     private _dialogsService: DialogsService,
-    private _panelContentService: PanelContentService
+    private _panelContentService: PanelContentService,
+    private _createCourseService: CreateCourseService
   ) { 
    
   }
@@ -85,7 +87,11 @@ export class MainPanelComponent implements OnInit {
     this._dialogsService
       .createAnnouncement(this.announcementOptions)
       .subscribe(res => {
-        console.log(res);
+        this.announcementOptions = res;
+        if(res){
+          this._createCourseService.createAnnouncement(this.announcementOptions, this.currentCourse);
+        }
+        // console.log(this.announcementOptions.d);
         
       });
   

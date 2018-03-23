@@ -29,10 +29,6 @@ export class AnnouncementDialogComponent implements OnInit {
   }
 
   clickCreate(){
-    // console.log(this.title);
-    // console.log(this.description);
-    // console.log(this.checkPost);
-    // console.log(this.announcementOptions);
     this.dialogRef.close(this.announcementOptions);
   }
   

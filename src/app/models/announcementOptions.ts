@@ -1,5 +1,5 @@
 export class AnnouncementOptions {
     public title: string;
-    public desciption: string;
+    public description: string;
     public checkPost: boolean;
 }
