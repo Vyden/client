@@ -106,6 +106,15 @@
                           <input matInput class="text-center" [(ngModel)]="modelItem.offsetZ">
                         </mat-form-field>
                       </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Rotation Axis</h4>
+                        <mat-form-field style="width: 100px">
+                          <mat-select [(value)]="modelItem.rotateAxis">
+                            <mat-option *ngFor="let option of getKeys(RotationAxis)" value="{{option}}" class="text-center">{{option | uppercase}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </mat-list-item>
                     </mat-list>
                   </div>
                 </div>

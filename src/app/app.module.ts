@@ -16,7 +16,8 @@ import { environment } from '../environments/environment';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule, MatExpansionModule
+  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule, MatExpansionModule,
+  MatSelectModule
 } from '@angular/material';
 
 /* Services */
@@ -115,7 +116,8 @@ import { DisableControlDirective } from './directives/disable-control/disable-co
     AngularFireAuthModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule, MatExpansionModule
+    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule, MatExpansionModule,
+    MatSelectModule
   ],
   exports: [
     DialogComponent,

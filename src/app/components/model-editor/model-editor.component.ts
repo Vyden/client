@@ -34,12 +34,16 @@ export class ModelEditorComponent implements OnInit {
   public showUploadProgress: boolean
   public uploadProgress: number
 
+  /* Enums */
+  public RotationAxis: any = RotationAxis
+
   constructor(private _uploadService: UploadService) {
     this.calculateModelTimeSlider({ value: 5 })
     this.modelItem = new ModelItem()
   }
 
   ngOnInit() {
+    console.log(RotationAxis);
   }
 
   public initModel() {
@@ -99,6 +103,10 @@ export class ModelEditorComponent implements OnInit {
           // this._lectureEditorService.publishTimelineItem(videoItem)
         }
       })
+  }
+
+  public getKeys(obj) {
+    return Object.keys(obj).map((key) => { return obj[key] });
   }
 
 }
