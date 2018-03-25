@@ -91,6 +91,12 @@ mat-icon.icon-xxl {
     }
 }
 
+.color-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 99em;
+}
+
 // https://philipwalton.github.io/solved-by-flexbox/demos/vertical-centering/
 .fill {
     flex: 1;
