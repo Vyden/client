@@ -36,6 +36,7 @@ export class ModelEditorComponent implements OnInit {
 
   /* Enums */
   public RotationAxis: any = RotationAxis
+  public RotationDirection: any = RotationDirection
 
   constructor(private _uploadService: UploadService) {
     this.calculateModelTimeSlider({ value: 5 })
@@ -107,6 +108,10 @@ export class ModelEditorComponent implements OnInit {
 
   public getKeys(obj) {
     return Object.keys(obj).map((key) => { return obj[key] });
+  }
+
+  public getObjectArray(obj) {
+    return Object.keys(obj).map((key) => { return { key: key, value: obj[key] } });
   }
 
 }

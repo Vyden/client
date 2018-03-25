@@ -1,8 +1,9 @@
 import { TimelineItem } from './timelineItem';
 
 export enum RotationDirection {
-    FORWARD = -1,
-    BACKWARD = 1
+    FORWARD = 1,
+    NONE = 0,
+    BACKWARD = -1
 }
 
 export enum RotationAxis {
@@ -31,5 +32,6 @@ export class ModelItem extends TimelineItem {
         this.offsetY = 0
         this.offsetZ = 0
         this.rotateAxis = RotationAxis.X
+        this.rotate = RotationDirection.NONE
     }
 }

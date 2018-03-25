@@ -115,6 +115,17 @@
                           </mat-select>
                         </mat-form-field>
                       </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Rotation Direction</h4>
+                        <mat-form-field style="width: 100px">
+                          <mat-select [(value)]="modelItem.rotate">
+                            <mat-option [value]="0" class="text-center">None</mat-option>
+                            <mat-option [value]="1" class="text-center">Forward</mat-option>
+                            <mat-option [value]="-1" class="text-center">Backward</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </mat-list-item>
                     </mat-list>
                   </div>
                 </div>
