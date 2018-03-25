@@ -23,6 +23,7 @@ export class ModelEditorComponent implements OnInit {
   public modelMM: number
   public modelSS: number
   public modelName: string
+  public modelItem: ModelItem
 
   public newModelMode: boolean
 
@@ -35,6 +36,7 @@ export class ModelEditorComponent implements OnInit {
 
   constructor(private _uploadService: UploadService) {
     this.calculateModelTimeSlider({ value: 5 })
+    this.modelItem = new ModelItem()
   }
 
   ngOnInit() {

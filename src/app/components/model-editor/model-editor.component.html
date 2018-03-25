@@ -67,8 +67,43 @@
                       <h2 mat-subheader>Model Properties</h2>
                       <mat-list-item>
                         <h4 mat-line>Angle X</h4>
-                        <mat-form-field>
-                          <input matInput placeholder="enter name">
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.angleX">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Angle Y</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.angleY">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Angle Z</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.angleZ">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Offset X</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.offsetX">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Offset Y</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.offsetY">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Offset Z</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.offsetZ">
                         </mat-form-field>
                       </mat-list-item>
                     </mat-list>
