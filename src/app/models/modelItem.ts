@@ -1,11 +1,11 @@
 import { TimelineItem } from './timelineItem';
 
-enum RotationDirection {
+export enum RotationDirection {
     FORWARD = -1,
     BACKWARD = 1
 }
 
-enum RotationAxis {
+export enum RotationAxis {
     X = 'x',
     Y = 'y',
     Z = 'z'

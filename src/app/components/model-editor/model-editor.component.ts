@@ -2,7 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DoneTickComponent } from '../done-tick/done-tick.component';
 import { v4 as uuid } from 'uuid';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+
+/* Services */
 import { UploadService } from '../../services/upload/upload.service';
+
+/* Models */
+import { ModelItem, RotationAxis, RotationDirection } from '../../models/modelItem';
 
 @Component({
   selector: 'app-model-editor',
@@ -29,9 +34,7 @@ export class ModelEditorComponent implements OnInit {
   public uploadProgress: number
 
   constructor(private _uploadService: UploadService) {
-    this.modelMM = 0
-    this.modelSS = 0
-    this.modelStartTime = 0
+    this.calculateModelTimeSlider({ value: 5 })
   }
 
   ngOnInit() {
