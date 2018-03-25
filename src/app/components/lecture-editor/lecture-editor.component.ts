@@ -1,12 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { DoneTickComponent } from '../done-tick/done-tick.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ThemeService } from '../../services/theme/theme.service';
 import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { DisableControlDirective } from '../../directives/disable-control/disable-control.directive';
 import { TimelineItem, ItemType } from '../../models/timelineItem';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth/auth.service';
@@ -18,6 +20,11 @@ import { ClassesService } from '../../services/classes/classes.service';
 import { Course } from '../../models/course';
 import { Lecture } from '../../models/lecture';
 
+export class RequiredTextMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched))
+  }
+}
 
 @Component({
   selector: 'app-lecture-editor',
@@ -34,8 +41,13 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public lectureEndTime: number // End time in seconds
   public lectureName: string
   public lectureDescription: string
+  public lectureSky: string
   public timelineItems: Observable<TimelineItem[]>
+
+  /* Skybox data */
   public skyboxType: "image" | "color"
+  public skyboxColor: string
+  public skyboxUrl: string
 
   /* Dropzone data */
   public showDropBox: boolean
@@ -49,9 +61,14 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   /* Course data */
   private currentCourseId: string
 
+  /* Form Control */
+  public basicFormControl: FormGroup
+  public matcher: ErrorStateMatcher
+
   public Math = Math
 
   constructor(private _router: Router,
+    private _formBuilder: FormBuilder,
     private _themeService: ThemeService,
     private _lectureEditorService: LectureEditorService,
     private _firebase: AngularFireDatabase,
@@ -61,7 +78,18 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     this.lectureEndTime = 3000
     this.showDropBox = true
     this.lectureName = "New Lecture"
-    this.skyboxType = "color"
+    this.skyboxType = "image"
+    this.skyboxColor = "E0F7FA"
+    this.skyboxUrl = "default"
+    this.lectureDescription = "Lecture"
+
+    this.basicFormControl = this._formBuilder.group({
+      skyboxUrl: [null, Validators.required],
+      skyboxColor: [null, Validators.required],
+      lectureDescription: [null, Validators.required],
+      lectureName: [null, Validators.required]
+    })
+    this.matcher = new RequiredTextMatcher()
   }
 
   ngOnInit() {
@@ -175,6 +203,12 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   public publishLecture() {
     this.showPublishProgress = true
+
+    const skybox = this.skyboxType == 'image' ? this.skyboxUrl : this.skyboxColor
+
+    this._lectureEditorService.updateLecture({
+      sky: skybox
+    })
 
     setTimeout(() => {
       this.uploadProgress = 0
