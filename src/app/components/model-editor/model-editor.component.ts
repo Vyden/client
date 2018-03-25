@@ -73,7 +73,7 @@ export class ModelEditorComponent implements OnInit {
 
     // Rename file
     let blob = fileList[0].slice(0, -1, '.')
-    const modelFile: File = new File([blob], uuid(), { type: fileList[0].type })
+    const modelFile: File = new File([blob], uuid() + '.zip', { type: fileList[0].type })
     console.log(modelFile.type);
 
     console.log(modelFile)
