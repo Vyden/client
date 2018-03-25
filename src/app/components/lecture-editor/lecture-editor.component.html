@@ -80,7 +80,12 @@
           <div class="row m-0 p-0">
             <div class="col m-0 p-0">
               <mat-form-field class="lecture-title-input w-100" color="accent">
-                <input matInput name="lectureName" [(ngModel)]="lectureName">
+                <input matInput name="lectureName" [formControl]="basicFormControl.controls['lectureName']" [errorStateMatcher]="matcher"
+                  [(ngModel)]="lectureName">
+                <mat-error *ngIf="basicFormControl.controls['lectureName'].hasError('required')">
+                  Field is
+                  <strong>required</strong>
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -94,8 +99,12 @@
           <div class="row m-0 p-0">
             <div class="col m-0 p-0">
               <mat-form-field class="w-100 description-textarea" color="accent">
-                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="description" [(ngModel)]="lectureDescription"
-                  name="lectureDescription"></textarea>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="description" [formControl]="basicFormControl.controls['lectureDescription']"
+                  [errorStateMatcher]="matcher" [(ngModel)]="lectureDescription" name="lectureDescription"></textarea>
+                <mat-error *ngIf="basicFormControl.controls['lectureDescription'].hasError('required')">
+                  Field is
+                  <strong>required</strong>
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -115,7 +124,12 @@
                   </div>
                   <div class="col p-0 m-0 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput placeholder="Skybox URL" [disabled]="skyboxType!='image'" [(ngModel)]="skyboxUrl">
+                      <input matInput placeholder="Skybox URL" [formControl]="basicFormControl.controls['skyboxUrl']" [errorStateMatcher]="matcher"
+                        [disableControl]="skyboxType!='image'" [(ngModel)]="skyboxUrl">
+                      <mat-error *ngIf="basicFormControl.controls['skyboxUrl'].hasError('required')">
+                        Field is
+                        <strong>required</strong>
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -127,7 +141,12 @@
                   <div class="col p-0 m-0 align-self-center">
                     <mat-form-field class="w-100">
                       <span matPrefix [ngClass]="{'grey-text': skyboxType!='color'}"># &nbsp;</span>
-                      <input matInput placeholder="Hex code" [disabled]="skyboxType!='color'" [(ngModel)]="skyboxColor">
+                      <input matInput placeholder="Hex code" [formControl]="basicFormControl.controls['skyboxColor']" [errorStateMatcher]="matcher"
+                        [disableControl]="skyboxType!='color'" [(ngModel)]="skyboxColor">
+                      <mat-error *ngIf="basicFormControl.controls['skyboxColor'].hasError('required')">
+                        Field is
+                        <strong>required</strong>
+                      </mat-error>
                       <div matSuffix class="color-indicator" [style.background-color]="skyboxType=='color'?'#'+skyboxColor : '#EEEEEE'"></div>
                     </mat-form-field>
                   </div>

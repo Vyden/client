@@ -64,6 +64,11 @@ export class LectureEditorService {
     return key
   }
 
+  public updateLecture(data: any): void {
+    this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}`)
+      .update(data)
+  }
+
   public changeLectureId(lectureId: string) {
     this.lectureIdSource.next(lectureId)
   }
@@ -129,7 +134,7 @@ export class LectureEditorService {
   }
 
   public changeEditQuiz(editQuizElements: [QuizItem, Quiz]) {
-    if(!editQuizElements[0]) return
+    if (!editQuizElements[0]) return
 
     console.log(editQuizElements);
     this.editQuizSource.next(editQuizElements)
