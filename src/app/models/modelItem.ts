@@ -14,6 +14,7 @@ export enum RotationAxis {
 
 export class ModelItem extends TimelineItem {
     public name: string;
+    public duration: number;
     public angleX: number;
     public angleY: number;
     public angleZ: number;
@@ -22,9 +23,11 @@ export class ModelItem extends TimelineItem {
     public offsetX: number;
     public offsetY: number;
     public offsetZ: number;
+    public audio?: string
 
     public constructor() {
         super()
+        this.duration = 10
         this.angleX = 0
         this.angleY = 0
         this.angleZ = 0

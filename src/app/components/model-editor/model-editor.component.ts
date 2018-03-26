@@ -81,7 +81,6 @@ export class ModelEditorComponent implements OnInit {
 
   public finishModel() {
     this.publishModel()
-    this.publishAudio()
     this.newModelMode = false
   }
 
@@ -182,6 +181,11 @@ export class ModelEditorComponent implements OnInit {
     this.modelItem.lecture = this.lectureId
     this.modelItem.eventTime = this.modelStartTime
     this.modelItem.type = ItemType.MODEL
+
+    if(this.audioFile) {
+      this.modelItem.audio = this.audioItem.resource
+      this.modelItem.duration = Math.max(this.modelItem.duration, this.audioItem.duration)
+    }
 
     this._lectureEditorService.publishTimelineItem(this.modelItem)
     console.log(this.modelItem);
