@@ -26,7 +26,7 @@ export class MainPanelComponent implements OnInit {
   public currentCourse: Course
   public currentPanel: string
   public announcementOptions: AnnouncementOptions;
-  
+  public buttonTag: string
 
   dialogs
 
@@ -42,6 +42,7 @@ export class MainPanelComponent implements OnInit {
   }
 
   ngOnInit() {
+
 
     if(!this.announcementOptions){
       this.announcementOptions = new AnnouncementOptions();
@@ -70,7 +71,7 @@ export class MainPanelComponent implements OnInit {
     .subscribe((currentCourse: Course) => {
       this.currentCourse = currentCourse
       if(currentCourse){
- 
+        this.buttonTag = "announcement";
       }
 
     })
@@ -79,6 +80,13 @@ export class MainPanelComponent implements OnInit {
     this._panelContentService.panelContent.subscribe((currentPanel: string) => {
       this.currentPanel = currentPanel;
       console.log(currentPanel);
+      if (currentPanel === "announcements") {
+        this.buttonTag = "announcement";
+      } else if (currentPanel === "quizzes") {
+        this.buttonTag = "quiz";
+      } else {
+        this.buttonTag = "lecture";
+      }
     })
     
   }
