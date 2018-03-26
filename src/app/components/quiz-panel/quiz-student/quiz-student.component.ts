@@ -20,7 +20,7 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
 
   public userInfo: UserInfo;
   public activeCourse: Course;
-  public lectures: Lecture[];
+  public lectures: Lecture[] = [];
 
   private authSubscription: Subscription;
   private classSubscription: Subscription;
@@ -34,6 +34,7 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
     private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
+
     /* Subscribe to user info */
     this.authSubscription = this._authService.currentUserInfo
     .subscribe((userInfo: UserInfo) => {
@@ -47,20 +48,24 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
 
       if (this.userInfo && this.activeCourse) {
         this.quizResponses = [];
+        this.lectures = [];
         //Get the list of all lectures for course
-        this.lectureSubscription = this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/').valueChanges()
-          .subscribe((lectures: Object) => {
-            this.lectures = [];
-            Object.keys(lectures).forEach((lectureID: string) => {
-              let quizResponse = new Object();
-              this.lectures.push(lectures[lectureID]);
-              this.quizResponses[lectureID] = this._quizzesService.getQuizResponses(this.userInfo.UID, this.activeCourse.id, lectureID);
+        this.lectureSubscription = this._firebase.list('Courses/' + this.activeCourse.id + '/lectures/').valueChanges()
+          .subscribe((lectures: Lecture[]) => {
+            lectures.forEach((lecture: Lecture) => {
+
+              this.lectures.push(lecture);
+              this._firebase.list('Courses/' + this.activeCourse.id + '/userQuizResponses/' + this.userInfo.UID).valueChanges()
+                .subscribe((quizResponses: QuizResponse[]) => {
+                  this.quizResponses[lecture.id] = quizResponses.filter((quizResponse: QuizResponse) => {
+                    return quizResponse.lecture === lecture.id;
+                  });
+                });
+
             });
-            // const arr = this.quizResponses[this.lectures[0].id]
-            // console.log(arr);
         });
       }
-    });
+      });
   }
 
   ngOnDestroy() {

@@ -7,4 +7,5 @@ export class QuizResponse {
     public lecture: string;
     public quiz: string;
     public selection: number;
+    public quizObj?: Object;
 }

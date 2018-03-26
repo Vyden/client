@@ -12,24 +12,23 @@
 
     <!-- Quiz body -->
     <div *ngFor="let quizResponse of quizResponses[lecture.id]; let i = index">
-
-        <!-- <mat-expansion-panel class="background-bluegrey">
+        <mat-expansion-panel class="background-bluegrey">
           <mat-expansion-panel-header>
-            Display question
+            <!-- Display question -->
             <mat-panel-title>
-              {{ quizResponse[i]['quizObj']['question'] }}
+              {{ quizResponse['quizObj']['question'] }}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          Display answers
+          <!-- Display answers -->
           <div class="px-4 pb-4">
-            <div *ngFor="let answer of quizResponse[i]['quizObj']['answers']; let j = index">
-              <p [ngClass]="{'correct-answer': j === quizResponse[i]['quizObj']['correct'],
-              'incorrect-answer': j === quizResponse[i]['selection'] && quizResponse[i]['selection'] != quizResponse[i]['quizObj']['correct']}" >
+            <div *ngFor="let answer of quizResponse['quizObj']['answers']; let j = index">  
+              <p [ngClass]="{'correct-answer': j === quizResponse['quizObj']['correct'],
+              'incorrect-answer': j === quizResponse['selection'] && quizResponse['selection'] != quizResponse['quizObj']['correct']}" >
                 {{ answer }}
               </p>
             </div>
           </div>
-        </mat-expansion-panel> -->
+        </mat-expansion-panel>
 
     </div>
 
