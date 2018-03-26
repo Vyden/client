@@ -10,6 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DialogsModule } from './modules/dialogs/dialogs.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { environment } from '../environments/environment';
 
 /* Angular Material Modules */
@@ -112,6 +113,7 @@ import { DisableControlDirective } from './directives/disable-control/disable-co
     HttpClientModule,
     DialogsModule,
     FlexLayoutModule,
+    NgxChartsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
