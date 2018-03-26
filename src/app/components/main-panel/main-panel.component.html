@@ -12,7 +12,7 @@
             <h2 class="white-text text-center mt-4 mb-1">TITLE</h2>
           </div>
           <div class="col-md-4 col-xs-12 text-center">
-            <button mat-raised-button class="create-button text-center mt-4 mb-1" (click)="openAnnouncement()">Create announcement</button>
+            <button *ngIf="currentCourse" mat-raised-button class="create-button text-center mt-4 mb-1" (click)="openAnnouncement()">Create announcement</button>
           </div>
         </div>
         <!-- div for search box -->

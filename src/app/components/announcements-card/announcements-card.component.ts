@@ -83,4 +83,19 @@ export class AnnouncementsCardComponent implements OnInit {
    return stringDate;
  }
 
+//  public courseData: any;
+  getCourseName(courseID: string): any{
+    let courseData = this._firebase.object(`Courses/${courseID}/title`).valueChanges()
+
+    // let courseName;
+
+    // console.log(courseData);
+    // courseData.subscribe(res => {
+    //   courseName = res;
+    // })
+    // console.log(courseName);
+
+    return courseData;
+  }
+
 }
