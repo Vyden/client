@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ClassesService } from '../../../services/classes/classes.service';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { UserInfo } from '../../../models/userInfo';
 import { Course } from '../../../models/course';
 import { QuizResponse } from '../../../models/quizResponse';
@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { Lecture } from '../../../models/lecture';
 import { Quiz } from '../../../models/quiz';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-quiz-instructor',
@@ -24,6 +26,44 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
 
   private authSubscription: Subscription;
   private classSubscription: Subscription;
+
+  // data pulled from firebase
+  single = [
+    {
+      "name": "a",
+      "value": 50
+    },
+    {
+      "name": "b",
+      "value": 87
+    },
+    {
+      "name": "c",
+      "value": 67
+    },
+    {
+      "name": "d",
+      "value": 100
+    }
+  ];
+
+  // changing the size of graph
+  view: any[] = [500, 200];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Answer Choice';
+  showYAxisLabel = true;
+  yAxisLabel = 'Number of Students';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
 
   constructor(private _authService: AuthService,
     private _classService: ClassesService,
@@ -68,6 +108,10 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
     this.classSubscription.unsubscribe();
+  }
+
+  onSelect(event) {
+    console.log(event);
   }
 
 }

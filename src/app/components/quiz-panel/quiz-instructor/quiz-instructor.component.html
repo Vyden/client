@@ -6,7 +6,6 @@
           {{ lecture['title'] }}
         </mat-panel-title>
       </mat-expansion-panel-header>
-
     <!-- Quiz body -->
     <div *ngFor="let quizResponse of quizResponses[lecture.id]">
       <mat-expansion-panel class="background-bluegrey">
@@ -16,7 +15,6 @@
             {{ quizResponse['quizObj']['question'] }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-
         <!-- Display answers -->
         <div class="px-4 pb-4">
           <div *ngFor="let answer of quizResponse['quizObj']['answers']; let j = index">
@@ -25,11 +23,26 @@
             </p>
           </div>
         </div>
-
       </mat-expansion-panel>
-
-
     </div>
-
-    </mat-expansion-panel>
+  </mat-expansion-panel>
 </div>
+
+
+
+<p>{{ currentCourse.mean }}</p>
+<p>{{ currentCourse.sd }}</p>
+<ngx-charts-bar-vertical
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="single"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
