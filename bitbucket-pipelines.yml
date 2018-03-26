@@ -10,7 +10,7 @@ pipelines: # We set up all the pipeline or actions beneath
   branches: # This is branch specific configuration, we can set for different branches and different actions when we push codes
   
   
-    master:
+    deploy1:
       - step:
           script: 
             - npm install -g @angular/cli 
