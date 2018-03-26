@@ -30,7 +30,7 @@
                   </div>
                   <div class="col-md-10 col-sm-12 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput [(ngModel)]="modelName" placeholder="enter name">
+                      <input matInput [(ngModel)]="modelItem.name" placeholder="enter name">
                     </mat-form-field>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
               </div>
             </div>
 
-            <div class="row mt-2">
+            <div class="row mt-2" *ngIf="modelFile">
               <div class="col">
                 <div class="row row-centered quiz-input-row">
                   <div class="col m-0 p-0">

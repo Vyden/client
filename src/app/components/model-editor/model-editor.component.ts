@@ -5,9 +5,11 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 /* Services */
 import { UploadService } from '../../services/upload/upload.service';
+import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 
 /* Models */
 import { ModelItem, RotationAxis, RotationDirection } from '../../models/modelItem';
+import { ItemType } from '../../models/timelineItem';
 
 @Component({
   selector: 'app-model-editor',
@@ -17,12 +19,12 @@ import { ModelItem, RotationAxis, RotationDirection } from '../../models/modelIt
 export class ModelEditorComponent implements OnInit {
 
   @Input() lectureTime: number
+  private lectureId: string
 
   public modelStartTime: number // Start time in seconds
-  public modelDuration: number
   public modelMM: number
   public modelSS: number
-  public modelName: string
+  public modelFile: File
   public modelItem: ModelItem
 
   public newModelMode: boolean
@@ -38,13 +40,18 @@ export class ModelEditorComponent implements OnInit {
   public RotationAxis: any = RotationAxis
   public RotationDirection: any = RotationDirection
 
-  constructor(private _uploadService: UploadService) {
+  constructor(private _uploadService: UploadService,
+    private _lectureEditorService: LectureEditorService) {
     this.calculateModelTimeSlider({ value: 5 })
     this.modelItem = new ModelItem()
   }
 
   ngOnInit() {
-    console.log(RotationAxis);
+    /* Subscribe to lecture ID */
+    this._lectureEditorService.currentLectureId
+      .subscribe((lectureId: string) => {
+        this.lectureId = lectureId
+      })
   }
 
   public initModel() {
@@ -63,6 +70,7 @@ export class ModelEditorComponent implements OnInit {
   }
 
   public finishModel() {
+    this.publishModel()
     this.newModelMode = false
   }
 
@@ -79,16 +87,19 @@ export class ModelEditorComponent implements OnInit {
     this.modelActive = false
     this.showUploadProgress = true
     this.showDropBox = false
-    this.modelName = fileList[0].name
+    const uniqueName = uuid()
+
+    this.modelItem.name = fileList[0].name
+    this.modelItem.resource = "https://s3.us-east-2.amazonaws.com/vyden/models/" + uniqueName + "/model.gltf"
 
     // Rename file
     let blob = fileList[0].slice(0, -1, '.')
-    const modelFile: File = new File([blob], uuid() + '.zip', { type: fileList[0].type })
-    console.log(modelFile.type);
+    this.modelFile = new File([blob], uniqueName + '.zip', { type: fileList[0].type })
+    console.log(this.modelFile.type);
 
-    console.log(modelFile)
+    console.log(this.modelFile)
 
-    this._uploadService.uploadModelFile(modelFile)
+    this._uploadService.uploadModelFile(this.modelFile)
       .subscribe((event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
           // This is an upload progress event. Compute and show the % done:
@@ -112,6 +123,14 @@ export class ModelEditorComponent implements OnInit {
 
   public getObjectArray(obj) {
     return Object.keys(obj).map((key) => { return { key: key, value: obj[key] } });
+  }
+
+  public publishModel() {
+    this.modelItem.lecture = this.lectureId
+    this.modelItem.eventTime = this.modelStartTime
+    this.modelItem.type = ItemType.MODEL
+
+    console.log(this.modelItem);
   }
 
 }
