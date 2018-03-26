@@ -1,3 +1,8 @@
+# Deploy:
+ git clone https://heroku:2f474139-9800-475c-8467-3dc5b2491053@git.heroku.com/vyden-content.git HEAD
+ cd HEAD
+ git push -f https://<YOUR USERNAME>@bitbucket.org/vyden/vyden.bitbucket.io.git HEAD
+
 # Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.1.
