@@ -65,7 +65,7 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
 import { AnnouncementDialogComponent } from './components/announcement-dialog/announcement-dialog.component';
 import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-student.component';
 import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
-import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
+//import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
 
 @NgModule({
   declarations: [
@@ -99,8 +99,8 @@ import { DisableControlDirective } from './directives/disable-control/disable-co
     QuizPanelComponent,
     LectureCardComponent,
     QuizStudentComponent,
-    QuizInstructorComponent,
-    DisableControlDirective,
+    QuizInstructorComponent
+    //DisableControlDirective,
   ],
   imports: [
     BrowserModule,
