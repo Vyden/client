@@ -1,4 +1,4 @@
-image: node:9.7.1  # we need node image to run our angular application in 
+image: node:8 # we need node image to run our angular application in 
 clone: # help to clone our source here
   depth: full
 pipelines: # We set up all the pipeline or actions beneath 
