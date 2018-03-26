@@ -10,14 +10,19 @@ pipelines: # We set up all the pipeline or actions beneath
   branches: # This is branch specific configuration, we can set for different branches and different actions when we push codes
   
   
-    master:
+    deploy1:
       - step:
           script: 
             - npm install -g @angular/cli 
             - npm install -g yarn
             - yarn install
             - ng build -prod
+            - cd dist
+            - git init
+            - echo \<?php include_once\(\"index.html\"\)\> > index.php
+            - git add -A && git commit -m "base url updated for prod deployment" 
             - git config --global user.email "arothwel@purdue.edu"
             - git config --global user.name "Andrew Rothwell"
-            - git config --global push.default simple
-            - git push -f git clone https://arothwell@bitbucket.org/vyden/vyden.bitbucket.io.git
+            - git remote add origin https://github.com/a-rothwell/vyden-build.git
+            - git push -u origin master
+            - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD
