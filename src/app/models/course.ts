@@ -1,7 +1,7 @@
 export class Course {
   public id?: string;
-  public mean: string;
-  public sd: string;
+  public mean?: string;
+  public sd?: string;
   public instructor: string;
   public title: string;
   public students: string [];

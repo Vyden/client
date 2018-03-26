@@ -68,6 +68,8 @@ import { AnnouncementDialogComponent } from './components/announcement-dialog/an
 import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-student.component';
 import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
+import { FilterQuizzesStudentPipe } from './directives/filter-quizzes-student.pipe';
+import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instructor.pipe';
 
 @NgModule({
   declarations: [
@@ -102,7 +104,9 @@ import { DisableControlDirective } from './directives/disable-control/disable-co
     LectureCardComponent,
     QuizStudentComponent,
     QuizInstructorComponent,
-    DisableControlDirective
+    DisableControlDirective,
+    FilterQuizzesStudentPipe,
+    FilterQuizzesInstructorPipe,
   ],
   imports: [
     BrowserModule,
@@ -124,7 +128,7 @@ import { DisableControlDirective } from './directives/disable-control/disable-co
   ],
   exports: [
     DialogComponent,
-    AnnouncementDialogComponent
+    AnnouncementDialogComponent,
   ],
   providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService],
   entryComponents: [

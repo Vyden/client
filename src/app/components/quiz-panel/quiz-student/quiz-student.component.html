@@ -1,14 +1,14 @@
 <div id="checkbox-container">
   <div class="form-check mb-2 mr-sm-2">
-    <input class="form-check-input" type="checkbox" id="correctAnswers">
+    <input class="form-check-input" type="checkbox" id="correctAnswers" (click)="filterQuizzes($event)" checked>
     <label class="form-check-label" for="correctAnswers">
-       Show Correct Only
+       Show Correct
     </label>
   </div>
   <div class="form-check mb-2 mr-sm-2">
-    <input class="form-check-input" type="checkbox" id="incorrectAnswers">
+    <input class="form-check-input" type="checkbox" id="incorrectAnswers" (click)="filterQuizzes($event)" checked>
     <label class="form-check-label" for="incorrectAnswers">
-       Show Incorrect Only
+       Show Incorrect
     </label>
   </div>
 </div>
@@ -26,7 +26,7 @@
     </mat-expansion-panel-header>
 
     <!-- Quiz body -->
-    <div *ngFor="let quizResponse of quizResponses[lecture.id]; let i = index">
+    <div *ngFor="let quizResponse of quizResponses[lecture.id] | filterQuizzesStudent: filterOption">
         <mat-expansion-panel class="background-bluegrey">
           <mat-expansion-panel-header>
             <!-- Display question -->
