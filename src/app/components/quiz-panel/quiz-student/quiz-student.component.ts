@@ -26,45 +26,43 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
   private classSubscription: Subscription;
   private lectureSubscription: Subscription;
   public quizResponses: Object;
-  public quizInformation: Quiz[][] = [];
 
   constructor(private _authService: AuthService,
     private _classService: ClassesService,
-    private _quizzesService: QuizzesService,
     private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
 
     /* Subscribe to user info */
     this.authSubscription = this._authService.currentUserInfo
-    .subscribe((userInfo: UserInfo) => {
-      this.userInfo = userInfo;
+      .subscribe((userInfo: UserInfo) => {
+        this.userInfo = userInfo;
       });
 
     /* Subscribe to classes */
     this.classSubscription = this._classService.activeCourse
-    .subscribe((course) => {
-      this.activeCourse = course;
+      .subscribe((course) => {
+        this.activeCourse = course;
 
-      if (this.userInfo && this.activeCourse) {
-        this.quizResponses = [];
-        this.lectures = [];
-        //Get the list of all lectures for course
-        this.lectureSubscription = this._firebase.list('Courses/' + this.activeCourse.id + '/lectures/').valueChanges()
-          .subscribe((lectures: Lecture[]) => {
-            lectures.forEach((lecture: Lecture) => {
+        if (this.userInfo && this.activeCourse) {
 
-              this.lectures.push(lecture);
-              this._firebase.list('Courses/' + this.activeCourse.id + '/userQuizResponses/' + this.userInfo.UID).valueChanges()
-                .subscribe((quizResponses: QuizResponse[]) => {
-                  this.quizResponses[lecture.id] = quizResponses.filter((quizResponse: QuizResponse) => {
-                    return quizResponse.lecture === lecture.id;
+          //Get the list of all lectures for course
+          this.lectureSubscription = this._firebase.list('Courses/' + this.activeCourse.id + '/lectures/').valueChanges()
+            .subscribe((lectures: Lecture[]) => {
+              this.lectures = [];
+              this.quizResponses = [];
+              lectures.forEach((lecture: Lecture) => {
+                this.lectures.push(lecture);
+                this._firebase.list('Courses/' + this.activeCourse.id + '/userQuizResponses/' + this.userInfo.UID).valueChanges()
+                  .subscribe((quizResponses: QuizResponse[]) => {
+                    this.quizResponses[lecture.id] = quizResponses.filter((quizResponse: QuizResponse) => {
+                      return quizResponse.lecture === lecture.id;
+                    });
                   });
-                });
 
-            });
-        });
-      }
+              });
+          });
+        }
       });
   }
 

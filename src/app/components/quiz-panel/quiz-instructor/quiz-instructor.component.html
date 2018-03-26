@@ -1,3 +1,35 @@
-<p>
-  quiz-instructor works!
-</p>
+<div *ngFor="let lecture of lectures">
+    <!-- Lecture header -->
+    <mat-expansion-panel class="mb-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ lecture['title'] }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+    <!-- Quiz body -->
+    <div *ngFor="let quizResponse of quizResponses[lecture.id]">
+      <mat-expansion-panel class="background-bluegrey">
+        <mat-expansion-panel-header>
+          <!-- Display question -->
+          <mat-panel-title>
+            {{ quizResponse['quizObj']['question'] }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- Display answers -->
+        <div class="px-4 pb-4">
+          <div *ngFor="let answer of quizResponse['quizObj']['answers']; let j = index">
+            <p [ngClass]="{'correct-answer': j === quizResponse['quizObj']['correct']}">
+              {{ answer }}
+            </p>
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+
+
+    </div>
+
+    </mat-expansion-panel>
+</div>
