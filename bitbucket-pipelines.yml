@@ -20,4 +20,4 @@ pipelines: # We set up all the pipeline or actions beneath
             - git config --global user.email "arothwel@purdue.edu"
             - git config --global user.name "Andrew Rothwell"
             - git config --global push.default simple
-            - git push git@bitbucket.org:vyden/vyden.bitbucket.io.git
+            - git push -f git clone https://arothwell@bitbucket.org/vyden/vyden.bitbucket.io.git
