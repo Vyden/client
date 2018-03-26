@@ -3,8 +3,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserInfo } from '../../models/userInfo';
-import { Course } from '../../models/course'
+import { Course } from '../../models/course';
 import { FilterOptions } from '../../models/filter-options';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class ClassesService {
@@ -17,8 +18,11 @@ export class ClassesService {
   private currentFilterSource = new BehaviorSubject<FilterOptions>(null)
   public currentFilter = this.currentFilterSource.asObservable()
 
+  public lectures: string[];
+
   private userInfo: UserInfo;
   private courseIDArray: string[] = [];
+  private lectureSubscription: Subscription;
 
   constructor(private _firebase: AngularFireDatabase, private _authService: AuthService) {
     this._authService.currentUserInfo
@@ -75,6 +79,7 @@ export class ClassesService {
   public changeFilter(newFilter: FilterOptions) {
     if(newFilter) localStorage.setItem('filter', JSON.stringify(newFilter))
 
-    this.currentFilterSource.next(newFilter)
+    this.currentFilterSource.next(newFilter);
   }
+
 }
