@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
 /* rxjs */
@@ -39,7 +40,8 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     private _classesService: ClassesService,
     private _themeService: ThemeService,
     private _dialogsService: DialogsService,
-    private _af: AngularFireDatabase) { }
+    private _af: AngularFireDatabase,
+    private _afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     /* Subscribe to changes to the authstate */
@@ -50,6 +52,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           this._authService.checkLogin()
         else
           this.authState = user
+          console.log(this.authState);
       })
 
     /* Subscribe to user info */
@@ -123,6 +126,43 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           this._af.object(`UserInfo/${this.userInfo.UID}`)
             .update(this.userInfo)
         }
+      })
+  }
+
+  public changePassword() {
+    const closeButton: DialogButton = {
+      text: "CLOSE",
+      icon: 'close',
+      returnValue: false
+    }
+
+    const confirmButton: DialogButton = {
+      text: 'YES',
+      icon: 'lock_outline',
+      color: 'warn',
+      returnValue: true
+    }
+
+    const dialogOptions: DialogOptions = {
+      title: 'Delete Account',
+      message: 'Are you sure you want to change your password?',
+      type: 'danger',
+      buttons: [confirmButton, closeButton]
+    }
+
+    let dialog = this._dialogsService.openMessageDialog(dialogOptions)
+      .subscribe((res: any) => {
+        if (res === true) {
+          this._afAuth.auth.sendPasswordResetEmail(this.authState.email)
+        }
+      })
+  }
+
+  public updateEmail() {
+    // this.authState.updateEmail('test@test.com')
+    this._dialogsService.openChangeEmailDialog()
+      .subscribe((res: any) => {
+        console.log(res)
       })
   }
 

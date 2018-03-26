@@ -17,9 +17,7 @@ pipelines: # We set up all the pipeline or actions beneath
             - npm install -g yarn
             - yarn install
             - ng build -prod
-            - cd dist/ 
             - git config --global user.email "arothwel@purdue.edu"
             - git config --global user.name "Andrew Rothwell"
-            - git init
-            - git add -A && git commit -m "git to push to heroku" 
+            - git rm package-lock.json
             - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD
