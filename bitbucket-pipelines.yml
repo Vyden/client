@@ -12,7 +12,7 @@ pipelines: # We set up all the pipeline or actions beneath
       - step:
           script: 
             - npm install -g @angular/cli 
-            - npm install 
+            - yarn install
             - ng build -prod --base-href "/dev/angular-deploy/" --aot false
             - cd dist/ 
             - git config --global user.email "arothwel@purdue.edu"
