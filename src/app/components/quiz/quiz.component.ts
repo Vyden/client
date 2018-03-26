@@ -17,7 +17,7 @@ import { Lecture } from '../../models/lecture';
 export class QuizComponent implements OnInit {
 
   @Input() lectureTime: number
-  
+
   public currentCourse: Course
   public currentLectureId: string
   public currentQuiz: Quiz
@@ -50,7 +50,7 @@ export class QuizComponent implements OnInit {
     // Subscribe to edit quiz messages
     this._lectureEditorService.currentEditQuiz
       .subscribe((quizEditElements: [QuizItem, Quiz]) => {
-        if(!quizEditElements[0]) return
+        if (!quizEditElements[0]) return
 
         this.setEditQuiz(quizEditElements[0], quizEditElements[1])
       })
@@ -72,7 +72,7 @@ export class QuizComponent implements OnInit {
   }
 
   public addQuizOption() {
-    if (this.currentQuiz.answers.length === 5) return
+    if (this.currentQuiz.answers.length === 4) return
     this.currentQuiz.answers.push(null)
   }
 
@@ -100,7 +100,7 @@ export class QuizComponent implements OnInit {
     const $key: string = this._lectureEditorService.publishQuiz(this.currentQuiz, this.editMode)
     console.log('key: ', $key);
 
-    if(!this.editMode) {
+    if (!this.editMode) {
       this.quizItem = new QuizItem()
       this.quizItem.lecture = this.currentLectureId
       this.quizItem.eventTime = this.quizStartTime
@@ -120,14 +120,14 @@ export class QuizComponent implements OnInit {
 
   public setEditQuiz(quizItem: TimelineItem, quiz: Quiz) {
     this.quizItem = quizItem
-    
+
     this.editMode = true
     this.newQuizMode = true
-    
+
     this.unsavedWork = true
     this.currentQuiz = quiz
     this.quizName = quiz.question
-    this.calculateQuizTimeSlider({value: quizItem.eventTime})
+    this.calculateQuizTimeSlider({ value: quizItem.eventTime })
   }
 
 }

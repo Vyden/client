@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <mat-horizontal-stepper *ngIf="newQuizMode" [linear]="false" #stepper="matHorizontalStepper" class="w-100">
+        <mat-horizontal-stepper *ngIf="newQuizMode" [linear]="true" #stepper="matHorizontalStepper" class="w-100">
           <mat-step>
             <ng-template matStepLabel>
               <span fxHide="false" fxHide.lt-sm>Quiz Content</span>

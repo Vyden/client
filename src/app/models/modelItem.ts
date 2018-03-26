@@ -23,6 +23,7 @@ export class ModelItem extends TimelineItem {
     public offsetX: number;
     public offsetY: number;
     public offsetZ: number;
+    public scale: number;
     public audio?: string
 
     public constructor() {
@@ -34,6 +35,7 @@ export class ModelItem extends TimelineItem {
         this.offsetX = 0
         this.offsetY = 0
         this.offsetZ = 0
+        this.scale = 0.1
         this.rotateAxis = RotationAxis.X
         this.rotate = RotationDirection.NONE
     }

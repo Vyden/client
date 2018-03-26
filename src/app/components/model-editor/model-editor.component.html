@@ -130,6 +130,13 @@
                       </mat-list-item>
 
                       <mat-list-item>
+                        <h4 mat-line>Scale</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.scale">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
                         <h4 mat-line>Rotation Axis</h4>
                         <mat-form-field style="width: 100px">
                           <mat-select [(value)]="modelItem.rotateAxis">
@@ -366,6 +373,16 @@
               </div>
               <div class="col-md-10 col-7 align-self-center">
                 <span style="font-size: 16px">{{Math.floor(modelItem.duration/60)}}m {{(modelItem.duration%60)}}s</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Scale</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.scale}}</span>
               </div>
             </div>
 
