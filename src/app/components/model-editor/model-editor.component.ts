@@ -47,6 +47,8 @@ export class ModelEditorComponent implements OnInit {
   public RotationAxis: any = RotationAxis
   public RotationDirection: any = RotationDirection
 
+  public Math: any = Math
+
   constructor(private _uploadService: UploadService,
     private _lectureEditorService: LectureEditorService) {
     this.calculateModelTimeSlider({ value: 5 })

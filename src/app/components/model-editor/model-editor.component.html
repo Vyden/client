@@ -256,6 +256,97 @@
               </div>
             </div>
 
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Angle X</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.angleX}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Angle Y</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.angleY}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Angle Z</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.angleZ}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Offset X</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.offsetX}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Offset Y</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.offsetY}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Offset Z</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.offsetZ}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Rotation Axis</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.rotateAxis}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Rotation Direction</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px" *ngIf="modelItem.rotate==1">Forward</span>
+                <span style="font-size: 16px" *ngIf="modelItem.rotate==0">None</span>
+                <span style="font-size: 16px" *ngIf="modelItem.rotate==-1">Backward</span>
+              </div>
+            </div>
+
+            <div class="row mt-3" *ngIf="audioFile">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Audio Duration:</span>
+              </div>
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{Math.floor(audioItem.duration/60)}}m {{(audioItem.duration%60)}}s</span>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col-12 text-center pt-3">
                 <button mat-button matStepperPrevious>
