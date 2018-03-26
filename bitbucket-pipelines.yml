@@ -19,4 +19,4 @@ pipelines: # We set up all the pipeline or actions beneath
             - ng build -prod
             - git config --global user.email "arothwel@purdue.edu"
             - git config --global user.name "Andrew Rothwell"
-            - git push https://arothwell@bitbucket.org/vyden/vyden.bitbucket.io.git HEAD
+            - git push git@bitbucket.org:vyden/vyden.bitbucket.io.git
