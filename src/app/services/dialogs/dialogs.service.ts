@@ -8,6 +8,7 @@ import { DialogOptions } from '../../models/dialogOptions';
 import { CourseFilterDialogComponent } from '../../components/course-filter-dialog/course-filter-dialog.component';
 import { MessageDialogComponent } from '../../components/message-dialog/message-dialog.component';
 import { AnnouncementDialogComponent } from '../../components/announcement-dialog/announcement-dialog.component';
+import { AnnouncementOptions } from '../../models/announcementOptions';
 import { QuizDataDialogComponent } from '../../components/quiz-data-dialog/quiz-data-dialog.component';
 
 @Injectable()
@@ -33,12 +34,18 @@ export class DialogsService {
         return dialogRef.afterClosed();
     }
 
-    public createAnnouncement() {
+
+    public createAnnouncement(announcementOptions: AnnouncementOptions){
+
         let dialogRef: MatDialogRef<AnnouncementDialogComponent>;
 
         dialogRef = this.dialog.open(AnnouncementDialogComponent, {
             width: '380px'
         });
+
+
+        dialogRef.componentInstance.announcementOptions = announcementOptions;
+            
 
         return dialogRef.afterClosed();
     }

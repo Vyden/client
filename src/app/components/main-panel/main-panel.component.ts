@@ -6,9 +6,11 @@ import { ClassesService } from '../../services/classes/classes.service';
 import { DialogsService } from '../../services/dialogs/dialogs.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { PanelContentService } from '../../services/panel-content/panel-content.service';
+import { CreateCourseService } from '../../services/create-course/create-course.service';
 import { Course } from '../../models/course';
 import { Lecture } from '../../models/lecture';
 import { UserInfo } from '../../models/userInfo';
+import { AnnouncementOptions } from '../../models/announcementOptions';
 import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
 
@@ -23,7 +25,8 @@ export class MainPanelComponent implements OnInit {
   public userInfo: UserInfo
   public currentCourse: Course
   public currentPanel: string
-  
+  public announcementOptions: AnnouncementOptions;
+  public buttonTag: string
 
   dialogs
 
@@ -32,12 +35,18 @@ export class MainPanelComponent implements OnInit {
     private _firebase: AngularFireDatabase,
     private _classesService: ClassesService,
     private _dialogsService: DialogsService,
-    private _panelContentService: PanelContentService
+    private _panelContentService: PanelContentService,
+    private _createCourseService: CreateCourseService
   ) { 
    
   }
 
   ngOnInit() {
+
+
+    if(!this.announcementOptions){
+      this.announcementOptions = new AnnouncementOptions();
+    }
     
 /* Subscribe to changes to the user */
     this._authService.currentUserObservable
@@ -62,7 +71,7 @@ export class MainPanelComponent implements OnInit {
     .subscribe((currentCourse: Course) => {
       this.currentCourse = currentCourse
       if(currentCourse){
- 
+        this.buttonTag = "announcement";
       }
 
     })
@@ -71,15 +80,26 @@ export class MainPanelComponent implements OnInit {
     this._panelContentService.panelContent.subscribe((currentPanel: string) => {
       this.currentPanel = currentPanel;
       console.log(currentPanel);
+      if (currentPanel === "announcements") {
+        this.buttonTag = "announcement";
+      } else if (currentPanel === "quizzes") {
+        this.buttonTag = "quiz";
+      } else {
+        this.buttonTag = "lecture";
+      }
     })
     
   }
 
   openAnnouncement(){
     this._dialogsService
-      .createAnnouncement()
+      .createAnnouncement(this.announcementOptions)
       .subscribe(res => {
-      
+        this.announcementOptions = res;
+        if(res){
+          this._createCourseService.createAnnouncement(this.announcementOptions, this.currentCourse);
+        }
+        // console.log(this.announcementOptions.d);
         
       });
   

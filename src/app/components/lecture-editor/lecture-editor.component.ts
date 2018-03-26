@@ -8,7 +8,7 @@ import { ThemeService } from '../../services/theme/theme.service';
 import { LectureEditorService } from '../../services/lecture-editor/lecture-editor.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { DisableControlDirective } from '../../directives/disable-control/disable-control.directive';
+//import { DisableControlDirective } from '../../directives/disable-control/disable-control.directive';
 import { TimelineItem, ItemType } from '../../models/timelineItem';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth/auth.service';

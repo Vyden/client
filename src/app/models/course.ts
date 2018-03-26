@@ -4,6 +4,7 @@ export class Course {
     public title: string;
     public students: string [];
     public lectures: string [];
+    public announcements?: string [];
     public studentQuizResponses: string [];
     public lectureQuizResponses: string [];
 }

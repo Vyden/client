@@ -4,5 +4,5 @@ export class Announcement {
     public text: string;
     public course: string;
     public pinned: boolean;
-    public date: Date;
+    public date: number;
 }
