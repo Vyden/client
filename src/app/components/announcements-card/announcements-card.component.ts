@@ -89,7 +89,7 @@ export class AnnouncementsCardComponent implements OnInit {
     //   courseName = res;
     // })
     // console.log(courseName);
-
+    // console.log(courseData);
     return courseData;
   }
 
