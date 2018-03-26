@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
@@ -65,6 +65,7 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
 import { AnnouncementDialogComponent } from './components/announcement-dialog/announcement-dialog.component';
 import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-student.component';
 import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
+import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
 
 @NgModule({
   declarations: [
@@ -98,13 +99,15 @@ import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor
     QuizPanelComponent,
     LectureCardComponent,
     QuizStudentComponent,
-    QuizInstructorComponent
+    QuizInstructorComponent,
+    DisableControlDirective,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     DialogsModule,
     FlexLayoutModule,

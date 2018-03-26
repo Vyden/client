@@ -4,7 +4,7 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpParams, HttpErrorResponse, Ht
 @Injectable()
 export class UploadService {
 
-  private uploadUrl: string = 'http://indy.science/'
+  private uploadUrl: string = 'https://indy.science/'
   // private uploadUrl: string = 'http://localhost:5000/upload'
 
   constructor(private _httpClient: HttpClient) { }
@@ -42,7 +42,7 @@ export class UploadService {
       // withCredentials: true,
     }
 
-    const req = new HttpRequest('POST', 'http://localhost:3001/uploadModel', formData, options);
+    const req = new HttpRequest('POST', this.uploadUrl + 'uploadModel', formData, options);
 
     return this._httpClient.request(req)
   }
