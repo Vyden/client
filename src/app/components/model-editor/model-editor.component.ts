@@ -142,6 +142,7 @@ export class ModelEditorComponent implements OnInit {
     // Rename file
     let blob = fileList[0].slice(0, -1, '.')
     this.audioFile = new File([blob], uniqueName, { type: fileList[0].type })
+
     console.log(this.audioFile.type);
 
     console.log(this.audioFile)
@@ -155,6 +156,13 @@ export class ModelEditorComponent implements OnInit {
         } else if (event instanceof HttpResponse) {
           console.log('File is completely uploaded!');
           // this._lectureEditorService.publishTimelineItem(videoItem)
+
+          let au = document.createElement('audio');
+          const fileURL = URL.createObjectURL(this.audioFile);
+          au.src = fileURL;
+          au.ondurationchange = () => {
+            this.audioItem.duration = au.duration
+          };
         }
       })
   }
