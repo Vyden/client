@@ -15,8 +15,8 @@
           <div class="row">
             <div class="col"></div>
           </div>
-          <div *ngIf="!showProgress&&showDropBox" appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)"
-            [ngClass]="{'drop-active': dropzoneActive}" class="row fill d-flex file-outline m-4">
+          <div *ngIf="showDropBox" appFileDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)" [ngClass]="{'drop-active': dropzoneActive}"
+            class="row fill d-flex file-outline m-4">
             <div class="col pt-4 pb-4 text-center align-self-center pointer-events-none">
               <h3 class="white-text t-all-250" style="font-weight: 400">DROP VIDEO FILE</h3>
             </div>
@@ -42,7 +42,7 @@
               <h4>{{Math.floor(lectureEndTime/60)}}m {{Math.floor(lectureEndTime%60)}}s</h4>
             </div>
           </div>
-          <div class="row" *ngIf="!showProgress&&showDropBox">
+          <div class="row" *ngIf="showDropBox">
             <div class="col text-center mt-2">
               <button mat-raised-button (click)="inputFile.click()">
                 <mat-icon>file_upload</mat-icon>
@@ -80,7 +80,12 @@
           <div class="row m-0 p-0">
             <div class="col m-0 p-0">
               <mat-form-field class="lecture-title-input w-100" color="accent">
-                <input matInput name="lectureName" [(ngModel)]="lectureName">
+                <input matInput name="lectureName" [formControl]="basicFormControl.controls['lectureName']" [errorStateMatcher]="matcher"
+                  [(ngModel)]="lectureName">
+                <mat-error *ngIf="basicFormControl.controls['lectureName'].hasError('required')">
+                  Field is
+                  <strong>required</strong>
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -94,8 +99,12 @@
           <div class="row m-0 p-0">
             <div class="col m-0 p-0">
               <mat-form-field class="w-100 description-textarea" color="accent">
-                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="description" [(ngModel)]="lectureDescription"
-                  name="lectureDescription"></textarea>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" placeholder="description" [formControl]="basicFormControl.controls['lectureDescription']"
+                  [errorStateMatcher]="matcher" [(ngModel)]="lectureDescription" name="lectureDescription"></textarea>
+                <mat-error *ngIf="basicFormControl.controls['lectureDescription'].hasError('required')">
+                  Field is
+                  <strong>required</strong>
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -115,7 +124,12 @@
                   </div>
                   <div class="col p-0 m-0 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput placeholder="Skybox URL" [disabled]="skyboxType!='image'">
+                      <input matInput placeholder="Skybox URL" [formControl]="basicFormControl.controls['skyboxUrl']" [errorStateMatcher]="matcher"
+                        [disableControl]="skyboxType!='image'" [(ngModel)]="skyboxUrl">
+                      <mat-error *ngIf="basicFormControl.controls['skyboxUrl'].hasError('required')">
+                        Field is
+                        <strong>required</strong>
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -126,7 +140,14 @@
                   </div>
                   <div class="col p-0 m-0 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput placeholder="Hex code" [disabled]="skyboxType!='color'">
+                      <span matPrefix [ngClass]="{'grey-text': skyboxType!='color'}"># &nbsp;</span>
+                      <input matInput placeholder="Hex code" [formControl]="basicFormControl.controls['skyboxColor']" [errorStateMatcher]="matcher"
+                        [disableControl]="skyboxType!='color'" [(ngModel)]="skyboxColor">
+                      <mat-error *ngIf="basicFormControl.controls['skyboxColor'].hasError('required')">
+                        Field is
+                        <strong>required</strong>
+                      </mat-error>
+                      <div matSuffix class="color-indicator" [style.background-color]="skyboxType=='color'?'#'+skyboxColor : '#EEEEEE'"></div>
                     </mat-form-field>
                   </div>
                 </div>
@@ -145,9 +166,9 @@
   <app-quiz *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-quiz>
 
   <!-- Spacer on desktop, invisible on mobile -->
-  <div *ngIf="'true' || videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
-  <app-model-editor *ngIf="'true' || videoActive" [lectureTime]="lectureEndTime"></app-model-editor>
+  <app-model-editor *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-model-editor>
 
   <!-- Spacer on desktop, invisible on mobile -->
   <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>

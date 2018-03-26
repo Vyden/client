@@ -11,7 +11,7 @@
           <h3 class="text-center">Upload a new model</h3>
           <div class="row justify-content-center mt-3 mb-4">
             <button mat-raised-button color="accent" (click)="initModel()">
-              <mat-icon>file_upload</mat-icon>
+              <mat-icon>add</mat-icon>
               <span>NEW MODEL</span>
             </button>
           </div>
@@ -30,7 +30,7 @@
                   </div>
                   <div class="col-md-10 col-sm-12 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput [(ngModel)]="modelName" placeholder="enter name">
+                      <input matInput [(ngModel)]="modelItem.name" placeholder="enter name">
                     </mat-form-field>
                   </div>
                 </div>
@@ -47,13 +47,93 @@
 
                 <div class="row row-centered">
                   <div class="col p-4 text-center model-upload-border">
-                    <h3 class="font-400 text-center mt-4 mb-4">DROP MODEL FILE</h3>
-                    <button mat-raised-button color="primary" class="mb-3" (click)="inputFile.click()">
+                    <h3 *ngIf="!showUploadProgress" class="font-400 text-center mt-4 mb-4">DROP MODEL FILE</h3>
+                    <button *ngIf="!showUploadProgress" mat-raised-button color="primary" class="mb-3" (click)="inputFile.click()">
                       <mat-icon>file_upload</mat-icon>
                       <span>UPLOAD</span>
                     </button>
 
                     <input #inputFile type="file" accept=".zip" [style.display]="'none'" (change)="onUpload($event)">
+
+                    <div class="row mb-3 justify-content-center" *ngIf="showUploadProgress">
+                      <mat-progress-spinner color="accent" [mode]="uploadProgress==100?'indeterminate':'determinate'" [value]="uploadProgress">
+                      </mat-progress-spinner>
+
+                      <h3 class="text-center mt-4 font-weight-bold w-100">{{uploadProgress}}%</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-2" *ngIf="modelFile">
+              <div class="col">
+                <div class="row row-centered quiz-input-row">
+                  <div class="col m-0 p-0">
+                    <mat-list>
+                      <h2 mat-subheader>Model Properties</h2>
+                      <mat-list-item>
+                        <h4 mat-line>Angle X</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.angleX">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Angle Y</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.angleY">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Angle Z</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.angleZ">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Offset X</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.offsetX">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Offset Y</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.offsetY">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Offset Z</h4>
+                        <mat-form-field style="width: 100px">
+                          <input matInput class="text-center" [(ngModel)]="modelItem.offsetZ">
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Rotation Axis</h4>
+                        <mat-form-field style="width: 100px">
+                          <mat-select [(value)]="modelItem.rotateAxis">
+                            <mat-option *ngFor="let option of getKeys(RotationAxis)" value="{{option}}" class="text-center">{{option | uppercase}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </mat-list-item>
+
+                      <mat-list-item>
+                        <h4 mat-line>Rotation Direction</h4>
+                        <mat-form-field style="width: 100px">
+                          <mat-select [(value)]="modelItem.rotate">
+                            <mat-option [value]="0" class="text-center">None</mat-option>
+                            <mat-option [value]="1" class="text-center">Forward</mat-option>
+                            <mat-option [value]="-1" class="text-center">Backward</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </mat-list-item>
+                    </mat-list>
                   </div>
                 </div>
               </div>
@@ -125,6 +205,7 @@
                 <div class="row row-centered mb-3 quiz-input-row">
                   <div class="col-md-3 col-sm-12">
                     <span class="form-label">Audio Upload:</span>
+                    <span class="ml-1" *ngIf="audioFile">{{audioItem.name}}</span>
                   </div>
                 </div>
 
@@ -136,7 +217,7 @@
                       <span>UPLOAD</span>
                     </button>
 
-                    <input #inputAudioFile type="file" accept=".zip" [style.display]="'none'" (change)="onUpload($event)">
+                    <input #inputAudioFile type="file" accept=".mp3" [style.display]="'none'" (change)="onAudioUpload($event)">
                   </div>
                 </div>
               </div>
@@ -175,19 +256,101 @@
 
             <div class="row mt-3">
               <div class="col-md-2 col-5 align-self-center">
-                <span class="form-label">Duration:</span>
+                <span class="form-label">Start Time:</span>
               </div>
               <div class="col-md-10 col-7 align-self-center">
-                <span style="font-size: 16px">{{modelDuration}}s</span>
+                <span style="font-size: 16px">{{modelMM}}m {{modelSS}}s</span>
               </div>
             </div>
 
             <div class="row mt-3">
               <div class="col-md-2 col-5 align-self-center">
-                <span class="form-label">Start Time:</span>
+                <span class="form-label">Angle X</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.angleX}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Angle Y</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.angleY}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Angle Z</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.angleZ}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Offset X</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.offsetX}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Offset Y</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.offsetY}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Offset Z</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.offsetZ}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Rotation Axis</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px">{{modelItem.rotateAxis}}</span>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Rotation Direction</span>
+              </div>
+
+              <div class="col-md-10 col-7 align-self-center">
+                <span style="font-size: 16px" *ngIf="modelItem.rotate==1">Forward</span>
+                <span style="font-size: 16px" *ngIf="modelItem.rotate==0">None</span>
+                <span style="font-size: 16px" *ngIf="modelItem.rotate==-1">Backward</span>
+              </div>
+            </div>
+
+            <div class="row mt-3" *ngIf="audioFile">
+              <div class="col-md-2 col-5 align-self-center">
+                <span class="form-label">Audio Duration:</span>
               </div>
               <div class="col-md-10 col-7 align-self-center">
-                <span style="font-size: 16px">{{modelMM}}m {{modelSS}}s</span>
+                <span style="font-size: 16px">{{Math.floor(audioItem.duration/60)}}m {{(audioItem.duration%60)}}s</span>
               </div>
             </div>
 
