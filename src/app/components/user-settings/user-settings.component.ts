@@ -158,6 +158,14 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       })
   }
 
+  public updateEmail() {
+    // this.authState.updateEmail('test@test.com')
+    this._dialogsService.openChangeEmailDialog()
+      .subscribe((res: any) => {
+        console.log(res)
+      })
+  }
+
   /* Model change callbacks */
   public fullnameChanged(text: string) {
     this.fullnameModel.next(text)

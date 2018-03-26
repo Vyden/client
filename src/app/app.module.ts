@@ -66,7 +66,6 @@ import { AnnouncementDialogComponent } from './components/announcement-dialog/an
 import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-student.component';
 import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
-import { ChangeEmailDialogComponent } from './components/change-email-dialog/change-email-dialog.component';
 
 @NgModule({
   declarations: [
@@ -101,8 +100,7 @@ import { ChangeEmailDialogComponent } from './components/change-email-dialog/cha
     LectureCardComponent,
     QuizStudentComponent,
     QuizInstructorComponent,
-    DisableControlDirective,
-    ChangeEmailDialogComponent,
+    DisableControlDirective
   ],
   imports: [
     BrowserModule,

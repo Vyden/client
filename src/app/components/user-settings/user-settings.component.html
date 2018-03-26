@@ -51,7 +51,7 @@
             <div class="col-sm-12 col-md-6 align-self-center">
               <mat-form-field class="w-100">
                 <input type="text" matInput class="input-style-cancel" disabled="true" [(ngModel)]="authState.email" name="authState">
-                <button mat-icon-button matSuffix>
+                <button mat-icon-button matSuffix (click)="updateEmail()">
                   <mat-icon>settings</mat-icon>
                 </button>
               </mat-form-field>

@@ -1,3 +1,81 @@
-<p>
-  change-email-dialog works!
-</p>
+<div class="container p-0 m-0 dialog">
+  <div class="row m-0 p-3 justify-content-center">
+    <h2 class="cyan-text pt-3 pb-3" style="font-weight: 400">CHANGE EMAIL</h2>
+  </div>
+
+  <div class="row ml-2 mr-2 p-2 mb-3 mt-2" *ngIf="showError">
+    <div class="col w-100 p-2 card bg-danger white-text">
+      <span style="font-size: 16px; font-weight: 400">Error</span>
+      <p>{{errorMessage}}</p>
+    </div>
+  </div>
+
+  <div class="row m-0 mt-3">
+    <div class="col w-100">
+      <span class="ml-4" style="font-size: 16px; font-weight: 400">Current Email</span>
+
+      <form class="w-100 text-center mt-2">
+        <mat-form-field color="accent" class="w-100 input-style-cancel">
+          <input matInput placeholder="enter current email" type="email" class="input-style-cancel" [(ngModel)]="oldEmail" name="oldEmail"
+            [formControl]="oldEmailControl" [errorStateMatcher]="matcher">
+
+          <mat-error *ngIf="oldEmailControl.hasError('required')">
+            This field is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+      <div class="rule"></div>
+    </div>
+  </div>
+
+  <div class="row m-0 mt-3">
+    <div class="col w-100">
+      <span class="ml-4" style="font-size: 16px; font-weight: 400">Password</span>
+
+      <form class="w-100 text-center mt-2">
+        <mat-form-field color="accent" class="w-100 mb-3 input-style-cancel">
+          <input matInput placeholder="enter password" type="password" class="input-style-cancel" id="password" [(ngModel)]="password"
+            name="password" [formControl]="passwordControl" [errorStateMatcher]="matcher">
+
+          <mat-error *ngIf="passwordControl.hasError('required')">
+            This field is
+            <strong>required</strong>
+          </mat-error>
+
+        </mat-form-field>
+      </form>
+
+      <div class="rule"></div>
+    </div>
+  </div>
+
+  <div class="row m-0 mt-3">
+    <div class="col w-100">
+      <span class="ml-4" style="font-size: 16px; font-weight: 400">New Email</span>
+
+      <form class="w-100 text-center mt-2">
+        <mat-form-field color="accent" class="w-100 input-style-cancel">
+          <input matInput placeholder="enter new email" type="email" class="input-style-cancel" id="newEmail" [(ngModel)]="newEmail"
+            name="newEmail" [formControl]="newEmailControl" [errorStateMatcher]="matcher">
+
+          <mat-error *ngIf="newEmailControl.hasError('required')">
+            This field is
+            <strong>required</strong>
+          </mat-error>
+
+          <mat-error *ngIf="newEmailControl.hasError('email')">
+            <strong>Invalid Email</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+      <div class="rule"></div>
+    </div>
+  </div>
+
+  <div class="row m-0 mb-3 justify-content-center">
+    <button mat-button color="accent" (click)="confirmChange()">CONFIRM</button>
+  </div>
+</div>

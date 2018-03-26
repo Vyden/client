@@ -27,7 +27,7 @@ button, a {
 }
 
 .input-style-cancel {
-    border-bottom: none;
+    border-bottom: none !important;
 }
 
 input[type=text].input-style-cancel {
@@ -36,6 +36,11 @@ input[type=text].input-style-cancel {
 }
 
 input[type=password].input-style-cancel {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+input[type=email].input-style-cancel {
     border-bottom: none !important;
     box-shadow: none !important;
 }
