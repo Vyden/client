@@ -207,7 +207,10 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     const skybox = this.skyboxType == 'image' ? this.skyboxUrl : this.skyboxColor
 
     this._lectureEditorService.updateLecture({
-      sky: skybox
+      sky: skybox,
+      title: this.lectureName,
+      description: this.lectureDescription,
+      instructor: this.userInfo.UID
     })
 
     setTimeout(() => {

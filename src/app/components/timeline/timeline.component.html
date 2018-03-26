@@ -101,6 +101,12 @@
                 </mat-list-item>
 
                 <mat-list-item>
+                  <mat-icon mat-list-icon>timer</mat-icon>
+                  <h4 mat-line>{{Math.floor(timelineItem.duration/60)}}m {{Math.floor(timelineItem.duration%60)}}s</h4>
+                  <p mat-line>Duration</p>
+                </mat-list-item>
+
+                <mat-list-item>
                   <mat-icon mat-list-icon>link</mat-icon>
                   <h4 mat-line>{{timelineItem.resource}}</h4>
                   <p mat-line>Resource</p>
@@ -154,6 +160,12 @@
                   <h4 mat-line *ngIf="timelineItem.rotate==0">None</h4>
                   <h4 mat-line *ngIf="timelineItem.rotate==-1">Backward</h4>
                   <p mat-line>Rotation Direction</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>tab_unselected</mat-icon>
+                  <h4 mat-line>{{timelineItem.scale}}</h4>
+                  <p mat-line>Scale</p>
                 </mat-list-item>
               </mat-list>
             </div>
