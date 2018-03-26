@@ -79,6 +79,7 @@ export class ModelEditorComponent implements OnInit {
 
   public finishModel() {
     this.publishModel()
+    this.publishAudio()
     this.newModelMode = false
   }
 
@@ -137,7 +138,7 @@ export class ModelEditorComponent implements OnInit {
     const uniqueName = uuid()
 
     this.audioItem.name = fileList[0].name
-    this.audioItem.resource = "https://s3.us-east-2.amazonaws.com/vyden/models/" + uniqueName + "/model.gltf"
+    this.audioItem.resource = "https://s3.us-east-2.amazonaws.com/vyden/audios/" + uniqueName
 
     // Rename file
     let blob = fileList[0].slice(0, -1, '.')
@@ -181,6 +182,15 @@ export class ModelEditorComponent implements OnInit {
     this.modelItem.type = ItemType.MODEL
 
     this._lectureEditorService.publishTimelineItem(this.modelItem)
+    console.log(this.modelItem);
+  }
+
+  public publishAudio() {
+    this.audioItem.lecture = this.lectureId
+    this.audioItem.eventTime = this.modelStartTime
+    this.audioItem.type = ItemType.AUDIO
+
+    this._lectureEditorService.publishTimelineItem(this.audioItem)
     console.log(this.modelItem);
   }
 
