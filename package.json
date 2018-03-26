@@ -10,9 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-    "engines": {
-    "yarn": "1.4.0"
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.2.3",
