@@ -5,32 +5,32 @@
       <mat-panel-title>
         {{ lecture['title'] }}
       </mat-panel-title>
-      <mat-panel-description>
+      <!-- <mat-panel-description>
         {{ lecture['date'] }}
-      </mat-panel-description>
+      </mat-panel-description> -->
     </mat-expansion-panel-header>
 
     <!-- Quiz body -->
-    <div *ngFor="let quizResponse of quizResponses">
-      <div *ngFor="let quiz of quizResponse['_value']">
-        <mat-expansion-panel class="background-bluegrey">
+    <div *ngFor="let quizResponse of quizResponses[lecture.id]; let i = index">
+
+        <!-- <mat-expansion-panel class="background-bluegrey">
           <mat-expansion-panel-header>
-            <!-- Display question -->
+            Display question
             <mat-panel-title>
-              {{ quiz['quizObj']['question'] }}
+              {{ quizResponse[i]['quizObj']['question'] }}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <!-- Display answers -->
+          Display answers
           <div class="px-4 pb-4">
-            <div *ngFor="let answer of quiz['quizObj']['answers']; let i = index">
-              <p [ngClass]="{'correct-answer': i === quiz['quizObj']['correct'],
-              'incorrect-answer': i === quiz['selection'] && quiz['selection'] != quiz['quizObj']['correct']}" >
+            <div *ngFor="let answer of quizResponse[i]['quizObj']['answers']; let j = index">
+              <p [ngClass]="{'correct-answer': j === quizResponse[i]['quizObj']['correct'],
+              'incorrect-answer': j === quizResponse[i]['selection'] && quizResponse[i]['selection'] != quizResponse[i]['quizObj']['correct']}" >
                 {{ answer }}
               </p>
             </div>
           </div>
-        </mat-expansion-panel>
-      </div>
+        </mat-expansion-panel> -->
+
     </div>
 
   </mat-expansion-panel>

@@ -25,7 +25,7 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription;
   private classSubscription: Subscription;
   private lectureSubscription: Subscription;
-  public quizResponses: Observable<QuizResponse[]>[];
+  public quizResponses: Object;
   public quizInformation: Quiz[][] = [];
 
   constructor(private _authService: AuthService,
@@ -49,13 +49,15 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
         this.quizResponses = [];
         //Get the list of all lectures for course
         this.lectureSubscription = this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/').valueChanges()
-        .subscribe((lectures: Object) => {
-          this.lectures = [];
-          //Create an array of observables with quizzes for each lecture
-          Object.keys(lectures).forEach((lectureID: string, index: number) => {
-            this.lectures.push(lectures[lectureID]);
-            this.quizResponses[index] = this._quizzesService.getQuizResponseObservable(this.userInfo.UID, this.activeCourse.id, lectureID);
-          })
+          .subscribe((lectures: Object) => {
+            this.lectures = [];
+            Object.keys(lectures).forEach((lectureID: string) => {
+              let quizResponse = new Object();
+              this.lectures.push(lectures[lectureID]);
+              this.quizResponses[lectureID] = this._quizzesService.getQuizResponses(this.userInfo.UID, this.activeCourse.id, lectureID);
+            });
+            // const arr = this.quizResponses[this.lectures[0].id]
+            // console.log(arr);
         });
       }
     });
