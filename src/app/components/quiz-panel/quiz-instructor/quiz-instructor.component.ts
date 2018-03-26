@@ -20,9 +20,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class QuizInstructorComponent implements OnInit, OnDestroy {
 
   private userInfo: UserInfo;
-  private activeCourse: Course;
+  public activeCourse: Course;
   public lectures: Lecture[] = [];
   public quizResponses: Object;
+  public quizTotals: Object;
 
   private authSubscription: Subscription;
   private classSubscription: Subscription;
@@ -48,7 +49,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
   ];
 
   // changing the size of graph
-  view: any[] = [500, 200];
+  view: any[] = [400, 200];
 
   // options
   showXAxis = true;
@@ -59,7 +60,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
   xAxisLabel = 'Answer Choice';
   showYAxisLabel = true;
   yAxisLabel = 'Number of Students';
-
+  
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
@@ -87,6 +88,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
             .subscribe((lectures: Lecture[]) => {
               this.lectures = [];
               this.quizResponses = [];
+              this.quizTotals = [];
               Object.keys(lectures).forEach((lectureID: string) => {
                 this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/' + lectureID).valueChanges()
                   .subscribe((lectureObj: Lecture) => {
@@ -96,6 +98,33 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
                 this._firebase.list('Courses/' + this.activeCourse.id + '/lectureQuizResponses/' + lectureID).valueChanges()
                   .subscribe((quizResponses: QuizResponse[]) => {
                     this.quizResponses[lectureID] = quizResponses;
+                    quizResponses.forEach((quiz: QuizResponse) => {
+                      const quizID = quiz.quiz;
+                      if (this.quizTotals[quizID]) {
+                        this.quizTotals[quizID][quiz.selection]['value']++;
+                      } else {
+                        this.quizTotals[quizID] = [
+                          {
+                            "name": "a",
+                            "value": 0
+                          },
+                          {
+                            "name": "b",
+                            "value": 0
+                          },
+                          {
+                            "name": "c",
+                            "value": 0
+                          },
+                          {
+                            "name": "d",
+                            "value": 0
+                          }
+                        ]
+                        this.quizTotals[quizID][quiz.selection]['value']++;
+                      }
+                    })
+                    console.log(this.quizTotals);
                   })
               })
             })

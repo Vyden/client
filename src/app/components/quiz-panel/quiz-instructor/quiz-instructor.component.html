@@ -1,3 +1,8 @@
+<div id="statistics-container">
+  <p><b>Overall Mean: {{ activeCourse.mean }}</b></p>
+  <p><b>Overall Standard Deviation: {{ activeCourse.sd }}</b></p>
+</div>
+
 <div *ngFor="let lecture of lectures">
     <!-- Lecture header -->
     <mat-expansion-panel class="mb-2">
@@ -16,33 +21,30 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!-- Display answers -->
-        <div class="px-4 pb-4">
+        <div class="px-4 pb-large">
           <div *ngFor="let answer of quizResponse['quizObj']['answers']; let j = index">
             <p [ngClass]="{'correct-answer': j === quizResponse['quizObj']['correct']}">
               {{ answer }}
             </p>
           </div>
+
+          <ngx-charts-bar-vertical
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="quizTotals[quizResponse['quiz']]"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            (select)="onSelect($event)">
+         </ngx-charts-bar-vertical>
+
         </div>
       </mat-expansion-panel>
     </div>
   </mat-expansion-panel>
 </div>
-
-
-
-<p>{{ currentCourse.mean }}</p>
-<p>{{ currentCourse.sd }}</p>
-<ngx-charts-bar-vertical
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="single"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  (select)="onSelect($event)">
-</ngx-charts-bar-vertical>
