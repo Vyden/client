@@ -10,6 +10,7 @@ import { MessageDialogComponent } from '../../components/message-dialog/message-
 import { AnnouncementDialogComponent } from '../../components/announcement-dialog/announcement-dialog.component';
 import { AnnouncementOptions } from '../../models/announcementOptions';
 import { QuizDataDialogComponent } from '../../components/quiz-data-dialog/quiz-data-dialog.component';
+import { ChangeEmailDialogComponent } from '../../components/change-email-dialog/change-email-dialog.component';
 
 @Injectable()
 export class DialogsService {
@@ -79,6 +80,13 @@ export class DialogsService {
         dialogRef = this.dialog.open(QuizDataDialogComponent, options)
         dialogRef.componentInstance.courseId = courseId
         dialogRef.componentInstance.lectureId = lectureId
+
+        return dialogRef.afterClosed()
+    }
+
+    public openChangeEmailDialog(options?: any) {
+        let dialogRef: MatDialogRef<ChangeEmailDialogComponent>
+        dialogRef = this.dialog.open(ChangeEmailDialogComponent, options)
 
         return dialogRef.afterClosed()
     }
