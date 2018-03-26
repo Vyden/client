@@ -21,13 +21,18 @@ export class ModelEditorComponent implements OnInit {
   @Input() lectureTime: number
   private lectureId: string
 
+  
+  public newModelMode: boolean
+  
+  /* Model Item */
   public modelStartTime: number // Start time in seconds
   public modelMM: number
   public modelSS: number
   public modelFile: File
   public modelItem: ModelItem
 
-  public newModelMode: boolean
+  /* Audio Item */
+  public audioFile: File
 
   /* Dropzone data */
   public showDropBox: boolean

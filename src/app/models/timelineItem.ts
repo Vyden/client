@@ -1,7 +1,8 @@
 export enum ItemType {
     MODEL = 'model',
     VIDEO = 'video',
-    QUIZ = 'quiz'
+    QUIZ = 'quiz',
+    AUDIO = 'audio'
 }
 
 export class TimelineItem {
