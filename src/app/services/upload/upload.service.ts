@@ -47,4 +47,23 @@ export class UploadService {
     return this._httpClient.request(req)
   }
 
+  public uploadAudioFile(audioFile: File) {
+    console.log(audioFile);
+    let params = new HttpParams();
+
+    let formData = new FormData();
+    formData.append('upload', audioFile)
+
+    const options = {
+      // headers: new HttpHeaders().set('Authorization', this.loopBackAuth.accessTokenId),
+      params: params,
+      reportProgress: true,
+      // withCredentials: true,
+    }
+
+    const req = new HttpRequest('POST', this.uploadUrl + 'uploadAudio', formData, options);
+
+    return this._httpClient.request(req)
+  }
+
 }

@@ -30,7 +30,7 @@ export class QuizDataDialogComponent implements OnInit {
   public selectedCol: any
   private coordX: number
   private coordY: number
-  private changelog: any[]
+  public changelog: any[]
 
   public showSaveProgress: boolean
 

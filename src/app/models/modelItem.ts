@@ -1,11 +1,12 @@
 import { TimelineItem } from './timelineItem';
 
-enum RotationDirection {
-    FORWARD = -1,
-    BACKWARD = 1
+export enum RotationDirection {
+    FORWARD = 1,
+    NONE = 0,
+    BACKWARD = -1
 }
 
-enum RotationAxis {
+export enum RotationAxis {
     X = 'x',
     Y = 'y',
     Z = 'z'
@@ -17,8 +18,20 @@ export class ModelItem extends TimelineItem {
     public angleY: number;
     public angleZ: number;
     public rotate: RotationDirection;
-    public rotateAxis: RotationAxis = RotationAxis.X;
-    public offsetX: number = 0;
-    public offsetY: number = 0;
-    public offsetZ: number = 0;
+    public rotateAxis: RotationAxis;
+    public offsetX: number;
+    public offsetY: number;
+    public offsetZ: number;
+
+    public constructor() {
+        super()
+        this.angleX = 0
+        this.angleY = 0
+        this.angleZ = 0
+        this.offsetX = 0
+        this.offsetY = 0
+        this.offsetZ = 0
+        this.rotateAxis = RotationAxis.X
+        this.rotate = RotationDirection.NONE
+    }
 }
