@@ -1,4 +1,4 @@
-image: node:6.9.4 # we need node image to run our angular application in 
+image: node:9.7.1  # we need node image to run our angular application in 
 clone: # help to clone our source here
   depth: full
 pipelines: # We set up all the pipeline or actions beneath 
@@ -12,7 +12,7 @@ pipelines: # We set up all the pipeline or actions beneath
       - step:
           script: 
             - npm install -g @angular/cli 
-            - yarn
+            - yarn install
             - ng build -prod --base-href "/dev/angular-deploy/" --aot false
             - cd dist/ 
             - git config --global user.email "arothwel@purdue.edu"
