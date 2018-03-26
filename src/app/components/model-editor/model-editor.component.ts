@@ -9,6 +9,7 @@ import { LectureEditorService } from '../../services/lecture-editor/lecture-edit
 
 /* Models */
 import { ModelItem, RotationAxis, RotationDirection } from '../../models/modelItem';
+import { AudioItem } from '../../models/audioItem';
 import { ItemType } from '../../models/timelineItem';
 
 @Component({
@@ -21,9 +22,9 @@ export class ModelEditorComponent implements OnInit {
   @Input() lectureTime: number
   private lectureId: string
 
-  
+
   public newModelMode: boolean
-  
+
   /* Model Item */
   public modelStartTime: number // Start time in seconds
   public modelMM: number
@@ -32,6 +33,7 @@ export class ModelEditorComponent implements OnInit {
   public modelItem: ModelItem
 
   /* Audio Item */
+  public audioItem: AudioItem
   public audioFile: File
 
   /* Dropzone data */
@@ -49,6 +51,7 @@ export class ModelEditorComponent implements OnInit {
     private _lectureEditorService: LectureEditorService) {
     this.calculateModelTimeSlider({ value: 5 })
     this.modelItem = new ModelItem()
+    this.audioItem = new AudioItem()
   }
 
   ngOnInit() {
@@ -85,6 +88,12 @@ export class ModelEditorComponent implements OnInit {
     }
   }
 
+  public onAudioUpload($event: any) {
+    if ($event.srcElement.files.length) {
+      this.handleAudioDrop($event.srcElement.files)
+    }
+  }
+
   public handleDrop(fileList: FileList) {
     // Create lecture object
 
@@ -117,6 +126,34 @@ export class ModelEditorComponent implements OnInit {
 
           this.showDropBox = false
           this.modelActive = true
+          // this._lectureEditorService.publishTimelineItem(videoItem)
+        }
+      })
+  }
+
+  public handleAudioDrop(fileList: FileList) {
+    // Create lecture object
+
+    const uniqueName = uuid()
+
+    this.audioItem.name = fileList[0].name
+    this.audioItem.resource = "https://s3.us-east-2.amazonaws.com/vyden/models/" + uniqueName + "/model.gltf"
+
+    // Rename file
+    let blob = fileList[0].slice(0, -1, '.')
+    this.audioFile = new File([blob], uniqueName, { type: fileList[0].type })
+    console.log(this.audioFile.type);
+
+    console.log(this.audioFile)
+
+    this._uploadService.uploadAudioFile(this.audioFile)
+      .subscribe((event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          // This is an upload progress event. Compute and show the % done:
+          const percentDone = Math.round(100 * event.loaded / event.total);
+          console.log(`File is ${percentDone}% uploaded.`);
+        } else if (event instanceof HttpResponse) {
+          console.log('File is completely uploaded!');
           // this._lectureEditorService.publishTimelineItem(videoItem)
         }
       })
