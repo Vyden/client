@@ -8,6 +8,8 @@ pipelines: # We set up all the pipeline or actions beneath
           - echo "This script runs on all branches that don't have any specific pipeline assigned in 'branches'." 
           
   branches: # This is branch specific configuration, we can set for different branches and different actions when we push codes
+  
+  
     master:
       - step:
           script: 
