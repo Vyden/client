@@ -81,6 +81,56 @@
                   <h4 mat-line>{{timelineItem.resource}}</h4>
                   <p mat-line>Resource</p>
                 </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>rotate_right</mat-icon>
+                  <h4 mat-line>{{timelineItem.angleX}}</h4>
+                  <p mat-line>Angle X</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>rotate_right</mat-icon>
+                  <h4 mat-line>{{timelineItem.angleY}}</h4>
+                  <p mat-line>Angle Y</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>rotate_right</mat-icon>
+                  <h4 mat-line>{{timelineItem.angleZ}}</h4>
+                  <p mat-line>Angle Z</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>style</mat-icon>
+                  <h4 mat-line>{{timelineItem.offsetX}}</h4>
+                  <p mat-line>Offset X</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>style</mat-icon>
+                  <h4 mat-line>{{timelineItem.offsetY}}</h4>
+                  <p mat-line>Offset Y</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>style</mat-icon>
+                  <h4 mat-line>{{timelineItem.offsetZ}}</h4>
+                  <p mat-line>Offset Z</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>3d_rotation</mat-icon>
+                  <h4 mat-line>{{timelineItem.rotateAxis}}</h4>
+                  <p mat-line>Rotation Axis</p>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <mat-icon mat-list-icon>rotate_90_degrees_ccw</mat-icon>
+                  <h4 mat-line *ngIf="timelineItem.rotate==1">Forward</h4>
+                  <h4 mat-line *ngIf="timelineItem.rotate==0">None</h4>
+                  <h4 mat-line *ngIf="timelineItem.rotate==-1">Backward</h4>
+                  <p mat-line>Rotation Direction</p>
+                </mat-list-item>
               </mat-list>
             </div>
           </mat-step>
