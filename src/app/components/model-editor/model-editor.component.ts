@@ -130,6 +130,7 @@ export class ModelEditorComponent implements OnInit {
     this.modelItem.eventTime = this.modelStartTime
     this.modelItem.type = ItemType.MODEL
 
+    this._lectureEditorService.publishTimelineItem(this.modelItem)
     console.log(this.modelItem);
   }
 
