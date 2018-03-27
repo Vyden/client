@@ -60,6 +60,16 @@
     font-size: 1em;
 }
 
+.buttonContainer .playicon img{
+    // margin-left: 4px;
+    // height: 110%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-left: 3px;
+    width: 100%;
+   
+}
 //make the description card bigger in small screen
 @media (max-width: 767px) {
     .classBound{

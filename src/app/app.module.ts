@@ -71,6 +71,8 @@ import { DisableControlDirective } from './directives/disable-control/disable-co
 import { FilterQuizzesStudentPipe } from './directives/filter-quizzes-student.pipe';
 import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instructor.pipe';
 import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +111,8 @@ import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe
     FilterQuizzesStudentPipe,
     FilterQuizzesInstructorPipe,
     FilterQuizResponsesPipe,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

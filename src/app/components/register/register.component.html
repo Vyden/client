@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row topHalf">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-5">
+      <div class="row logoBox">
+        <img class="img-fluid logoIMG" src="assets/img/svg/vydenLogoAndName.svg" />
+      </div>
+      <div class="row textBoxes">
+        <!--<div class="col-sm-1"></div>
+          <div class="col-sm-11">-->
+        <form action="" method="post">
+          <div class="row emailRow ml-3">
+            <label for="emailAddress">Email:</label>
+            <input type="email" id="emailAddress" name="email" [(ngModel)]="email">
+          </div>
+          <div class="row passwordRow mt-1 ml-3">
+            <label for="pWord">Password:</label>
+            <input type="password" id="pWord" name="password" [(ngModel)]="password">
+          </div>
+          <div class="row nameRow mt-1 ml-3">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="fullName" [(ngModel)]="fullName" />
+          </div>
+          <div class="row instructorCheckRow mt-3 ml-3">
+            <label for="instrCheck">Intructor?</label>
+            <mat-checkbox color="primary" name="isInstructor" [(ngModel)]="isInstructor"></mat-checkbox>
+          </div>
+          <div class="row submitRow mt-3 ml-3">
+            <div class="col-sm-5">
+              <button mat-raised-button type="submit" class="white-text" color="primary" (click)="createUser()">CREATE</button>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+            </div>
+          </div>
+        </form>
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>

@@ -25,7 +25,7 @@
         </div>
 
         <mat-horizontal-stepper *ngIf="newQuizMode" [linear]="true" #stepper="matHorizontalStepper" class="w-100">
-          <mat-step>
+          <mat-step [completed]="checkOptionsValidity()">
             <ng-template matStepLabel>
               <span fxHide="false" fxHide.lt-sm>Quiz Content</span>
             </ng-template>
@@ -37,7 +37,7 @@
                   </div>
                   <div class="col-md-10 col-sm-12 align-self-center">
                     <mat-form-field class="w-100">
-                      <input matInput [(ngModel)]="quizName" placeholder="enter name">
+                      <input matInput [(ngModel)]="quizName" placeholder="enter name" required>
                     </mat-form-field>
                   </div>
                 </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col">
                       <mat-form-field class="w-100">
-                        <input matInput appFocusOnCreate [(ngModel)]="currentQuiz.answers[i]" (keyup.enter)="addQuizOption()" placeholder="quiz option {{i+1}}">
+                        <input matInput appFocusOnCreate [(ngModel)]="currentQuiz.answers[i]" (keyup.enter)="addQuizOption()" placeholder="quiz option {{i+1}}" required>
                       </mat-form-field>
                     </div>
                     <div class="col-2 align-self-center text-center" style="width: 50px">
@@ -91,7 +91,7 @@
                   </div>
                   <div class="col-md-9 col-sm-12 align-self-center">
                     <mat-form-field style="width: 80px">
-                      <input matInput [(ngModel)]="currentQuiz.time" placeholder="enter time" maxlength="4">
+                      <input matInput [(ngModel)]="currentQuiz.time" placeholder="enter time" maxlength="4" required>
                     </mat-form-field>
                     <span>s</span>
                   </div>

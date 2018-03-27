@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+/* Services */
 import { AuthService } from '../../services/auth/auth.service';
+
+/* Models */
 import { UserInfo } from '../../models/userInfo';
 
 @Component({
-  selector: 'app-templogin',
-  templateUrl: './templogin.component.html',
-  styleUrls: ['./templogin.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class TemploginComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   public email: string
   public password: string
@@ -15,7 +20,7 @@ export class TemploginComponent implements OnInit {
   public isInstructor: boolean
   public authData: any
 
-  constructor(private _authService: AuthService) { }
+  constructor(private _authService: AuthService, private _router: Router) { }
 
   ngOnInit() {
     this._authService.currentUserObservable
@@ -30,12 +35,12 @@ export class TemploginComponent implements OnInit {
     }
 
     this._authService.createUser(this.email, this.password, userInfo)
+      .then(data => console.log(data))
+      .catch(err => alert(err))
   }
 
   public loginUser() {
     this._authService.loginUserEmail(this.email, this.password)
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
   }
 
 }

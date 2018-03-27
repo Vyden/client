@@ -33,7 +33,9 @@
         <div class="buttonContainer row mt-5 text-center">
           <a (click)="openLecture(i)">
             <button mat-fab>
-              <mat-icon>play_arrow</mat-icon>
+              <!-- <mat-icon>play_arrow</mat-icon> -->
+             <mat-icon class="playicon"><img [src]="playButton" alt=""></mat-icon>
+              
             </button>
           </a>
         </div>

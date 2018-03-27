@@ -46,7 +46,7 @@ export class DialogsService {
 
 
         dialogRef.componentInstance.announcementOptions = announcementOptions;
-            
+    
 
         return dialogRef.afterClosed();
     }

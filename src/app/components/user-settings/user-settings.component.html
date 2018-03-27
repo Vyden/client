@@ -98,7 +98,7 @@
               <span class="field-label">Instructor Mode</span>
             </div>
             <div class="col-sm-12 col-md-6 pt-2 pb-2 align-self-center">
-              <mat-checkbox [(ngModel)]="userInfo.isInstructor" color="accent" class="ml-3">
+              <mat-checkbox [(ngModel)]="userInfo.isInstructor" (change)="updateInstructor($event)" color="accent" class="ml-3">
               </mat-checkbox>
             </div>
           </div>

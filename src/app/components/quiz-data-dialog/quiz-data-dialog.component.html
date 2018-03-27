@@ -21,9 +21,14 @@
     </div>
   </div>
 
-  <div class="row m-0 mb-4 p-0" *ngIf="changelog.length">
+  <div class="row m-0 mb-4 p-0">
     <div class="col-12 text-center m-0 p-0">
-      <button mat-raised-button color="primary" class="white-text" (click)="saveChanges()">
+      <button mat-button color="primary" class="ml-2" (click)="downloadCSV()">
+        <mat-icon>file_download</mat-icon>
+        <span>DOWNLOAD CSV</span>
+      </button>
+
+      <button mat-raised-button color="primary" class="white-text" (click)="saveChanges()" *ngIf="changelog.length">
         <mat-icon>update</mat-icon>
         <span>APPLY CHANGES</span>
       </button>

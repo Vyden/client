@@ -12,13 +12,18 @@ pipelines: # We set up all the pipeline or actions beneath
   
      master:
       - step:
+          caches:
+            - node
           script: 
             - npm install -g @angular/cli 
             - npm install -g yarn
             - yarn install
-            - ng build -prod
+            - ng build --prod
             - cd dist
             - git init
+            
+            
+            - echo "Hello" > index.php
             
             - git config --global user.email "arothwel@purdue.edu"
             - git config --global user.name "Andrew Rothwell"
