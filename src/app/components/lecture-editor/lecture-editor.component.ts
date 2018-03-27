@@ -204,7 +204,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public publishLecture() {
     this.showPublishProgress = true
 
-    const skybox = this.skyboxType == 'image' ? this.skyboxUrl : this.skyboxColor
+    const skybox = this.skyboxType == 'image' ? this.skyboxUrl : '#' + this.skyboxColor
 
     this._lectureEditorService.updateLecture({
       sky: skybox,

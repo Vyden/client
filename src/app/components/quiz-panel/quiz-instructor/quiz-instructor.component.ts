@@ -1,23 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from '../../../services/auth/auth.service';
+import { ClassesService } from '../../../services/classes/classes.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { UserInfo } from '../../../models/userInfo';
+import { Course } from '../../../models/course';
+import { QuizResponse } from '../../../models/quizResponse';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Rx';
+import { Lecture } from '../../../models/lecture';
+import { Quiz } from '../../../models/quiz';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { ClassesService } from '../../../services/classes/classes.service';
-import { Observable } from 'rxjs/Observable';
-import { Course } from '../../../models/course';
-// import { Lecture } from '../../../models/lecture';
 
 @Component({
   selector: 'app-quiz-instructor',
   templateUrl: './quiz-instructor.component.html',
   styleUrls: ['./quiz-instructor.component.scss']
 })
-export class QuizInstructorComponent implements OnInit {
+export class QuizInstructorComponent implements OnInit, OnDestroy {
 
-  public currentCourse: Course;
+  private userInfo: UserInfo;
+  public activeCourse: Course;
+  public lectures: Lecture[] = [];
+  public quizResponses: Object;
+  public quizTotals: Object;
+
+  private authSubscription: Subscription;
+  private classSubscription: Subscription;
 
   // data pulled from firebase
-   single = [
+  single = [
     {
       "name": "a",
       "value": 50
@@ -37,7 +49,7 @@ export class QuizInstructorComponent implements OnInit {
   ];
 
   // changing the size of graph
-  view: any[] = [500, 200];
+  view: any[] = [400, 200];
 
   // options
   showXAxis = true;
@@ -48,20 +60,83 @@ export class QuizInstructorComponent implements OnInit {
   xAxisLabel = 'Answer Choice';
   showYAxisLabel = true;
   yAxisLabel = 'Number of Students';
-
+  
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private _firebase: AngularFireDatabase,
-    private _classesService: ClassesService) { }
+
+  constructor(private _authService: AuthService,
+    private _classService: ClassesService,
+    private _firebase: AngularFireDatabase) { }
 
   ngOnInit() {
-    this._classesService.activeCourse
-      .subscribe((currentCourse: Course) => {
-        this.currentCourse = currentCourse
-        
-      })
+    /* Subscribe to user info */
+    this.authSubscription = this._authService.currentUserInfo
+    .subscribe((userInfo: UserInfo) => {
+      this.userInfo = userInfo;
+      });
+
+    /* Subscribe to classes */
+    this.classSubscription = this._classService.activeCourse
+      .subscribe((course) => {
+        this.activeCourse = course;
+
+        if (this.userInfo && this.activeCourse) {
+
+          this._firebase.object('Courses/' + this.activeCourse.id + '/lectureQuizResponses/').valueChanges()
+            .subscribe((lectures: Lecture[]) => {
+              this.lectures = [];
+              this.quizResponses = [];
+              this.quizTotals = [];
+              Object.keys(lectures).forEach((lectureID: string) => {
+                this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/' + lectureID).valueChanges()
+                  .subscribe((lectureObj: Lecture) => {
+                    this.lectures.push(lectureObj);
+                  })
+
+                this._firebase.list('Courses/' + this.activeCourse.id + '/lectureQuizResponses/' + lectureID).valueChanges()
+                  .subscribe((quizResponses: QuizResponse[]) => {
+                    this.quizResponses[lectureID] = quizResponses;
+                    quizResponses.forEach((quiz: QuizResponse) => {
+                      const quizID = quiz.quiz;
+                      if (this.quizTotals[quizID]) {
+                        this.quizTotals[quizID][quiz.selection]['value']++;
+                      } else {
+                        this.quizTotals[quizID] = [
+                          {
+                            "name": "a",
+                            "value": 0
+                          },
+                          {
+                            "name": "b",
+                            "value": 0
+                          },
+                          {
+                            "name": "c",
+                            "value": 0
+                          },
+                          {
+                            "name": "d",
+                            "value": 0
+                          }
+                        ]
+                        this.quizTotals[quizID][quiz.selection]['value']++;
+                      }
+                    })
+                    console.log(this.quizTotals);
+                  })
+              })
+            })
+
+        }
+      });
+
+  }
+
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
+    this.classSubscription.unsubscribe();
   }
 
   onSelect(event) {
@@ -69,3 +144,4 @@ export class QuizInstructorComponent implements OnInit {
   }
 
 }
+
