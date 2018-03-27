@@ -70,6 +70,7 @@ import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
 import { FilterQuizzesStudentPipe } from './directives/filter-quizzes-student.pipe';
 import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instructor.pipe';
+import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instruc
     DisableControlDirective,
     FilterQuizzesStudentPipe,
     FilterQuizzesInstructorPipe,
+    FilterQuizResponsesPipe,
   ],
   imports: [
     BrowserModule,

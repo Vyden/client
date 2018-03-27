@@ -29,6 +29,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
 
   private authSubscription: Subscription;
   private classSubscription: Subscription;
+  private lectureSubscription: Subscription;
 
   // data pulled from firebase
   single = [
@@ -92,7 +93,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
               this.quizResponses = [];
               this.quizTotals = [];
               Object.keys(lectures).forEach((lectureID: string) => {
-                this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/' + lectureID).valueChanges()
+                  this.lectureSubscription = this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/' + lectureID).valueChanges()
                   .subscribe((lectureObj: Lecture) => {
                     this.lectures.push(lectureObj);
                   })
@@ -132,6 +133,8 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
 
         }
       });
+
+    this.lectureSubscription.unsubscribe();
   }
 
   ngOnDestroy() {

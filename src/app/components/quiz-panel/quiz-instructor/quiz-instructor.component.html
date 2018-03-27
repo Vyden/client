@@ -22,13 +22,21 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
     <!-- Quiz body -->
-    <div *ngFor="let quizResponse of quizResponses[lecture.id]">
+    <div *ngFor="let quizResponse of quizResponses[lecture.id] | filterQuizResponses">
       <mat-expansion-panel class="background-bluegrey">
         <mat-expansion-panel-header>
           <!-- Display question -->
           <mat-panel-title>
             {{ quizResponse['quizObj']['question'] }}
           </mat-panel-title>
+
+          <mat-panel-description>
+            Responses: {{ quizResponse['quizObj']['numOfResp'] }}
+          </mat-panel-description>
+          <mat-panel-description>
+            % Correct: {{ quizResponse['quizObj']['pCorrect'] }}
+          </mat-panel-description>
+
         </mat-expansion-panel-header>
         <!-- Display answers -->
         <div class="px-4 pb-large">
