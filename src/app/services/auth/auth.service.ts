@@ -65,6 +65,7 @@ export class AuthService {
     return this._afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(user => {
         this.authState = user
+        this._router.navigate([''])
       })
       .catch(error => alert(error))
   }
@@ -83,7 +84,7 @@ export class AuthService {
   public logout() {
     this._afAuth.auth.signOut()
     this.clearLocalStorage()
-    this._router.navigate(['templogin'])
+    this._router.navigate(['login'])
   }
 
   private clearLocalStorage() {
