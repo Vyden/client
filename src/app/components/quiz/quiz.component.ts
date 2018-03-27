@@ -130,4 +130,15 @@ export class QuizComponent implements OnInit {
     this.calculateQuizTimeSlider({ value: quizItem.eventTime })
   }
 
+  public checkOptionsValidity(): boolean {
+    let isValid: boolean = true
+    this.currentQuiz.answers.forEach((answer: string) => {
+      if (!answer || answer.length == 0) isValid = false
+    })
+
+    if (!this.currentQuiz.time) isValid = false
+
+    return isValid
+  }
+
 }
