@@ -1,3 +1,70 @@
-<p>
-  login works!
-</p>
+<!--d-flex align-items-center-->
+<div class="row topHalf">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-5">
+    <div class="row logoBox">
+      <img class="img-fluid logoIMG" src="assets/img/svg/vydenLogoAndName.svg" />
+    </div>
+
+    <div class="row textBoxes">
+      <!--<div class="col-sm-1"></div>
+          <div class="col-sm-11">-->
+      <form action="" method="post">
+        <div class="row emailRow ml-3">
+          <label for="emailAddress">Email:</label>
+          <input type="email" id="emailAddress" name="userEmail">
+        </div>
+        <div class="row passwordRow mt-1 ml-3">
+          <label for="pWord">Password:</label>
+          <input type="password" id="pWord" name="userPassword">
+        </div>
+        <div class="row submitRow mt-3 ml-3">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-3 ml-2">
+            <a href="" class="btn btn-primary" role="button">Login</a>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <a href="RegisterPage.html" class="btn btn-primary" role="button">Register</a>
+          </div>
+
+        </div>
+      </form>
+      <!--</div>-->
+    </div>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+<div class="row bottomHalf">
+  <!--<div class="col-sm-1"></div>-->
+  <div class="col-sm-12 mr-0 carouselHolder">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/img/svg/Screen.svg" alt="People">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/svg/world.svg" alt="World">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img/svg/3DImageBackground.svg" alt="3DImage">
+        </div>
+      </div>
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </div>
+  <!--<div class="col-sm-1"></div>-->
+</div>
