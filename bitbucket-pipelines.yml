@@ -18,7 +18,7 @@ pipelines: # We set up all the pipeline or actions beneath
             - npm install -g @angular/cli 
             - npm install -g yarn
             - yarn install
-            - ng build -prod
+            - ng build --prod
             - cd dist
             - git init
             
