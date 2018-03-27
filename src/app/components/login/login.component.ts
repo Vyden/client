@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   public isInstructor: boolean
   public authData: any
 
+  
+
   constructor(private _authService: AuthService, private _router: Router) { }
 
   ngOnInit() {

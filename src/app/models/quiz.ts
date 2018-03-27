@@ -5,4 +5,6 @@ export class Quiz {
     public answers: string [];
     public correct: number;
     public time: number;
+    public pCorrect?: number;
+    public numOfResp?: number;
 }
