@@ -52,7 +52,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           this._authService.checkLogin()
         else
           this.authState = user
-          console.log(this.authState);
+        console.log(this.authState);
       })
 
     /* Subscribe to user info */
@@ -169,6 +169,11 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   /* Model change callbacks */
   public fullnameChanged(text: string) {
     this.fullnameModel.next(text)
+  }
+
+  public updateInstructor($event) {
+    this._af.object(`UserInfo/${this.userInfo.UID}`)
+      .update(this.userInfo)
   }
 
 }
