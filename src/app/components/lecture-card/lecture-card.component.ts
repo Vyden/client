@@ -30,6 +30,8 @@ export class LectureCardComponent implements OnInit {
   //   1 , 2
   // ];
 
+  public playButton = '../../../../assets/img/svg/playButton.svg'
+
   lectureList: Lecture[] = [
 
   ]
