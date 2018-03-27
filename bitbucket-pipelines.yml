@@ -12,6 +12,8 @@ pipelines: # We set up all the pipeline or actions beneath
   
      master:
       - step:
+          caches:
+            - node
           script: 
             - npm install -g @angular/cli 
             - npm install -g yarn
