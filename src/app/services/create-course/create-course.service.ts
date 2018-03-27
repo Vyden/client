@@ -33,7 +33,8 @@ export class CreateCourseService {
       students: [],
       lectures: [],
       studentQuizResponses: [],
-      lectureQuizResponses: []
+      lectureQuizResponses: [],
+      announcements: [],
     }
 
     const key: string =  this._firebase.list(`Courses`)

@@ -92,6 +92,7 @@ export class MainPanelComponent implements OnInit {
   }
 
   openAnnouncement(){
+    this.announcementOptions = new AnnouncementOptions();
     this._dialogsService
       .createAnnouncement(this.announcementOptions)
       .subscribe(res => {
