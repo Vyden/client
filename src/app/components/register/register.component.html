@@ -11,23 +11,23 @@
         <form action="" method="post">
           <div class="row emailRow ml-3">
             <label for="emailAddress">Email:</label>
-            <input type="email" id="emailAddress" name="userEmail">
+            <input type="email" id="emailAddress" name="email" [(ngModel)]="email">
           </div>
           <div class="row passwordRow mt-1 ml-3">
             <label for="pWord">Password:</label>
-            <input type="password" id="pWord" name="userPassword">
+            <input type="password" id="pWord" name="password" [(ngModel)]="password">
           </div>
           <div class="row nameRow mt-1 ml-3">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="userName" />
+            <input type="text" id="name" name="fullName" [(ngModel)]="fullName" />
           </div>
           <div class="row instructorCheckRow mt-3 ml-3">
             <label for="instrCheck">Intructor?</label>
-            <input type="checkbox" id="instrCheck" name="checkInstr" />
+            <mat-checkbox color="primary" name="isInstructor" [(ngModel)]="isInstructor"></mat-checkbox>
           </div>
           <div class="row submitRow mt-3 ml-3">
             <div class="col-sm-5">
-              <button type="submit" class="btn bg-primary">Create!</button>
+              <button mat-raised-button type="submit" class="white-text" color="primary" (click)="createUser()">CREATE</button>
             </div>
             <div class="col-sm-2"></div>
             <div class="col-sm-5">
