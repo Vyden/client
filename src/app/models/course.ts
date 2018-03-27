@@ -7,4 +7,6 @@ export class Course {
     public announcements?: string [];
     public studentQuizResponses: string [];
     public lectureQuizResponses: string [];
+    public mean?: number;
+    public sd?: number;
 }
