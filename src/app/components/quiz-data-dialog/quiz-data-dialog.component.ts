@@ -69,6 +69,21 @@ export class QuizDataDialogComponent implements OnInit {
     this.showSaveProgress = false
   }
 
+  public downloadCSV() {
+    /* From:
+     * https://stackoverflow.com/questions/8847766/how-to-convert-json-to-csv-format-and-store-in-a-variable
+     */
+
+    const items = this.hotData
+    const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+    const header = Object.keys(items[0])
+    let csv = items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+    csv.unshift(header.join(','))
+    csv = csv.join('\r\n')
+
+    this.downloadString(this.lectureId + '.csv', csv)
+  }
+
   private getLectureQuizResponses() {
     this._af.object(`Courses/${this.courseId}/lectureQuizResponses/${this.lectureId}`)
       .valueChanges()
@@ -119,6 +134,19 @@ export class QuizDataDialogComponent implements OnInit {
 
     this.selectedValue = hot.getDataAtCell(x, y)
     this.selectedCol = hot.getColHeader(y)
+  }
+
+  private downloadString(filename, text) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
   }
 
 }
