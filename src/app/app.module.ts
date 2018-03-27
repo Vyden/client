@@ -69,6 +69,7 @@ import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-
 import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { LoginComponent } from './components/login/login.component';
     QuizStudentComponent,
     QuizInstructorComponent,
     DisableControlDirective,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
