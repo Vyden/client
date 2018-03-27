@@ -161,9 +161,9 @@
   </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
-  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+  <div *ngIf="true || videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
-  <app-quiz *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-quiz>
+  <app-quiz *ngIf="true || videoActive" [lectureTime]="lectureEndTime"></app-quiz>
 
   <!-- Spacer on desktop, invisible on mobile -->
   <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
