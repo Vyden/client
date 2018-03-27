@@ -11,6 +11,7 @@ import { Lecture } from '../../../models/lecture';
 import { Quiz } from '../../../models/quiz';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FilterQuizzesInstructorPipe } from '../../../directives/filter-quizzes-instructor.pipe';
 
 @Component({
   selector: 'app-quiz-instructor',
@@ -24,9 +25,11 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
   public lectures: Lecture[] = [];
   public quizResponses: Object;
   public quizTotals: Object;
+  public newestFirst: boolean = false;
 
   private authSubscription: Subscription;
   private classSubscription: Subscription;
+  private lectureSubscription: Subscription;
 
   // data pulled from firebase
   single = [
@@ -60,7 +63,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
   xAxisLabel = 'Answer Choice';
   showYAxisLabel = true;
   yAxisLabel = 'Number of Students';
-  
+
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
@@ -73,8 +76,8 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     /* Subscribe to user info */
     this.authSubscription = this._authService.currentUserInfo
-    .subscribe((userInfo: UserInfo) => {
-      this.userInfo = userInfo;
+      .subscribe((userInfo: UserInfo) => {
+        this.userInfo = userInfo;
       });
 
     /* Subscribe to classes */
@@ -90,7 +93,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
               this.quizResponses = [];
               this.quizTotals = [];
               Object.keys(lectures).forEach((lectureID: string) => {
-                this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/' + lectureID).valueChanges()
+                  this.lectureSubscription = this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/' + lectureID).valueChanges()
                   .subscribe((lectureObj: Lecture) => {
                     this.lectures.push(lectureObj);
                   })
@@ -124,7 +127,6 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
                         this.quizTotals[quizID][quiz.selection]['value']++;
                       }
                     })
-                    console.log(this.quizTotals);
                   })
               })
             })
@@ -132,6 +134,7 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
         }
       });
 
+    this.lectureSubscription.unsubscribe();
   }
 
   ngOnDestroy() {
@@ -140,7 +143,15 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
   }
 
   onSelect(event) {
-    console.log(event);
+  }
+
+  filterQuizzes(event: Event) {
+    const checkbox = <HTMLInputElement>event.target;
+    if (checkbox.checked)
+      this.newestFirst = false;
+    else
+      this.newestFirst = true;
+    console.log(this.newestFirst);
   }
 
 }

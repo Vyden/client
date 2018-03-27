@@ -68,6 +68,9 @@ import { AnnouncementDialogComponent } from './components/announcement-dialog/an
 import { QuizStudentComponent } from './components/quiz-panel/quiz-student/quiz-student.component';
 import { QuizInstructorComponent } from './components/quiz-panel/quiz-instructor/quiz-instructor.component';
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
+import { FilterQuizzesStudentPipe } from './directives/filter-quizzes-student.pipe';
+import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instructor.pipe';
+import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
@@ -105,6 +108,9 @@ import { RegisterComponent } from './components/register/register.component';
     QuizStudentComponent,
     QuizInstructorComponent,
     DisableControlDirective,
+    FilterQuizzesStudentPipe,
+    FilterQuizzesInstructorPipe,
+    FilterQuizResponsesPipe,
     LoginComponent,
     RegisterComponent
   ],
@@ -128,7 +134,7 @@ import { RegisterComponent } from './components/register/register.component';
   ],
   exports: [
     DialogComponent,
-    AnnouncementDialogComponent
+    AnnouncementDialogComponent,
   ],
   providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService],
   entryComponents: [

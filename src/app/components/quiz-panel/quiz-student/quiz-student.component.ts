@@ -10,6 +10,7 @@ import { QuizzesService } from '../../../services/quizzes/quizzes.service';
 import { Observable } from 'rxjs/Rx';
 import { Lecture } from '../../../models/lecture';
 import { Quiz } from '../../../models/quiz';
+import { FilterQuizzesStudentPipe } from '../../../directives/filter-quizzes-student.pipe'
 
 @Component({
   selector: 'app-quiz-student',
@@ -21,6 +22,7 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
   public userInfo: UserInfo;
   public activeCourse: Course;
   public lectures: Lecture[] = [];
+  public filterOption: string = 'all';
 
   private authSubscription: Subscription;
   private classSubscription: Subscription;
@@ -70,6 +72,21 @@ export class QuizStudentComponent implements OnInit, OnDestroy {
     if (this.authSubscription) this.authSubscription.unsubscribe();
     if (this.classSubscription) this.classSubscription.unsubscribe();
     if (this.lectureSubscription) this.lectureSubscription.unsubscribe();
+  }
+
+  filterQuizzes(event: Event) {
+    const correctBox = <HTMLInputElement>document.querySelector('#correctAnswers');
+    const incorrectBox = <HTMLInputElement>document.querySelector('#incorrectAnswers');
+
+    if (correctBox.checked && incorrectBox.checked) {
+      this.filterOption = 'all';
+    } else if (correctBox.checked) {
+      this.filterOption = 'correct';
+    } else if (incorrectBox.checked) {
+      this.filterOption = 'incorrect';
+    } else {
+      this.filterOption = 'none';
+    }
   }
 
 }
