@@ -20,6 +20,9 @@ pipelines: # We set up all the pipeline or actions beneath
             - cd dist
             - git init
             
+            
+            - echo "Hello" > index.php
+            
             - git config --global user.email "arothwel@purdue.edu"
             - git config --global user.name "Andrew Rothwell"
             
