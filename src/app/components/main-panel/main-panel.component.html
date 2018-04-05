@@ -1,6 +1,6 @@
 <div class="container p-0">
   <mat-card [ngClass]="themeClass" class="p-0 mat-elevation-z6">
-   
+
     <!-- div for upper box -->
     <div class="row m-0 bg-theme-secondary">
       <div class="col">
@@ -26,7 +26,7 @@
         </div>
         <!-- div for search box -->
         <div class="row p-4 m-0 justify-content-center white-text bg-admin">
-          <input class="exp-input" #filter placeholder="filter content">
+          <input class="exp-input" #filter placeholder="filter content" (keyup)="updateFilter($event)">
         </div>
       </div>
     </div>

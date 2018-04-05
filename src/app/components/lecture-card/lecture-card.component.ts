@@ -10,6 +10,7 @@ import { Lecture } from '../../models/lecture';
 import { UserInfo } from '../../models/userInfo';
 import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
+import { FilterContentService } from '../../services/filter-content/filter-content.service';
 
 @Component({
   selector: 'app-lecture-card',
@@ -25,6 +26,7 @@ export class LectureCardComponent implements OnInit {
   public userInfo: UserInfo
   public currentCourse: Course
   public instructName: string
+  public filterString: string = '';
 
   // classList: number[] = [
   //   1 , 2
@@ -57,7 +59,8 @@ export class LectureCardComponent implements OnInit {
     private _authService: AuthService,
     private _firebase: AngularFireDatabase,
     private _classesService: ClassesService,
-    private _dialogsService: DialogsService
+    private _dialogsService: DialogsService,
+    private _filterContentService: FilterContentService
   ) {
 
   }
@@ -100,8 +103,12 @@ export class LectureCardComponent implements OnInit {
         }
       })
 
-
+    this._filterContentService.filterContent
+      .subscribe((filterString: string) => {
+        this.filterString = filterString;
+      })
   }
+
   id: string
   onClickLecture(i) {
     this.selectList[i] = !this.selectList[i];

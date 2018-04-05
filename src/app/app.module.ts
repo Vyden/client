@@ -73,6 +73,8 @@ import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instruc
 import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FilterContentPipe } from './directives/filter-content.pipe';
+import { FilterContentService } from './services/filter-content/filter-content.service';
 
 @NgModule({
   declarations: [
@@ -112,7 +114,8 @@ import { RegisterComponent } from './components/register/register.component';
     FilterQuizzesInstructorPipe,
     FilterQuizResponsesPipe,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FilterContentPipe
   ],
   imports: [
     BrowserModule,
@@ -136,7 +139,7 @@ import { RegisterComponent } from './components/register/register.component';
     DialogComponent,
     AnnouncementDialogComponent,
   ],
-  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService],
+  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService, FilterContentService],
   entryComponents: [
     DialogComponent,
     AnnouncementDialogComponent
