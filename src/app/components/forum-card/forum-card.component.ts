@@ -57,10 +57,12 @@ export class ForumCardComponent implements OnInit {
     // Initialize new question
     let newQuestion = new ForumQuestion()
     newQuestion.author = this.userInfo.UID
-    newQuestion.dateCreated = Date.now()
-    newQuestion.text = null
     newQuestion.isNote = isNote
-
+    
+    if(newQuestion.isNote) {
+      newQuestion.title = "New Note"
+    }
+    
     this.buildQuestion = newQuestion
   }
 
