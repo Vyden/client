@@ -73,6 +73,7 @@ import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instruc
 import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ForumCardComponent } from './components/forum-card/forum-card.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { RegisterComponent } from './components/register/register.component';
     FilterQuizzesInstructorPipe,
     FilterQuizResponsesPipe,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForumCardComponent
   ],
   imports: [
     BrowserModule,
