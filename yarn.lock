@@ -412,6 +412,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-bootstrap-md@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/angular-bootstrap-md/-/angular-bootstrap-md-5.2.3.tgz#293bd1e3c19667de577ccf996b6e50148f426935"
+
 angular-breakpoints@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/angular-breakpoints/-/angular-breakpoints-1.2.0.tgz#3a5d3119d1149365c0b66c7bb809471befb97d44"

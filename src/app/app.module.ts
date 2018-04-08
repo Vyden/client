@@ -73,6 +73,7 @@ import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instruc
 import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { GeneralAnnouncementCardComponent } from './components/general-announcement-card/general-announcement-card.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
 
 @NgModule({
@@ -114,6 +115,7 @@ import { ForumCardComponent } from './components/forum-card/forum-card.component
     FilterQuizResponsesPipe,
     LoginComponent,
     RegisterComponent,
+    GeneralAnnouncementCardComponent,
     ForumCardComponent
   ],
   imports: [

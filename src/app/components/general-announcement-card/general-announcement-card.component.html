@@ -1,0 +1,27 @@
+<div class="classBound" *ngFor="let announcement of arrangedAnnouncements; let i = index">
+    <div *ngIf="arrangedAnnouncements.length > 0">
+        <mat-card class="mat-elevation-z-0 text-center">
+          <div class="row m-0">
+            <div *ngIf="arrangedAnnouncements.length > 0" class="col-4 m-0 p-0 text-left">
+              <!-- <mat-card-title>{{ getCourseName(arrangedAnnouncements[i].course) | async  }}</mat-card-title> -->
+                  <mat-card-title>{{ getCourseName(announcement.course) }}</mat-card-title>
+            </div>
+            <div *ngIf="arrangedAnnouncements.length > 0" class="col-4 m-0 p-0">
+              <mat-card-title> {{ announcement.title }} </mat-card-title>
+            </div>
+            <div class="col-4 m-0 p-0 text-right">
+              <!-- <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle> -->
+              <mat-icon *ngIf="announcement.pinned">nature</mat-icon>
+            </div>
+          </div>
+          <div *ngIf="arrangedAnnouncements.length > 0" class="row m-0 text-left">
+            <mat-card-subtitle>Posted on {{ convertString(announcement.date) }}</mat-card-subtitle>
+          </div>
+          <div *ngIf="arrangedAnnouncements.length > 0" class="row m-0 text-left">
+            <mat-card-content> {{ announcement.text }}</mat-card-content>
+          </div>
+        </mat-card>
+      </div>
+  
+    
+    </div>
