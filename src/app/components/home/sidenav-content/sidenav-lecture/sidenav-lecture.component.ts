@@ -7,6 +7,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '../../../../models/userInfo';
 import { Course } from '../../../../models/course';
 import { PanelContentService } from '../../../../services/panel-content/panel-content.service';
+import { DialogsService } from '../../../../services/dialogs/dialogs.service';
+import { DialogButton, DialogOptions } from '../../../../models/dialogOptions'
 
 @Component({
   selector: 'app-sidenav-lecture',
@@ -38,6 +40,7 @@ export class SidenavLectureComponent implements OnInit {
   constructor(private _classesService: ClassesService,
     private _themeService: ThemeService,
     private _authService: AuthService,
+    private _dialogsService: DialogsService,
     private _firebase: AngularFireDatabase,
     private _panelContent: PanelContentService) { }
 
@@ -64,8 +67,33 @@ export class SidenavLectureComponent implements OnInit {
   }
 
   removeCourse() {
-    this._classesService.removeCourse(this.activeCourse.id);
-    this.backToCourses();
+    const closeButton: DialogButton = {
+      text: "CLOSE",
+      icon: 'close',
+      returnValue: false
+    }
+
+    const confirmButton: DialogButton = {
+      text: 'DELETE',
+      icon: 'delete',
+      color: 'warn',
+      returnValue: true
+    }
+
+    const dialogOptions: DialogOptions = {
+      title: 'Remove Course',
+      message: 'Are you sure you want to drop ' + this.activeCourse.title + '? This action cannot be undone.',
+      type: 'danger',
+      buttons: [confirmButton, closeButton]
+    }
+
+    let dialog = this._dialogsService.openMessageDialog(dialogOptions)
+      .subscribe((res: any) => {
+        if (res === true) {
+          this._classesService.removeCourse(this.activeCourse.id);
+          this.backToCourses();
+        }
+      })
   }
 
   switchPanel(event: Event) {
