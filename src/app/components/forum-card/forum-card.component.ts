@@ -36,6 +36,10 @@ export class ForumCardComponent implements OnInit {
   public forumPosts: ForumQuestion[]
   public isEditingQuestion: boolean
 
+  public buildAnswer: ForumAnswer
+  public editAnswer: ForumAnswer
+  public isEditingAnswer: boolean
+
   constructor(private _themeService: ThemeService,
     private _classesService: ClassesService,
     private _authService: AuthService,
@@ -80,6 +84,58 @@ export class ForumCardComponent implements OnInit {
                     post.editor = editorInfo
                   })
               }
+
+              // Get answers
+              this._af.list<string>(`Courses/${this.currentCourse.id}/forum/${post.UID}/answers`)
+                .snapshotChanges()
+                .subscribe((answerActions) => {
+                  let postAnswers = <ForumAnswer[]>[]
+                  let postAnswersMap = {}
+                  answerActions.forEach((answerAction) => {
+                    const answerID: string = answerAction.payload.val()
+                    console.log('Got answer ID ', answerID)
+
+                    this._af.object<ForumAnswer>(`Courses/${this.currentCourse.id}/forumAnswers/${answerID}`)
+                      .valueChanges()
+                      .subscribe((answer: ForumAnswer) => {
+                        // Get author UserInfo
+                        this._af.object<UserInfo>(`UserInfo/${answer.author}`)
+                          .valueChanges()
+                          .subscribe((authorInfo: UserInfo) => {
+                            answer.author = authorInfo
+
+                            if (postAnswersMap[answer.UID]) {
+                              // Answer already exists, so update it
+                              postAnswersMap[answer.UID].author = answer.author
+                            }
+                          })
+
+                        // Get editor UserInfo
+                        if (answer.editor) {
+                          this._af.object<UserInfo>(`UserInfo/${answer.editor}`)
+                            .valueChanges()
+                            .subscribe((editorInfo: UserInfo) => {
+                              answer.editor = editorInfo
+
+                              if (postAnswersMap[answer.UID]) {
+                                // Answer already exists, so update it
+                                postAnswersMap[answer.UID].editor = answer.editor
+                              }
+                            })
+                        }
+
+                        if (postAnswersMap[answer.UID]) {
+                          // Answer already exists, so update it
+                          postAnswersMap[answer.UID] = answer
+                        } else {
+                          // Answer is new, record it
+                          postAnswersMap[answer.UID] = answer
+                          postAnswers.push(answer)
+                        }
+                      })
+                  })
+                  post.answers = postAnswers
+                })
 
               this.forumPosts.push(post)
             })
@@ -166,6 +222,68 @@ export class ForumCardComponent implements OnInit {
     this.buildQuestion = null
   }
 
+  public createAnswer(parentQuestion: ForumQuestion) {
+    // Initialize new answer
+    let newAnswer: ForumAnswer = new ForumAnswer()
+    newAnswer.author = this.userInfo.UID
+    newAnswer.questionUID = parentQuestion.UID
+
+    this.buildAnswer = newAnswer
+  }
+
+  public cancelAnswer() {
+    const closeButton: DialogButton = {
+      text: "NO",
+      returnValue: false
+    }
+
+    const confirmButton: DialogButton = {
+      text: 'YES',
+      color: 'warn',
+      returnValue: true
+    }
+
+    const dialogOptions: DialogOptions = {
+      title: 'Cancel New Question',
+      message: 'Are you sure you want to stop editing this answer? This action cannot be undone.',
+      type: 'danger',
+      buttons: [confirmButton, closeButton]
+    }
+
+    let dialog = this._dialogsService.openMessageDialog(dialogOptions)
+      .subscribe((res: any) => {
+        if (res === true) {
+          this.buildAnswer = null
+        }
+      })
+  }
+
+  public postAnswer(answer: ForumAnswer) {
+    if (!answer) return
+
+    if (!this.userInfo) {
+      console.error('userInfo is not defined')
+      return
+    }
+
+    if (!this.currentCourse) {
+      console.error('currentCourse is not defined')
+      return
+    }
+
+    const $key: string = this._af.list(`Courses/${this.currentCourse.id}/forumAnswers`)
+      .push(answer)
+      .key
+
+    this._af.object(`Courses/${this.currentCourse.id}/forumAnswers/${$key}`)
+      .update({ UID: $key })
+
+    this._af.list(`Courses/${this.currentCourse.id}/forum/${answer.questionUID}/answers`)
+      .push($key)
+
+    this.buildAnswer = null
+  }
+
   public getDate(date: number): string {
     return (new Date(date)).toDateString()
   }
@@ -188,6 +306,22 @@ export class ForumCardComponent implements OnInit {
       .update({
         title: question.title,
         text: question.text,
+        dateModified: Date.now(),
+        editor: this.userInfo.UID
+      })
+  }
+
+  public editAnswerStart(answer: ForumAnswer) {
+    this.isEditingAnswer = true
+    this.editAnswer = answer
+  }
+
+  public editAnswerDone(answer: ForumAnswer) {
+    this.isEditingAnswer = false
+
+    this._af.object(`Courses/${this.currentCourse.id}/forumAnswers/${answer.UID}`)
+      .update({
+        text: answer.text,
         dateModified: Date.now(),
         editor: this.userInfo.UID
       })

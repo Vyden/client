@@ -24,9 +24,15 @@ export class ForumQuestion {
 
 export class ForumAnswer {
     public UID?: string;
+    public questionUID?: string;
     public author: string | UserInfo;
     public dateCreated: number;
     public dateModified?: number;
     public editor?: string | UserInfo;
     public text: string;
+
+    public constructor() {
+        this.dateCreated = Date.now()
+        this.text = null
+    }
 }
