@@ -21,13 +21,13 @@
 
         <div class="row justify-content-center m-0 pb-3">
           <div class="col-6 m-0 text-center">
-            <button mat-button class="white-text">
+            <button mat-button class="white-text" (click)="createQuestion()">
               <mat-icon>speaker_notes</mat-icon>
               <span>NEW QUESTION</span>
             </button>
           </div>
           <div class="col-6 m-0 text-center">
-            <button mat-button class="white-text">
+            <button mat-button class="white-text" (click)="createQuestion(true)">
               <mat-icon>event_note</mat-icon>
               <span>NEW NOTE</span>
             </button>
