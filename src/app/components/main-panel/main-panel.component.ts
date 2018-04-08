@@ -13,6 +13,7 @@ import { UserInfo } from '../../models/userInfo';
 import { AnnouncementOptions } from '../../models/announcementOptions';
 import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
+import { ForumCardComponent } from '../forum-card/forum-card.component';
 
 @Component({
   selector: 'app-main-panel',

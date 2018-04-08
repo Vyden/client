@@ -74,6 +74,7 @@ import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GeneralAnnouncementCardComponent } from './components/general-announcement-card/general-announcement-card.component';
+import { ForumCardComponent } from './components/forum-card/forum-card.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { GeneralAnnouncementCardComponent } from './components/general-announcem
     FilterQuizResponsesPipe,
     LoginComponent,
     RegisterComponent,
-    GeneralAnnouncementCardComponent
+    GeneralAnnouncementCardComponent,
+    ForumCardComponent
   ],
   imports: [
     BrowserModule,

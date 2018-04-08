@@ -41,7 +41,7 @@
 
   <div class="row m-3">
     <div class="col">
-      <button mat-button class="white-text text-left no-hover course-button-hover">
+      <button data-section="forum" mat-button class="white-text text-left no-hover course-button-hover" (click)="switchPanel($event)">
         <mat-icon class="mr-2">question_answer</mat-icon>
         <span>Forum</span>
       </button>
