@@ -24,6 +24,7 @@ export class GeneralAnnouncementCardComponent implements OnInit {
   public announcements: Observable<Announcement []>
   public announcementList : Announcement[] = [];
   public arrangedAnnouncements: Announcement[] = [];
+  
 
 
 
@@ -56,11 +57,36 @@ export class GeneralAnnouncementCardComponent implements OnInit {
             })
             if (!found) {
               this.courses.push(course);
+              this.announcements = this._firebase.list<Announcement>(`Courses/${course.id}/announcements`).valueChanges();
+              console.log('announcements ' ,this.announcements)
+            this.announcements.subscribe(res => {
+              this.announcementList = this.announcementList.concat(res);
+              // console.log('res ', this.announcementList);
+              console.log('length ', this.announcementList.length);
+              console.log('arrangedannouncement ', this.arrangedAnnouncements);
+              for (var i = 0 ; i < res.length ; i++){
+                this.arrangedAnnouncements.push(res[i]);
+              }
+            })
             }
           });
         })
 
-        console.log(this.courses);
+        
+        // console.log('outside length ', this.announcementList.length)
+        // this.arrangedAnnouncements = this.announcementList;
+        // // if(this.courses.length > 0){
+        //   for(var i = 0 ; i  < this.courses.length ; i++){
+
+        //     this.announcements = this._firebase.list<Announcement>(`Courses/${this.courses[i].id}/announcements`).valueChanges();
+        //       console.log('announcements ' , this.announcements)
+        //     this.announcements.subscribe(res => {
+        //       console.log('subscribing ' , res);
+        //       this.announcementList = this.announcementList.concat(res);
+        //     })
+        //   }
+        //   console.log('announcementlist ' , this.announcementList);
+        // // }
     })
 
    
@@ -69,7 +95,8 @@ export class GeneralAnnouncementCardComponent implements OnInit {
     .subscribe((currentCourse: Course) => {
       this.currentCourse = currentCourse
 
-      if(currentCourse){
+      
+      /*if(currentCourse){
         this.announcements = this._firebase.list<Announcement>(`Courses/${this.currentCourse.id}/announcements`).valueChanges();
         
         this.announcements.subscribe(res => {
@@ -88,7 +115,7 @@ export class GeneralAnnouncementCardComponent implements OnInit {
         })
         
           
-      }
+      }*/
     })
   }
 
@@ -98,18 +125,9 @@ export class GeneralAnnouncementCardComponent implements OnInit {
    return stringDate;
  }
 
-//  public courseData: any;
   getCourseName(courseID: string): any{
     let courseData = this._firebase.object(`Courses/${courseID}/title`).valueChanges()
 
-    // let courseName;
-
-    // console.log(courseData);
-    // courseData.subscribe(res => {
-    //   courseName = res;
-    // })
-    // console.log(courseName);
-    // console.log(courseData);
     return courseData;
   }
 

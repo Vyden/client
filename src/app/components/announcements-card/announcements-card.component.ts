@@ -72,6 +72,9 @@ export class AnnouncementsCardComponent implements OnInit {
     })
   }
 
+
+ 
+
   convertString(date: number): string{
     let stringDate = String(new Date(date));
 
