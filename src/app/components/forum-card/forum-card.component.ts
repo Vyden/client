@@ -61,6 +61,10 @@ export class ForumCardComponent implements OnInit {
             actions.forEach((action) => {
               let post: ForumQuestion = action.payload.val()
 
+              // Check if post is private and the user has permissions to view it
+              if (post.isPrivate && post.author !== this.userInfo.UID && this.currentCourse.instructor !== this.userInfo.UID)
+                return
+
               // Get author UserInfo
               this._af.object<UserInfo>(`UserInfo/${post.author}`)
                 .valueChanges()

@@ -54,6 +54,17 @@
             </mat-form-field>
           </div>
 
+          <div class="col-12 p-3 m-0">
+            <p>Who can view this post?</p>
+          </div>
+
+          <div class="col-12 p-3 m-0">
+            <mat-radio-group [(ngModel)]="buildQuestion.isPrivate">
+              <mat-radio-button [value]="true">Just me</mat-radio-button>
+              <mat-radio-button [value]="false" class="ml-1">Everyone</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
           <div class="col-12 p-3 m-0 text-right">
             <button mat-button (click)="postQuestion(buildQuestion)">
               <mat-icon>playlist_add</mat-icon>

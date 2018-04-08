@@ -8,6 +8,7 @@ export class ForumQuestion {
     public editor?: string | UserInfo;
     public title: string;
     public text: string;
+    public isPrivate: boolean;
     public isNote: boolean;
     public answers?: string[] | ForumAnswer [];
 
@@ -17,6 +18,7 @@ export class ForumQuestion {
         this.text = null
         this.dateCreated = Date.now()
         this.isNote = false
+        this.isPrivate = false
     }
 }
 
