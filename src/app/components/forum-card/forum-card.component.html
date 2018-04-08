@@ -5,7 +5,7 @@
 
         <div class="row m-0">
           <div class="col justify-content-center">
-            <h2 class="white-text text-center mt-4 mb-1">TITLE</h2>
+            <h2 class="white-text text-center mt-4 mb-1">COURSE FORUM</h2>
           </div>
         </div>
 
@@ -52,6 +52,17 @@
             <mat-form-field class="input-style-cancel w-100">
               <textarea matInput placeholder="Post content" [(ngModel)]="buildQuestion.text"></textarea>
             </mat-form-field>
+          </div>
+
+          <div class="col-12 p-3 m-0">
+            <p>Who can view this post?</p>
+          </div>
+
+          <div class="col-12 p-3 m-0">
+            <mat-radio-group [(ngModel)]="buildQuestion.isPrivate">
+              <mat-radio-button [value]="true">Just me</mat-radio-button>
+              <mat-radio-button [value]="false" class="ml-1">Everyone</mat-radio-button>
+            </mat-radio-group>
           </div>
 
           <div class="col-12 p-3 m-0 text-right">
@@ -111,6 +122,58 @@
                 </div>
               </div>
 
+              <!-- Answer builder -->
+              <div class="row post-row p-3 m-0 mt-2" *ngIf="buildAnswer && buildAnswer.questionUID === forumPost.UID">
+
+                <div class="col-12 p-0 m-0">
+                  <mat-form-field class="input-style-cancel w-100">
+                    <textarea matInput placeholder="Answer content" [(ngModel)]="buildAnswer.text"></textarea>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-12 p-0 m-0 text-right">
+                  <button mat-button (click)="postAnswer(buildAnswer)">
+                    <mat-icon>playlist_add</mat-icon>
+                    <span>POST</span>
+                  </button>
+
+                  <button mat-button class="ml-1" color="warn" (click)="cancelAnswer()">
+                    <mat-icon>close</mat-icon>
+                    <span>CANCEL</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Answers -->
+              <ng-container *ngIf="forumPost.answers && forumPost.answers.length">
+                <div class="row p-3 m-0 mt-2" *ngFor="let postAnswer of forumPost.answers">
+
+                  <div class="col-2 icon-col p-0 m-0 text-left">
+                    <button mat-icon-button (click)="editAnswerStart(postAnswer)" *ngIf="!isEditingAnswer">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button (click)="editAnswerDone(postAnswer)" *ngIf="isEditingAnswer && editAnswer == postAnswer">
+                      <mat-icon>check</mat-icon>
+                    </button>
+                  </div>
+
+                  <div class="col p-0 m-0">
+                    <p *ngIf="!isEditingAnswer || postAnswer != editAnswer" [innerHTML]="parseLineBreaks(postAnswer.text)"></p>
+
+                    <mat-form-field class="input-style-cancel w-100" *ngIf="isEditingAnswer && postAnswer == editAnswer">
+                      <textarea matInput placeholder="Answer content" [(ngModel)]="postAnswer.text"></textarea>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-12 p-0 m-0">
+                    <p *ngIf="postAnswer.author.fullName" class="grey-text">Posted by {{postAnswer.author.fullName}} on {{getDate(postAnswer.dateCreated)}}</p>
+                    <p *ngIf="postAnswer.editor && postAnswer.dateModified" class="grey-text">Last edited by {{postAnswer.editor.fullName}} on {{getDate(postAnswer.dateModified)}}</p>
+                  </div>
+
+                </div>
+              </ng-container>
+
               <div class="row m-0 mb-2 p-0 w-100">
                 <div class="col-12 m-0 p-0">
                   <hr>
@@ -128,7 +191,7 @@
                     <span>DONE</span>
                   </button>
 
-                  <button mat-button color="primary" *ngIf="!forumPost.isNote">
+                  <button mat-button class="mr-1" color="primary" *ngIf="!forumPost.isNote" (click)="createAnswer(forumPost)">
                     <mat-icon>reply</mat-icon>
                     <span>REPLY</span>
                   </button>
