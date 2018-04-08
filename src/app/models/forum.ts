@@ -1,13 +1,15 @@
+import { UserInfo } from './userInfo';
+
 export class ForumQuestion {
     public UID?: string;
-    public author: string;
+    public author: string | UserInfo;
     public dateCreated: number;
     public dateModified?: number;
-    public editorUID?: string;
+    public editor?: string | UserInfo;
     public title: string;
     public text: string;
     public isNote: boolean;
-    public answers?: string [];
+    public answers?: string[] | ForumAnswer [];
 
     public constructor() {
         this.title = "New Question"
@@ -20,9 +22,9 @@ export class ForumQuestion {
 
 export class ForumAnswer {
     public UID?: string;
-    public author: string;
+    public author: string | UserInfo;
     public dateCreated: number;
     public dateModified?: number;
-    public editorUID?: string;
+    public editor?: string | UserInfo;
     public text: string;
 }
