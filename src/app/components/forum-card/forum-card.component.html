@@ -73,7 +73,9 @@
             <mat-expansion-panel class="w-100">
               <mat-expansion-panel-header>
                 <mat-panel-title style="font-weight: 400">
-                  {{forumPost.title}}
+                  <mat-icon class="mr-2" *ngIf="!forumPost.isNote">question_answer</mat-icon>
+                  <mat-icon class="mr-2" *ngIf="forumPost.isNote">message</mat-icon>
+                  {{(forumPost.title.length>20)? (forumPost.title | slice:0:20)+'...':(forumPost.title)}}
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
@@ -87,23 +89,55 @@
                 </div>
               </div>
 
-              <div class="row m-0 p-0">
-                <div class="col m-0 p-3 text-left">
-                  {{forumPost.text}}
+              <div class="row m-0 mt-2 p-0">
+                <div class="col m-0 p-0 pl-3 pr-3">
+                  <p *ngIf="!isEditingQuestion || forumPost != editQuestion" style="font-weight: bold">{{forumPost.title}}</p>
+
+                  <mat-form-field class="input-style-cancel w-100" *ngIf="isEditingQuestion && forumPost == editQuestion">
+                    <input matInput placeholder="Post Name" [(ngModel)]="forumPost.title">
+                  </mat-form-field>
+
+                  <hr>
                 </div>
               </div>
 
-              <mat-action-row>
-                <button mat-button class="mr-1" [disabled]="forumPost.author.UID !== userInfo.UID && currentCourse.instructor !== userInfo.UID">
-                  <mat-icon>mode_edit</mat-icon>
-                  <span>EDIT</span>
-                </button>
+              <div class="row m-0 p-0">
+                <div class="col m-0 p-3 text-left">
+                  <p *ngIf="!isEditingQuestion || forumPost != editQuestion" [innerHTML]="parseLineBreaks(forumPost.text)"></p>
 
-                <button mat-button color="primary" *ngIf="!forumPost.isNote">
-                  <mat-icon>reply</mat-icon>
-                  <span>REPLY</span>
-                </button>
-              </mat-action-row>
+                  <mat-form-field class="input-style-cancel w-100" *ngIf="isEditingQuestion && forumPost == editQuestion">
+                    <textarea matInput placeholder="Post content" [(ngModel)]="forumPost.text"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row m-0 mb-2 p-0 w-100">
+                <div class="col-12 m-0 p-0">
+                  <hr>
+                </div>
+
+                <div class="col-12 text-right p-0 m-0">
+                  <button mat-button class="mr-1" [disabled]="forumPost.author.UID !== userInfo.UID && currentCourse.instructor !== userInfo.UID"
+                    (click)="editQuestionStart(forumPost)">
+                    <mat-icon>mode_edit</mat-icon>
+                    <span>EDIT</span>
+                  </button>
+
+                  <button mat-button class="mr-1" *ngIf="isEditingQuestion" (click)="editQuestionDone(forumPost)">
+                    <mat-icon>check</mat-icon>
+                    <span>DONE</span>
+                  </button>
+
+                  <button mat-button color="primary" *ngIf="!forumPost.isNote">
+                    <mat-icon>reply</mat-icon>
+                    <span>REPLY</span>
+                  </button>
+
+                </div>
+                <div class="col-12 text-left p-0 pl-3 m-0" *ngIf="forumPost.dateModified && forumPost.editor">
+                  <p class="grey-text">Last modified at {{getDate(forumPost.dateModified)}} by {{forumPost.editor.fullName}}</p>
+                </div>
+              </div>
             </mat-expansion-panel>
           </div>
         </ng-container>

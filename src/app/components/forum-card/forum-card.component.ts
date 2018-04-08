@@ -32,7 +32,9 @@ export class ForumCardComponent implements OnInit {
 
   /* Forum data */
   public buildQuestion: ForumQuestion
+  public editQuestion: ForumQuestion
   public forumPosts: ForumQuestion[]
+  public isEditingQuestion: boolean
 
   constructor(private _themeService: ThemeService,
     private _classesService: ClassesService,
@@ -76,6 +78,15 @@ export class ForumCardComponent implements OnInit {
               }
 
               this.forumPosts.push(post)
+            })
+
+            this.forumPosts.sort((a: ForumQuestion, b: ForumQuestion) => {
+              const keyA = new Date(a.dateCreated)
+              const keyB = new Date(b.dateCreated)
+              // Compare the 2 dates
+              if (keyA < keyB) return 1;
+              if (keyA > keyB) return -1;
+              return 0;
             })
           })
 
@@ -159,6 +170,27 @@ export class ForumCardComponent implements OnInit {
     console.log('Getting user: ', userID)
     return this._af.object<UserInfo>(`UserInfo/${userID}`)
       .valueChanges()
+  }
+
+  public editQuestionStart(question: ForumQuestion) {
+    this.isEditingQuestion = true
+    this.editQuestion = question
+  }
+
+  public editQuestionDone(question: ForumQuestion) {
+    this.isEditingQuestion = false
+
+    this._af.object(`Courses/${this.currentCourse.id}/forum/${question.UID}`)
+      .update({
+        title: question.title,
+        text: question.text,
+        dateModified: Date.now(),
+        editor: this.userInfo.UID
+      })
+  }
+
+  public parseLineBreaks(text: string): string {
+    return text.replace(/\n/g, "<br>")
   }
 
 }
