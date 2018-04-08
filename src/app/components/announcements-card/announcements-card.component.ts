@@ -54,7 +54,7 @@ export class AnnouncementsCardComponent implements OnInit {
         
         this.announcements.subscribe(res => {
           this.announcementList = res;
-          console.log(this.announcementList);
+          // console.log(this.announcementList);
           this.arrangedAnnouncements = [];
           for(var i = this.announcementList.length-1 ; i >= 0  ; i--){
             if(this.announcementList[i].pinned === true){

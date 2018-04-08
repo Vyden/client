@@ -34,13 +34,16 @@
     <div class="row m-0">
       <div class="col m-0 p-0">
       <div class="classcontainer">
-          <app-quiz-panel *ngIf="currentPanel === 'quizzes' ; else lectureTemplate"></app-quiz-panel>
-        <ng-template #lectureTemplate>
-          <app-lecture-card *ngIf="currentPanel === 'lectures'; else announcementTemplate"></app-lecture-card>
-        </ng-template>
-        <ng-template #announcementTemplate>
-          <app-announcements-card ></app-announcements-card>
-        </ng-template>
+          <app-general-announcement-card *ngIf="!currentCourse ; else generalAnnouncementTemplate"></app-general-announcement-card>
+          <ng-template #generalAnnouncementTemplate>
+            <app-quiz-panel *ngIf="currentPanel === 'quizzes' ; else lectureTemplate"></app-quiz-panel>
+            <ng-template #lectureTemplate>
+            <app-lecture-card *ngIf="currentPanel === 'lectures'; else announcementTemplate"></app-lecture-card>
+            </ng-template>
+            <ng-template #announcementTemplate>
+           <app-announcements-card></app-announcements-card>
+           </ng-template>
+           </ng-template>
       </div>
       </div>
     </div>
