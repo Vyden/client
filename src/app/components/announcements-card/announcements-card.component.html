@@ -7,18 +7,18 @@
                 <mat-card-title>{{ currentCourse.title }}</mat-card-title>
           </div>
           <div *ngIf="arrangedAnnouncements.length > 0" class="col-4 m-0 p-0">
-            <mat-card-title> {{ arrangedAnnouncements[i].title }} </mat-card-title>
+            <mat-card-title> {{ announcement.title }} </mat-card-title>
           </div>
           <div class="col-4 m-0 p-0 text-right">
             <!-- <mat-card-subtitle>Length: {{ lectureArray[i].length }}</mat-card-subtitle> -->
-            <mat-icon *ngIf="arrangedAnnouncements[i].pinned">nature</mat-icon>
+            <mat-icon *ngIf="announcement.pinned">nature</mat-icon>
           </div>
         </div>
         <div *ngIf="arrangedAnnouncements.length > 0" class="row m-0 text-left">
-          <mat-card-subtitle>Posted on {{ convertString(arrangedAnnouncements[i].date) }}</mat-card-subtitle>
+          <mat-card-subtitle>Posted on {{ convertString(announcement.date) }}</mat-card-subtitle>
         </div>
         <div *ngIf="arrangedAnnouncements.length > 0" class="row m-0 text-left">
-          <mat-card-content> {{ arrangedAnnouncements[i].text }}</mat-card-content>
+          <mat-card-content> {{ announcement.text }}</mat-card-content>
         </div>
       </mat-card>
     </div>
