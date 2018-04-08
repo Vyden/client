@@ -4,7 +4,7 @@
           <div class="row m-0">
             <div *ngIf="arrangedAnnouncements.length > 0" class="col-4 m-0 p-0 text-left">
               <!-- <mat-card-title>{{ getCourseName(arrangedAnnouncements[i].course) | async  }}</mat-card-title> -->
-                  <!-- <mat-card-title>{{ currentCourse.title }}</mat-card-title> -->
+                  <mat-card-title>{{ getCourseName(announcement.course) }}</mat-card-title>
             </div>
             <div *ngIf="arrangedAnnouncements.length > 0" class="col-4 m-0 p-0">
               <mat-card-title> {{ announcement.title }} </mat-card-title>

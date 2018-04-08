@@ -126,9 +126,16 @@ export class GeneralAnnouncementCardComponent implements OnInit {
  }
 
   getCourseName(courseID: string): any{
-    let courseData = this._firebase.object(`Courses/${courseID}/title`).valueChanges()
-
+    let courseData;
+    //= this._firebase.object(`Courses/${courseID}/title`).valueChanges()
+    // console.log('courses ', this.courses)
+    for (var i = 0 ; i < this.courses.length ; i++){
+      if(this.courses[i].id === courseID){
+        courseData = this.courses[i].title;
+      }
+    }
     return courseData;
+
   }
 
 }
