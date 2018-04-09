@@ -5,6 +5,7 @@ export class Course {
     public students: string [];
     public lectures: string [];
     public announcements?: string [];
+    public forumQuestions?: string [];
     public studentQuizResponses: string [];
     public lectureQuizResponses: string [];
     public mean?: number;

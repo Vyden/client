@@ -1,0 +1,54 @@
+.title-margin {
+    margin-bottom: 25px;
+}
+
+.exp-input {
+    min-width: 300px;
+    width: 50%;
+    padding: 8px;
+    border-radius: 0.2em;
+    background-color: white;
+    opacity: 0.4;
+    color: black;
+    border: 0;
+    outline: none;
+    -webkit-transition: all 150ms ease-in-out;
+    -moz-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+}
+
+input.exp-input {
+    &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #2b2b2b;
+        opacity: 1;
+        /* Firefox */
+    }
+    &:focus::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #9E9E9E;
+    }
+}
+
+.exp-input:focus {
+    outline: none;
+    background-color: #eeeeee;
+    color: #222222;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    width: 80%;
+    opacity: 1;
+}
+
+.post-row {
+    background-color: #F5F5F5;
+    border-radius: 0.2em;
+}
+
+.name-col {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.icon-col {
+    max-width: 50px;
+}

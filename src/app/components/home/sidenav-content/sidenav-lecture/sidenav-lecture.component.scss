@@ -1,3 +1,5 @@
+@import '../../../../../theme.scss';
+
 #sidenav-header {
   height: 60px;
   display: flex;
@@ -32,4 +34,14 @@
 
 .material-red-darker {
   background-color: #B71C1C;
+}
+
+.course-button-hover {
+  width: 100%;
+  transition: 0.25s ease-in-out;
+  @extend .bg-theme-secondary;
+  &:hover {
+    @extend .mat-elevation-z8;
+    @extend .bg-theme-secondary-darker;
+  }
 }

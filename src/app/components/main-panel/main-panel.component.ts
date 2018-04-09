@@ -14,6 +14,7 @@ import { AnnouncementOptions } from '../../models/announcementOptions';
 import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
 import { FilterContentService } from '../../services/filter-content/filter-content.service'
+import { ForumCardComponent } from '../forum-card/forum-card.component';
 
 @Component({
   selector: 'app-main-panel',
