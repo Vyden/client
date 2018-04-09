@@ -13,6 +13,7 @@ import { UserInfo } from '../../models/userInfo';
 import { AnnouncementOptions } from '../../models/announcementOptions';
 import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
+import { FilterContentService } from '../../services/filter-content/filter-content.service'
 import { ForumCardComponent } from '../forum-card/forum-card.component';
 
 @Component({
@@ -29,7 +30,7 @@ export class MainPanelComponent implements OnInit {
   public announcementOptions: AnnouncementOptions;
   public buttonTag: string
 
-  dialogs
+  // dialogs
 
   constructor(private _themeService: ThemeService,
     private _authService: AuthService,
@@ -37,10 +38,9 @@ export class MainPanelComponent implements OnInit {
     private _classesService: ClassesService,
     private _dialogsService: DialogsService,
     private _panelContentService: PanelContentService,
-    private _createCourseService: CreateCourseService
-  ) { 
-   
-  }
+    private _createCourseService: CreateCourseService,
+    private _filterContentService: FilterContentService
+  ) {}
 
   ngOnInit() {
 
@@ -48,7 +48,7 @@ export class MainPanelComponent implements OnInit {
     if(!this.announcementOptions){
       this.announcementOptions = new AnnouncementOptions();
     }
-    
+
 /* Subscribe to changes to the user */
     this._authService.currentUserObservable
     .subscribe((user: any) => {
@@ -74,10 +74,9 @@ export class MainPanelComponent implements OnInit {
       if(currentCourse){
         this.buttonTag = "announcement";
       }
-
     })
-  
-    
+
+
     this._panelContentService.panelContent.subscribe((currentPanel: string) => {
       this.currentPanel = currentPanel;
       console.log(currentPanel);
@@ -89,7 +88,6 @@ export class MainPanelComponent implements OnInit {
         this.buttonTag = "lecture";
       }
     })
-    
   }
 
   openAnnouncement(){
@@ -102,13 +100,15 @@ export class MainPanelComponent implements OnInit {
           this._createCourseService.createAnnouncement(this.announcementOptions, this.currentCourse);
         }
         // console.log(this.announcementOptions.d);
-        
+
       });
-  
+
   }
 
- 
+  //Called when user types a new filter string
+  updateFilter(event: Event) {
+    const input = <HTMLInputElement>event.target;
+    this._filterContentService.setFilterString(input.value);
+  }
 
- 
-  
 }

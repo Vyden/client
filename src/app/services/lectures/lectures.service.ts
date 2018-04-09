@@ -34,7 +34,6 @@ export class LecturesService {
   private currentLectures = this.lecturesSource.asObservable()
   private currentCourse: Course;
 
-
   constructor(private _firebase: AngularFireDatabase,
     private _classesService: ClassesService) {
     this.currentLectures
@@ -42,11 +41,11 @@ export class LecturesService {
         this.lectures = lectures
       })
 
-    
+
    }
 
    ngOnInit() {
-    
+
    }
 
    public getFirebaseLectures(): Observable<Lecture []>{
