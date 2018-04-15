@@ -6,6 +6,7 @@ import { UserInfo } from '../../models/userInfo';
 import { Course } from '../../models/course';
 import { FilterOptions } from '../../models/filter-options';
 import { Subscription } from 'rxjs/Subscription';
+import { PanelContentService } from '../panel-content/panel-content.service';
 
 @Injectable()
 export class ClassesService {
@@ -24,15 +25,17 @@ export class ClassesService {
   private courseIDArray: string[] = [];
   private lectureSubscription: Subscription;
 
-  constructor(private _firebase: AngularFireDatabase, private _authService: AuthService) {
+  constructor(private _firebase: AngularFireDatabase, 
+    private _authService: AuthService,
+    private _panelContentService: PanelContentService) {
     this._authService.currentUserInfo
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
+        this.courseIDArray = [];
         if (this.userInfo && this.userInfo.courses) {
-          this.courseIDArray = [];
           this.courseIDArray.push(...Object.keys(this.userInfo.courses));
         }
-    })
+      })
   }
 
   //Enroll student in a course
@@ -66,6 +69,7 @@ export class ClassesService {
   //Called when the user selects a course
   public selectCourse(activeCourse: Course) {
     this.activeCourseSource.next(activeCourse);
+    this._panelContentService.updatePanelContent('announcements');
   }
 
   public removeCourse(courseID: string) {
@@ -77,7 +81,7 @@ export class ClassesService {
   }
 
   public changeFilter(newFilter: FilterOptions) {
-    if(newFilter) localStorage.setItem('filter', JSON.stringify(newFilter))
+    if (newFilter) localStorage.setItem('filter', JSON.stringify(newFilter))
 
     this.currentFilterSource.next(newFilter);
   }

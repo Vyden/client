@@ -24,7 +24,11 @@
     .bg-theme-secondary-darker {
 		transition: background-color 250ms ease-in-out !important;
         background-color: darken($color, 20);
-    }
+	}
+	
+	.theme-secondary-text {
+		color: $color !important;
+	}
 }
 
 // Define the default theme (same as the example above).

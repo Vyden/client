@@ -73,6 +73,8 @@ import { FilterQuizzesInstructorPipe } from './directives/filter-quizzes-instruc
 import { FilterQuizResponsesPipe } from './directives/filter-quiz-responses.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FilterContentPipe } from './directives/filter-content.pipe';
+import { FilterContentService } from './services/filter-content/filter-content.service';
 import { GeneralAnnouncementCardComponent } from './components/general-announcement-card/general-announcement-card.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
 import { FilterAnnouncementsPipe } from './directives/filter-announcements.pipe';
@@ -117,6 +119,7 @@ import { CourseIdDialogComponent } from './components/course-id-dialog/course-id
     FilterQuizResponsesPipe,
     LoginComponent,
     RegisterComponent,
+    FilterContentPipe,
     GeneralAnnouncementCardComponent,
     ForumCardComponent,
     FilterAnnouncementsPipe,
@@ -145,7 +148,7 @@ import { CourseIdDialogComponent } from './components/course-id-dialog/course-id
     AnnouncementDialogComponent,
     CourseIdDialogComponent
   ],
-  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService],
+  providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService, FilterContentService],
   entryComponents: [
     DialogComponent,
     AnnouncementDialogComponent,

@@ -29,6 +29,15 @@
     </div>
   </div>
 
+  <div class="row m-3" *ngIf="userInfo.isInstructor">
+    <div class="col">
+      <button mat-button class="white-text text-left no-hover course-button-hover" routerLink="/editor">
+        <mat-icon class="mr-2">playlist_add</mat-icon>
+        <span>Create Lecture</span>
+      </button>
+    </div>
+  </div>
+
   <div class="row m-3">
     <div class="col">
       <button data-section="quizzes" mat-button class="white-text text-left no-hover" (click)="switchPanel($event)" (mouseenter)="hover[3] = true"

@@ -1,6 +1,6 @@
 <div class="container p-0" *ngIf="currentPanel !== 'forum'">
   <mat-card [ngClass]="themeClass" class="p-0 mat-elevation-z6">
-   
+
     <!-- div for upper box -->
     <div class="row m-0 bg-theme-secondary">
       <div class="col">
@@ -12,39 +12,39 @@
             <h2 class="white-text text-center mt-4 mb-1">TITLE</h2>
           </div>
           <div *ngIf="userInfo && currentCourse">
-          <div *ngIf="userInfo.isInstructor" class="col-md-4 col-xs-12 text-center">
-              <button *ngIf="currentPanel === 'quizzes' ; else lectureQuiz" mat-raised-button class="create-button text-center mt-4 mb-1">Create quiz</button>
+            <div *ngIf="userInfo.isInstructor" class="col-md-4 col-xs-12 text-center">
+              <button *ngIf="currentPanel === 'quizzes' ; else lectureQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create quiz</button>
               <ng-template #lectureQuiz>
-                  <button *ngIf="currentPanel === 'lectures' ; else announcementQuiz" mat-raised-button class="create-button text-center mt-4 mb-1">Create lecture</button>
+                <button *ngIf="currentPanel === 'lectures' ; else announcementQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create lecture</button>
               </ng-template>
               <ng-template #announcementQuiz>
-                  <button mat-raised-button class="create-button text-center mt-4 mb-1" (click)="openAnnouncement()">Create announcement</button>
+                <button mat-raised-button class="theme-secondary-text text-center mt-4 mb-1" (click)="openAnnouncement()">Create announcement</button>
               </ng-template>
-            <!-- <button *ngIf="currentCourse" mat-raised-button class="create-button text-center mt-4 mb-1" (click)="openAnnouncement()">Create {{ buttonTag || "announcement" }}</button> -->
+              <!-- <button *ngIf="currentCourse" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1" (click)="openAnnouncement()">Create {{ buttonTag || "announcement" }}</button> -->
+            </div>
           </div>
-        </div>
         </div>
         <!-- div for search box -->
         <div class="row p-4 m-0 justify-content-center white-text bg-admin">
-          <input class="exp-input" #filter placeholder="filter content">
+          <input class="exp-input" #filter placeholder="filter content" (keyup)="updateFilter($event)">
         </div>
       </div>
     </div>
 
     <div class="row m-0">
       <div class="col m-0 p-0">
-      <div class="classcontainer">
+        <div class="classcontainer">
           <app-general-announcement-card *ngIf="!currentCourse ; else generalAnnouncementTemplate"></app-general-announcement-card>
           <ng-template #generalAnnouncementTemplate>
             <app-quiz-panel *ngIf="currentPanel === 'quizzes' ; else lectureTemplate"></app-quiz-panel>
             <ng-template #lectureTemplate>
-            <app-lecture-card *ngIf="currentPanel === 'lectures'; else announcementTemplate"></app-lecture-card>
+              <app-lecture-card *ngIf="currentPanel === 'lectures'; else announcementTemplate"></app-lecture-card>
             </ng-template>
             <ng-template #announcementTemplate>
-           <app-announcements-card></app-announcements-card>
-           </ng-template>
-           </ng-template>
-      </div>
+              <app-announcements-card></app-announcements-card>
+            </ng-template>
+          </ng-template>
+        </div>
       </div>
     </div>
   </mat-card>
