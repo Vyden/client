@@ -79,7 +79,8 @@ export class NavbarComponent implements OnInit {
 
         if (res) {
           let key = this._createCourseService.createCourse(res);
-          alert("Success! The course ID is " + key);
+          // alert("Success! The course ID is " + key);
+          
         }
 
       });

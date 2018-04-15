@@ -11,6 +11,7 @@ import { AnnouncementDialogComponent } from '../../components/announcement-dialo
 import { AnnouncementOptions } from '../../models/announcementOptions';
 import { QuizDataDialogComponent } from '../../components/quiz-data-dialog/quiz-data-dialog.component';
 import { ChangeEmailDialogComponent } from '../../components/change-email-dialog/change-email-dialog.component';
+import { CourseIdDialogComponent } from '../../components/course-id-dialog/course-id-dialog.component';
 
 @Injectable()
 export class DialogsService {
@@ -33,8 +34,21 @@ export class DialogsService {
         dialogRef.componentInstance.userInfo = userInfo;
 
         return dialogRef.afterClosed();
+
+
+    
     }
 
+    public displayCourseID(key : string){
+        let dialogRef: MatDialogRef<CourseIdDialogComponent>;
+        dialogRef = this.dialog.open(CourseIdDialogComponent, {
+            width: '380px',
+        });
+
+        dialogRef.componentInstance.key = key;
+
+        return dialogRef.afterClosed();
+    }    
 
     public createAnnouncement(announcementOptions: AnnouncementOptions){
 
