@@ -8,6 +8,7 @@ import { Course } from '../../models/course';
 import { Lecture } from '../../models/lecture';
 import { UserInfo } from '../../models/userInfo';
 import { Announcement } from '../../models/announcement';
+import { FilterAnnouncementsPipe } from '../../directives/filter-announcements.pipe';
 import { TimelineItem } from '../../models/timelineItem';
 
 @Component({
@@ -58,12 +59,12 @@ export class GeneralAnnouncementCardComponent implements OnInit {
             if (!found) {
               this.courses.push(course);
               this.announcements = this._firebase.list<Announcement>(`Courses/${course.id}/announcements`).valueChanges();
-              console.log('announcements ' ,this.announcements)
+              // console.log('announcements ' ,this.announcements)
             this.announcements.subscribe(res => {
               this.announcementList = this.announcementList.concat(res);
               // console.log('res ', this.announcementList);
-              console.log('length ', this.announcementList.length);
-              console.log('arrangedannouncement ', this.arrangedAnnouncements);
+              // console.log('length ', this.announcementList.length);
+              // console.log('arrangedannouncement ', this.arrangedAnnouncements);
               for (var i = 0 ; i < res.length ; i++){
                 this.arrangedAnnouncements.push(res[i]);
               }

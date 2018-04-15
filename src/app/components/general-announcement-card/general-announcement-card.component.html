@@ -1,5 +1,6 @@
-<div class="classBound" *ngFor="let announcement of announcementList; let i = index">
-    <div *ngIf="announcementList.length > 0">
+<div *ngIf="announcementList.length > 0">
+<div class="classBound" *ngFor="let announcement of announcementList | filterAnnouncements; let i = index">
+    
         <mat-card class="mat-elevation-z-0 text-center">
           <div class="row m-0">
             <div *ngIf="announcementList.length > 0" class="col-4 m-0 p-0 text-left">
@@ -21,7 +22,8 @@
             <mat-card-content> {{ announcement.text }}</mat-card-content>
           </div>
         </mat-card>
-      </div>
+      
   
     
     </div>
+  </div>
