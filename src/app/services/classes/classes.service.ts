@@ -28,8 +28,8 @@ export class ClassesService {
     this._authService.currentUserInfo
       .subscribe((userInfo: UserInfo) => {
         this.userInfo = userInfo;
+        this.courseIDArray = [];
         if (this.userInfo && this.userInfo.courses) {
-          this.courseIDArray = [];
           this.courseIDArray.push(...Object.keys(this.userInfo.courses));
         }
     })
