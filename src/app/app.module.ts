@@ -75,6 +75,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GeneralAnnouncementCardComponent } from './components/general-announcement-card/general-announcement-card.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
+import { FilterAnnouncementsPipe } from './directives/filter-announcements.pipe';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { ForumCardComponent } from './components/forum-card/forum-card.component
     LoginComponent,
     RegisterComponent,
     GeneralAnnouncementCardComponent,
-    ForumCardComponent
+    ForumCardComponent,
+    FilterAnnouncementsPipe
   ],
   imports: [
     BrowserModule,
