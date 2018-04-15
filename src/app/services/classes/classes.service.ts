@@ -32,7 +32,7 @@ export class ClassesService {
         if (this.userInfo && this.userInfo.courses) {
           this.courseIDArray.push(...Object.keys(this.userInfo.courses));
         }
-    })
+      })
   }
 
   //Enroll student in a course
@@ -77,7 +77,7 @@ export class ClassesService {
   }
 
   public changeFilter(newFilter: FilterOptions) {
-    if(newFilter) localStorage.setItem('filter', JSON.stringify(newFilter))
+    if (newFilter) localStorage.setItem('filter', JSON.stringify(newFilter))
 
     this.currentFilterSource.next(newFilter);
   }

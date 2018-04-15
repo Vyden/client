@@ -32,11 +32,6 @@ export class RegisterComponent implements OnInit {
     }
 
     this._authService.createUser(this.email, this.password, userInfo)
-      .then(data => {
-        console.log(data)
-        this._authService.loginUserEmail(this.email, this.password)
-      })
-      .catch(err => alert(err))
   }
 
 }

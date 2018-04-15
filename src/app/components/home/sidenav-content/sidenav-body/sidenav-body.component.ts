@@ -44,7 +44,6 @@ export class SidenavBodyComponent implements OnInit {
         this.userInfo = userInfo;
 
         let courseIDList = this._classesService.getEnrolledCourses();
-        console.log('course id list', courseIDList)
         this.courses = [];
         courseIDList.forEach((courseID: string) => {
           this._firebase.object('Courses/' + courseID).valueChanges().subscribe((course: Course) => {
@@ -53,7 +52,6 @@ export class SidenavBodyComponent implements OnInit {
               if (existingCourse.id === course.id) found = true;
             })
             if (!found) {
-              console.log('pushed course: ', course)
               this.courses.push(course);
             }
           });
