@@ -14,7 +14,9 @@ export class AuthService {
   private currentUserInfoSource = new BehaviorSubject<UserInfo>(null)
   public currentUserInfo = this.currentUserInfoSource.asObservable()
 
-  constructor(private _afAuth: AngularFireAuth, private _firebase: AngularFireDatabase, private _router: Router) {
+  constructor(private _afAuth: AngularFireAuth,
+    private _firebase: AngularFireDatabase,
+    private _router: Router) {
     this._afAuth.authState.subscribe((user) => {
       this.authState = user
 
@@ -57,6 +59,8 @@ export class AuthService {
           .set(user.uid, info)
 
         this.authState = user
+        
+        this.loginUserEmail(email, password)
       })
       .catch(error => alert(error))
   }

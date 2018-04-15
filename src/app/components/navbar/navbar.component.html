@@ -36,10 +36,6 @@ https://stackoverflow.com/questions/38209713/how-to-make-a-responsive-nav-bar-us
 
 <mat-menu x-position="before" #menu="matMenu">
   <div *ngIf="userInfo">
-    <button *ngIf="userInfo.isInstructor" mat-menu-item routerLink="/editor">
-      <mat-icon>add_circle</mat-icon>
-      <span>Create Lecture</span>
-    </button>
     <button *ngIf="userInfo.isInstructor" mat-menu-item (click)="openDialog()">
       <mat-icon>add_to_photos</mat-icon>
       <span>Create Course</span>
