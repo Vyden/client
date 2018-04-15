@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
     private _themeService: ThemeService,
     private _authService: AuthService,
     private _dialogsService: DialogsService,
+    private _classesService: ClassesService,
     private _createCourseService: CreateCourseService) { }
 
   ngOnInit() {
@@ -55,6 +56,12 @@ export class NavbarComponent implements OnInit {
         }
       })
 
+      this._classesService.activeCourse
+      .subscribe((currentCourse: Course) => {
+        
+        
+  
+      })
 
 
   }
@@ -80,7 +87,11 @@ export class NavbarComponent implements OnInit {
         if (res) {
           let key = this._createCourseService.createCourse(res);
           // alert("Success! The course ID is " + key);
-          
+          this._dialogsService
+            .displayCourseID(key)
+            .subscribe(res => {
+              this._classesService.addCourse(key);
+            })
         }
 
       });

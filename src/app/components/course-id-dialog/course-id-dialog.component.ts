@@ -9,8 +9,8 @@ import { MatDialogRef } from '@angular/material';
 export class CourseIdDialogComponent implements OnInit {
 
   public key: string;
-  
-  constructor() { }
+
+  constructor(public dialogRef: MatDialogRef<CourseIdDialogComponent>) { }
 
   ngOnInit() {
   }
