@@ -30,8 +30,6 @@ export class MainPanelComponent implements OnInit {
   public announcementOptions: AnnouncementOptions;
   public buttonTag: string
 
-  // dialogs
-
   constructor(private _themeService: ThemeService,
     private _authService: AuthService,
     private _firebase: AngularFireDatabase,
