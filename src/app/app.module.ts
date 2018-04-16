@@ -77,6 +77,8 @@ import { FilterContentPipe } from './directives/filter-content.pipe';
 import { FilterContentService } from './services/filter-content/filter-content.service';
 import { GeneralAnnouncementCardComponent } from './components/general-announcement-card/general-announcement-card.component';
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
+import { FilterAnnouncementsPipe } from './directives/filter-announcements.pipe';
+import { CourseIdDialogComponent } from './components/course-id-dialog/course-id-dialog.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +121,9 @@ import { ForumCardComponent } from './components/forum-card/forum-card.component
     RegisterComponent,
     FilterContentPipe,
     GeneralAnnouncementCardComponent,
-    ForumCardComponent
+    ForumCardComponent,
+    FilterAnnouncementsPipe,
+    CourseIdDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -142,11 +146,13 @@ import { ForumCardComponent } from './components/forum-card/forum-card.component
   exports: [
     DialogComponent,
     AnnouncementDialogComponent,
+    CourseIdDialogComponent
   ],
   providers: [NavbarService, ConfirmDeactivateGuard, ThemeService, ClassesService, LectureEditorService, LecturesService, AuthService, DialogsService, UploadService, CreateCourseService, QuizzesService, PanelContentService, AnnouncementsService, FilterContentService],
   entryComponents: [
     DialogComponent,
-    AnnouncementDialogComponent
+    AnnouncementDialogComponent,
+    CourseIdDialogComponent
   ],
   bootstrap: [AppComponent]
 })
