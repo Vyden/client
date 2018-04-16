@@ -174,8 +174,11 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
         if (event.type === HttpEventType.UploadProgress) {
           const percentDone = Math.round(100 * event.loaded / event.total);
           this.subtitleUploadProgress = percentDone
+          console.log(`File is ${percentDone}% uploaded.`);
         } else if (event instanceof HttpResponse) {
           this.showSubtitleUploadProgress = false
+
+          console.log('File is completely uploaded!');
 
           this.showSubtitleDropBox = false
           this.subtitleActive = true

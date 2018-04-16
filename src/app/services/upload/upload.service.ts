@@ -29,10 +29,11 @@ export class UploadService {
   }
 
   public uploadSubtitleFile(subtitleFile: File) {
+    console.log(subtitleFile);
     let params = new HttpParams();
 
     let formData = new FormData();
-    formData.append('subtitle', subtitleFile);
+    formData.append('upload', subtitleFile);
 
     const options = {
       params: params,
