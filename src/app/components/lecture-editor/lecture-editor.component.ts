@@ -169,6 +169,8 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     let blob = fileList[0].slice(0, -1, '.')
     const subtitleFile: File = new File([blob], uuid(), { type: fileList[0].type })
 
+    console.log(subtitleFile);
+
     this._uploadService.uploadSubtitleFile(subtitleFile)
       .subscribe((event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -182,6 +184,8 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
           this.showSubtitleDropBox = false
           this.subtitleActive = true
+
+          this._lectureEditorService.publishSubtitle('https://s3.us-east-2.amazonaws.com/vyden/srts/' + subtitleFile.name);
         }
       })
   }
