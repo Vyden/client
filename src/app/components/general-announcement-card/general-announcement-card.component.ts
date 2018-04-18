@@ -46,10 +46,6 @@ export class GeneralAnnouncementCardComponent implements OnInit {
         this.userInfo = userInfo
 
         let courseIDList = this._classesService.getEnrolledCourses();
-        console.log(courseIDList.length)
-        if(courseIDList.length == 0) {
-          alert("You can enroll in the example course by add \"Example\" as the course code");
-        }
         this.courses = [];
         this.arrangedAnnouncements = [];
         courseIDList.forEach((courseID: string) => {
