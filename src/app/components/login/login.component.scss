@@ -1,9 +1,26 @@
+.body{
+    margin: 0;
+    padding: 0;
+}
 .topHalf {
-    height: 100vh;
+    height: 95vh;
     /*background-color: #00BCD4;*/
     background-image: url("../../../assets/img/svg/newBackground.svg");
     background-size: cover;
     border: none;
+}
+
+// .secondLayer {
+//     height: 60vh;
+// }
+.secondLayer img{
+    width: 100%;
+    height: 100%;
+}
+
+.thirdLayer img{
+    width: 100%;
+    height: 100%;
 }
 
 .logoBox {
@@ -49,4 +66,68 @@ textarea:focus {
     width: 100%;
     height: 100%;
     background-size: cover;
+}
+
+
+
+.mycontainer{
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.myslider{
+    position: relative;
+    width: 300%;
+    animation: animate 15s linear infinite;
+}
+
+.myslide{
+    position: relative;
+    width: 33.33%;
+    float: left;
+    height: 90vh;
+}
+
+// .myslide{
+//     background-size: contain;
+// }
+
+.myslide:nth-child(1){
+    background: url(../../../assets/img/svg/world.svg);
+    background-size: cover;
+}
+
+.myslide:nth-child(2) {
+    background: url(../../../assets/img/svg/3DImageBackground.svg);
+    background-size: cover;
+}
+
+.myslide:nth-child(3) {
+    background: url(../../../assets/img/svg/Screen.svg);
+    background-size: cover;
+}
+
+@keyframes animate{
+    0%{
+        left: 0;
+    }
+    30% {
+        left: 0;
+    }
+    33% {
+        left: -100%;
+    }
+    63% {
+        left: -100%;
+    }
+    66% {
+        left: -200%;
+    }
+    96% {
+        left: -200%;
+    }
+    100% {
+        left: 0;
+    }
 }
