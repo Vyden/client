@@ -36,6 +36,10 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   /* Progress data */
   public showNameProgress: boolean
 
+    /* Theme data */
+    private themeActive = false
+    private initialThemeClass = 'default'
+
   constructor(private _authService: AuthService,
     private _classesService: ClassesService,
     private _themeService: ThemeService,
@@ -90,12 +94,20 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           .update(this.userInfo)
       });
 
-    /* Change to indigo theme for this page */
-    this._themeService.changeThemeClass("indigo");
+    /* Subsribe to changes in theme class */
+    this._themeService.currentThemeClass
+      .subscribe((themeClass: string) => {
+        if (!this.themeActive) {
+          this.themeActive = true
+          this.initialThemeClass = themeClass
+          this._themeService.changeThemeClass("indigo")
+          console.log(this.initialThemeClass)
+        }
+      })
   }
 
   ngOnDestroy() {
-    this._themeService.changeThemeClass("default");
+    this._themeService.changeThemeClass(this.initialThemeClass.substring(0, this.initialThemeClass.indexOf("-theme")))
   }
 
   public removeCourse(course: Course) {

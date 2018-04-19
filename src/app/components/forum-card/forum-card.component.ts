@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
+/* Directives */
+import { FilterForumPipe } from '../../directives/filter-forum.pipe';
+
 /* Services */
 import { ThemeService } from '../../services/theme/theme.service';
 import { ClassesService } from '../../services/classes/classes.service';
@@ -40,6 +43,8 @@ export class ForumCardComponent implements OnInit {
   public editAnswer: ForumAnswer
   public isEditingAnswer: boolean
 
+  public filterQuery: string
+
   constructor(private _themeService: ThemeService,
     private _classesService: ClassesService,
     private _authService: AuthService,
@@ -56,6 +61,8 @@ export class ForumCardComponent implements OnInit {
     /* Listen for changes to course */
     this._classesService.activeCourse
       .subscribe((currentCourse: Course) => {
+        if(!currentCourse) return
+
         this.currentCourse = currentCourse
         this._af.list<ForumQuestion>(`Courses/${this.currentCourse.id}/forum`)
           .snapshotChanges()
@@ -93,8 +100,6 @@ export class ForumCardComponent implements OnInit {
                   let postAnswersMap = {}
                   answerActions.forEach((answerAction) => {
                     const answerID: string = answerAction.payload.val()
-                    console.log('Got answer ID ', answerID)
-
                     this._af.object<ForumAnswer>(`Courses/${this.currentCourse.id}/forumAnswers/${answerID}`)
                       .valueChanges()
                       .subscribe((answer: ForumAnswer) => {
@@ -289,7 +294,6 @@ export class ForumCardComponent implements OnInit {
   }
 
   public getUser(userID: string): Observable<UserInfo> {
-    console.log('Getting user: ', userID)
     return this._af.object<UserInfo>(`UserInfo/${userID}`)
       .valueChanges()
   }

@@ -25,6 +25,7 @@ export class ThemeService {
 
   public changeThemeClass(themeClass: string) {
     this.themeClassSource.next(themeClass+"-theme");
+    console.log('theme changed:', themeClass)
   }
 
   public getThemes() {

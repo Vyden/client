@@ -62,6 +62,7 @@ export class SidenavLectureComponent implements OnInit {
   }
 
   backToCourses() {
+    this._panelContent.updatePanelContent('announcements');
     this._classesService.selectCourse(null);
     this._themeService.changeThemeClass('default');
   }
