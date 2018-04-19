@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
+/* Directives */
+import { FilterForumPipe } from '../../directives/filter-forum.pipe';
+
 /* Services */
 import { ThemeService } from '../../services/theme/theme.service';
 import { ClassesService } from '../../services/classes/classes.service';
@@ -39,6 +42,8 @@ export class ForumCardComponent implements OnInit {
   public buildAnswer: ForumAnswer
   public editAnswer: ForumAnswer
   public isEditingAnswer: boolean
+
+  public filterQuery: string
 
   constructor(private _themeService: ThemeService,
     private _classesService: ClassesService,
