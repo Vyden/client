@@ -8,6 +8,7 @@ import { ThemeService } from '../../services/theme/theme.service';
 import { ActivatedRoute } from '@angular/router';
 import { ClassesService } from '../../services/classes/classes.service';
 import { FilterOptions } from '../../models/filter-options';
+import { Course } from '../../models/course'
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   public sidenavMode: string
   public themeClass: string
   public courseId: string
+  public currentCourse: Course
 
   constructor(private _breakpointsService: BreakpointsService,
     private _navbarService: NavbarService,
@@ -50,14 +52,23 @@ export class HomeComponent implements OnInit {
         this.courseId = params.courseId;
         console.log(this.courseId);
       })
+
+    /* Listen for course changes */
+    this._classesService.activeCourse
+      .subscribe((course: Course) => {
+        this.currentCourse = course
+      })
   }
 
   ngOnInit() {
     this._navbarService.changeLeftSidenav(this.sidenav);
-    this._themeService.changeThemeClass("default");
-    
+
+    if (!this.currentCourse) {
+      this._themeService.changeThemeClass("default");
+    }
+
     // If the filter does not exist in localstorage, put a new one there
-    if(!localStorage.getItem('filter')) {
+    if (!localStorage.getItem('filter')) {
       this._classesService.changeFilter(new FilterOptions())
     } else {
       const filter: FilterOptions = JSON.parse(localStorage.getItem('filter'))
