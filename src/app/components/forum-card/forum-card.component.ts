@@ -56,6 +56,8 @@ export class ForumCardComponent implements OnInit {
     /* Listen for changes to course */
     this._classesService.activeCourse
       .subscribe((currentCourse: Course) => {
+        if(!currentCourse) return
+
         this.currentCourse = currentCourse
         this._af.list<ForumQuestion>(`Courses/${this.currentCourse.id}/forum`)
           .snapshotChanges()
@@ -93,8 +95,6 @@ export class ForumCardComponent implements OnInit {
                   let postAnswersMap = {}
                   answerActions.forEach((answerAction) => {
                     const answerID: string = answerAction.payload.val()
-                    console.log('Got answer ID ', answerID)
-
                     this._af.object<ForumAnswer>(`Courses/${this.currentCourse.id}/forumAnswers/${answerID}`)
                       .valueChanges()
                       .subscribe((answer: ForumAnswer) => {
@@ -289,7 +289,6 @@ export class ForumCardComponent implements OnInit {
   }
 
   public getUser(userID: string): Observable<UserInfo> {
-    console.log('Getting user: ', userID)
     return this._af.object<UserInfo>(`UserInfo/${userID}`)
       .valueChanges()
   }
