@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LecturesService } from '../../services/lectures/lectures.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ClassesService } from '../../services/classes/classes.service';
+import { FilterContentService } from '../../services/filter-content/filter-content.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Course } from '../../models/course';
@@ -25,11 +26,13 @@ export class GeneralAnnouncementCardComponent implements OnInit {
   public announcements: Observable<Announcement[]>
   public announcementList: Announcement[] = [];
   public arrangedAnnouncements: Announcement[] = [];
+  public searchString: string;
 
   constructor(private _lecturesService: LecturesService,
     private _authService: AuthService,
     private _firebase: AngularFireDatabase,
-    private _classesService: ClassesService) { }
+    private _classesService: ClassesService,
+    private _filterContentService: FilterContentService) { }
 
   ngOnInit() {
     /* Subscribe to changes to the user */
@@ -86,10 +89,17 @@ export class GeneralAnnouncementCardComponent implements OnInit {
 
 
 
+      
+
     this._classesService.activeCourse
       .subscribe((currentCourse: Course) => {
         this.currentCourse = currentCourse
 
+    this._filterContentService.filterContent
+      .subscribe((searchString: string) => {
+        this.searchString = searchString;
+        console.log(this.searchString);
+      })
 
         /*if(currentCourse){
           this.announcements = this._firebase.list<Announcement>(`Courses/${this.currentCourse.id}/announcements`).valueChanges();
