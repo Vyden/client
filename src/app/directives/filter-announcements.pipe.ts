@@ -24,6 +24,9 @@ export class FilterAnnouncementsPipe implements PipeTransform {
     let filteredValues: Announcement [] = value.slice(0)
     let extraValue: Announcement [] = [];
    
+
+    console.log('value ', value);
+
     //checking if there is a search word
     if(this.searchKey.length === 0){   
     filteredValues = filteredValues.filter((announcement:  Announcement) => {
@@ -46,6 +49,7 @@ export class FilterAnnouncementsPipe implements PipeTransform {
     filteredValues = filteredValues.filter((announcement:  Announcement) => {
       // if(announcement.pinned) {
         if(announcement.text.includes(this.searchKey) || announcement.title.includes(this.searchKey)){
+          console.log(announcement)
           return true;
         }
         return false;
