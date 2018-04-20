@@ -16,12 +16,12 @@
           </div>
           <div *ngIf="userInfo && currentCourse">
             <div *ngIf="userInfo.isInstructor" class="col-md-4 col-xs-12 text-center">
-              <button *ngIf="currentPanel === 'quizzes' ; else lectureQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create quiz</button>
-              <ng-template #lectureQuiz>
+              <button *ngIf="currentPanel === 'quizzes' ; else announcementQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create quiz</button>
+              <!-- <ng-template #lectureQuiz>
                 <button *ngIf="currentPanel === 'lectures' ; else announcementQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create lecture</button>
-              </ng-template>
+              </ng-template> -->
               <ng-template #announcementQuiz>
-                <button mat-raised-button class="theme-secondary-text text-center mt-4 mb-1" (click)="openAnnouncement()">Create announcement</button>
+                <button *ngIf="currentPanel === 'announcements'" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1" (click)="openAnnouncement()">Create announcement</button>
               </ng-template>
               <!-- <button *ngIf="currentCourse" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1" (click)="openAnnouncement()">Create {{ buttonTag || "announcement" }}</button> -->
             </div>
