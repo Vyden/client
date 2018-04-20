@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="row m-3" *ngIf="userInfo.isInstructor">
+  <div class="row m-3" *ngIf="userInfo && userInfo.isInstructor">
     <div class="col">
       <button mat-button class="white-text text-left no-hover course-button-hover" routerLink="/editor">
         <mat-icon class="mr-2">playlist_add</mat-icon>

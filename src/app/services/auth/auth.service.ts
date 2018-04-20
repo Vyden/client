@@ -71,6 +71,7 @@ export class AuthService {
     return this._afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(user => {
         this.authState = user
+        this._panelContentService.updatePanelContent('announcements')
         this._router.navigate([''])
       })
       .catch(error => alert(error))
