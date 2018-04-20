@@ -12,7 +12,6 @@
           </div>
           <!-- div for title -->
           <div class="col-md-4 col-xs-12 justify-content-center">
-<<<<<<< HEAD
             <h2 *ngIf="currentPanel ; else titleTemplate" class="white-text text-center mt-4 mb-1">{{currentPanel | uppercase }}</h2>
             <ng-template #titleTemplate>
                 <h2 class="white-text text-center mt-4 mb-1">General Announcements</h2>
@@ -22,14 +21,6 @@
             <div *ngIf="userInfo.isInstructor" class="col-md-4 col-xs-12 text-center">
               <button *ngIf="currentPanel === 'quizzes' ; else announcementQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create quiz</button>
               <!-- <ng-template #lectureQuiz>
-=======
-            <h2 class="white-text text-center mt-4 mb-1">{{panelTitle | uppercase}}</h2>
-          </div>
-          <div *ngIf="userInfo && currentCourse" class="col-md-4 col-xs-12 text-center">
-            <div *ngIf="userInfo.isInstructor">
-              <button *ngIf="currentPanel === 'quizzes' ; else lectureQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create quiz</button>
-              <ng-template #lectureQuiz>
->>>>>>> 48eec2fd662acf7e8807d6b1a14d9ffea72aa154
                 <button *ngIf="currentPanel === 'lectures' ; else announcementQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create lecture</button>
               </ng-template> -->
               <ng-template #announcementQuiz>
