@@ -8,6 +8,8 @@ export class FilterQuizResponsesPipe implements PipeTransform {
 
   transform(value: QuizResponse[], args?: any): any {
 
+    if(!value) return value
+
     let existingQuizzes: string[] = [];
 
     return value.filter((quizResponse) => {
