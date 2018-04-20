@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav, MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 import { UsernameComponent } from '../username/username.component';
 import { NavbarService } from '../../services/navbar/navbar.service';
 import { ThemeService } from '../../services/theme/theme.service';
@@ -7,6 +8,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { DialogsService } from '../../services/dialogs/dialogs.service';
 import { ClassesService } from '../../services/classes/classes.service';
 import { CreateCourseService } from '../../services/create-course/create-course.service';
+import { PanelContentService } from '../../services/panel-content/panel-content.service';
 import { UserInfo } from '../../models/userInfo';
 import { Course } from '../../models/course';
 
@@ -31,7 +33,9 @@ export class NavbarComponent implements OnInit {
     private _authService: AuthService,
     private _dialogsService: DialogsService,
     private _classesService: ClassesService,
-    private _createCourseService: CreateCourseService) { }
+    private _createCourseService: CreateCourseService,
+    private _panelContentService: PanelContentService,
+    private _router: Router) { }
 
   ngOnInit() {
     /* Listen for changes to sidenav */
@@ -95,6 +99,13 @@ export class NavbarComponent implements OnInit {
         }
 
       });
+  }
+
+  public goHome() {
+    this._router.navigateByUrl('/')
+    this._panelContentService.updatePanelContent('announcements')
+    this._classesService.selectCourse(null)
+    this._themeService.changeThemeClass('default')
   }
 
 }
