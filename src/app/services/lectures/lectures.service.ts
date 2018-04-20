@@ -7,6 +7,7 @@ import { Course } from '../../models/course';
 import { UserInfo } from '../../models/userInfo';
 import { Lecture } from '../../models/lecture';
 import { Observable } from 'rxjs/Observable';
+import { FilterLectureOptions } from '../../models/filter-lecture-options';
 
 @Injectable()
 export class LecturesService {
@@ -28,6 +29,9 @@ export class LecturesService {
      return this._firebase.list<Course>('courses').valueChanges()
    }*/
 
+  // Filter
+  private currentFilterSource = new BehaviorSubject<FilterLectureOptions>(null)
+  public currentFilter = this.currentFilterSource.asObservable()
 
   private lectures: Lecture []
   private lecturesSource = new BehaviorSubject<Lecture []>([])
@@ -58,4 +62,10 @@ export class LecturesService {
     // console.log("In Firebase " + `Courses/${this.currentCourse.id}/lectures`)
      return this._firebase.list<Lecture>(`Courses/${this.currentCourse.id}/lectures`).valueChanges()
    }
+
+   public changeFilter(newFilter: FilterLectureOptions) {
+    if (newFilter) localStorage.setItem('filter', JSON.stringify(newFilter))
+
+    this.currentFilterSource.next(newFilter);
+  }
 }

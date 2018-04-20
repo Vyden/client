@@ -18,7 +18,7 @@ import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
   MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule, MatExpansionModule,
-  MatSelectModule
+  MatSelectModule, MatDatepickerModule
 } from '@angular/material';
 
 /* Services */
@@ -79,6 +79,7 @@ import { GeneralAnnouncementCardComponent } from './components/general-announcem
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
 import { FilterAnnouncementsPipe } from './directives/filter-announcements.pipe';
 import { CourseIdDialogComponent } from './components/course-id-dialog/course-id-dialog.component';
+import { FilterLecturesPipe } from './directives/filter-lectures.pipe';
 import { FilterForumPipe } from './directives/filter-forum.pipe';
 
 @NgModule({
@@ -125,6 +126,7 @@ import { FilterForumPipe } from './directives/filter-forum.pipe';
     ForumCardComponent,
     FilterAnnouncementsPipe,
     CourseIdDialogComponent,
+    FilterLecturesPipe,
     FilterForumPipe,
   ],
   imports: [
@@ -143,7 +145,7 @@ import { FilterForumPipe } from './directives/filter-forum.pipe';
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
     MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule, MatExpansionModule,
-    MatSelectModule
+    MatSelectModule, MatDatepickerModule
   ],
   exports: [
     DialogComponent,
