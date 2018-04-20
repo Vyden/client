@@ -79,6 +79,7 @@ import { GeneralAnnouncementCardComponent } from './components/general-announcem
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
 import { FilterAnnouncementsPipe } from './directives/filter-announcements.pipe';
 import { CourseIdDialogComponent } from './components/course-id-dialog/course-id-dialog.component';
+import { FilterSearchwordPipe } from './directives/filter-searchword.pipe';
 
 @NgModule({
   declarations: [
@@ -123,7 +124,8 @@ import { CourseIdDialogComponent } from './components/course-id-dialog/course-id
     GeneralAnnouncementCardComponent,
     ForumCardComponent,
     FilterAnnouncementsPipe,
-    CourseIdDialogComponent
+    CourseIdDialogComponent,
+    FilterSearchwordPipe
   ],
   imports: [
     BrowserModule,

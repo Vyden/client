@@ -95,11 +95,17 @@ export class GeneralAnnouncementCardComponent implements OnInit {
       .subscribe((currentCourse: Course) => {
         this.currentCourse = currentCourse
 
-    this._filterContentService.filterContent
-      .subscribe((searchString: string) => {
-        this.searchString = searchString;
-        console.log(this.searchString);
-      })
+
+        this._filterContentService.filterContent
+        .subscribe((searchKey : string) => {
+          this.searchString = searchKey
+          // let last = this.announcementList.splice(-1,1);
+          // this.announcementList.splice(-1,1);
+          // console.log('last' , last);
+          // this.announcementList.push(last);
+          //console.log('searchKey ', this.searchKey)
+        })
+    
 
         /*if(currentCourse){
           this.announcements = this._firebase.list<Announcement>(`Courses/${this.currentCourse.id}/announcements`).valueChanges();
