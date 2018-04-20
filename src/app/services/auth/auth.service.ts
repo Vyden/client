@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { UserInfo } from '../../models/userInfo';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { PanelContentService } from '../panel-content/panel-content.service';
-import { ClassesService } from '../classes/classes.service';
 
 @Injectable()
 export class AuthService {
@@ -19,8 +18,7 @@ export class AuthService {
   constructor(private _afAuth: AngularFireAuth,
     private _firebase: AngularFireDatabase,
     private _router: Router,
-    private _panelContentService: PanelContentService,
-    private _classesService: ClassesService) {
+    private _panelContentService: PanelContentService) {
     this._afAuth.authState.subscribe((user) => {
       this.authState = user
 
@@ -94,7 +92,6 @@ export class AuthService {
     this.clearLocalStorage()
     this._router.navigate(['login'])
     this._panelContentService.updatePanelContent('announcements')
-    this._classesService.selectCourse(null)
   }
 
   private clearLocalStorage() {
