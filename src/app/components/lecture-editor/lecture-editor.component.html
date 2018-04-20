@@ -61,6 +61,53 @@
   </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+
+  <div *ngIf="videoActive" class="row m-0 mt-">
+    <div class="col m-0 p-0">
+      <mat-card class="diffused-shadow">
+        <mat-card-title>
+          <h2 class="text-center" style="font-weight: 400">Upload Subtitles (Optional)</h2>
+        </mat-card-title>
+        <mat-card-content class="d-flex flex-column mt-4 pb-3 mb-4 pt-3">
+          <div class="row">
+            <div class="col"></div>
+          </div>
+          <div class="row justify-content-center purple-theme" *ngIf="showSubtitleUploadProgress">
+            <mat-progress-spinner color="accent" [mode]="subtitleUploadProgress==100?'indeterminate':'determinate'" [value]="subtitleUploadProgress">
+            </mat-progress-spinner>
+
+            <h3 class="text-center mt-4 white-text font-weight-bold w-100">{{subtitleUploadProgress}}%</h3>
+          </div>
+          <div class="row" *ngIf="subtitleActive">
+            <div class="col text-center">
+              <mat-icon class="icon-xxl">check</mat-icon>
+            </div>
+          </div>
+          <div class="row" *ngIf="subtitleActive">
+            <div class="col">
+              <h2 class="text-center">{{subtitleName}}</h2>
+            </div>
+          </div>
+          <div class="row" *ngIf="showSubtitleDropBox">
+            <div class="col text-center mt-2">
+              <button mat-raised-button (click)="inputFile.click()" color="accent">
+                <mat-icon>file_upload</mat-icon>
+                <span>UPLOAD</span>
+              </button>
+
+              <input #inputFile type="file" accept=".srt" [style.display]="'none'" (change)="onUploadSubtitle($event)">
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <div class="video-upload-footer"></div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Spacer on desktop, invisible on mobile -->
   <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
   <div class="row m-0">
@@ -106,6 +153,12 @@
                   <strong>required</strong>
                 </mat-error>
               </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col text-center">
+              <span class="form-label">Lecture Subtitles:</span>
             </div>
           </div>
 
@@ -161,9 +214,9 @@
   </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
-  <div *ngIf="true || videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
-  <app-quiz *ngIf="true || videoActive" [lectureTime]="lectureEndTime"></app-quiz>
+  <app-quiz *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-quiz>
 
   <!-- Spacer on desktop, invisible on mobile -->
   <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>

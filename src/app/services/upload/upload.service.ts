@@ -28,6 +28,23 @@ export class UploadService {
     return this._httpClient.request(req)
   }
 
+  public uploadSubtitleFile(subtitleFile: File) {
+    console.log(subtitleFile);
+    let params = new HttpParams();
+
+    let formData = new FormData();
+    formData.append('upload', subtitleFile);
+
+    const options = {
+      params: params,
+      reportProgress: true,
+    }
+
+    const req = new HttpRequest('POST', this.uploadUrl + 'uploadSrt', formData, options);
+
+    return this._httpClient.request(req);
+  }
+
   public uploadModelFile(modelFile: File) {
     console.log(modelFile);
     let params = new HttpParams();

@@ -12,6 +12,8 @@ import { AnnouncementOptions } from '../../models/announcementOptions';
 import { QuizDataDialogComponent } from '../../components/quiz-data-dialog/quiz-data-dialog.component';
 import { ChangeEmailDialogComponent } from '../../components/change-email-dialog/change-email-dialog.component';
 import { CourseIdDialogComponent } from '../../components/course-id-dialog/course-id-dialog.component';
+import { FilterLectureOptions } from '../../models/filter-lecture-options';
+import { LectureFilterDialogComponent } from '../../components/lecture-filter-dialog/lecture-filter-dialog.component';
 
 @Injectable()
 export class DialogsService {
@@ -36,7 +38,7 @@ export class DialogsService {
         return dialogRef.afterClosed();
 
 
-    
+
     }
 
     public displayCourseID(key : string){
@@ -48,7 +50,7 @@ export class DialogsService {
         dialogRef.componentInstance.key = key;
 
         return dialogRef.afterClosed();
-    }    
+    }
 
     public createAnnouncement(announcementOptions: AnnouncementOptions){
 
@@ -60,7 +62,7 @@ export class DialogsService {
 
 
         dialogRef.componentInstance.announcementOptions = announcementOptions;
-    
+
 
         return dialogRef.afterClosed();
     }
@@ -71,6 +73,14 @@ export class DialogsService {
         dialogRef.componentInstance.defaultArgs = defaultArgs
 
         return dialogRef.afterClosed()
+    }
+
+    public openLectureFilterDialog(defaultArgs: FilterLectureOptions, options?: any) {
+      let dialogRef: MatDialogRef<LectureFilterDialogComponent>
+      dialogRef = this.dialog.open(LectureFilterDialogComponent, options);
+      dialogRef.componentInstance.defaultArgs = defaultArgs;
+
+      return dialogRef.afterClosed()
     }
 
     public openMessageDialog(dialogOptions?: DialogOptions) {

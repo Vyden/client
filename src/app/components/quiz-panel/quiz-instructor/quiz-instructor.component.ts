@@ -92,6 +92,9 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
               this.lectures = [];
               this.quizResponses = [];
               this.quizTotals = [];
+
+              if(!lectures) return
+
               Object.keys(lectures).forEach((lectureID: string) => {
                   this.lectureSubscription = this._firebase.object('Courses/' + this.activeCourse.id + '/lectures/' + lectureID).valueChanges()
                   .subscribe((lectureObj: Lecture) => {
@@ -134,7 +137,10 @@ export class QuizInstructorComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.lectureSubscription.unsubscribe();
+    if(this.lectureSubscription) {
+      this.lectureSubscription.unsubscribe();
+      this.lectureSubscription = null;
+    }
   }
 
   ngOnDestroy() {

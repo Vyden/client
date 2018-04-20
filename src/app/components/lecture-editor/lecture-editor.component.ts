@@ -51,12 +51,19 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
 
   /* Dropzone data */
   public showDropBox: boolean
+  public showSubtitleDropBox: boolean
   public dropzoneActive: boolean
+  public dropzoneSubtitleActive: boolean
   public videoActive: boolean
+  public subtitleActive: boolean
   public showPublishProgress: boolean
+  public showSubtitlePublishProgress: boolean
   public showUploadProgress: boolean
+  public showSubtitleUploadProgress: boolean
   public uploadProgress: number
+  public subtitleUploadProgress: number
   public videoName: string
+  public subtitleName: string
 
   /* Course data */
   private currentCourseId: string
@@ -65,7 +72,12 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public basicFormControl: FormGroup
   public matcher: ErrorStateMatcher
 
+  /* Theme data */
+  private themeActive = false
+  private initialThemeClass = 'default'
+
   public Math = Math
+
 
   constructor(private _router: Router,
     private _formBuilder: FormBuilder,
@@ -77,6 +89,7 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     private _classesService: ClassesService) {
     this.lectureEndTime = 3000
     this.showDropBox = true
+    this.showSubtitleDropBox = true
     this.lectureName = "New Lecture"
     this.skyboxType = "image"
     this.skyboxColor = "E0F7FA"
@@ -121,12 +134,20 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
           this._router.navigate(['/'])
       })
 
-    this._themeService.changeThemeClass("deep-purple");
-
+    /* Subsribe to changes in theme class */
+    this._themeService.currentThemeClass
+      .subscribe((themeClass: string) => {
+        if (!this.themeActive) {
+          this.themeActive = true
+          this.initialThemeClass = themeClass
+          this._themeService.changeThemeClass("deep-purple")
+          console.log(this.initialThemeClass)
+        }
+      })
   }
 
   ngOnDestroy() {
-    this._themeService.changeThemeClass("default");
+    this._themeService.changeThemeClass(this.initialThemeClass.substring(0, this.initialThemeClass.indexOf("-theme")))
   }
 
   public dropzoneState($event: boolean) {
@@ -134,10 +155,52 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
     console.log(this.dropzoneActive)
   }
 
+  public dropzoneSubtitleState($event: boolean) {
+    this.dropzoneSubtitleActive = $event
+  }
+
   public onUpload($event: any) {
     if ($event.srcElement.files.length) {
       this.handleDrop($event.srcElement.files)
     }
+  }
+
+  public onUploadSubtitle($event: any) {
+    if ($event.srcElement.files.length) {
+      this.handleSubtitleDrop($event.srcElement.files)
+    }
+  }
+
+  public handleSubtitleDrop(fileList: FileList) {
+    this.subtitleUploadProgress = 0
+    this.subtitleActive = false
+    this.showSubtitleUploadProgress = true
+    this.showSubtitleDropBox = false
+    this.subtitleName = fileList[0].name
+
+    // Rename file
+    let blob = fileList[0].slice(0, -1, '.')
+    const subtitleFile: File = new File([blob], uuid(), { type: fileList[0].type })
+
+    console.log(subtitleFile);
+
+    this._uploadService.uploadSubtitleFile(subtitleFile)
+      .subscribe((event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          const percentDone = Math.round(100 * event.loaded / event.total);
+          this.subtitleUploadProgress = percentDone
+          console.log(`File is ${percentDone}% uploaded.`);
+        } else if (event instanceof HttpResponse) {
+          this.showSubtitleUploadProgress = false
+
+          console.log('File is completely uploaded!');
+
+          this.showSubtitleDropBox = false
+          this.subtitleActive = true
+
+          this._lectureEditorService.publishSubtitle('https://s3.us-east-2.amazonaws.com/vyden/srts/' + subtitleFile.name);
+        }
+      })
   }
 
   public handleDrop(fileList: FileList) {

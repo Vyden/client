@@ -108,6 +108,11 @@ export class LectureEditorService {
     return $key
   }
 
+  public publishSubtitle(resourceURL: string) {
+    this._firebase.object(`Courses/${this.currentCourseId}/lectures/${this.lectureId}`)
+      .update({ subtitleURL: resourceURL })
+  }
+
   public publishTimelineItem(timelineItem: TimelineItem, editMode?: boolean): string {
     let $key
 

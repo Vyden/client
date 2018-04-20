@@ -8,10 +8,12 @@ import { HotTableModule } from '@handsontable/angular';
 import {
   MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
   MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule
+  MatSlideToggleModule, MatProgressSpinnerModule, MatProgressBarModule, MatDialogModule, MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 import { CourseFilterDialogComponent } from '../../components/course-filter-dialog/course-filter-dialog.component';
+import { LectureFilterDialogComponent } from '../../components/lecture-filter-dialog/lecture-filter-dialog.component'
 import { MessageDialogComponent } from '../../components/message-dialog/message-dialog.component';
 import { QuizDataDialogComponent } from '../../components/quiz-data-dialog/quiz-data-dialog.component';
 import { ChangeEmailDialogComponent } from '../../components/change-email-dialog/change-email-dialog.component';
@@ -25,13 +27,14 @@ import { ChangeEmailDialogComponent } from '../../components/change-email-dialog
     HotTableModule,
     MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatSidenavModule, MatCardModule,
     MatInputModule, MatCheckboxModule, MatStepperModule, MatSliderModule, MatRadioModule, MatListModule,
-    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule
+    MatSlideToggleModule, MatDialogModule, MatProgressSpinnerModule, MatProgressBarModule, MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: [
-    CourseFilterDialogComponent, MessageDialogComponent, QuizDataDialogComponent, ChangeEmailDialogComponent
+    CourseFilterDialogComponent, MessageDialogComponent, QuizDataDialogComponent, ChangeEmailDialogComponent, LectureFilterDialogComponent
   ],
   entryComponents: [
-    CourseFilterDialogComponent, MessageDialogComponent, QuizDataDialogComponent, ChangeEmailDialogComponent
+    CourseFilterDialogComponent, MessageDialogComponent, QuizDataDialogComponent, ChangeEmailDialogComponent, LectureFilterDialogComponent
   ]
 })
 export class DialogsModule { }

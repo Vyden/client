@@ -1,5 +1,4 @@
-
-  <div class="classBound" (click)="onClickLecture(i)" *ngFor="let lecture of lectureList | filterContent: filterString; let i = index">
+  <div class="classBound" (click)="onClickLecture(i)" *ngFor="let lecture of lectureList | filterContent: filterString | filterLectures; let i = index">
     <div *ngIf="currentCourse">
       <mat-card class="mat-elevation-z-0 text-center">
         <div class="row m-0">
@@ -43,4 +42,3 @@
       <div class="col-4 m-0 p-0"></div>
     </div>
   </div>
-  <!--classBond -->
