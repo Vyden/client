@@ -118,16 +118,16 @@ export class MainPanelComponent implements OnInit {
     this._filterContentService.setFilterString(input.value);
   }
 
-  public openFilterDialog() {
-    if(!this.filterLectureOptions) this.filterLectureOptions = new FilterLectureOptions()
+    public openFilterDialog() {
+      if(!this.filterLectureOptions) this.filterLectureOptions = new FilterLectureOptions()
 
-    this._dialogsService.openLectureFilterDialog(this.filterLectureOptions)
-      .subscribe((res: any) => {
-        if(res) {
-          this._lectureService.changeFilter(this.filterLectureOptions)
-          console.log(this.filterLectureOptions)
-        }
-      })
-  }
+      this._dialogsService.openLectureFilterDialog(this.filterLectureOptions)
+        .subscribe((res: any) => {
+          if(res) {
+            this._lectureService.changeFilter(this.filterLectureOptions)
+            console.log(this.filterLectureOptions)
+          }
+        })
+    }
 
 }
