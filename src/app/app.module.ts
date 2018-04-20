@@ -79,6 +79,7 @@ import { GeneralAnnouncementCardComponent } from './components/general-announcem
 import { ForumCardComponent } from './components/forum-card/forum-card.component';
 import { FilterAnnouncementsPipe } from './directives/filter-announcements.pipe';
 import { CourseIdDialogComponent } from './components/course-id-dialog/course-id-dialog.component';
+import { FilterSearchwordPipe } from './directives/filter-searchword.pipe';
 import { FilterLecturesPipe } from './directives/filter-lectures.pipe';
 import { FilterForumPipe } from './directives/filter-forum.pipe';
 
@@ -126,8 +127,9 @@ import { FilterForumPipe } from './directives/filter-forum.pipe';
     ForumCardComponent,
     FilterAnnouncementsPipe,
     CourseIdDialogComponent,
+    FilterSearchwordPipe,
     FilterLecturesPipe,
-    FilterForumPipe,
+    FilterForumPipe
   ],
   imports: [
     BrowserModule,
