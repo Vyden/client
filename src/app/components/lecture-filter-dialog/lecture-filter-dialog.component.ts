@@ -28,6 +28,7 @@ export class LectureFilterDialogComponent implements OnInit {
 
   ngOnInit() {
     this.filterOptions = this.defaultArgs || new FilterLectureOptions();
+    this.sortBy = this.filterOptions.oldFirst ? 'Old First' : 'New First';
   }
 
   public closeDialog() {
