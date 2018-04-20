@@ -5,14 +5,17 @@
     <div class="row m-0 bg-theme-secondary">
       <div class="col">
         <div class="row m-0">
-          <div class="col-md-4 col-xs-12 text-center mt-4 mb-1">
+          <div class="col-md-4 col-xs-12 text-center">
+            <div *ngIf="currentPanel === 'lectures'">
+              <button mat-raised-button class="theme-secondary-text text-center mt-4 mb-1" (click)="openFilterDialog()">Filter</button>
+            </div>
           </div>
           <!-- div for title -->
           <div class="col-md-4 col-xs-12 justify-content-center">
             <h2 class="white-text text-center mt-4 mb-1">TITLE</h2>
           </div>
-          <div *ngIf="userInfo && currentCourse">
-            <div *ngIf="userInfo.isInstructor" class="col-md-4 col-xs-12 text-center">
+          <div *ngIf="userInfo && currentCourse" class="col-md-4 col-xs-12 text-center">
+            <div *ngIf="userInfo.isInstructor">
               <button *ngIf="currentPanel === 'quizzes' ; else lectureQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create quiz</button>
               <ng-template #lectureQuiz>
                 <button *ngIf="currentPanel === 'lectures' ; else announcementQuiz" mat-raised-button class="theme-secondary-text text-center mt-4 mb-1">Create lecture</button>

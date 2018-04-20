@@ -15,6 +15,8 @@ import { LectureArray } from '../../models/lectureArray';
 import { Observable } from 'rxjs/Observable';
 import { FilterContentService } from '../../services/filter-content/filter-content.service'
 import { ForumCardComponent } from '../forum-card/forum-card.component';
+import { FilterLectureOptions } from '../../models/filter-lecture-options';
+import {  } from '../../services/lectures/lectures.service'
 
 @Component({
   selector: 'app-main-panel',
@@ -30,6 +32,8 @@ export class MainPanelComponent implements OnInit {
   public announcementOptions: AnnouncementOptions;
   public buttonTag: string
 
+  public filterLectureOptions: FilterLectureOptions
+
   constructor(private _themeService: ThemeService,
     private _authService: AuthService,
     private _firebase: AngularFireDatabase,
@@ -37,7 +41,8 @@ export class MainPanelComponent implements OnInit {
     private _dialogsService: DialogsService,
     private _panelContentService: PanelContentService,
     private _createCourseService: CreateCourseService,
-    private _filterContentService: FilterContentService
+    private _filterContentService: FilterContentService,
+    private _lectureService: LecturesService,
   ) { }
 
   ngOnInit() {
@@ -107,6 +112,18 @@ export class MainPanelComponent implements OnInit {
   updateFilter(event: Event) {
     const input = <HTMLInputElement>event.target;
     this._filterContentService.setFilterString(input.value);
+  }
+
+  public openFilterDialog() {
+    if(!this.filterLectureOptions) this.filterLectureOptions = new FilterLectureOptions()
+
+    this._dialogsService.openLectureFilterDialog(this.filterLectureOptions)
+      .subscribe((res: any) => {
+        if(res) {
+          this._lectureService.changeFilter(this.filterLectureOptions)
+          console.log(this.filterLectureOptions)
+        }
+      })
   }
 
 }
