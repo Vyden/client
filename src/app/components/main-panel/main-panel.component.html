@@ -9,7 +9,10 @@
           </div>
           <!-- div for title -->
           <div class="col-md-4 col-xs-12 justify-content-center">
-            <h2 class="white-text text-center mt-4 mb-1">{{currentPanel}}</h2>
+            <h2 *ngIf="currentPanel ; else titleTemplate" class="white-text text-center mt-4 mb-1">{{currentPanel | uppercase }}</h2>
+            <ng-template #titleTemplate>
+                <h2 class="white-text text-center mt-4 mb-1">General Announcements</h2>
+            </ng-template>
           </div>
           <div *ngIf="userInfo && currentCourse">
             <div *ngIf="userInfo.isInstructor" class="col-md-4 col-xs-12 text-center">
