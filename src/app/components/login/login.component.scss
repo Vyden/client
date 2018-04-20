@@ -3,16 +3,12 @@
     padding: 0;
 }
 .topHalf {
-    height: 95vh;
-    /*background-color: #00BCD4;*/
+    height: 99vh;
     background-image: url("../../../assets/img/nightSkyFinal.png");
     background-size: cover;
     border: none;
 }
 
-// .secondLayer {
-//     height: 60vh;
-// }
 .secondLayer img{
     width: 100%;
     height: 100%;
@@ -29,30 +25,43 @@
     bottom: 50%;
 }
 
-label {
+.transparent-bg {
+    background-color: rgba($color: white, $alpha: 0.2) !important;
+    margin: 0 auto;
+}
+
+.mat-card {
+    border-radius: 5px;
+}
+
+#pWord {
+    border-bottom: none;
+}
+
+input[type=password]:focus {
+    border-bottom: none;
+    box-shadow: 0 0 0 0 white;
     color: white;
-    display: inline-block;
-    width: 90px;
-    text-align: right;
-    text-decoration-color: white;
-    padding-right: 10px
 }
 
-input {
-    border: 1px solid #999;
-    background-color: rgba(0, 0, 0, 0);
+input[name=email]:focus {
+    border-bottom: none;
+    box-shadow: 0 0 0 0 white;
     color: white;
-    border-color: white;
-    font: 1em sans-serif;
-    width: 300px;
-    box-sizing: border-box;
 }
 
-input:focus,
-textarea:focus {
-    border-color: #000
+::placeholder {
+    color: white;
 }
 
+::-webkit-input-placeholder {
+    color: white;
+}
+
+
+#emailAddress:-webkit-input-placeholder {
+    color: white;
+}
 
 .mycontainer{
     width: 100%;
@@ -73,9 +82,6 @@ textarea:focus {
     height: 90vh;
 }
 
-// .myslide{
-//     background-size: contain;
-// }
 
 .myslide:nth-child(1){
     background: url(../../../assets/img/svg/world.svg);
@@ -91,6 +97,8 @@ textarea:focus {
     background: url(../../../assets/img/svg/Screen.svg);
     background-size: cover;
 }
+
+
 
 @keyframes animate{
     0%{
