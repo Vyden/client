@@ -36020,6 +36020,25 @@ const PrimitiveObjectsController = {
                 fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
             </a-entity>
         `)
+    },
+
+    getInvisibleCursor() {
+        return $(`
+            <a-entity id="mobileCursor" cursor="fuse: true; fuseTimeout: 500"
+            position="0 0 -1">
+            </a-entity>
+        `)
+    },
+
+    getPauseBox() {
+        return $(`
+        <a-box id="pauseBox" position="0 1 -12" scale="4.5 1.8 2.7" rotation="-45 0 0" color="#0097A7" pause-listener
+          event-set__enter="_event: mouseenter; scale: 5 2 3"
+          event-set__click="_event: click; scale: 4.5 1.8 2.7"
+          >
+            <a-text id="pauseText" value="Pause" scale="0.75 2 1" position="0 0.05 1" align="center"></a-text>
+        </a-box>
+        `)
     }
 }
 
@@ -36132,7 +36151,7 @@ const QuizController = {
         }.bind(this),2000)
         console.log("submit index: " + index)
         console.log("this scene",this.scene)
-        this.scene.DataController.submitAnswerForQuiz(this.scene.lastItem.resource,index)
+        this.scene.DataController.submitAnswerForQuiz(this.scene.currentItem.resource,index)
         //send over to firebase
     }
 
@@ -36176,7 +36195,7 @@ const $ = dependencies.jquery
 const SceneController = {
     initScene() {
         //will be dynamic, for now use sample video
-        $('#videoPlane').attr('visible',false);
+        $('#videoPlane').attr('visible',false)
         $('#lecStart').attr('visible',false)
 
         this.DataController = DataController
@@ -36199,6 +36218,7 @@ const SceneController = {
                     document.getElementById('video').play()
                     document.getElementById('video').pause()
                     this.userStartScene()
+                    SubtitleController.initialTime = new Date();
                 }
             }.bind(this))
             if(!Util.isMobile()) {
@@ -36208,13 +36228,26 @@ const SceneController = {
                 $('#mainCamera').removeAttr('look-controls')
                 $('a-scene').attr('cursor','rayOrigin: mouse')
                 $(document).css('cursor','pointer !important')
+                $('#pauseBtn').hide()
+                $('#pauseBtn').click(() => {
+                    this.toggleVideo()
+                })
+                $('#cameraContainer').attr('position','0 0 0')
+            } else {
+                $('#pauseBtn').remove()
+                $('a-scene').append(PrimitiveObjects.getPauseBox())
+                $('#pauseBox').attr('visible',false)
             }
             $('#exitBtn').click(function() {
-                window.history.back();
-            });
+                window.history.back()
+            })
             $('#lecStart').attr('visible',true)
 
         }.bind(this))
+
+        document.querySelector('a-scene').addEventListener('enter-vr', () => {
+            $('#cameraContainer').attr('position','0 10 0')
+         });
 
         //set properties for desktop viewing
     },
@@ -36226,25 +36259,53 @@ const SceneController = {
         if(Util.isMobile()) {
             setTimeout(function() {
                 this.presentNext()
-            }.bind(this),10000)
+            }.bind(this),100)
         } else {
             this.presentNext()
         }
     },
 
+    toggleVideo() {
+        if(this.isPaused) {
+            this.resumeVideo()
+            $('#pauseBtn').text("Pause")
+            $('#pauseText').attr("Value","Pause")
+        } else {
+            this.pauseVideo()
+            $('#pauseBtn').text("Resume")
+            $('#pauseText').attr("Value","Resume")
+        }
+    },
+
     pauseVideo() {
         const currentTime = Date.now()
-        const elapsed = this.videoStart - currentTime
-        const ms = elapsed.getMilliseconds()
-        const remainingTime = this.videoItemDuration - ms
+        const elapsed = currentTime - this.videoStart
+        console.log("elapsed",elapsed)
+        console.log("videoStart",this.videoStart,"currentTime",currentTime)
+        const remainingTime = this.videoItemDuration - elapsed
+        console.log("video item duration",this.videoItemDuration)
         console.log("remaining time",remainingTime)
         document.getElementById('video').pause()
+        console.log("should pause")
+        this.remainingTime = remainingTime
+        this.isPaused = true
         clearTimeout(this.videoTimeout)
+    },
+
+    resumeVideo() {
+        this.videoTimeout = setTimeout(function() {
+            document.getElementById('video').pause()
+            this.presentNext()
+        }.bind(this),this.remainingTime)
+        this.videoStart = Date.now()
+        this.videoItemDuration = this.remainingTime
+        document.getElementById('video').play()
+        this.isPaused = false
     },
 
     presentNext() {
         //delta for handling time errors
-        const delta = 500;
+        const delta = 500
         //clear the stage
         Stage.clearStage()
         //set the current item
@@ -36252,7 +36313,13 @@ const SceneController = {
         this.currentItem = this.timeline.shift()
         this.nextItem = this.timeline[0]
 
-        SubtitleController.onItemChange(this.currentItem);
+        SubtitleController.onItemChange(this.currentItem)
+
+        if(!Util.isMobile()) {
+            $('#pauseBtn').hide()
+        } else {
+            $('#pauseBox').attr('visible',false)
+        }
 
         if(!this.currentItem) {
             $(this.stage).append(PrimitiveObjects.getText('Presentation Done',36))
@@ -36260,12 +36327,22 @@ const SceneController = {
         }
         let eventTimeout = 0
         if(this.nextItem) {
-            eventTimeout = this.nextItem.eventTime - this.currentItem.eventTime;
+            eventTimeout = this.nextItem.eventTime - this.currentItem.eventTime
         } else {
             eventTimeout = Timeline.getEventTimeoutForLastItem(this.currentItem)
         }
         if(this.currentItem.type === 'video') {
             $('#videoPlane').attr('visible',true)
+
+            if(!Util.isMobile()) {
+                $('#pauseBtn').show()
+            } else {
+                $('#pauseBox').attr('visible',true)
+            }
+
+            $('#mainCamera').empty()
+            $('#mainCamera').append(PrimitiveObjects.getInvisibleCursor())
+
             setTimeout(function() {
                 document.getElementById('video').play()
                 //set timeout for next item
@@ -36280,6 +36357,7 @@ const SceneController = {
             console.log('start quiz')
             DataController.getQuizFromTimelineItem(this.currentItem,function(quiz) {
                 if(Util.isMobile()) {
+                    $('#mainCamera').empty()
                     $('#mainCamera').append(PrimitiveObjects.getCursor())
                 }
                 console.log("quiz in callback",quiz)
@@ -36303,6 +36381,14 @@ const SceneController = {
         }
     }
 }
+
+AFRAME.registerComponent('pause-listener', {
+    init: function () {
+      this.el.addEventListener('click', function (event) {
+        document.currentScene.toggleVideo()
+      });
+    }
+  });
 
 module.exports = SceneController
 },{"./assets":123,"./data":124,"./dependencies":125,"./model":126,"./primitiveObjects":127,"./quiz":128,"./sky":131,"./stage":132,"./subtitle":133,"./timeline":134,"./util":135}],130:[function(require,module,exports){
@@ -36367,6 +36453,8 @@ const Firebase = firebase
 
 const subtitleController = {
     loadSubtitles() {
+        this.subActive = true;
+        this.endSub = false;
         DataController.getLectureAndTimelineFromFirebase((timeline, lecture) => {
             if (lecture['subtitleURL']) {
                 fetch(lecture['subtitleURL'])
@@ -36384,19 +36472,47 @@ const subtitleController = {
                     })
             }
         })
+
+        $('#toggleBtn').on('click', () => {
+            this.subActive = !this.subActive;
+            if (this.subActive) {
+                $('#toggleBtn').text('Sub: ON');
+                if (!this.endSub) {
+                    const subText = this.subs[this.subIndex - 1].text.replace('<br />', '\n');
+                    document.querySelector('#subtitle').setAttribute('value', subText);
+                }
+            } else {
+                $('#toggleBtn').text('Sub: OFF');
+                document.querySelector('#subtitle').setAttribute('value', '');
+            }
+        })
     },
 
     startSubtitles() {
         if (this.subs && this.subIndex < this.subs.length) {
-            const subText = this.subs[this.subIndex].text.replace('<br />', '\n');
-
-            document.querySelector('#subtitle').setAttribute('value', subText);
-            this.timeoutRef = setTimeout(() => {
-                this.startTime = new Date();
-                this.startSubtitles()
-            }, (this.subs[this.subIndex].end - this.subs[this.subIndex].start) * 1000);
-            this.subIndex++;
+            const endTime = new Date();
+            if ((endTime - this.initialTime) / 1000 >= this.subs[this.subIndex].start) {
+                this.endSub = false;
+                const subText = this.subs[this.subIndex].text.replace('<br />', '\n');
+                if (this.subActive) {
+                    document.querySelector('#subtitle').setAttribute('value', subText);
+                }
+                clearTimeout(this.timeoutRef);
+                this.timeoutRef = setTimeout(() => {
+                    this.startTime = new Date();
+                    this.startSubtitles()
+                }, (this.subs[this.subIndex].end - this.subs[this.subIndex].start) * 1000);
+                this.subIndex++;
+            } else {
+                const elapsedTime = ((new Date()) - this.initialTime) / 1000;
+                this.endSub = true;
+                this.timeoutRef = setTimeout(() => {
+                    this.startTime = new Date();
+                    this.startSubtitles();
+                }, (this.subs[this.subIndex].start - elapsedTime) * 1000);
+            }
         } else {
+            this.endSub = true;
             document.querySelector('#subtitle').setAttribute('value', '');
         }
     },
@@ -36404,11 +36520,17 @@ const subtitleController = {
     onItemChange(timelineItem) {
         if (timelineItem) {
             if (timelineItem.type === 'video') {
+                this.endSub = false;
+                const pauseEnd = new Date();
+                const pauseTime = pauseEnd - this.pauseStart;
+                this.initialTime -= pauseTime;
                 this.startSubtitles();
             } else {
+                this.endSub = true;
+                this.pauseStart = new Date();
                 if (this.timeoutRef) {
                     clearTimeout(this.timeoutRef);
-                    this.subIndex--;
+                    if(this.subIndex > 0) this.subIndex--;
                     //Get elapsed time since start of subtitle and modify subtitle
                     const endTime = new Date();
                     const elapsedTime = (endTime - this.startTime) / 1000;
