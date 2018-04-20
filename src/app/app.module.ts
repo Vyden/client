@@ -80,6 +80,7 @@ import { ForumCardComponent } from './components/forum-card/forum-card.component
 import { FilterAnnouncementsPipe } from './directives/filter-announcements.pipe';
 import { CourseIdDialogComponent } from './components/course-id-dialog/course-id-dialog.component';
 import { FilterLecturesPipe } from './directives/filter-lectures.pipe';
+import { FilterForumPipe } from './directives/filter-forum.pipe';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { FilterLecturesPipe } from './directives/filter-lectures.pipe';
     FilterAnnouncementsPipe,
     CourseIdDialogComponent,
     FilterLecturesPipe,
+    FilterForumPipe,
   ],
   imports: [
     BrowserModule,

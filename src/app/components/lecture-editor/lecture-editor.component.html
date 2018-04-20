@@ -61,44 +61,37 @@
   </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
-  <div class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
-  <div class="row m-0 mt-">
+  <div *ngIf="videoActive" class="row m-0 mt-">
     <div class="col m-0 p-0">
-      <mat-card class="upload-card diffused-shadow">
+      <mat-card class="diffused-shadow">
         <mat-card-title>
-          <h2 class="white-text text-center" style="font-weight: 400">Step 2: Upload Subtitles (Optional)</h2>
+          <h2 class="text-center" style="font-weight: 400">Upload Subtitles (Optional)</h2>
         </mat-card-title>
-        <mat-card-content class="video-upload-content d-flex flex-column mt-4 pb-3 mb-4 pt-3">
+        <mat-card-content class="d-flex flex-column mt-4 pb-3 mb-4 pt-3">
           <div class="row">
             <div class="col"></div>
           </div>
-          <div *ngIf="showSubtitleDropBox" appFileDrop (filesDropped)="handleSubtitleDrop($event)"
-            (filesHovered)="dropzoneSubtitleState($event)" [ngClass]="{'drop-active': dropzoneSubtitleActive}"
-            class="row fill d-flex file-outline m-4">
-            <div class="col pt-4 pb-4 text-center align-self-center pointer-events-none">
-              <h3 class="white-text t-all-250" style="font-weight: 400">DROP SRT FILE</h3>
-            </div>
-          </div>
-          <div class="row justify-content-center white-theme" *ngIf="showSubtitleUploadProgress">
+          <div class="row justify-content-center purple-theme" *ngIf="showSubtitleUploadProgress">
             <mat-progress-spinner color="accent" [mode]="subtitleUploadProgress==100?'indeterminate':'determinate'" [value]="subtitleUploadProgress">
             </mat-progress-spinner>
 
             <h3 class="text-center mt-4 white-text font-weight-bold w-100">{{subtitleUploadProgress}}%</h3>
           </div>
           <div class="row" *ngIf="subtitleActive">
-            <div class="col white-text text-center">
+            <div class="col text-center">
               <mat-icon class="icon-xxl">check</mat-icon>
             </div>
           </div>
           <div class="row" *ngIf="subtitleActive">
-            <div class="col white-text">
+            <div class="col">
               <h2 class="text-center">{{subtitleName}}</h2>
             </div>
           </div>
           <div class="row" *ngIf="showSubtitleDropBox">
             <div class="col text-center mt-2">
-              <button mat-raised-button (click)="inputFile.click()">
+              <button mat-raised-button (click)="inputFile.click()" color="accent">
                 <mat-icon>file_upload</mat-icon>
                 <span>UPLOAD</span>
               </button>
@@ -221,9 +214,9 @@
   </div>
 
   <!-- Spacer on desktop, invisible on mobile -->
-  <div *ngIf="true || videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
+  <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>
 
-  <app-quiz *ngIf="true || videoActive" [lectureTime]="lectureEndTime"></app-quiz>
+  <app-quiz *ngIf="videoActive" [lectureTime]="lectureEndTime"></app-quiz>
 
   <!-- Spacer on desktop, invisible on mobile -->
   <div *ngIf="videoActive" class="row p-0 m-0 mt-4 mb-4" fxHide="false" fxHide.lt-sm></div>

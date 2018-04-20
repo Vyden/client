@@ -31,6 +31,7 @@ export class MainPanelComponent implements OnInit {
   public currentPanel: string
   public announcementOptions: AnnouncementOptions;
   public buttonTag: string
+  public panelTitle: string
 
   public filterLectureOptions: FilterLectureOptions
 
@@ -85,10 +86,13 @@ export class MainPanelComponent implements OnInit {
       console.log(currentPanel);
       if (currentPanel === "announcements") {
         this.buttonTag = "announcement";
+        this.panelTitle = 'announcements'
       } else if (currentPanel === "quizzes") {
         this.buttonTag = "quiz";
+        this.panelTitle = 'quizzes'
       } else {
         this.buttonTag = "lecture";
+        this.panelTitle = 'lectures'
       }
     })
   }

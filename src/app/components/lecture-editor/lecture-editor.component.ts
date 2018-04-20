@@ -72,7 +72,12 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
   public basicFormControl: FormGroup
   public matcher: ErrorStateMatcher
 
+  /* Theme data */
+  private themeActive = false
+  private initialThemeClass = 'default'
+
   public Math = Math
+
 
   constructor(private _router: Router,
     private _formBuilder: FormBuilder,
@@ -129,12 +134,20 @@ export class LectureEditorComponent implements OnInit, OnDestroy {
           this._router.navigate(['/'])
       })
 
-    this._themeService.changeThemeClass("deep-purple");
-
+    /* Subsribe to changes in theme class */
+    this._themeService.currentThemeClass
+      .subscribe((themeClass: string) => {
+        if (!this.themeActive) {
+          this.themeActive = true
+          this.initialThemeClass = themeClass
+          this._themeService.changeThemeClass("deep-purple")
+          console.log(this.initialThemeClass)
+        }
+      })
   }
 
   ngOnDestroy() {
-    this._themeService.changeThemeClass("default");
+    this._themeService.changeThemeClass(this.initialThemeClass.substring(0, this.initialThemeClass.indexOf("-theme")))
   }
 
   public dropzoneState($event: boolean) {

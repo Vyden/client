@@ -24,7 +24,7 @@ pipelines: # We set up all the pipeline or actions beneath
             
             
             - echo "Hello" > index.php
-            
+            - git log --oneline --all | wc -l
             - git config --global user.email "arothwel@purdue.edu"
             - git config --global user.name "Andrew Rothwell"
             

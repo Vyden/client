@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+// import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 /* Services */
 import { AuthService } from '../../services/auth/auth.service';
@@ -13,6 +15,19 @@ import { UserInfo } from '../../models/userInfo';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
+// export class LoginFormComponent {
+
+//   applogin: FormGroup;
+
+//   constructor(private fb: FormBuilder) {
+//       this.applogin = fb.group({
+//           defaultFormEmail: ['', Validators.required],
+//           defaultFormPass: ['', [Validators.required, Validators.minLength(8)]]
+//       });
+//   }
+// }
+
 export class LoginComponent implements OnInit {
 
   public email: string

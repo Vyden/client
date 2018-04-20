@@ -10,7 +10,7 @@
         </div>
 
         <div class="row p-4 m-0 justify-content-center white-text bg-admin">
-          <input class="exp-input" #filter placeholder="filter content">
+          <input class="exp-input" #filter placeholder="filter content" [(ngModel)]="filterQuery">
         </div>
 
         <div class="row m-0">
@@ -80,7 +80,7 @@
 
         <ng-container *ngIf="userInfo && currentCourse">
           <!-- Forum Posts -->
-          <div class="row m-0 mt-2 p-0" *ngFor="let forumPost of forumPosts">
+          <div class="row m-0 mt-2 p-0" *ngFor="let forumPost of forumPosts | filterForum:filterQuery">
             <mat-expansion-panel class="w-100">
               <mat-expansion-panel-header>
                 <mat-panel-title style="font-weight: 400">
