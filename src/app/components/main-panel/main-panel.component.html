@@ -31,9 +31,14 @@
           </div>
         </div>
         <!-- div for search box -->
-        <div class="row p-4 m-0 justify-content-center white-text bg-admin">
+
+
+        <div *ngIf="currentPanel !== 'quizzes' ; else paddingTemplate" class="row p-4 m-0 justify-content-center white-text bg-admin">
           <input class="exp-input" #filter placeholder="filter content" (keyup)="updateFilter($event)">
         </div>
+        <ng-template #paddingTemplate>
+          <div class="p-3"></div>
+        </ng-template>
       </div>
     </div>
 
