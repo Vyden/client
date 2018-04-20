@@ -83,7 +83,7 @@ export class MainPanelComponent implements OnInit {
 
     this._panelContentService.panelContent.subscribe((currentPanel: string) => {
       this.currentPanel = currentPanel;
-      console.log(currentPanel);
+      // console.log(currentPanel);
       if (currentPanel === "announcements") {
         this.buttonTag = "announcement";
         this.panelTitle = 'announcements'
@@ -125,7 +125,7 @@ export class MainPanelComponent implements OnInit {
         .subscribe((res: any) => {
           if(res) {
             this._lectureService.changeFilter(this.filterLectureOptions)
-            console.log(this.filterLectureOptions)
+            // console.log(this.filterLectureOptions)
           }
         })
     }
