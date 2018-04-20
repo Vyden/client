@@ -18,7 +18,7 @@ export class FilterForumPipe implements PipeTransform {
       let testString = ""
       testString += forumQuestion.title
       testString += forumQuestion.text
-      if(forumQuestion.answers && forumQuestion.answers[0]) {
+      if(!forumQuestion.isNote && forumQuestion.answers && forumQuestion.answers[0]) {
         const forumAnswers: ForumAnswer [] = <ForumAnswer []>forumQuestion.answers
         forumAnswers.forEach((forumAnswer: ForumAnswer) => {
           testString += forumAnswer.text
