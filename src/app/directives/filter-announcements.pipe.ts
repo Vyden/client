@@ -21,15 +21,11 @@ export class FilterAnnouncementsPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
 
-    // console.log('searchString', args[1]);
-
-    if(this.searchKey.length === 0){
-
-    
-
     let filteredValues: Announcement [] = value.slice(0)
-
     let extraValue: Announcement [] = [];
+   
+    //checking if there is a search word
+    if(this.searchKey.length === 0){   
     filteredValues = filteredValues.filter((announcement:  Announcement) => {
       if(announcement.pinned) {
         return true;
@@ -42,13 +38,25 @@ export class FilterAnnouncementsPipe implements PipeTransform {
       filteredValues.push(extraValue[i])
     }
     //console.log(value);
-    console.log('length ', this.searchKey.length)
     
     return filteredValues;
   }
   
   else {
-    return null;
+    filteredValues = filteredValues.filter((announcement:  Announcement) => {
+      // if(announcement.pinned) {
+        if(announcement.text.includes(this.searchKey) || announcement.title.includes(this.searchKey)){
+          return true;
+        }
+        return false;
+    })
+
+    // for(var i = 0 ;  i < extraValue.length ; i++){
+    //   filteredValues.push(extraValue[i])
+    // }
+    //console.log(value);
+    
+    return filteredValues;
   }
 
   }
